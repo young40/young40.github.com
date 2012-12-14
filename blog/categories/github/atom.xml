@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Github | 喜气羊羊]]></title>
+  <link href="http://young40.github.com/blog/categories/github/atom.xml" rel="self"/>
+  <link href="http://young40.github.com/"/>
+  <updated>2012-12-15T00:31:42+08:00</updated>
+  <id>http://young40.github.com/</id>
+  <author>
+    <name><![CDATA[Young40]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Github三板斧]]></title>
+    <link href="http://young40.github.com/blog/2012/12/14/easy-github/"/>
+    <updated>2012-12-14T15:05:00+08:00</updated>
+    <id>http://young40.github.com/blog/2012/12/14/easy-github</id>
+    <content type="html"><![CDATA[<p><code>sh 初始化目录
+git init
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>
