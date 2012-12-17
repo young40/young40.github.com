@@ -10,7 +10,12 @@
 
   
   <meta name="description" content="初始化目录1
-git init ">
+git init 添加文件1
+2
+git add somefile.php // 添加一个新文件
+git add . // 将所有未纳入版本管理的文件添加进来 本地提交1
+git commit -a -m &quot;add ignore file&quot; 状态查看1
+git &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -109,6 +114,39 @@ git init ">
 </span></code></pre></td></tr></table></div></figure>
 
 
+
+
+<!--more-->
+
+
+
+
+<figure class='code'><figcaption><span>添加文件</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git add somefile.php // 添加一个新文件
+</span><span class='line'>git add . // 将所有未纳入版本管理的文件添加进来
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>本地提交</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git commit -a -m <span class="s2">&quot;add ignore file&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>状态查看</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git status
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>忽略文件</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git-ignore .DS_Store  //忽略一个文件 本质是将该文件名添加到.gitignore, 可以在每个目录设立不同的.gitignore文件, 会影响子目录
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
