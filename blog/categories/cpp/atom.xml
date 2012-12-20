@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CPP | 喜气羊羊]]></title>
   <link href="http://young40.github.com/blog/categories/cpp/atom.xml" rel="self"/>
   <link href="http://young40.github.com/"/>
-  <updated>2012-12-17T20:23:57+08:00</updated>
+  <updated>2012-12-21T03:06:59+08:00</updated>
   <id>http://young40.github.com/</id>
   <author>
     <name><![CDATA[Young40]]></name>
@@ -20,6 +20,9 @@
     <id>http://young40.github.com/blog/2012/12/12/random-number-in-cpp</id>
     <content type="html"><![CDATA[<p>这两天写一个方块消除游戏, 开局的时候就需要随机颜色方块布局. 在调试的时候, 发现似乎有些关卡总是相同的.
 终于发现了程序第一次打开的时候, 开局总是相同的.</p>
+
+<!--more-->
+
 
 <p>rand()可以产生0到之间的伪随机数, 可以利用srand()指定一个无符号整数作为种子. 如果种子相同, 那么产生的伪随机数列相同.
 默认种子为1, 所以如果不改变种子的话, 获得的随机数列总是相同的.</p>
@@ -46,6 +49,9 @@ srand( time(0) );</p>
     <content type="html"><![CDATA[<p>最近一直在看C++, 基础的东西瞄了一遍就飘过了, 然后就记不得很清楚了.
 这两天觉得看书的时候, 对声明和定义的含义很含糊, 以至于都不是很明白书上在说什么地方了.
 看来有必要对声明和定义重新研究下, 既然架设了这个博客, 那么就写一篇博客吧.</p>
+
+<!--more-->
+
 
 <p>定义(Definiation)用于给变量分配存储空间, 还可以给变量指定初始值. 变量只能有一个定义.</p>
 

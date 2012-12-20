@@ -9,8 +9,8 @@
   <meta name="author" content="Young40">
 
   
-  <meta name="description" content="路径:cocos2d-2.1beta3-x-2.1.0/cocos2dx/include/ccConfig.h
-路径:cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/mac/CCPlatformDefine.h //注意我是以mac平台研究的, &hellip;">
+  <meta name="description" content="CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.
+CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,56 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/21/cocosbuilder-step-by-step-part-one/">一步一步CocosBuilder(1)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-21T02:46:00+08:00" pubdate data-updated="true">Dec 21<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.
+CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.
+我想这个也是其不够流行的原因吧.</p>
+
+<p>如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力.
+我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实.
+我无论C++,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.</p>
+
+<p>这次的目的是基本实现原来v2.0中的例子.
+我采用的2d-x的版本是:cocos2d-2.1beta3-x-2.1.0, 以OS X版本为主, 以sample目录下的HelloCpp为基础改进. CCB的版本是v3.0alpha0.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/12/21/cocosbuilder-step-by-step-part-one/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -175,148 +225,6 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/12/15/survive-in-vim/">Vim 生存手册</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-15T00:23:00+08:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>模式</h2>
-
-<p>在普通模式按<code>i</code>进入插入模式
-在普通模式按<code>:</code>进入命令模式
-在插入模式按<code>esc</code>进入普通模式
-在普通模式按<code>v</code>进入可视模式</p>
-
-<h2>命令合成</h2>
-
-<p><code>dw</code>可以看做<code>d</code>(删除)+<code>w</code>(一个单词)合成的. 所以<code>dw</code>, 将向后删除一个单词
-数字+命令 会重复该命令
-例如: <code>2j</code> 会向下移动两次</p>
-
-<h2>基础命令</h2>
-
-<p><code>h</code>,<code>j</code>,<code>k</code>,<code>l</code>分别代表了向前一个字符,向下一行,向上一行,向后一个字符</p>
-
-<h2>翻页</h2>
-
-<p>Ctrl+D 向下翻半页</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/14/os-x-shell-command/">OS X常用Shell命令</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-14T20:45:00+08:00" pubdate data-updated="true">Dec 14<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span>清理 </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>find ./ -name <span class="s2">&quot;._*&quot;</span> -depth -exec rm <span class="o">{}</span> <span class="se">\;</span>
-</span><span class='line'>find ./ -name <span class="s2">&quot;._*&quot;</span> | xargs rm
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/14/easy-github/">Github三板斧</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-14T15:05:00+08:00" pubdate data-updated="true">Dec 14<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><figcaption><span>初始化目录</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git init
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/12/14/easy-github/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
       <h1 class="entry-title"><a href="/blog/2012/12/14/cocos2d-x-is-awesome/">Cocos2d-x 真是太棒了</a></h1>
     
     
@@ -346,27 +254,12 @@
 Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是刚刚开始学习, 所以代码写的不标准, 那么在VS下面会无法通过编译. 主要是体现在一些需要将函数作为参数传入的地方,
 比较会不容易弄清楚回调函数的参数. Xcode我通通将<code>CCObject *sender</code>作为参数, 而VS要求就非常严格了.</p>
 
-<p>在Win上, 我使用VS2012编译, 能很好地支持我现在使用的C++11的一些特性, 比如类似于:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>vector&lt;int&gt; v(1);
-</span><span class='line'>for (auto i : v)
-</span><span class='line'>{
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
-
-
-<p>而在Android上, 因为一直没有更新NDK, 版本是r8b, 一直没有办法很好地编译这段代码. 更新为r8c之后,可以编译了.太好了, 我还是很喜欢C++11的这些新的语法糖.</p>
-
-<p>默认是没有启用C++11特性的, 可以在<code>Android.mk</code>中, 添加<code>LOCAL_CPPFLAGS += -std=c++0x</code>来启用这个特性.</p>
-
-<p>作为练习, 我将潘潘的j2me的坦克游戏简单移植到ios上, 简单实现以后, 我转向山寨@胡铠鸥 的PopCube(<a target="_blank" href="https://itunes.apple.com/cn/app/popcube!/id562905043?l=en&mt=8">原版下载</a>)了. 山寨的很彻底, 直接将图片,声音等资源从原版的ipa里面提取出来, 或许游戏资源的保护也应该做的更好一点.</p>
-
-<p>接下来要转向继续开发坦克了, 希望一切顺利.</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/12/14/cocos2d-x-is-awesome/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -403,27 +296,12 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
   <div class="entry-content"><p>这两天写一个方块消除游戏, 开局的时候就需要随机颜色方块布局. 在调试的时候, 发现似乎有些关卡总是相同的.
 终于发现了程序第一次打开的时候, 开局总是相同的.</p>
 
-<p>rand()可以产生0到之间的伪随机数, 可以利用srand()指定一个无符号整数作为种子. 如果种子相同, 那么产生的伪随机数列相同.
-默认种子为1, 所以如果不改变种子的话, 获得的随机数列总是相同的.</p>
-
-<figure class='code'><figcaption><span>Random</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="n">srand</span><span class="p">(</span> <span class="n">time</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">rand</span><span class="p">());</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/12/12/random-number-in-cpp/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -461,22 +339,12 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
 这两天觉得看书的时候, 对声明和定义的含义很含糊, 以至于都不是很明白书上在说什么地方了.
 看来有必要对声明和定义重新研究下, 既然架设了这个博客, 那么就写一篇博客吧.</p>
 
-<p>定义(Definiation)用于给变量分配存储空间, 还可以给变量指定初始值. 变量只能有一个定义.</p>
-
-<p>声明(Declaration)表明变量的类型和名字. 定义也是声明.可以通过extern这种方式来仅声明而不定义变量.</p>
-
-<figure class='code'><figcaption><span>Declaration</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">extern</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>定义会分配内存空间.</p>
-
-<p>可以多次声明.</p>
-
-<p>好吧, 这篇文章不能称之为研究, 仅仅是从C++ Primer抄下来的而已.</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/12/10/declaration-and-definition-in-cpp/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -517,20 +385,12 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
 
 <p>我是有安装homebrew的软件包管理器的, 使用brew安装ruby, 结果Terminal下还是1.8.7.</p>
 
-<p>然后就学习到有个东西叫做rvm, ruby版本管理器, 允许多个ruby同时安装. 官方的源速度太慢, 所以尝试用sed换成淘宝源, 网上别人给出的sed命令报错, 所以又复习了下vim替换, 全部替换了下.</p>
-
-<p>再接着安装bundler, 报错说RedCloth无法安装.网上搜索了下无果, 注意到中间的时候有个地方提示查看log, 然后发现以这个log为名字的log在系统里面太多了, 也区分不出路径. 索性将所有搜索到的都删除掉. 然后发现RedCloth安装文件需要gcc-4.2, 所以将gcc ln了一个gcc-4.2.</p>
-
-<p>另外, 由于对git不是很熟悉, octopress将主目录作为source分支, 而_deploy目录作为master分支, 为了弄明白这个问题, 我花费了更长的时间.不过也总算是对git的pull, push, branch理解更深入了一点</p>
-
-<p>博客终于跑起来了, 还是非常开心.</p>
-
-<p>PS:我再说两点.
-1.github的服务器有缓存,更新后, 可能需要强制刷新才能看到更新.
-2.分类是支持中文的, 但rake preview不支持.
-3.Disqus支持中文, 但是可能需要申请.可以在Disqus设置页面找到申请链接.</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/12/09/setup-octopress-on-os-x-10-dot-8/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -548,13 +408,9 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
 <h1>Categories</h1>
 <ul id="categories">
     <li class='category'><a href='/blog/categories/cpp/'>CPP (2)</a></li>
-<li class='category'><a href='/blog/categories/cocos2d-x/'>Cocos2d-x (2)</a></li>
+<li class='category'><a href='/blog/categories/cocos2d-x/'>Cocos2d-x (3)</a></li>
 <li class='category'><a href='/blog/categories/cocos2d-x-源代码研究/'>Cocos2d-x 源代码研究 (2)</a></li>
-<li class='category'><a href='/blog/categories/git/'>Git (1)</a></li>
-<li class='category'><a href='/blog/categories/github/'>Github (1)</a></li>
-<li class='category'><a href='/blog/categories/os-x/'>OS X (1)</a></li>
-<li class='category'><a href='/blog/categories/shell/'>Shell (1)</a></li>
-<li class='category'><a href='/blog/categories/vim/'>Vim (1)</a></li>
+<li class='category'><a href='/blog/categories/cocosbuilder/'>CocosBuilder (1)</a></li>
 <li class='category'><a href='/blog/categories/杂谈/'>杂谈 (2)</a></li>
 
 </ul>
@@ -562,6 +418,10 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/21/cocosbuilder-step-by-step-part-one/">一步一步CocosBuilder(1)</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/17/cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/">2d-x深读2:CCPlatformMacros.h</a>
@@ -572,15 +432,11 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
       </li>
     
       <li class="post">
-        <a href="/blog/2012/12/15/survive-in-vim/">Vim 生存手册</a>
+        <a href="/blog/2012/12/14/cocos2d-x-is-awesome/">Cocos2d-x 真是太棒了</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/12/14/os-x-shell-command/">OS X常用Shell命令</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/14/easy-github/">Github三板斧</a>
+        <a href="/blog/2012/12/12/random-number-in-cpp/">C++随机数</a>
       </li>
     
   </ul>
