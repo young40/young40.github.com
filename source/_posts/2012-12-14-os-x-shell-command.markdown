@@ -3,6 +3,7 @@ layout: post
 title: "OS X常用Shell命令"
 date: 2012-12-14 20:45
 comments: true
+published: false
 categories: [OS X, Shell]
 ---
 
