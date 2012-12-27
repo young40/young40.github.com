@@ -9,8 +9,8 @@
   <meta name="author" content="Young40">
 
   
-  <meta name="description" content="CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.
-CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大. &hellip;">
+  <meta name="description" content="上一篇我们建立了基本的工作环境, 这一次我们将基本实现例子中的HelloCocosBuilder. 注意 这两天纠结了一个问题. 我发现按照上次的配置来实现例子, 图片的大小怎么都和例子中的搭配不上. 后来动用CCB的源代码才看出端倪.
+CCB v3.0加入了一个resources-auto的目录 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,53 @@ CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/25/cocosbuilder-step-by-step-part-two/">一步一步CocosBuilder(2)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-25T21:15:00+08:00" pubdate data-updated="true">Dec 25<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>上一篇我们建立了基本的工作环境, 这一次我们将基本实现例子中的HelloCocosBuilder.</p>
+
+<h3>注意</h3>
+
+<p>这两天纠结了一个问题. 我发现按照上次的配置来实现例子, 图片的大小怎么都和例子中的搭配不上. 后来动用CCB的源代码才看出端倪.
+CCB v3.0加入了一个<code>resources-auto</code>的目录, 在发布的时候, 会自动缩放图片到对应的分辨率去. 因为图片的分辨率不合适(初步目测), 我们暂时不使用这功能. 请大家将上一篇文章
+中的<code>resources-auto</code>文件夹下图片移到父目录<code>ccb-source</code>下面. 这个也解释了为什么<code>resources-auto</code>有非图片文件会导致CCB崩溃的原因.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/12/25/cocosbuilder-step-by-step-part-two/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -408,9 +455,9 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
 <h1>Categories</h1>
 <ul id="categories">
     <li class='category'><a href='/blog/categories/cpp/'>CPP (2)</a></li>
-<li class='category'><a href='/blog/categories/cocos2d-x/'>Cocos2d-x (3)</a></li>
+<li class='category'><a href='/blog/categories/cocos2d-x/'>Cocos2d-x (4)</a></li>
 <li class='category'><a href='/blog/categories/cocos2d-x-源代码研究/'>Cocos2d-x 源代码研究 (2)</a></li>
-<li class='category'><a href='/blog/categories/cocosbuilder/'>CocosBuilder (1)</a></li>
+<li class='category'><a href='/blog/categories/cocosbuilder/'>CocosBuilder (2)</a></li>
 <li class='category'><a href='/blog/categories/杂谈/'>杂谈 (2)</a></li>
 
 </ul>
@@ -418,6 +465,10 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/25/cocosbuilder-step-by-step-part-two/">一步一步CocosBuilder(2)</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/21/cocosbuilder-step-by-step-part-one/">一步一步CocosBuilder(1)</a>
@@ -433,10 +484,6 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
     
       <li class="post">
         <a href="/blog/2012/12/14/cocos2d-x-is-awesome/">Cocos2d-x 真是太棒了</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/12/random-number-in-cpp/">C++随机数</a>
       </li>
     
   </ul>
