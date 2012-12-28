@@ -93,6 +93,9 @@ CCScene *pScene = MainScene::scene(); //HelloWorld::scene();
 {% img /upload/2012-12/ccb-sbs-1-003.png %}
 
 
+Update:
+@王哲Walzer 说,CCB大部分是美术在用, 在美术圈讨论, 所以程序圈较少看到人在讨论, 其实用的公司挺多的.
+http://weibo.com/1702027805/zay18wLT5
 
 ``` sh 目录结构
 ├── samples #目录结构和2d-x源代码保持一致,相信大家对2d-x源代码很熟悉了.
@@ -144,15 +147,8 @@ CCScene *pScene = MainScene::scene(); //HelloWorld::scene();
 │   ├── ExtensionMacros.h
 │   └── cocos-ext.h
 ```
+{% render_partial _posts/cocosbuilder-step-by-step-footer.markdown %}
 
-代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> 
-
-- 本文是系列文章, 请查看其他文章:
-- [一步一步CocosBuilder(1)](http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/)
-
-谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.
-
-新浪微博: [@杨世玲](http://weibo.com/young40) [http://weibo.com/young40](http://weibo.com/young40)
 
 
 
