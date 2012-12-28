@@ -5,6 +5,7 @@
 - [一步一步CocosBuilder(1)](http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/)
 - [一步一步CocosBuilder(2)](http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/)
 - [一步一步CocosBuilder(3)](http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/)
+- [一步一步CocosBuilder(4)完结](http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/)
 
 谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.
 
