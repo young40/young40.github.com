@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cocos2d-x | 喜气羊羊]]></title>
   <link href="http://young40.github.com/blog/categories/cocos2d-x/atom.xml" rel="self"/>
   <link href="http://young40.github.com/"/>
-  <updated>2012-12-28T19:22:12+08:00</updated>
+  <updated>2012-12-28T19:33:57+08:00</updated>
   <id>http://young40.github.com/</id>
   <author>
     <name><![CDATA[Young40]]></name>
@@ -327,7 +327,7 @@ void ButtonsLayer::onBtnClicked(cocos2d::CCObject *pSender, cocos2d::extension::
 - 本文是系列文章, 请查看其他文章:
 - [一步一步CocosBuilder(1)](http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/)
 - [一步一步CocosBuilder(2)](http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/)
-- [一步一步CocosBuilder(3)](http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-three/)
+- [一步一步CocosBuilder(3)](http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/)
 
 谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.
 
@@ -602,7 +602,7 @@ void MainScene::onNodeLoaded(cocos2d::CCNode <em>pNode, cocos2d::extension::CCNo
 - 本文是系列文章, 请查看其他文章:
 - [一步一步CocosBuilder(1)](http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/)
 - [一步一步CocosBuilder(2)](http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/)
-- [一步一步CocosBuilder(3)](http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-three/)
+- [一步一步CocosBuilder(3)](http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/)
 
 谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.
 
@@ -774,7 +774,7 @@ http://weibo.com/1702027805/zay18wLT5</p>
 - 本文是系列文章, 请查看其他文章:
 - [一步一步CocosBuilder(1)](http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/)
 - [一步一步CocosBuilder(2)](http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/)
-- [一步一步CocosBuilder(3)](http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-three/)
+- [一步一步CocosBuilder(3)](http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/)
 
 谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.
 
