@@ -9,7 +9,7 @@
   <meta name="author" content="Young40">
 
   
-  <meta name="description" content="这一节也是很轻松, 主要是牵涉到Timeline的切换. 其他的都是简单的界面制作. 所以CocosBuilder的威力也体现在这里, 很少的代码就能驱动界面了. 我们这次先做Particle System, Scroll View, 最后以Animations收官. 1 制作Particle &hellip;">
+  <meta name="description" content="CCObject是绝大部分cocos2d-x类的基类, 我们就从这里一步一步揭开cocos2d-x的奥秘. CCObject承担了两个重要的功能, 拷贝机制和内存管理. 拷贝机制 打开CCObject.h 首先看到的是类CCCopying, 而CCObject是从该类派生. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,61 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/31/cocos2d-x-source-code-research-3-ccobject/">2d-x深读3:CCObject</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-31T17:21:00+08:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>CCObject是绝大部分cocos2d-x类的基类, 我们就从这里一步一步揭开cocos2d-x的奥秘.</p>
+
+<p>CCObject承担了两个重要的功能, 拷贝机制和内存管理.</p>
+
+<h2>拷贝机制</h2>
+
+<p>打开<code>CCObject.h</code> 首先看到的是类CCCopying, 而CCObject是从该类派生. 从这个意义上来讲CCCopying才是大部分类的基类. <br/>
+但CCCopying其实非常简单, 再加上没有其他类从CCCopying派生, 所以说CCObject才是大部分类的基类也是不错的. 我认为CCCopying仅仅是一个接口性质.</p>
+
+<p>CCCopying这个类非常简单, 只有一个成员函数copyWithZone(CCZone *pZone); 简单到其实现只是为了报错. 尽管如此, 但其却承担了拷贝机制这一重要的功能.</p>
+
+<p>cocos2d-x和cocos2d-iphone是近亲, 所以cocos2d-x在API上会和cocos2d-iphone保持一致, 代码上也多有借鉴. CCObject明显就有很多NSObject的痕迹.
+当然我对Objective-c并不熟悉, 这里都是些猜测罢了. copyWithZone或许就是借鉴了Obj-c.</p>
+
+<p>我们先来看下拷贝机制, 至于CCObject的代码倒不忙着看.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/12/31/cocos2d-x-source-code-research-3-ccobject/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -499,53 +554,9 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/09/setup-octopress-on-os-x-10-dot-8/">在OS X上折腾OctoPress</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-09T10:19:00+08:00" pubdate data-updated="true">Dec 9<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>这两天心血来潮, 突然想在github上架设个博客玩玩了, 比较好的两个选择就是OctoPress和Jekyll-Bootstrap.
-昨天尝试了用Jekyll-Bootstrap, 感觉还不错啦, 我因为没有找到代码高亮的方法, 以及自定义的方法, 就放弃了.</p>
-
-<p>然后今天就尝试OctoPress, 不想op需要ruby 1.9.3, 而OS X 10.8自带的是1.8.7. 果然在执行rake generate的时候出错.</p>
-
-<p>我是有安装homebrew的软件包管理器的, 使用brew安装ruby, 结果Terminal下还是1.8.7.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/12/09/setup-octopress-on-os-x-10-dot-8/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -557,8 +568,8 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
 <h1>Categories</h1>
 <ul id="categories">
     <li class='category'><a href='/blog/categories/cpp/'>CPP (2)</a></li>
-<li class='category'><a href='/blog/categories/cocos2d-x/'>Cocos2d-x (6)</a></li>
-<li class='category'><a href='/blog/categories/cocos2d-x-源代码研究/'>Cocos2d-x 源代码研究 (2)</a></li>
+<li class='category'><a href='/blog/categories/cocos2d-x/'>Cocos2d-x (7)</a></li>
+<li class='category'><a href='/blog/categories/cocos2d-x-源代码研究/'>Cocos2d-x 源代码研究 (3)</a></li>
 <li class='category'><a href='/blog/categories/cocosbuilder/'>CocosBuilder (4)</a></li>
 <li class='category'><a href='/blog/categories/杂谈/'>杂谈 (2)</a></li>
 
@@ -567,6 +578,10 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/31/cocos2d-x-source-code-research-3-ccobject/">2d-x深读3:CCObject</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/29/cocosbuilder-step-by-step-part-four/">一步一步CocosBuilder(4)[完结]</a>
@@ -584,10 +599,6 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
         <a href="/blog/2012/12/21/cocosbuilder-step-by-step-part-one/">一步一步CocosBuilder(1)</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/12/17/cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/">2d-x深读2:CCPlatformMacros.h</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -602,7 +613,7 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Young40 -
+  Copyright &copy; 2013 - Young40 -
   <span class="credit">Powered by <a target="_blank" href="http://octopress.org">Octopress</a></span>
 </p>
 
