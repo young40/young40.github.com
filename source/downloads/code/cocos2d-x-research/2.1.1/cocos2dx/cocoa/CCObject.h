@@ -25,7 +25,7 @@ public:
     virtual bool isEqual(const CCObject* pObject);
 
     virtual void update(float dt) {CC_UNUSED_PARAM(dt);};
-    
+   //CCAutoreleasePool作为友元类 
     friend class CCAutoreleasePool;
 };
 
