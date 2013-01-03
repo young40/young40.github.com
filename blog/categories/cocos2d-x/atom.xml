@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cocos2d-x | 喜气羊羊]]></title>
   <link href="http://young40.github.com/blog/categories/cocos2d-x/atom.xml" rel="self"/>
   <link href="http://young40.github.com/"/>
-  <updated>2013-01-03T14:28:43+08:00</updated>
+  <updated>2013-01-04T06:06:55+08:00</updated>
   <id>http://young40.github.com/</id>
   <author>
     <name><![CDATA[Young40]]></name>
@@ -12,6 +12,453 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[2d-x深读4:CCAutoReleasePool]]></title>
+    <link href="http://young40.github.com/blog/2013/01/03/cocos2d-x-source-code-research-4-ccautoreleasepool/"/>
+    <updated>2013-01-03T15:09:00+08:00</updated>
+    <id>http://young40.github.com/blog/2013/01/03/cocos2d-x-source-code-research-4-ccautoreleasepool</id>
+    <content type="html"><![CDATA[<p><code>CCAutoReleasePool.h</code>主要定义了两个类<code>CCAutoReleasePool</code>和<code>CCPoolManager</code>.</p>
+
+<p>其实因为cocos2d-x自动管理内存的原因, 所以, 我们平时很少需要直接使用这两个类.  <br/>
+为了探究其中的自动管理内存的机制, 我们直接分析其代码.</p>
+
+<p>总体上来讲, 内存管理这块的机制难度或许比较大. 我研究了一天, 还是有诸多疑问.  <br/>
+暂时先放一放, 待我功力进化后再来继续研究这块.</p>
+
+<!--more-->
+
+
+<ul>
+<li>版本:<code>cocos2d-2.1beta3-x-2.1.0</code></li>
+<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/cocoa/CCAutoReleasePool.h</code></li>
+<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/cocoa/CCAutoReleasePool.cpp</code></li>
+</ul>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>CCAutoReleasePool.h   (CCAutoReleasePool.h)</span> <a href='/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCAutoReleasePool.h'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="c1">// 声明CCAutoreleasePool类</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">CC_DLL</span> <span class="n">CCAutoreleasePool</span> <span class="o">:</span> <span class="k">public</span> <span class="n">CCObject</span>
+</span><span class='line'><span class="p">{</span><span class="c1">//注意这个m_pCurReleasePool是一个私有成员. 居然没有加标号.</span>
+</span><span class='line'>    <span class="n">CCArray</span><span class="o">*</span>    <span class="n">m_pManagedObjectArray</span><span class="p">;</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">CCAutoreleasePool</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span><span class='line'>    <span class="o">~</span><span class="n">CCAutoreleasePool</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">addObject</span><span class="p">(</span><span class="n">CCObject</span> <span class="o">*</span><span class="n">pObject</span><span class="p">);</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">removeObject</span><span class="p">(</span><span class="n">CCObject</span> <span class="o">*</span><span class="n">pObject</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">clear</span><span class="p">();</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">CC_DLL</span> <span class="n">CCPoolManager</span>
+</span><span class='line'><span class="p">{</span><span class="c1">//下面这三个成员变量依然是私有的.</span>
+</span><span class='line'>    <span class="n">CCArray</span><span class="o">*</span>    <span class="n">m_pReleasePoolStack</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">CCAutoreleasePool</span><span class="o">*</span>                    <span class="n">m_pCurReleasePool</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">CCAutoreleasePool</span><span class="o">*</span> <span class="n">getCurReleasePool</span><span class="p">();</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">CCPoolManager</span><span class="p">();</span>
+</span><span class='line'>    <span class="o">~</span><span class="n">CCPoolManager</span><span class="p">();</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">finalize</span><span class="p">();</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">push</span><span class="p">();</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">pop</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">removeObject</span><span class="p">(</span><span class="n">CCObject</span><span class="o">*</span> <span class="n">pObject</span><span class="p">);</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">addObject</span><span class="p">(</span><span class="n">CCObject</span><span class="o">*</span> <span class="n">pObject</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">static</span> <span class="n">CCPoolManager</span><span class="o">*</span> <span class="n">sharedPoolManager</span><span class="p">();</span>
+</span><span class='line'>    <span class="k">static</span> <span class="kt">void</span> <span class="n">purgePoolManager</span><span class="p">();</span>
+</span><span class='line'>    <span class="c1">//友元</span>
+</span><span class='line'>    <span class="k">friend</span> <span class="k">class</span> <span class="nc">CCAutoreleasePool</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>CCAutoReleasePool.cpp   (CCAutoReleasePool.cpp)</span> <a href='/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCAutoReleasePool.cpp'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="k">static</span> <span class="n">CCPoolManager</span><span class="o">*</span> <span class="n">s_pPoolManager</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span><span class="c1">// 用作单例模式的静态变量.</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">CCAutoreleasePool</span><span class="o">::</span><span class="n">CCAutoreleasePool</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">m_pManagedObjectArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CCArray</span><span class="p">();</span>
+</span><span class='line'>    <span class="n">m_pManagedObjectArray</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">CCAutoreleasePool</span><span class="o">::~</span><span class="n">CCAutoreleasePool</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">CC_SAFE_DELETE</span><span class="p">(</span><span class="n">m_pManagedObjectArray</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="n">CCAutoreleasePool</span><span class="o">::</span><span class="n">addObject</span><span class="p">(</span><span class="n">CCObject</span><span class="o">*</span> <span class="n">pObject</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">m_pManagedObjectArray</span><span class="o">-&gt;</span><span class="n">addObject</span><span class="p">(</span><span class="n">pObject</span><span class="p">);</span>
+</span><span class='line'>    <span class="c1">// CCAutoreleasePool是CCObject的友元类, 可以直接访问CCObject的protect成员变量.</span>
+</span><span class='line'>    <span class="n">CCAssert</span><span class="p">(</span><span class="n">pObject</span><span class="o">-&gt;</span><span class="n">m_uReference</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&quot;reference count should be greater than 1&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="o">++</span><span class="p">(</span><span class="n">pObject</span><span class="o">-&gt;</span><span class="n">m_uAutoReleaseCount</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">pObject</span><span class="o">-&gt;</span><span class="n">release</span><span class="p">();</span> <span class="c1">// no ref count, in this case autorelease pool added.</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">// 下面这个遍历似乎是为了应对被多次加入pool</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">CCAutoreleasePool</span><span class="o">::</span><span class="n">removeObject</span><span class="p">(</span><span class="n">CCObject</span><span class="o">*</span> <span class="n">pObject</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">pObject</span><span class="o">-&gt;</span><span class="n">m_uAutoReleaseCount</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">m_pManagedObjectArray</span><span class="o">-&gt;</span><span class="n">removeObject</span><span class="p">(</span><span class="n">pObject</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">// 清空池</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">CCAutoreleasePool</span><span class="o">::</span><span class="n">clear</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">m_pManagedObjectArray</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="c1">//CCAutoreleasePool* pReleasePool;</span>
+</span><span class='line'><span class="cp">#ifdef _DEBUG</span>
+</span><span class='line'>        <span class="kt">int</span> <span class="n">nIndex</span> <span class="o">=</span> <span class="n">m_pManagedObjectArray</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="cp">#endif</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">CCObject</span><span class="o">*</span> <span class="n">pObj</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">CCARRAY_FOREACH_REVERSE</span><span class="p">(</span><span class="n">m_pManagedObjectArray</span><span class="p">,</span> <span class="n">pObj</span><span class="p">)</span><span class="c1">//反序遍历</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="c1">// 这里还是令人费解, 为何会使用break, 而不是使用continue完成遍历????</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">pObj</span><span class="p">)</span>
+</span><span class='line'>                <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="o">--</span><span class="p">(</span><span class="n">pObj</span><span class="o">-&gt;</span><span class="n">m_uAutoReleaseCount</span><span class="p">);</span>
+</span><span class='line'>            <span class="c1">//(*it)-&gt;release();</span>
+</span><span class='line'>            <span class="c1">//delete (*it);</span>
+</span><span class='line'><span class="cp">#ifdef _DEBUG</span>
+</span><span class='line'>            <span class="n">nIndex</span><span class="o">--</span><span class="p">;</span>
+</span><span class='line'><span class="cp">#endif</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">m_pManagedObjectArray</span><span class="o">-&gt;</span><span class="n">removeAllObjects</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// CCPoolManager的单例</span>
+</span><span class='line'><span class="n">CCPoolManager</span><span class="o">*</span> <span class="n">CCPoolManager</span><span class="o">::</span><span class="n">sharedPoolManager</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">s_pPoolManager</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">s_pPoolManager</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CCPoolManager</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">s_pPoolManager</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 销毁当前manager</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">CCPoolManager</span><span class="o">::</span><span class="n">purgePoolManager</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">CC_SAFE_DELETE</span><span class="p">(</span><span class="n">s_pPoolManager</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">//构造函数</span>
+</span><span class='line'><span class="n">CCPoolManager</span><span class="o">::</span><span class="n">CCPoolManager</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">m_pReleasePoolStack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CCArray</span><span class="p">();</span>
+</span><span class='line'>    <span class="n">m_pReleasePoolStack</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">();</span>
+</span><span class='line'>    <span class="n">m_pCurReleasePool</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">// 析构函数</span>
+</span><span class='line'><span class="n">CCPoolManager</span><span class="o">::~</span><span class="n">CCPoolManager</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>     <span class="n">finalize</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="c1">// 这个注释也让人费解. 为什么只移除第一个, 而不是遍历????</span>
+</span><span class='line'>     <span class="c1">// we only release the last autorelease pool here </span>
+</span><span class='line'>    <span class="n">m_pCurReleasePool</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>     <span class="n">m_pReleasePoolStack</span><span class="o">-&gt;</span><span class="n">removeObjectAtIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="n">CC_SAFE_DELETE</span><span class="p">(</span><span class="n">m_pReleasePoolStack</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="n">CCPoolManager</span><span class="o">::</span><span class="n">finalize</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="n">m_pReleasePoolStack</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="c1">//CCAutoreleasePool* pReleasePool;</span>
+</span><span class='line'>        <span class="n">CCObject</span><span class="o">*</span> <span class="n">pObj</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">CCARRAY_FOREACH</span><span class="p">(</span><span class="n">m_pReleasePoolStack</span><span class="p">,</span> <span class="n">pObj</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="c1">// 这里有点令人不解, 为什么遍历还没有完成就break了??? </span>
+</span><span class='line'>            <span class="c1">// 或许是因为pop push的方式不会在中间产生为NULL的池.</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">pObj</span><span class="p">)</span>
+</span><span class='line'>                <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">CCAutoreleasePool</span><span class="o">*</span> <span class="n">pPool</span> <span class="o">=</span> <span class="p">(</span><span class="n">CCAutoreleasePool</span><span class="o">*</span><span class="p">)</span><span class="n">pObj</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">pPool</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">//创建一个新池, 注意其中pPool的引用计数的变化.</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">CCPoolManager</span><span class="o">::</span><span class="n">push</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">CCAutoreleasePool</span><span class="o">*</span> <span class="n">pPool</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CCAutoreleasePool</span><span class="p">();</span>       <span class="c1">//ref = 1</span>
+</span><span class='line'>    <span class="n">m_pCurReleasePool</span> <span class="o">=</span> <span class="n">pPool</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">m_pReleasePoolStack</span><span class="o">-&gt;</span><span class="n">addObject</span><span class="p">(</span><span class="n">pPool</span><span class="p">);</span>                   <span class="c1">//ref = 2</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">pPool</span><span class="o">-&gt;</span><span class="n">release</span><span class="p">();</span>                                       <span class="c1">//ref = 1</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">//销毁当前池</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">CCPoolManager</span><span class="o">::</span><span class="n">pop</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="n">m_pCurReleasePool</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>     <span class="kt">int</span> <span class="n">nCount</span> <span class="o">=</span> <span class="n">m_pReleasePoolStack</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">m_pCurReleasePool</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">if</span><span class="p">(</span><span class="n">nCount</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">{</span><span class="c1">//注意这里removeObjectAtIndex会将当前池的引用技术减1, 从而销毁当前池.</span>
+</span><span class='line'>        <span class="n">m_pReleasePoolStack</span><span class="o">-&gt;</span><span class="n">removeObjectAtIndex</span><span class="p">(</span><span class="n">nCount</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//         if(nCount &gt; 1)</span>
+</span><span class='line'><span class="c1">//         {</span>
+</span><span class='line'><span class="c1">//             m_pCurReleasePool = m_pReleasePoolStack-&gt;objectAtIndex(nCount - 2);</span>
+</span><span class='line'><span class="c1">//             return;</span>
+</span><span class='line'><span class="c1">//         }</span>
+</span><span class='line'>        <span class="n">m_pCurReleasePool</span> <span class="o">=</span> <span class="p">(</span><span class="n">CCAutoreleasePool</span><span class="o">*</span><span class="p">)</span><span class="n">m_pReleasePoolStack</span><span class="o">-&gt;</span><span class="n">objectAtIndex</span><span class="p">(</span><span class="n">nCount</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="c1">//如果没有意外, 这里会最少保留一个池不会被销毁. 但最后一个池还是会被清空..</span>
+</span><span class='line'>    <span class="cm">/*m_pCurReleasePool = NULL;*/</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">// 从当前池中移除对象.</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">CCPoolManager</span><span class="o">::</span><span class="n">removeObject</span><span class="p">(</span><span class="n">CCObject</span><span class="o">*</span> <span class="n">pObject</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">CCAssert</span><span class="p">(</span><span class="n">m_pCurReleasePool</span><span class="p">,</span> <span class="s">&quot;current auto release pool should not be null&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">m_pCurReleasePool</span><span class="o">-&gt;</span><span class="n">removeObject</span><span class="p">(</span><span class="n">pObject</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="c1">//添加一个对象到当前池</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">CCPoolManager</span><span class="o">::</span><span class="n">addObject</span><span class="p">(</span><span class="n">CCObject</span><span class="o">*</span> <span class="n">pObject</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">getCurReleasePool</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">addObject</span><span class="p">(</span><span class="n">pObject</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//形成单例模式</span>
+</span><span class='line'><span class="n">CCAutoreleasePool</span><span class="o">*</span> <span class="n">CCPoolManager</span><span class="o">::</span><span class="n">getCurReleasePool</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">m_pCurReleasePool</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">push</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">CCAssert</span><span class="p">(</span><span class="n">m_pCurReleasePool</span><span class="p">,</span> <span class="s">&quot;current auto release pool should not be null&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">m_pCurReleasePool</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<ul>
+<li>参考1: http://4137613.blog.51cto.com/4127613/784134</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[2d-x深读3:CCObject]]></title>
@@ -1230,179 +1677,6 @@ void MainScene::onNodeLoaded(cocos2d::CCNode <em>pNode, cocos2d::extension::CCNo
 <p><img src="/upload/2012-12/ccb-sbs-2-002.png"></p>
 
 <p><hr />
-代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> 
-
-- 本文是系列文章, 请查看其他文章:
-- [一步一步CocosBuilder(1)](http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/)
-- [一步一步CocosBuilder(2)](http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/)
-- [一步一步CocosBuilder(3)](http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/)
-- [一步一步CocosBuilder(4)完结](http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/)
-
-谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.
-
-新浪微博: [@杨世玲](http://weibo.com/young40) [http://weibo.com/young40](http://weibo.com/young40)
-
-</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[一步一步CocosBuilder(1)]]></title>
-    <link href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/"/>
-    <updated>2012-12-21T02:46:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one</id>
-    <content type="html"><![CDATA[<p>CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.
-CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.
-我想这个也是其不够流行的原因吧.</p>
-
-<p>如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力.
-我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实.
-我无论C++,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.</p>
-
-<p>这次的目的是基本实现原来v2.0中的例子.
-我采用的2d-x的版本是:cocos2d-2.1beta3-x-2.1.0, 以OS X版本为主, 以sample目录下的HelloCpp为基础改进. CCB的版本是v3.0alpha0.</p>
-
-<!--more-->
-
-
-<p>本文的目标是基本实现将CCB整合进Mac OS X版本的项目中.</p>
-
-<p>首先将2d-x源代码中sample目录下的HelloCpp目录重命名为TestCocosBuilder.并使用CocosBuilder创建新项目文件在其Resources文件夹中.
-还需要将项目需要的图片资源放入Resources目录中. 具体可以参见我打包后的整体项目文件.还可以参见文末的目录树说明.</p>
-
-<p>贴下Xcode项目的目录,如果添加extensions应该逐个添加,否则可能会遇到编译错误,有可能会把其他平台文件错误添加进来.</p>
-
-<p><img src="/upload/2012-12/ccb-sbs-1-001.png"></p>
-
-<p>做完这些准备工作后, 我们接下来按步来讲解.</p>
-
-<p>1.首先编辑下<code>AppMacros.h</code>, 修改以下代码
-<code>cpp AppMacros.h
-static Resource smallResource  =  { cocos2d::CCSizeMake(480, 320),   "resources-iphone" };
-static Resource mediumResource =  { cocos2d::CCSizeMake(1024, 768),  "resources-ipad"   };
-static Resource largeResource  =  { cocos2d::CCSizeMake(2048, 1536), "resources-ipadhd" };
-</code>
-这一段主要是修改<code>HelloCpp</code>默认的资源目录, 配合CCB的发布路径.同时可以将原来几个目录中文件分别移入对应目录.
-2.添加一个新类<code>MainScene</code>如下
-``` cpp MainScene.h</p>
-
-<h1>ifndef <strong>HelloCpp</strong>MainScene__</h1>
-
-<h1>define <strong>HelloCpp</strong>MainScene__</h1>
-
-<h1>include "cocos2d.h"</h1>
-
-<h1>include "cocos-ext.h"</h1>
-
-<p>class MainScene
-: public cocos2d::CCLayer //从CCLayer派生
-{
-public:</p>
-
-<pre><code>static cocos2d::CCScene* scene();
-</code></pre>
-
-<p>};</p>
-
-<h1>endif /<em> defined(<strong>HelloCpp</strong>MainScene__) </em>/</h1>
-
-<p>```</p>
-
-<p>``` cpp MainScene.cpp</p>
-
-<h1>include "MainScene.h"</h1>
-
-<p>USING_NS_CC;
-USING_NS_CC_EXT;</p>
-
-<p>CCScene* MainScene::scene()
-{</p>
-
-<pre><code>CCScene *scene = CCScene::create();
-
-CCNodeLoaderLibrary *lib = CCNodeLoaderLibrary::newDefaultCCNodeLoaderLibrary(); //生成一个默认的Node Loader
-
-CCBReader *reader = new CCBReader(lib); //用node load lib 初始化一个ccb reader
-
-CCNode *node = reader-&gt;readNodeGraphFromFile("MainScene.ccbi", scene); //从ccbi文件中加载node
-
-reader-&gt;release(); //注意手动释放内存
-
-if (node!=NULL)
-{
-    scene-&gt;addChild(node); //将node 添加到scene中
-}
-
-return scene;
-</code></pre>
-
-<p>}
-<code>
-3.修改`AppDelegate.cpp`中默认的启动scene
-</code> cpp
-CCScene *pScene = MainScene::scene(); //HelloWorld::scene();
-```
-4.注意CCB中发布选项的设置, 并发布一次.
-<img src="/upload/2012-12/ccb-sbs-1-002.png"></p>
-
-<p>5.如果没有错误的话, 你应该可以看到运行的效果.
-<img src="/upload/2012-12/ccb-sbs-1-003.png"></p>
-
-<p>Update:
-@王哲Walzer 说,CCB大部分是美术在用, 在美术圈讨论, 所以程序圈较少看到人在讨论, 其实用的公司挺多的.
-http://weibo.com/1702027805/zay18wLT5</p>
-
-<p><code>sh 目录结构
-├── samples #目录结构和2d-x源代码保持一致,相信大家对2d-x源代码很熟悉了.
-│   └── CocosBuilderTest #项目所在目录
-│       ├── Classes #代码所在目录
-│       ├── Resources #资源目录
-│       │   ├── ccb #ccb发布后的目录
-│       │   │   ├── HelloCocosBuilder.ccbi
-│       │   │   ├── ...
-│       │   │   └── TestSprites.ccbi
-│       │   ├── ccbResources #发布后的默认ccb资源
-│       │   ├── fonts
-│       │   ├── resources-ipad #注意这几个目录, 稍后我们会提及
-│       │   ├── resources-ipadhd
-│       │   ├── resources-iphone
-│       │   ├── resources-iphonehd
-│       ├── ccb-source #ccb项目目录
-│       │   ├── ccb
-│       │   │   ├── HelloCocosBuilder.ccb #这几个是原CocosBuilder例子中的ccb, 直接复制过来了.
-│       │   │   ├── ...
-│       │   │   └── TestSprites.ccbi
-│       │   ├── ccbResources
-│       │   ├── resources-auto #CocosBuilderv3.0的资源目录, 似乎只能存放图片
-│       │   │   ├── btn-a-0.png #否则会引起发布是造成CocosBuilder崩溃
-│       │   │   ├── ...
-│       │   │   └── scale-9-demo.png
-│       │   ├── MainScene.ccb #默认生成的ccb, 我们这一次不对其更改
-│       │   ├── MainScene.js
-│       │   ├── animated-grossini.plist
-│       │   ├── animated-grossini.png
-│       │   ├── ccb-source.ccbproj
-│       │   ├── comic\ andy.ttf
-│       │   ├── grossini-generic.plist
-│       │   ├── grossini-generic.png
-│       │   ├── markerfelt24shadow.fnt
-│       │   └── markerfelt24shadow.png
-│       └── proj.mac
-│           ├── HelloCpp.xcodeproj #项目文件, 暂时只支持mac os x
-├── cocos2dx #2d-x文件
-├── extensions #2d-x的扩展
-│   ├── CCBReader #这个是解析CocosBuilder的主要CCBReader
-│   │   ├── CCBAnimationManager.cpp
-│   │   ├── CCBAnimationManager.h
-│   │   ├── ...
-│   │   └── CCSpriteLoader.h
-│   ├── GUI
-│   ├── network
-│   ├── physics_nodes
-│   ├── ExtensionMacros.h
-│   └── cocos-ext.h
-</code>
-<hr />
 代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> 
 
 - 本文是系列文章, 请查看其他文章:
