@@ -365,7 +365,7 @@
 </span><span class='line'>    <span class="k">virtual</span> <span class="kt">bool</span> <span class="n">isEqual</span><span class="p">(</span><span class="k">const</span> <span class="n">CCObject</span><span class="o">*</span> <span class="n">pObject</span><span class="p">);</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">float</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span><span class="n">CC_UNUSED_PARAM</span><span class="p">(</span><span class="n">dt</span><span class="p">);};</span>
-</span><span class='line'>
+</span><span class='line'>   <span class="c1">//CCAutoreleasePool作为友元类 </span>
 </span><span class='line'>    <span class="k">friend</span> <span class="k">class</span> <span class="nc">CCAutoreleasePool</span><span class="p">;</span>
 </span><span class='line'><span class="p">};</span>
 </span><span class='line'>

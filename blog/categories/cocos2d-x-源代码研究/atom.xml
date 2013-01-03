@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cocos2d-x 源代码研究 | 喜气羊羊]]></title>
   <link href="http://young40.github.com/blog/categories/cocos2d-x-源代码研究/atom.xml" rel="self"/>
   <link href="http://young40.github.com/"/>
-  <updated>2013-01-03T05:00:07+08:00</updated>
+  <updated>2013-01-03T14:28:43+08:00</updated>
   <id>http://young40.github.com/</id>
   <author>
     <name><![CDATA[Young40]]></name>
@@ -235,7 +235,7 @@ typedef void (CCObject::*SEL_SCHEDULE)(float);</p>
 </span><span class='line'>    <span class="k">virtual</span> <span class="kt">bool</span> <span class="n">isEqual</span><span class="p">(</span><span class="k">const</span> <span class="n">CCObject</span><span class="o">*</span> <span class="n">pObject</span><span class="p">);</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">float</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span><span class="n">CC_UNUSED_PARAM</span><span class="p">(</span><span class="n">dt</span><span class="p">);};</span>
-</span><span class='line'>
+</span><span class='line'>   <span class="c1">//CCAutoreleasePool作为友元类 </span>
 </span><span class='line'>    <span class="k">friend</span> <span class="k">class</span> <span class="nc">CCAutoreleasePool</span><span class="p">;</span>
 </span><span class='line'><span class="p">};</span>
 </span><span class='line'>
