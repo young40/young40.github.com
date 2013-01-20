@@ -1,0 +1,968 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: CocosBuilder | 喜气羊羊]]></title>
+  <link href="http://young40.github.com/blog/categories/cocosbuilder/atom.xml" rel="self"/>
+  <link href="http://young40.github.com/"/>
+  <updated>2013-01-08T13:25:54+08:00</updated>
+  <id>http://young40.github.com/</id>
+  <author>
+    <name><![CDATA[Young40]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[一步一步CocosBuilder(4)[完结]]]></title>
+    <link href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/"/>
+    <updated>2012-12-29T10:54:00+08:00</updated>
+    <id>http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four</id>
+    <content type="html"><![CDATA[<p>这一节也是很轻松, 主要是牵涉到Timeline的切换. 其他的都是简单的界面制作. <br/>
+所以CocosBuilder的威力也体现在这里, 很少的代码就能驱动界面了.</p>
+
+<p>我们这次先做<code>Particle System</code>, <code>Scroll View</code>, 最后以<code>Animations</code>收官.</p>
+
+<h5>1</h5>
+
+<p>制作<code>Particle System</code>和<code>Scroll View</code>的界面很简单,我们也是以程序为重点, 所以不再赘述. <br/>
+只需要一句<code>this-&gt;openTest("ccb/Scroll.ccbi");</code>就可以调用新的界面了. <br/>
+其他诸如绑定之类相信大家已经是轻车熟路啦.</p>
+
+<!--more-->
+
+
+<p>{% img /upload/2012-12/ccb-sbs-4-001.png %}
+{% img /upload/2012-12/ccb-sbs-4-002.png %}</p>
+
+<h5>2</h5>
+
+<p>好吧, 我承认一点, 制作<code>Animations</code>的界面的时候, 我直接复制了例子中的节点. <br/>
+5个Timeline, 还是很复杂的, 应该是一个非常精细的工作. 向美术们致敬. <br/>
+``` cpp AnimationsLayer.h
+class AnimationsLayer
+: public cocos2d::CCLayer
+, public cocos2d::extension::CCBSelectorResolver
+{
+public:</p>
+
+<pre><code>AnimationsLayer();
+~AnimationsLayer();
+
+CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(AnimationsLayer, create);
+
+virtual cocos2d::SEL_MenuHandler onResolveCCBCCMenuItemSelector(CCObject * pTarget, const char* pSelectorName);
+virtual cocos2d::extension::SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, const char* pSelectorName);    
+void setAnimationManager(cocos2d::extension::CCBAnimationManager *pAnimationManager);
+
+void onIdle(cocos2d::CCObject * pSender, cocos2d::extension::CCControlEvent pCCControlEvent);
+void onWave(cocos2d::CCObject * pSender, cocos2d::extension::CCControlEvent pCCControlEvent);
+void onJump(cocos2d::CCObject * pSender, cocos2d::extension::CCControlEvent pCCControlEvent);
+void onFunky(cocos2d::CCObject * pSender, cocos2d::extension::CCControlEvent pCCControlEvent);
+</code></pre>
+
+<p>private:</p>
+
+<pre><code>cocos2d::extension::CCBAnimationManager *mAnimationManager;
+</code></pre>
+
+<p>};</p>
+
+<p>class AnimationsLayerLoader : public cocos2d::extension::CCNodeLoader
+{
+public:</p>
+
+<pre><code>CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(AnimationsLayerLoader, loader);
+</code></pre>
+
+<p>protected:</p>
+
+<pre><code>CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(AnimationsLayer);
+</code></pre>
+
+<p>};
+<code>
+</code> cpp AnimationsLayer.cpp
+AnimationsLayer::AnimationsLayer()
+: mAnimationManager(NULL)
+{}</p>
+
+<p>AnimationsLayer::~AnimationsLayer()
+{</p>
+
+<pre><code>CC_SAFE_RELEASE_NULL(mAnimationManager);
+</code></pre>
+
+<p>}</p>
+
+<p>SEL_MenuHandler AnimationsLayer::onResolveCCBCCMenuItemSelector(cocos2d::CCObject <em>pTarget, const char </em>pSelectorName)
+{</p>
+
+<pre><code>return NULL;
+</code></pre>
+
+<p>}</p>
+
+<p>SEL_CCControlHandler AnimationsLayer::onResolveCCBCCControlSelector(cocos2d::CCObject <em>pTarget, const char </em>pSelectorName)
+{</p>
+
+<pre><code>CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onIdle", AnimationsLayer::onIdle);
+CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onJump", AnimationsLayer::onJump);
+CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onWave", AnimationsLayer::onWave);
+CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onFunky", AnimationsLayer::onFunky);
+
+return NULL;
+</code></pre>
+
+<p>}</p>
+
+<p>void AnimationsLayer::setAnimationManager(cocos2d::extension::CCBAnimationManager *pAnimationManager)
+{</p>
+
+<pre><code>CC_SAFE_RELEASE_NULL(mAnimationManager);
+mAnimationManager = pAnimationManager;
+CC_SAFE_RETAIN(mAnimationManager);
+</code></pre>
+
+<p>}</p>
+
+<p>void AnimationsLayer::onIdle(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)
+{</p>
+
+<pre><code>this-&gt;mAnimationManager-&gt;runAnimationsForSequenceNamedTweenDuration("Idle", 0.3f);
+</code></pre>
+
+<p>}</p>
+
+<p>void AnimationsLayer::onJump(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)
+{</p>
+
+<pre><code>this-&gt;mAnimationManager-&gt;runAnimationsForSequenceNamedTweenDuration("Jump", 0.3f);
+</code></pre>
+
+<p>}</p>
+
+<p>void AnimationsLayer::onWave(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)
+{</p>
+
+<pre><code>this-&gt;mAnimationManager-&gt;runAnimationsForSequenceNamedTweenDuration("Wave", 0.3f);
+</code></pre>
+
+<p>}</p>
+
+<p>void AnimationsLayer::onFunky(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)
+{</p>
+
+<pre><code>this-&gt;mAnimationManager-&gt;runAnimationsForSequenceNamedTweenDuration("Funky", 0.3f);
+</code></pre>
+
+<p>}
+<code>
+整个代码还是很简单. 和以前的几个例子稍微有点不同的是在调用的时候, 需要把`CCBReader`里面的`AnimationManger`传入.   
+好, 还是看下调用的代码吧.   
+</code> cpp MainScene.cpp
+void MainScene::onAnimations(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)
+{</p>
+
+<pre><code>const char * pCCBFileName = "ccb/Animations.ccbi";
+const char * pCCNodeName = "AnimationsLayer";
+cocos2d::extension::CCNodeLoader * pCCNodeLoader = AnimationsLayerLoader::loader();
+
+CCScene *scene = CCScene::create();
+
+CCNodeLoaderLibrary *lib = CCNodeLoaderLibrary::newDefaultCCNodeLoaderLibrary();
+
+lib-&gt;registerCCNodeLoader("HeaderLayer", HeaderLayerLoader::loader());
+
+if (pCCNodeName!=NULL &amp;&amp; pCCNodeLoader!=NULL)
+{
+    lib-&gt;registerCCNodeLoader(pCCNodeName, pCCNodeLoader);
+}
+
+CCBReader *reader = new CCBReader(lib);
+CCNode *node = reader-&gt;readNodeGraphFromFile(pCCBFileName, this);
+reader-&gt;autorelease();
+
+if (node != NULL)
+{
+    //获取AnimationManger 并传给AnimationsLayer
+    ((AnimationsLayer*)node) -&gt;setAnimationManager(reader-&gt;getAnimationManager());
+
+    scene-&gt;addChild(node);
+}
+
+this-&gt;mTitleLabelTTF-&gt;setString(pCCBFileName);
+
+CCDirector::sharedDirector()-&gt;pushScene(scene);
+</code></pre>
+
+<p>}
+```</p>
+
+<p>{% img /upload/2012-12/ccb-sbs-4-003.png %}</p>
+
+<h3>后记</h3>
+
+<p>看到微博上@做游戏的老G 吐槽说CocosBuilder如何不好用, 学习难度比较大. 我也是很认可这一点. <br/>
+但是只要是坚持把TestCpp例子完全读完了, 相信掌握CocosBuilder也是很快能够做到的. <br/>
+既然你看完了这个教程. 相信你也已经能够很好地驾驭CocosBuilder. 关键还在实践呦!</p>
+
+<p>微博上@Ghost_233 说了一个很好的思路, 直接从ccb文件中生成对应的C++类, 而且他还做了一些实践. <br/>
+我暂时还没有研究他的代码, 不过肯定是可行. 这是一个很赞的思路. <br/>
+希望大家能动手, 最好合作出来一个较好的工具来, 我想, 是不是集成到CocosBuilder会更好?</p>
+
+<p>谢谢大家耐心看完我的文章.</p>
+
+<p>{% render_partial _posts/cocosbuilder-step-by-step-footer.markdown %}</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[一步一步CocosBuilder(3)]]></title>
+    <link href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/"/>
+    <updated>2012-12-28T00:54:00+08:00</updated>
+    <id>http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three</id>
+    <content type="html"><![CDATA[<p>今天要说的内容比较轻松, 重要的知识点不多. <br/>
+目标是实现<code>Menus &amp; Items</code>, <code>Sprites &amp; 9 Slice</code>, <code>Buttons &amp; Labels</code>.</p>
+
+<h5>1</h5>
+
+<p>首先我们在CocosBuilder中建立一个新的<code>Header.ccb</code>.具体请参见CocosBuilder的项目.   <br/>
+在创建的时候,勾选<code>Full Sceen</code>, 并且将分辨率的<code>Height</code>都修改为40. <br/>
+这个文件很简单, 根节点下只包含一个<code>CCLayerColor</code>,根节点的<code>Custom class</code>设置为<code>HeaderLayer</code>. <br/>
+<code>CCLayerColor</code>下面包含一个<code>CCLabelTTF</code>和<code>CCMenu</code>. <br/>
+<code>CCLabelTTF</code>的变量绑定为类型<code>Owner var</code>, 值为<code>mTitleLabelTTF</code>. <br/>
+<code>CCMenu</code>包含一个<code>CCMenuItemImage</code>. <code>CCMenuItemImage</code>的<code>Selector</code>属性设置为<code>onBackClicked</code>.    <br/>
+这个ccb作为一个公用的元素被其他ccb文件所引用. 是属于模块化的一个例子. <br/>
+然后我们在Xcode中新建一个<code>HeaderLayer</code>类, 并同时声明一个<code>HeaderLayerLoader</code>类.</p>
+
+<!--more-->
+
+
+<p>``` cpp HeaderLayer.h
+class HeaderLayer
+: public cocos2d::CCLayer
+, public cocos2d::extension::CCBSelectorResolver
+{
+public:</p>
+
+<pre><code>CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(HeaderLayer, create);
+
+virtual cocos2d::SEL_MenuHandler onResolveCCBCCMenuItemSelector(CCObject * pTarget, const char* pSelectorName);
+virtual cocos2d::extension::SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, const char* pSelectorName);
+
+void onBackClicked(CCObject *pSender);
+</code></pre>
+
+<p>};</p>
+
+<p>class HeaderLayerLoader : public cocos2d::extension::CCLayerLoader
+{
+public:</p>
+
+<pre><code>CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(HeaderLayerLoader, loader);
+</code></pre>
+
+<p>protected:</p>
+
+<pre><code>CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(HeaderLayer);
+</code></pre>
+
+<p>};
+<code>
+</code> cpp HeaderLayer.cpp
+SEL_MenuHandler HeaderLayer::onResolveCCBCCMenuItemSelector(cocos2d::CCObject <em>pTarget, const char </em>pSelectorName)
+{</p>
+
+<pre><code>CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onBackClicked", HeaderLayer::onBackClicked);
+
+return NULL;
+</code></pre>
+
+<p>}</p>
+
+<p>SEL_CCControlHandler HeaderLayer::onResolveCCBCCControlSelector(cocos2d::CCObject <em>pTarget, const char </em>pSelectorName)
+{</p>
+
+<pre><code>return NULL;
+</code></pre>
+
+<p>}</p>
+
+<p>void HeaderLayer::onBackClicked(cocos2d::CCObject *pSender)
+{</p>
+
+<pre><code>CCDirector::sharedDirector()-&gt;popScene();
+</code></pre>
+
+<p>}
+```</p>
+
+<h5>2</h5>
+
+<p>在CocosBuilder中新建一个<code>Menus.ccb</code>, 并将根节点<code>Custom class</code>设置为<code>MenuLayer</code>. <br/>
+再加入几个<code>CCMenuItemImage</code>, Selector分别设置为<code>onPressA</code>, <code>onPressB</code>, <code>onPressC</code>. <br/>
+再加入一个<code>CCLabelBMFont</code>, 绑定<code>Doc root var</code>, 值为<code>mMessageLabelBMFont</code>. <br/>
+在Xcode中新建一个类<code>MenuLayer</code>, 并且在<code>MenuLayer.h</code>中同时声明一个<code>MenuLayerLoader</code>类. <br/>
+``` cpp MenuLayer.h
+class MenuLayer
+: public cocos2d::CCLayer
+, public cocos2d::extension::CCBMemberVariableAssigner
+, public cocos2d::extension::CCBSelectorResolver
+{
+public:</p>
+
+<pre><code>MenuLayer();
+~MenuLayer();
+
+CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(MenuLayer, create);
+
+virtual bool onAssignCCBMemberVariable(CCObject* pTarget, const char* pMemberVariableName, CCNode* pNode);
+virtual cocos2d::SEL_MenuHandler onResolveCCBCCMenuItemSelector(CCObject * pTarget, const char* pSelectorName);
+virtual cocos2d::extension::SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, const char* pSelectorName);
+
+void onPressA(cocos2d::CCObject *pSender);
+void onPressB(cocos2d::CCObject *pSender);
+void onPressC(cocos2d::CCObject *pSender);
+</code></pre>
+
+<p>private:</p>
+
+<pre><code>cocos2d::CCLabelBMFont *mMessageLabelBMFont;
+</code></pre>
+
+<p>};</p>
+
+<p>class MenuLayerLoader : public cocos2d::extension::CCNodeLoaderLibrary
+{
+public:</p>
+
+<pre><code>CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(MenuLayerLoader, loader);
+</code></pre>
+
+<p>protected:</p>
+
+<pre><code>CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(MenuLayer);    
+</code></pre>
+
+<p>};
+<code>
+</code> cpp MenuLayer.cpp
+MenuLayer::MenuLayer()
+: mMessageLabelBMFont(NULL)
+{}</p>
+
+<p>MenuLayer::~MenuLayer()
+{</p>
+
+<pre><code>CC_SAFE_DELETE(mMessageLabelBMFont);
+</code></pre>
+
+<p>}</p>
+
+<p>bool MenuLayer::onAssignCCBMemberVariable(cocos2d::CCObject <em>pTarget, const char </em>pMemberVariableName, cocos2d::CCNode *pNode)
+{</p>
+
+<pre><code>CCB_MEMBERVARIABLEASSIGNER_GLUE(this, "mMessageLabelBMFont", CCLabelBMFont*, this-&gt;mMessageLabelBMFont);
+return false;
+</code></pre>
+
+<p>}</p>
+
+<p>SEL_MenuHandler MenuLayer::onResolveCCBCCMenuItemSelector(cocos2d::CCObject <em>pTarget, const char </em>pSelectorName)
+{</p>
+
+<pre><code>CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onPressA", MenuLayer::onPressA);
+CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onPressB", MenuLayer::onPressB);
+CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onPressC_NO_Match", MenuLayer::onPressC);
+</code></pre>
+
+<p>   //注意这里, 我们给第三个绑定了一个不存在的SelectorName.</p>
+
+<pre><code>return NULL;
+</code></pre>
+
+<p>}</p>
+
+<p>SEL_CCControlHandler MenuLayer::onResolveCCBCCControlSelector(cocos2d::CCObject <em>pTarget, const char </em>pSelectorName)
+{</p>
+
+<pre><code>return NULL;
+</code></pre>
+
+<p>}</p>
+
+<p>void MenuLayer::onPressA(cocos2d::CCObject *pSender)
+{</p>
+
+<pre><code>this-&gt;mMessageLabelBMFont-&gt;setString("A pressed.");
+</code></pre>
+
+<p>}</p>
+
+<p>void MenuLayer::onPressB(cocos2d::CCObject *pSender)
+{</p>
+
+<pre><code>this-&gt;mMessageLabelBMFont-&gt;setString("B pressed.");
+</code></pre>
+
+<p>}</p>
+
+<p>void MenuLayer::onPressC(cocos2d::CCObject *pSender)
+{</p>
+
+<pre><code>this-&gt;mMessageLabelBMFont-&gt;setString("C pressed.");
+</code></pre>
+
+<p>}
+```</p>
+
+<h5>3</h5>
+
+<p>或许有点着急了吧, 我们如何让这个运行起来呢?  <br/>
+首先给<code>MainScene</code>增加一个新函数的声明及定义, 还需要增加一个变量用于和<code>Header.ccb</code>中的<code>mTitleLabelTTF</code>绑定. <br/>
+``` cpp MainScene.h
+public:</p>
+
+<pre><code>void openTest(const char * pCCBFileName, const char * pCCNodeName = NULL, cocos2d::extension::CCNodeLoader * pCCNodeLoader = NULL);
+</code></pre>
+
+<p>private:</p>
+
+<pre><code>cocos2d::CCLabelTTF *mTitleLabelTTF;
+</code></pre>
+
+<p><code>
+</code> cpp MainScene.cpp
+void MainScene::openTest(const char * pCCBFileName, const char * pCCNodeName, cocos2d::extension::CCNodeLoader * pCCNodeLoader)
+{</p>
+
+<pre><code>CCScene *scene = CCScene::create();
+
+CCNodeLoaderLibrary *lib = CCNodeLoaderLibrary::newDefaultCCNodeLoaderLibrary();
+
+lib-&gt;registerCCNodeLoader("HeaderLayer", HeaderLayerLoader::loader());
+lib-&gt;registerCCNodeLoader(pCCNodeName, pCCNodeLoader);
+
+CCBReader *reader = new CCBReader(lib);
+CCNode *node = reader-&gt;readNodeGraphFromFile(pCCBFileName, this);
+reader-&gt;autorelease();
+
+if (node != NULL)
+{
+    scene-&gt;addChild(node);
+}
+
+this-&gt;mTitleLabelTTF-&gt;setString(pCCBFileName);
+
+CCDirector::sharedDirector()-&gt;pushScene(scene);
+</code></pre>
+
+<p>}</p>
+
+<p>bool MainScene::onAssignCCBMemberVariable(cocos2d::CCObject <em>pTarget, const char </em>pMemberVariableName, cocos2d::CCNode *pNode)
+{</p>
+
+<pre><code>CCB_MEMBERVARIABLEASSIGNER_GLUE(this, "mLabelText", CCLabelBMFont*, this-&gt;mLabelText);
+CCB_MEMBERVARIABLEASSIGNER_GLUE(this, "mTitleLabelTTF", CCLabelTTF*, this-&gt;mTitleLabelTTF);
+
+return false;
+</code></pre>
+
+<p>}
+void MainScene::onButtonTest(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)
+{</p>
+
+<pre><code>this-&gt;openTest("ccb/Menus.ccbi", "MenuLayer", MenuLayerLoader::loader());
+</code></pre>
+
+<p>}
+```</p>
+
+<h5>4</h5>
+
+<p><code>Sprites &amp; 9 Slice</code> 这个比较简单, 只是靠CocosBuilder就能完成任务了.</p>
+
+<p>{% img /upload/2012-12/ccb-sbs-3-001.png %}</p>
+
+<p>我拼的不太好, 嘿嘿. 主要是着重代码, 并非设计, 漂亮的事情交给美术妹纸吧.</p>
+
+<h5>5</h5>
+
+<p><code>Buttons</code>这块主要是研究了<code>CCControlEvent</code>的各种情况. 我们只贴出核心代码. <br/>
+``` cpp ButtonsLayer.cpp
+void ButtonsLayer::onBtnClicked(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)
+{</p>
+
+<pre><code>switch (pCCControlEvent) {
+    case CCControlEventTouchCancel:
+        this-&gt;mEventLabelBMFont-&gt;setString("Cancel");
+        break;
+    case CCControlEventTouchDown:
+        this-&gt;mEventLabelBMFont-&gt;setString("Touch Down");
+        break;
+    case CCControlEventTouchDragEnter:
+        this-&gt;mEventLabelBMFont-&gt;setString("Drag Enter");
+        break;
+    case CCControlEventTouchDragExit:
+        this-&gt;mEventLabelBMFont-&gt;setString("Drag Exit");
+        break;
+    case CCControlEventTouchDragInside:
+        this-&gt;mEventLabelBMFont-&gt;setString("Drag Inside");
+        break;
+    case CCControlEventTouchDragOutside:
+        this-&gt;mEventLabelBMFont-&gt;setString("Drag OutSide");
+        break;
+    case CCControlEventTouchUpInside:
+        this-&gt;mEventLabelBMFont-&gt;setString("Up Inside");
+        break;
+    case CCControlEventTouchUpOutside:
+        this-&gt;mEventLabelBMFont-&gt;setString("Up Outside");
+        break;
+    default://所有的定义都在上面了,TestCPP里面有句经典的点评, 想看的可以去翻一下.
+        break;
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>{% img /upload/2012-12/ccb-sbs-3-002.png %}</p>
+
+<p>{% render_partial _posts/cocosbuilder-step-by-step-footer.markdown %}</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[一步一步CocosBuilder(2)]]></title>
+    <link href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/"/>
+    <updated>2012-12-25T21:15:00+08:00</updated>
+    <id>http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two</id>
+    <content type="html"><![CDATA[<p>上一篇我们建立了基本的工作环境, 这一次我们将基本实现例子中的HelloCocosBuilder.</p>
+
+<h3>注意</h3>
+
+<p>这两天纠结了一个问题. 我发现按照上次的配置来实现例子, 图片的大小怎么都和例子中的搭配不上. 后来动用CCB的源代码才看出端倪.
+CCB v3.0加入了一个<code>resources-auto</code>的目录, 在发布的时候, 会自动缩放图片到对应的分辨率去. 因为图片的分辨率不合适(初步目测), 我们暂时不使用这功能. 请大家将上一篇文章
+中的<code>resources-auto</code>文件夹下图片移到父目录<code>ccb-source</code>下面. 这个也解释了为什么<code>resources-auto</code>有非图片文件会导致CCB崩溃的原因.</p>
+
+<!--more-->
+
+
+<h5>1</h5>
+
+<p>在CCB中打开MainScene.ccb,按<code>delete</code>键删除已经存在的几个Sprite.</p>
+
+<h5>2</h5>
+
+<p>添加一个<code>CCLayerGradient</code>到屏幕, 如果有问题的话, 可以参见下文档. 选中该节点, 我们可以在右侧看到他的属性, 常规的属性有比如位置, 大小, 锚点, 缩放, 旋转, 标签.
+我们现在将其设置为大小为100%x100%的大小, 即满屏.</p>
+
+<h5>3</h5>
+
+<p>从左侧的文件中将<code>burst.png</code>拖入屏幕, 也可以使用工具栏添加然后再选择属性<code>Sprite frame</code>. <br/>
+可以在节点树上双击该节点给其重命名, 我们将该节点命名为<code>CCSprite-burst</code>, 便于识别.<br/>
+同样我们将其中心的设置到屏幕中心50%x50%, 缩放到2.5倍. <br/>
+然后将<code>Blend src</code>, <code>Blend dst</code> 都设置为<code>One</code>, 好吧, 我暂时还不知道这个Blend是什么东西. 有知道的朋友不妨在评论中告诉我下, 或者参考资料. <br/>
+大概是透明之类的东西吧.</p>
+
+<h5>4</h5>
+
+<p>然后我们再添加一个<code>CCParticleSystemQuad</code>粒子系统, 就是工具栏的那个Fx按钮. <br/>
+将其位置设为最下居中, 在最下边<code>Particle Texture</code>设置为<code>ccbParticleSnow.png</code>效果,粒子系统还是很复杂的,估计能单独讲很久了. 这里就不再展开了.</p>
+
+<h5>5</h5>
+
+<p>将<code>logo-icon.png</code>拖入屏幕, 放在左上角合适位置, 并将其缩放到0.5. 节点重命名为<code>CCSprite-logo-icon</code>. <br/>
+接下来就是动画的制作了.选中节点, 可以在菜单栏中<code>Animation =&gt; Insert KeyFrame</code>找到插入Framekey的各种快捷键.或许我们需要记熟他们. <br/>
+首先让我们给<code>Timeline</code>设置下时间.双击时间可以编辑, 我们输入00:03:00, 就是3秒钟. 后面最后一位是帧数, 每秒30帧. <br/>
+按下小三角可以展开当前节点的各种KeyFrame.  <br/>
+拖动时间轴游标到1秒10帧,按下键盘<code>S</code>, 可以插入一个Scale类型的KeyFrame, 这时将当前节点Scale属性改为0. <br/>
+然后继续拖动时间轴游标到2秒10帧, 再插入一个Scale KeyFrame, 并将Scale属性改为0.5. 这时点击播放按钮, 可以看到logo会蹦出来. <br/>
+然后在紫色条上点击右键, 可以看到动作菜单, 我们选择<code>Bounce Out</code>, 这个时候再点击播放, 就可以看到logo蹦出的时候会有一个弹震的效果. <br/>
+再来说明两点, 紫色条设置不同的动作, 可以看到上面会有一点阴影变化, 可以帮助我们快速确认设置的是什么动作. <br/>
+如果不小心加多了KeyFrame, 那么可以点击选择KeyFrame, 然后点击<code>delete</code>键删除. <br/>
+还有需要注意的是, 如果游标不在KeyFrame的点上, 那么此时无法编辑该节点属性, 移动到相应的KeyFrame点即可.</p>
+
+<h5>6</h5>
+
+<p>然后依法炮制, 将<code>logo.png</code>加入, 你可以给其设置想要的动画效果.</p>
+
+<h5>7</h5>
+
+<p>我们再添加一个<code>CCLabelBMFont</code>, 字体设置为<code>markerfelt24shadow.fnt</code>.Label的内容设置为"Hello Cocos2d-x!!!", 然后调整下位置, 换个喜欢的颜色.</p>
+
+<h5>8</h5>
+
+<p>我们再添加一个<code>CCControlButton</code>, Title设置为<code>Menu &amp; Item</code>.  <br/>
+然后再分别设置State Normal, State Highlighted的Sprite frame为<code>btn-test-0.png</code> &nbsp; <code>btn-test-1.png</code>. <br/>
+然后再设置下弹出效果. <br/>
+将这个节点再复制5份, 对齐. 再分别设置下Title和弹出效果.设置对齐的时候可能会比较麻烦. 可以从标尺那里拉出几条线, 用于对齐.将该对齐线拉出显示区域即可删除. <br/>
+{% img /upload/2012-12/ccb-sbs-2-001.png %}</p>
+
+<h5>9</h5>
+
+<p>最后将左右的两片叶子加入屏幕, 设置个动画即可.
+然后将CCB项目发布一下, 在Xcode里面将项目运行一下. 就可以看到效果了.</p>
+
+<h5>10</h5>
+
+<p>我们接下来研究文件和类的绑定, 控件和变量的绑定, 以及事件和函数的绑定. <br/>
+我们在CCB中将根节点的<code>Custom class</code>设置为<code>MainScene</code>.<br/>
+我们在Xcode中打开<code>MainScene.h</code>, 给<code>MainScene</code>增加一个新的函数<code>CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(MainScene, create);</code>. <br/>
+最后的代码应该如下:
+``` cpp MainScene
+class MainScene
+: public cocos2d::CCLayer
+{
+public:</p>
+
+<pre><code>static cocos2d::CCScene* scene();
+
+CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(MainScene, create);
+</code></pre>
+
+<p>};
+<code>
+然后在`MainScene.h`中添加一个新类`MainSceneLayerLoader`代码如下:
+</code> cpp MainSceneLayerLoader
+class MainSceneLayerLoader : public cocos2d::extension::CCLayerLoader
+{
+public:</p>
+
+<pre><code>CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(MainSceneLayerLoader, loader);
+</code></pre>
+
+<p>protected:</p>
+
+<pre><code>CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(MainScene);
+</code></pre>
+
+<p>};
+```
+如果需要探究的话, 可以点开相应的函数定义. 也都是些简单的工作. <br/>
+吐槽下, 这些名字真的是太难记. 可能需要多熟悉下, 搞清楚其原理了才好.</p>
+
+<p>然后我们在<code>MainScene.cpp</code>中添加一行注册将ccb文件和类绑定起来.
+<code>cpp MainScene::scene()
+CCNodeLoaderLibrary *lib = CCNodeLoaderLibrary::newDefaultCCNodeLoaderLibrary();
+lib-&gt;registerCCNodeLoader("MainScene", MainSceneLayerLoader::loader());
+</code>
+然后运行下, 确保没有错误. <br/>
+这几行代码, 就是ccb文件和类绑定的最简模式了.</p>
+
+<h5>11</h5>
+
+<p>接着我们研究下控件和变量的绑定. <br/>
+我们先在CCB中给<code>CCLabelBMFont</code>添加一个<code>Doc root var</code>类型的绑定<code>mLabelText</code>. <br/>
+一个需要注意的地方就是CCB v3.0alpha似乎无法将<code>jsControlled</code>设置为<code>false</code>, 所以可能需要手工打开<code>MainScene.ccb</code>将其改为<code>false</code>. <br/>
+``` xml MainScene.ccb</p>
+
+<pre><code>&lt;key&gt;jsControlled&lt;/key&gt;
+&lt;false/&gt;
+</code></pre>
+
+<p><code>
+然后在Xcode中给`MainScene`增加一个从`CCBMemberVariableAssigner`的继承并实现其虚函数. 并且添加相应的变量.     
+</code> cpp MainScene
+class MainScene
+: public cocos2d::CCLayer
+, public cocos2d::extension::CCBMemberVariableAssigner
+{
+public:</p>
+
+<pre><code>MainScene();
+~MainScene();
+
+static cocos2d::CCScene* scene();
+
+CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(MainScene, create);
+
+virtual bool onAssignCCBMemberVariable(cocos2d::CCObject* pTarget, const char* pMemberVariableName, cocos2d::CCNode* pNode);
+</code></pre>
+
+<p>private:</p>
+
+<pre><code>cocos2d::CCLabelBMFont *mLabelText;
+</code></pre>
+
+<p>};
+<code>
+在`MainScene.cpp`中需要添加的是:
+</code> cpp MainScene.cpp
+MainScene::MainScene()//构造函数
+: mLabelText(NULL)
+{}</p>
+
+<p>MainScene::~MainScene()//析构函数中释放内存不能忘
+{</p>
+
+<pre><code>CC_SAFE_DELETE(mLabelText);
+</code></pre>
+
+<p>}</p>
+
+<p>bool MainScene::onAssignCCBMemberVariable(cocos2d::CCObject <em>pTarget, const char </em>pMemberVariableName, cocos2d::CCNode *pNode)
+{</p>
+
+<pre><code>CCB_MEMBERVARIABLEASSIGNER_GLUE(this, "mLabelText", CCLabelBMFont*, this-&gt;mLabelText);
+
+return true;
+</code></pre>
+
+<p>}
+<code>``
+需要注意的是, 由于绑定较晚, 所以无法在init函数中使用变量</code>mLabelText`.</p>
+
+<h5>12</h5>
+
+<p>接下来我们研究事件和函数的绑定. <br/>
+在CCB中找到<code>Menu &amp; Item</code>这个<code>CCControlButton</code>, 并设置其Selector为<code>onButtonTest</code>.Target设置为<code>Document root</code>. <br/>
+这里需要注意的是, 设置值的时候,cocos2d-iphone似乎比较喜欢设置成<code>onButtonTest:</code>即多个<code>:</code>的形式. 我们在cocos2d-x中保持一致即可.不必加<code>:</code>.  <br/>
+然后打开<code>MainScene.h</code>给<code>MainScene</code>再增加一个继承.
+<code>cpp MainScene
+class MainScene
+: public cocos2d::CCLayer
+, public cocos2d::extension::CCBMemberVariableAssigner
+, public cocos2d::extension::CCBSelectorResolver
+</code>
+还有需要实现的函数
+``` cpp MainScene
+virtual cocos2d::SEL_MenuHandler onResolveCCBCCMenuItemSelector(cocos2d::CCObject * pTarget, const char<em> pSelectorName);
+virtual cocos2d::extension::SEL_CCControlHandler onResolveCCBCCControlSelector(cocos2d::CCObject * pTarget, const char</em> pSelectorName);</p>
+
+<p>void onButtonTest(cocos2d::CCObject <em>pSender, cocos2d::extension::CCControlEvent pCCControlEvent);
+<code>
+接下来是增加的函数的实现
+</code> cpp MainScene.cpp
+SEL_MenuHandler MainScene::onResolveCCBCCMenuItemSelector(cocos2d::CCObject </em>pTarget, const char *pSelectorName)
+{</p>
+
+<pre><code>return NULL;
+</code></pre>
+
+<p>}</p>
+
+<p>SEL_CCControlHandler MainScene::onResolveCCBCCControlSelector(cocos2d::CCObject <em>pTarget, const char </em>pSelectorName)
+{</p>
+
+<pre><code>CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onButtonTest", MainScene::onButtonTest);
+
+return NULL;
+</code></pre>
+
+<p>}</p>
+
+<p>void MainScene::onButtonTest(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)
+{</p>
+
+<pre><code>this-&gt;mLabelText-&gt;setString("Hello CocosBuilder!!!");
+</code></pre>
+
+<p>}
+<code>``
+好了, 现在运行一下, 点击按钮, 就会看到</code>Hello Cocos2d-x!!!<code>变成了</code>Hello CocosBuilder!!!`了.</p>
+
+<h5>13</h5>
+
+<p>刚才我们提到变量绑定较init函数(更别提运行更早的构造函数了)更晚. 那么如何运行后就控制这些控件呢?  <br/>
+方法当然是有, 我们需要增加一个<code>CCNodeLoaderListener</code>, 并实现其接口.新增代码如下:
+``` cpp MainScene
+, public cocos2d::extension::CCBSelectorResolver
+, public cocos2d::extension::CCNodeLoaderListener
+{</p>
+
+<pre><code>///......代码省略鸟
+virtual void onNodeLoaded(cocos2d::CCNode * pNode, cocos2d::extension::CCNodeLoader * pNodeLoader);
+///......代码省略鸟
+</code></pre>
+
+<p>}
+<code>
+</code> cpp MainScene.cpp
+void MainScene::onNodeLoaded(cocos2d::CCNode <em>pNode, cocos2d::extension::CCNodeLoader </em>pNodeLoader)
+{</p>
+
+<pre><code>this-&gt;mLabelText-&gt;setString("All Loaded");
+</code></pre>
+
+<p>}
+<code>``
+好啦, 运行就能看到</code>All Loaded`啦.</p>
+
+<p>{% img /upload/2012-12/ccb-sbs-2-002.png %}</p>
+
+<p>{% render_partial _posts/cocosbuilder-step-by-step-footer.markdown %}</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[一步一步CocosBuilder(1)]]></title>
+    <link href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/"/>
+    <updated>2012-12-21T02:46:00+08:00</updated>
+    <id>http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one</id>
+    <content type="html"><![CDATA[<p>CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.
+CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.
+我想这个也是其不够流行的原因吧.</p>
+
+<p>如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力.
+我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实.
+我无论C++,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.</p>
+
+<p>这次的目的是基本实现原来v2.0中的例子.
+我采用的2d-x的版本是:cocos2d-2.1beta3-x-2.1.0, 以OS X版本为主, 以sample目录下的HelloCpp为基础改进. CCB的版本是v3.0alpha0.</p>
+
+<!--more-->
+
+
+<p>本文的目标是基本实现将CCB整合进Mac OS X版本的项目中.</p>
+
+<p>首先将2d-x源代码中sample目录下的HelloCpp目录重命名为TestCocosBuilder.并使用CocosBuilder创建新项目文件在其Resources文件夹中.
+还需要将项目需要的图片资源放入Resources目录中. 具体可以参见我打包后的整体项目文件.还可以参见文末的目录树说明.</p>
+
+<p>贴下Xcode项目的目录,如果添加extensions应该逐个添加,否则可能会遇到编译错误,有可能会把其他平台文件错误添加进来.</p>
+
+<p>{% img /upload/2012-12/ccb-sbs-1-001.png %}</p>
+
+<p>做完这些准备工作后, 我们接下来按步来讲解.</p>
+
+<p>1.首先编辑下<code>AppMacros.h</code>, 修改以下代码
+<code>cpp AppMacros.h
+static Resource smallResource  =  { cocos2d::CCSizeMake(480, 320),   "resources-iphone" };
+static Resource mediumResource =  { cocos2d::CCSizeMake(1024, 768),  "resources-ipad"   };
+static Resource largeResource  =  { cocos2d::CCSizeMake(2048, 1536), "resources-ipadhd" };
+</code>
+这一段主要是修改<code>HelloCpp</code>默认的资源目录, 配合CCB的发布路径.同时可以将原来几个目录中文件分别移入对应目录.
+2.添加一个新类<code>MainScene</code>如下
+``` cpp MainScene.h</p>
+
+<h1>ifndef <strong>HelloCpp</strong>MainScene__</h1>
+
+<h1>define <strong>HelloCpp</strong>MainScene__</h1>
+
+<h1>include "cocos2d.h"</h1>
+
+<h1>include "cocos-ext.h"</h1>
+
+<p>class MainScene
+: public cocos2d::CCLayer //从CCLayer派生
+{
+public:</p>
+
+<pre><code>static cocos2d::CCScene* scene();
+</code></pre>
+
+<p>};</p>
+
+<h1>endif /<em> defined(<strong>HelloCpp</strong>MainScene__) </em>/</h1>
+
+<p>```</p>
+
+<p>``` cpp MainScene.cpp</p>
+
+<h1>include "MainScene.h"</h1>
+
+<p>USING_NS_CC;
+USING_NS_CC_EXT;</p>
+
+<p>CCScene* MainScene::scene()
+{</p>
+
+<pre><code>CCScene *scene = CCScene::create();
+
+CCNodeLoaderLibrary *lib = CCNodeLoaderLibrary::newDefaultCCNodeLoaderLibrary(); //生成一个默认的Node Loader
+
+CCBReader *reader = new CCBReader(lib); //用node load lib 初始化一个ccb reader
+
+CCNode *node = reader-&gt;readNodeGraphFromFile("MainScene.ccbi", scene); //从ccbi文件中加载node
+
+reader-&gt;release(); //注意手动释放内存
+
+if (node!=NULL)
+{
+    scene-&gt;addChild(node); //将node 添加到scene中
+}
+
+return scene;
+</code></pre>
+
+<p>}
+<code>
+3.修改`AppDelegate.cpp`中默认的启动scene
+</code> cpp
+CCScene *pScene = MainScene::scene(); //HelloWorld::scene();
+```
+4.注意CCB中发布选项的设置, 并发布一次.
+{% img /upload/2012-12/ccb-sbs-1-002.png %}</p>
+
+<p>5.如果没有错误的话, 你应该可以看到运行的效果.
+{% img /upload/2012-12/ccb-sbs-1-003.png %}</p>
+
+<p>Update:
+@王哲Walzer 说,CCB大部分是美术在用, 在美术圈讨论, 所以程序圈较少看到人在讨论, 其实用的公司挺多的.
+http://weibo.com/1702027805/zay18wLT5</p>
+
+<p><code>sh 目录结构
+├── samples #目录结构和2d-x源代码保持一致,相信大家对2d-x源代码很熟悉了.
+│   └── CocosBuilderTest #项目所在目录
+│       ├── Classes #代码所在目录
+│       ├── Resources #资源目录
+│       │   ├── ccb #ccb发布后的目录
+│       │   │   ├── HelloCocosBuilder.ccbi
+│       │   │   ├── ...
+│       │   │   └── TestSprites.ccbi
+│       │   ├── ccbResources #发布后的默认ccb资源
+│       │   ├── fonts
+│       │   ├── resources-ipad #注意这几个目录, 稍后我们会提及
+│       │   ├── resources-ipadhd
+│       │   ├── resources-iphone
+│       │   ├── resources-iphonehd
+│       ├── ccb-source #ccb项目目录
+│       │   ├── ccb
+│       │   │   ├── HelloCocosBuilder.ccb #这几个是原CocosBuilder例子中的ccb, 直接复制过来了.
+│       │   │   ├── ...
+│       │   │   └── TestSprites.ccbi
+│       │   ├── ccbResources
+│       │   ├── resources-auto #CocosBuilderv3.0的资源目录, 似乎只能存放图片
+│       │   │   ├── btn-a-0.png #否则会引起发布是造成CocosBuilder崩溃
+│       │   │   ├── ...
+│       │   │   └── scale-9-demo.png
+│       │   ├── MainScene.ccb #默认生成的ccb, 我们这一次不对其更改
+│       │   ├── MainScene.js
+│       │   ├── animated-grossini.plist
+│       │   ├── animated-grossini.png
+│       │   ├── ccb-source.ccbproj
+│       │   ├── comic\ andy.ttf
+│       │   ├── grossini-generic.plist
+│       │   ├── grossini-generic.png
+│       │   ├── markerfelt24shadow.fnt
+│       │   └── markerfelt24shadow.png
+│       └── proj.mac
+│           ├── HelloCpp.xcodeproj #项目文件, 暂时只支持mac os x
+├── cocos2dx #2d-x文件
+├── extensions #2d-x的扩展
+│   ├── CCBReader #这个是解析CocosBuilder的主要CCBReader
+│   │   ├── CCBAnimationManager.cpp
+│   │   ├── CCBAnimationManager.h
+│   │   ├── ...
+│   │   └── CCSpriteLoader.h
+│   ├── GUI
+│   ├── network
+│   ├── physics_nodes
+│   ├── ExtensionMacros.h
+│   └── cocos-ext.h
+</code>
+{% render_partial _posts/cocosbuilder-step-by-step-footer.markdown %}</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CocosBuilder 要点]]></title>
+    <link href="http://young40.github.com/blog/2012/12/20/cocosbuilder-key-point/"/>
+    <updated>2012-12-20T02:14:00+08:00</updated>
+    <id>http://young40.github.com/blog/2012/12/20/cocosbuilder-key-point</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+</feed>
