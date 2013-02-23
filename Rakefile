@@ -19,6 +19,7 @@ public_dir      = "public"    # compiled site directory
 source_dir      = "source"    # source file directory
 blog_index_dir  = 'source'    # directory for your blog's index page (if you put your index in source/blog/index.html, set this to 'source/blog')
 deploy_dir      = "_deploy"   # deploy directory (for Github pages deployment)
+deploy_sae_dir  = "_deploy_sae" # deploy directory (for Sina App Engine deployment)
 stash_dir       = "_stash"    # directory to stash posts for speedy generation
 posts_dir       = "_posts"    # directory for blog files
 themes_dir      = ".themes"   # directory for blog files
@@ -259,6 +260,23 @@ multitask :push do
   end
 end
 
+desc "deploy public directory to Sina App Engine"
+task :sae do
+  puts "## Deploying to SAE "
+  (Dir["#{deploy_sae_dir}/*"]).each { |f| rm_rf(f) }
+  Rake::Task[:copydot].invoke(public_dir, deploy_sae_dir)
+  puts "\n## copying #{public_dir} to #{deploy_sae_dir}"
+  cp_r "#{public_dir}/.", deploy_sae_dir
+  cd "#{deploy_sae_dir}" do
+    system "svn add *"
+    puts "\n## Commiting: Site updated at #{Time.now.utc}"
+    message = "Site updated at #{Time.now.utc}"
+    system "svn commit -m \"#{message}\""
+    puts "\n## Pushing generated #{deploy_sae_dir} website"
+    puts "\n## SAE deploy complete"
+  end
+end
+
 desc "Update configurations to support publishing to root or sub directory"
 task :set_root_dir, :dir do |t, args|
   puts ">>> !! Please provide a directory, eg. rake config_dir[publishing/subdirectory]" unless args.dir
@@ -348,6 +366,38 @@ task :setup_github_pages, :repo do |t, args|
     end
   end
   puts "\n---\n## Now you can deploy to #{url} with `rake deploy` ##"
+end
+
+desc "Set up _deploy_sae folder and deploy for Sina App Engie(SAE) deployment"
+task :setup_sae, [:appname, :version] do |t, args|
+    appname = ""
+    appversion = ""
+    if args.appname
+        appname = args.appname
+    else
+        puts "Enter your App Name for Sina App Engine"
+        appname = get_stdin("appname:")
+    end
+    if args.version
+        appversion = args.version
+    else
+        args.with_defaults(:version=>"1")
+        appversion = args.version
+        if args.appname
+            puts "Your Sina App Engine App Name is #{appname}"
+        end
+        puts "Using default app version 1"
+    end
+
+    svn_url = "https://svn.sinaapp.com/#{appname}/#{appversion}/"
+    puts "Your SAE SVN repository url is #{svn_url}"
+
+    rm_rf deploy_sae_dir
+    mkdir deploy_sae_dir
+    system "svn checkout #{svn_url} #{deploy_sae_dir}"
+    system "cp #{deploy_sae_dir}/config.yaml #{public_dir}/config.yaml"
+    
+    puts "\n---\n## Now you can deploy to `#{appname}` with `rake sae` ##"
 end
 
 def ok_failed(condition)
