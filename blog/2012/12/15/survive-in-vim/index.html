@@ -5,13 +5,16 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>声明和定义的研究 - 喜气羊羊</title>
+  <title>Vim 生存手册 - 喜气羊羊</title>
   <meta name="author" content="Young40">
 
   
-  <meta name="description" content="最近一直在看C++, 基础的东西瞄了一遍就飘过了, 然后就记不得很清楚了.
-这两天觉得看书的时候, 对声明和定义的含义很含糊, 以至于都不是很明白书上在说什么地方了.
-看来有必要对声明和定义重新研究下, 既然架设了这个博客, 那么就写一篇博客吧. 定义(Definiation) &hellip;">
+  <meta name="description" content="模式 在普通模式按i进入插入模式
+在普通模式按:进入命令模式
+在插入模式按esc进入普通模式
+在普通模式按v进入可视模式 命令合成 dw可以看做d(删除)+w(一个单词)合成的. 所以dw, 将向后删除一个单词
+数字+命令 会重复该命令
+例如: 2j 会向下移动两次 基础命令 h,j,k, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +23,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://young40.github.com/blog/2012/12/10/declaration-and-definition-in-cpp/">
+  <link rel="canonical" href="http://young40.github.com/blog/2012/12/15/survive-in-vim/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -82,7 +85,7 @@
   
   <header>
     
-      <h1 class="entry-title">声明和定义的研究</h1>
+      <h1 class="entry-title">Vim 生存手册</h1>
     
     
       <p class="meta">
@@ -98,34 +101,56 @@
   
 
 
-<time datetime="2012-12-10T07:35:00+08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2012</time>
+<time datetime="2012-12-15T00:23:00+08:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>最近一直在看C++, 基础的东西瞄了一遍就飘过了, 然后就记不得很清楚了.
-这两天觉得看书的时候, 对声明和定义的含义很含糊, 以至于都不是很明白书上在说什么地方了.
-看来有必要对声明和定义重新研究下, 既然架设了这个博客, 那么就写一篇博客吧.</p>
+<div class="entry-content"><h2>模式</h2>
+
+<p>在普通模式按<code>i</code>进入插入模式
+在普通模式按<code>:</code>进入命令模式
+在插入模式按<code>esc</code>进入普通模式
+在普通模式按<code>v</code>进入可视模式</p>
 
 <!--more-->
 
 
-<p>定义(Definiation)用于给变量分配存储空间, 还可以给变量指定初始值. 变量只能有一个定义.</p>
+<h2>命令合成</h2>
 
-<p>声明(Declaration)表明变量的类型和名字. 定义也是声明.可以通过extern这种方式来仅声明而不定义变量.</p>
+<p><code>dw</code>可以看做<code>d</code>(删除)+<code>w</code>(一个单词)合成的. 所以<code>dw</code>, 将向后删除一个单词
+数字+命令 会重复该命令
+例如: <code>2j</code> 会向下移动两次</p>
 
-<figure class='code'><figcaption><span>Declaration</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">extern</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
+<h2>基础命令</h2>
 
+<p><code>h</code>,<code>j</code>,<code>k</code>,<code>l</code>分别代表了向前一个字符,向下一行,向上一行,向后一个字符</p>
 
-<p>定义会分配内存空间.</p>
+<h2>定位</h2>
 
-<p>可以多次声明.</p>
+<p><code>L</code> 移动到屏幕最后一行
+<code>M</code> 移动到屏幕中间一行
+<code>H</code> 移动到屏幕第一行
+<code>G</code> 移动到文件的最后一行
+<code>nG</code> 移动到文件第n行, 其中n为行数</p>
 
-<p>好吧, 这篇文章不能称之为研究, 仅仅是从C++ Primer抄下来的而已.</p>
+<h2>翻页</h2>
+
+<p>Ctrl+u 向上翻半页
+Ctrl+d 向下翻半页
+Ctrl+b 向上翻一页
+Ctrl+f 向下翻一页</p>
+
+<h2>段落跳跃</h2>
+
+<p><code>{</code> 向上一个段落
+<code>}</code> 向下一个段落</p>
+
+<h1>命令模式</h1>
+
+<h2>定位</h2>
 </div>
 
 
@@ -148,12 +173,12 @@
   
 
 
-<time datetime="2012-12-10T07:35:00+08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2012</time>
+<time datetime="2012-12-15T00:23:00+08:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/cpp/'>CPP</a>
+    <a class='category' href='/blog/categories/vim/'>Vim</a>
   
 </span>
 
@@ -169,10 +194,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/12/09/setup-octopress-on-os-x-10-dot-8/" title="Previous Post: 在OS X上折腾OctoPress">&laquo; 在OS X上折腾OctoPress</a>
+        <a class="basic-alignment left" href="/blog/2012/12/14/os-x-shell-command/" title="Previous Post: OS X常用Shell命令">&laquo; OS X常用Shell命令</a>
       
       
-        <a class="basic-alignment right" href="/blog/2012/12/12/random-number-in-cpp/" title="Next Post: C++随机数">C++随机数 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2012/12/17/cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/" title="Next Post: 2d-x深读1:CCPlatformConfig.h">2d-x深读1:CCPlatformConfig.h &raquo;</a>
       
     </p>
   </footer>
@@ -255,8 +280,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://young40.github.com/blog/2012/12/10/declaration-and-definition-in-cpp/';
-        var disqus_url = 'http://young40.github.com/blog/2012/12/10/declaration-and-definition-in-cpp/';
+        var disqus_identifier = 'http://young40.github.com/blog/2012/12/15/survive-in-vim/';
+        var disqus_url = 'http://young40.github.com/blog/2012/12/15/survive-in-vim/';
         var disqus_script = 'embed.js';
       
     (function () {

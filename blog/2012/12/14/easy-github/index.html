@@ -5,13 +5,17 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>声明和定义的研究 - 喜气羊羊</title>
+  <title>Github三板斧 - 喜气羊羊</title>
   <meta name="author" content="Young40">
 
   
-  <meta name="description" content="最近一直在看C++, 基础的东西瞄了一遍就飘过了, 然后就记不得很清楚了.
-这两天觉得看书的时候, 对声明和定义的含义很含糊, 以至于都不是很明白书上在说什么地方了.
-看来有必要对声明和定义重新研究下, 既然架设了这个博客, 那么就写一篇博客吧. 定义(Definiation) &hellip;">
+  <meta name="description" content="初始化目录1
+git init 添加文件1
+2
+git add somefile.php // 添加一个新文件
+git add . // 将所有未纳入版本管理的文件添加进来 本地提交1
+git commit -a -m &quot;add ignore file&quot; 状态查看1
+git &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://young40.github.com/blog/2012/12/10/declaration-and-definition-in-cpp/">
+  <link rel="canonical" href="http://young40.github.com/blog/2012/12/14/easy-github/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -82,7 +86,7 @@
   
   <header>
     
-      <h1 class="entry-title">声明和定义的研究</h1>
+      <h1 class="entry-title">Github三板斧</h1>
     
     
       <p class="meta">
@@ -98,34 +102,52 @@
   
 
 
-<time datetime="2012-12-10T07:35:00+08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2012</time>
+<time datetime="2012-12-14T15:05:00+08:00" pubdate data-updated="true">Dec 14<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>最近一直在看C++, 基础的东西瞄了一遍就飘过了, 然后就记不得很清楚了.
-这两天觉得看书的时候, 对声明和定义的含义很含糊, 以至于都不是很明白书上在说什么地方了.
-看来有必要对声明和定义重新研究下, 既然架设了这个博客, 那么就写一篇博客吧.</p>
+<div class="entry-content"><figure class='code'><figcaption><span>初始化目录</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git init
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 
 <!--more-->
 
 
-<p>定义(Definiation)用于给变量分配存储空间, 还可以给变量指定初始值. 变量只能有一个定义.</p>
 
-<p>声明(Declaration)表明变量的类型和名字. 定义也是声明.可以通过extern这种方式来仅声明而不定义变量.</p>
 
-<figure class='code'><figcaption><span>Declaration</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">extern</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+<figure class='code'><figcaption><span>添加文件</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git add somefile.php // 添加一个新文件
+</span><span class='line'>git add . // 将所有未纳入版本管理的文件添加进来
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>定义会分配内存空间.</p>
 
-<p>可以多次声明.</p>
 
-<p>好吧, 这篇文章不能称之为研究, 仅仅是从C++ Primer抄下来的而已.</p>
+<figure class='code'><figcaption><span>本地提交</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git commit -a -m <span class="s2">&quot;add ignore file&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>状态查看</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git status
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>忽略文件</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git-ignore .DS_Store  //忽略一个文件 本质是将该文件名添加到.gitignore, 可以在每个目录设立不同的.gitignore文件, 会影响子目录
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 
@@ -148,12 +170,12 @@
   
 
 
-<time datetime="2012-12-10T07:35:00+08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2012</time>
+<time datetime="2012-12-14T15:05:00+08:00" pubdate data-updated="true">Dec 14<span>th</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/cpp/'>CPP</a>
+    <a class='category' href='/blog/categories/git/'>Git</a>, <a class='category' href='/blog/categories/github/'>Github</a>
   
 </span>
 
@@ -169,10 +191,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/12/09/setup-octopress-on-os-x-10-dot-8/" title="Previous Post: 在OS X上折腾OctoPress">&laquo; 在OS X上折腾OctoPress</a>
+        <a class="basic-alignment left" href="/blog/2012/12/14/cocos2d-x-is-awesome/" title="Previous Post: Cocos2d-x 真是太棒了">&laquo; Cocos2d-x 真是太棒了</a>
       
       
-        <a class="basic-alignment right" href="/blog/2012/12/12/random-number-in-cpp/" title="Next Post: C++随机数">C++随机数 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2012/12/14/os-x-shell-command/" title="Next Post: OS X常用Shell命令">OS X常用Shell命令 &raquo;</a>
       
     </p>
   </footer>
@@ -255,8 +277,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://young40.github.com/blog/2012/12/10/declaration-and-definition-in-cpp/';
-        var disqus_url = 'http://young40.github.com/blog/2012/12/10/declaration-and-definition-in-cpp/';
+        var disqus_identifier = 'http://young40.github.com/blog/2012/12/14/easy-github/';
+        var disqus_url = 'http://young40.github.com/blog/2012/12/14/easy-github/';
         var disqus_script = 'embed.js';
       
     (function () {

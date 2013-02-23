@@ -4,7 +4,7 @@
   <title><![CDATA[喜气羊羊]]></title>
   <link href="http://young40.github.com/atom.xml" rel="self"/>
   <link href="http://young40.github.com/"/>
-  <updated>2013-01-04T06:06:55+08:00</updated>
+  <updated>2013-01-08T05:24:43+08:00</updated>
   <id>http://young40.github.com/</id>
   <author>
     <name><![CDATA[Young40]]></name>
@@ -12,6 +12,201 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[基于Pomelo和Cocos2d-x的聊天室]]></title>
+    <link href="http://young40.github.com/blog/2013/01/08/chat-of-pomelo-for-cocos2d-x/"/>
+    <updated>2013-01-08T00:39:00+08:00</updated>
+    <id>http://young40.github.com/blog/2013/01/08/chat-of-pomelo-for-cocos2d-x</id>
+    <content type="html"><![CDATA[<p>据说聊天室和游戏系统有很多相似之处, 并且很多游戏本身就带着多人聊天系统. 所以Pomelo将聊天室作为了一个例子.</p>
+
+<p>开源是非常棒的思想和运动, 我简单提两点体会,
+1.发现了问题可以不用等官方响应,自己有能力就可以马上修复. 2.你可以贡献自己的代码,很多人都可以贡献代码,可以让项目快速发展.
+当然一旦你的代码被接受并被很多人使用, 心中的成就感是不言而喻的.</p>
+
+<p>之所以要提到开源, 是因为今天我们要用到的东西基本上全部是开源的, 并且我们还要对其中的代码做一些修改才能正常工作. 再一次为开源鼓掌!</p>
+
+<p>这并不是一篇Pomelo,或者Cocos2d-x的入门说明, 需要你对这两者都有一定的了解.
+同时, 无论是Pomelo还是Cocos2d-x, 我都是新手, 如果文章中有错误的地方, 希望您能不吝指出.
+您可以在文章下面留言, 或者在新浪微博上发微薄 @杨世玲
+(需要说明的一点是, 请勿私信提问非隐私性技术问题, 我是希望您的问题, 我的或者其他朋友的回复,能被更多朋友搜索到,
+我希望我们的交流, 能让更多朋友受到启发, 受益. 这也是对社区和世界和平的一点贡献吧.)</p>
+
+<!--more-->
+
+
+<p>下面是我们需要使用到的工具及其版本:</p>
+
+<ul>
+<li>平台:OS X(10.8.2) Xcode(4.5.2)</li>
+<li>Cocos2d-2.1beta3-x-2.1.0</li>
+<li>Pomelo https://github.com/NetEase/pomelo</li>
+<li>socket.io-clientpp https://github.com/ebshimizu/socket.io-clientpp</li>
+<li>websocketpp https://github.com/zaphoyd/websocketpp</li>
+<li>Rapidjson https://code.google.com/p/rapidjson/</li>
+<li>chatofpomelo https://github.com/NetEase/chatofpomelo</li>
+</ul>
+
+
+<p>查阅本文时请注意版本差异.</p>
+
+<h3>环境配置</h3>
+
+<p>我们的目标是实现OS X, IOS, Android三个平台下的chatofpomelo的Cocos2d-x版本. <br/>
+所以需要安装各自平台的开发工具如Xcode,Eclipse,NDK等, 不是本文需要关心的内容. 相信大家也已经轻车熟路了. <br/>
+Pomelo的安装 <code>npm install pomelo -g</code>, 如有疑问请查看Pomelo的Wiki. <br/>
+websocketpp需要著名的C++库, boost. 我是使用了HomeBrew来安装.
+其他安装方式请自省查阅相关文档, 有一点需要指出的是, 必须编译为带有x86(i386)支持lib文件.
+因为Cocos2d-x在OS X下是32位的.</p>
+
+<figure class='code'><figcaption><span>HomeBrew安装boost库</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew install boost --universal
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上面这条命令中<code>--universal</code>即代表编译出来的boost的lib文件同时支持x86和x64.</p>
+
+<h3>项目配置</h3>
+
+<p>Cocos2d-x跨平台无疑做的很好, 但是如果手动创建一个结构良好的跨平台项目,还是一件非常棘手的事. <br/>
+幸好我们可以偷懒, 打开Cocos2d-x的源代码, samples目录下面都是已经配置好的跨平台的项目文件.
+合理利用, 将事半功倍.</p>
+
+<p>我们将samples目录下HelloCpp复制为ChatOfPomelo,打开找到proj.mac目录下面的<code>HelloCpp.xcodeproj</code>,
+可以将其重命名为<code>ChatOfPomelo-Mac.xcodeproj</code>, 以便于和接下来的ios项目有所区分.</p>
+
+<p>在ChatOfPomelo下创建lib目录, 下载socket.io-clientpp和websocketpp并解压到lib目录下面.
+并将socket.io-clientpp/lib/rapidjson 复制到lib目录下面.  <br/>
+目录结构应该是这样的.</p>
+
+<figure class='code'><figcaption><span>目录</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ChatOfPomelo/
+</span><span class='line'>├── Classes
+</span><span class='line'>├── Resources
+</span><span class='line'>├── lib
+</span><span class='line'>│   ├── rapidjson
+</span><span class='line'>│   ├── socket.io-clientpp
+</span><span class='line'>│   └── websocketpp
+</span><span class='line'>├── proj.android
+</span><span class='line'>├── proj.blackberry
+</span><span class='line'>├── proj.ios
+</span><span class='line'>├── proj.linux
+</span><span class='line'>├── proj.mac
+</span><span class='line'>├── proj.marmalade
+</span><span class='line'>└── proj.win32
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>我们打开proj.mac下的项目文件, 在Xcode中打开项目设置页, 点开Targets的设置.
+在Build Settings下面找到<code>Search Paths</code>, 将<code>Always Search User Paths</code>设置为<code>Yes</code>. <br/>
+给<code>Header Search Paths</code> 依次添加下面路径:</p>
+
+<figure class='code'><figcaption><span>目录</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>/usr/local/include_code
+</span><span class='line'><span class="s2">&quot;$(SRCROOT)/../lib/socket.io-clientpp/src&quot;</span>
+</span><span class='line'><span class="s2">&quot;$(SRCROOT)/../lib/websocketpp/src&quot;</span>
+</span><span class='line'><span class="s2">&quot;$(SRCROOT)/../lib/rapidjson/include&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如下图所示:
+<img src="http://young40.github.com/upload/2013-01/chat-of-pomelo-cocos2d-x-001.png"></p>
+
+<p>给<code>Library Search Paths</code>添加路径<code>/usr/local/lib</code>. 如下图:
+<img src="http://young40.github.com/upload/2013-01/chat-of-pomelo-cocos2d-x-002.png"></p>
+
+<p>其中<code>/usr/local/include</code>和<code>/usr/local/lib</code>是boost的所在位置(HomeBrew的默认安装位置).
+如果你的boost不在上述位置, 请自行更改.</p>
+
+<p>接下来将<code>websocketpp</code>的工程文件添加进来.参见下图:    <br/>
+<img src="http://young40.github.com/upload/2013-01/chat-of-pomelo-cocos2d-x-003.png"></p>
+
+<p>然后打开工程的设置, 在Targets的Build Phases页面,找到<code>Link Binary With Libraries</code>,
+添加<code>libwebsocketpp.a</code>, 以及boost的库文件(在/usr/local/lib中找到).</p>
+
+<figure class='code'><figcaption><span>boost 需要添加的库文件列表</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>libboost_date_time-mt.a
+</span><span class='line'>libboost_graph-mt.a
+</span><span class='line'>libboost_random-mt.a
+</span><span class='line'>libboost_regex-mt.a
+</span><span class='line'>libboost_system-mt.a
+</span><span class='line'>libboost_thread-mt.a
+</span><span class='line'>libboost_timer-mt.a
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>添加的方法参见下图:  <br/>
+<img src="http://young40.github.com/upload/2013-01/chat-of-pomelo-cocos2d-x-004.png"></p>
+
+<h2>文件Hack</h2>
+
+<p>我们在<code>HelloWorldScene.cpp</code>中添加一句<code>#include &lt;socket_io_client.hpp&gt;</code>. <br/>
+然后试图运行项目的话, 会看到几处报错(有可能你看到这篇文章的时候相关库文件已经更新了, 没有报错的话, 直接跳过这段即可.) <br/>
+报错的是<code>socket_io_client.hpp</code>中的<code>std::function</code>以及<code>std::unique_ptr</code>等.</p>
+
+<p>这是因为这些语句是C++11的新语法. 而如果在Xcode中启用C++11的支持,则Cocos2d-x无法通过编译.
+原因有人说是Cocos2d-x不支持C++11, 有人说是OS X自带的libc++库太旧的原因, Xcode4.6中会更新该库.
+我是小菜鸟一只, 也分不清谁说的对.</p>
+
+<p>但我们可以通过修改这些代码, 采用boost的API来完成相应的工作.
+而websocketpp这个项目又大量采用了boost, 所以修改为boost的API还是挺划算的.</p>
+
+<p>找到<code>socket_io_client.hpp</code>:</p>
+
+<figure class='code'><figcaption><span>socket_io_client.hpp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="c1">//typedef std::function&lt;void (socketio_events&amp;, const Value&amp;)&gt; eventFunc;</span>
+</span><span class='line'><span class="c1">//修改为</span>
+</span><span class='line'><span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span> <span class="p">(</span><span class="n">socketio_events</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Value</span><span class="o">&amp;</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">eventFunc</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//std::unique_ptr&lt;boost::asio::deadline_timer&gt; m_heartbeatTimer;</span>
+</span><span class='line'><span class="c1">//修改为</span>
+</span><span class='line'><span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">deadline_timer</span><span class="o">&gt;</span> <span class="n">m_heartbeatTimer</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>找到<code>socket_io_client.cpp</code>:</p>
+
+<figure class='code'><figcaption><span>socket_io_client.cpp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="c1">//m_heartbeatTimer = std::unique_ptr&lt;boost::asio::deadline_timer&gt;(new boost::asio::deadline_timer(con-&gt;get_io_service(), boost::posix_time::seconds(0)));</span>
+</span><span class='line'><span class="c1">//修改为</span>
+</span><span class='line'><span class="n">m_heartbeatTimer</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">deadline_timer</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">deadline_timer</span><span class="p">(</span><span class="n">con</span><span class="o">-&gt;</span><span class="n">get_io_service</span><span class="p">(),</span> <span class="n">boost</span><span class="o">::</span><span class="n">posix_time</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">0</span><span class="p">)));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这是整个项目应该就可以正常编译运行了. 如果没能正常运行, 你可能在某一步出错了,
+可以在下面评论分享下你的问题, 如果已经找到解决办法, 也要把解决方法也贴出来, 分享给大家哦, 亲!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[2d-x深读4:CCAutoReleasePool]]></title>
@@ -2283,6 +2478,15 @@ http://weibo.com/1702027805/zay18wLT5</p>
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[CocosBuilder 要点]]></title>
+    <link href="http://young40.github.com/blog/2012/12/20/cocosbuilder-key-point/"/>
+    <updated>2012-12-20T02:14:00+08:00</updated>
+    <id>http://young40.github.com/blog/2012/12/20/cocosbuilder-key-point</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[2d-x深读2:CCPlatformMacros.h]]></title>
     <link href="http://young40.github.com/blog/2012/12/17/cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/"/>
     <updated>2012-12-17T01:49:00+08:00</updated>
@@ -3299,6 +3503,118 @@ http://weibo.com/1702027805/zay18wLT5</p>
 </span><span class='line'><span class="cp">#endif  </span><span class="c1">// CC_PLATFORM_WIN32</span>
 </span><span class='line'>
 </span><span class='line'><span class="cp">#endif  </span><span class="c1">// __CC_PLATFORM_CONFIG_H__</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vim 生存手册]]></title>
+    <link href="http://young40.github.com/blog/2012/12/15/survive-in-vim/"/>
+    <updated>2012-12-15T00:23:00+08:00</updated>
+    <id>http://young40.github.com/blog/2012/12/15/survive-in-vim</id>
+    <content type="html"><![CDATA[<h2>模式</h2>
+
+<p>在普通模式按<code>i</code>进入插入模式
+在普通模式按<code>:</code>进入命令模式
+在插入模式按<code>esc</code>进入普通模式
+在普通模式按<code>v</code>进入可视模式</p>
+
+<!--more-->
+
+
+<h2>命令合成</h2>
+
+<p><code>dw</code>可以看做<code>d</code>(删除)+<code>w</code>(一个单词)合成的. 所以<code>dw</code>, 将向后删除一个单词
+数字+命令 会重复该命令
+例如: <code>2j</code> 会向下移动两次</p>
+
+<h2>基础命令</h2>
+
+<p><code>h</code>,<code>j</code>,<code>k</code>,<code>l</code>分别代表了向前一个字符,向下一行,向上一行,向后一个字符</p>
+
+<h2>定位</h2>
+
+<p><code>L</code> 移动到屏幕最后一行
+<code>M</code> 移动到屏幕中间一行
+<code>H</code> 移动到屏幕第一行
+<code>G</code> 移动到文件的最后一行
+<code>nG</code> 移动到文件第n行, 其中n为行数</p>
+
+<h2>翻页</h2>
+
+<p>Ctrl+u 向上翻半页
+Ctrl+d 向下翻半页
+Ctrl+b 向上翻一页
+Ctrl+f 向下翻一页</p>
+
+<h2>段落跳跃</h2>
+
+<p><code>{</code> 向上一个段落
+<code>}</code> 向下一个段落</p>
+
+<h1>命令模式</h1>
+
+<h2>定位</h2>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OS X常用Shell命令]]></title>
+    <link href="http://young40.github.com/blog/2012/12/14/os-x-shell-command/"/>
+    <updated>2012-12-14T20:45:00+08:00</updated>
+    <id>http://young40.github.com/blog/2012/12/14/os-x-shell-command</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span>清理 </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>find ./ -name <span class="s2">&quot;._*&quot;</span> -depth -exec rm <span class="o">{}</span> <span class="se">\;</span>
+</span><span class='line'>find ./ -name <span class="s2">&quot;._*&quot;</span> | xargs rm
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Github三板斧]]></title>
+    <link href="http://young40.github.com/blog/2012/12/14/easy-github/"/>
+    <updated>2012-12-14T15:05:00+08:00</updated>
+    <id>http://young40.github.com/blog/2012/12/14/easy-github</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span>初始化目录</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git init
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
+
+
+
+
+<figure class='code'><figcaption><span>添加文件</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git add somefile.php // 添加一个新文件
+</span><span class='line'>git add . // 将所有未纳入版本管理的文件添加进来
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>本地提交</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git commit -a -m <span class="s2">&quot;add ignore file&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>状态查看</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git status
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>忽略文件</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git-ignore .DS_Store  //忽略一个文件 本质是将该文件名添加到.gitignore, 可以在每个目录设立不同的.gitignore文件, 会影响子目录
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
