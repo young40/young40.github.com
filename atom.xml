@@ -4,7 +4,7 @@
   <title><![CDATA[喜气羊羊]]></title>
   <link href="http://young40.github.com/atom.xml" rel="self"/>
   <link href="http://young40.github.com/"/>
-  <updated>2013-01-08T05:24:43+08:00</updated>
+  <updated>2013-02-24T18:43:17+08:00</updated>
   <id>http://young40.github.com/</id>
   <author>
     <name><![CDATA[Young40]]></name>
@@ -14,72 +14,159 @@
 
   
   <entry>
-    <title type="html"><![CDATA[基于Pomelo和Cocos2d-x的聊天室]]></title>
-    <link href="http://young40.github.com/blog/2013/01/08/chat-of-pomelo-for-cocos2d-x/"/>
-    <updated>2013-01-08T00:39:00+08:00</updated>
-    <id>http://young40.github.com/blog/2013/01/08/chat-of-pomelo-for-cocos2d-x</id>
-    <content type="html"><![CDATA[<p>据说聊天室和游戏系统有很多相似之处, 并且很多游戏本身就带着多人聊天系统. 所以Pomelo将聊天室作为了一个例子.</p>
-
-<p>开源是非常棒的思想和运动, 我简单提两点体会,
-1.发现了问题可以不用等官方响应,自己有能力就可以马上修复. 2.你可以贡献自己的代码,很多人都可以贡献代码,可以让项目快速发展.
-当然一旦你的代码被接受并被很多人使用, 心中的成就感是不言而喻的.</p>
-
-<p>之所以要提到开源, 是因为今天我们要用到的东西基本上全部是开源的, 并且我们还要对其中的代码做一些修改才能正常工作. 再一次为开源鼓掌!</p>
-
-<p>这并不是一篇Pomelo,或者Cocos2d-x的入门说明, 需要你对这两者都有一定的了解.
-同时, 无论是Pomelo还是Cocos2d-x, 我都是新手, 如果文章中有错误的地方, 希望您能不吝指出.
-您可以在文章下面留言, 或者在新浪微博上发微薄 @杨世玲
-(需要说明的一点是, 请勿私信提问非隐私性技术问题, 我是希望您的问题, 我的或者其他朋友的回复,能被更多朋友搜索到,
-我希望我们的交流, 能让更多朋友受到启发, 受益. 这也是对社区和世界和平的一点贡献吧.)</p>
-
-<!--more-->
-
-
-<p>下面是我们需要使用到的工具及其版本:</p>
+    <title type="html"><![CDATA[搭建Mac OS X下cocos2d-x的Android开发环境]]></title>
+    <link href="http://young40.github.com/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x/"/>
+    <updated>2013-02-23T21:14:00+08:00</updated>
+    <id>http://young40.github.com/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x</id>
+    <content type="html"><![CDATA[<h2>版本</h2>
 
 <ul>
-<li>平台:OS X(10.8.2) Xcode(4.5.2)</li>
-<li>Cocos2d-2.1beta3-x-2.1.0</li>
-<li>Pomelo https://github.com/NetEase/pomelo</li>
-<li>socket.io-clientpp https://github.com/ebshimizu/socket.io-clientpp</li>
-<li>websocketpp https://github.com/zaphoyd/websocketpp</li>
-<li>Rapidjson https://code.google.com/p/rapidjson/</li>
-<li>chatofpomelo https://github.com/NetEase/chatofpomelo</li>
+<li>Cocos2d-x: cocos2d-2.1beta3-x-2.1.1</li>
+<li>OS X: 10.8</li>
+<li>Android ADT Bundle: v21.1.0</li>
+<li>Android NDK: android-ndk-r8d</li>
+<li>Device: Android 4.2.1   <br/>
+这次我们测试的设备安装的是Android4.2.1, Cocos2d-x能支持Android2.2以上版本.</li>
 </ul>
 
 
-<p>查阅本文时请注意版本差异.</p>
+<h4>文件路径:</h4>
 
-<h3>环境配置</h3>
+<ul>
+<li>Cocos2d-x: /opt/cocos2d-2.1beta3-x-2.1.1</li>
+<li>Android ADT Bundle: /opt/adt-bundle-mac-x86_64</li>
+<li>Android NDK: /opt/android-ndk
+下文中提及的这些路径, 请替换成您自己的路径</li>
+</ul>
 
-<p>我们的目标是实现OS X, IOS, Android三个平台下的chatofpomelo的Cocos2d-x版本. <br/>
-所以需要安装各自平台的开发工具如Xcode,Eclipse,NDK等, 不是本文需要关心的内容. 相信大家也已经轻车熟路了. <br/>
-Pomelo的安装 <code>npm install pomelo -g</code>, 如有疑问请查看Pomelo的Wiki. <br/>
-websocketpp需要著名的C++库, boost. 我是使用了HomeBrew来安装.
-其他安装方式请自省查阅相关文档, 有一点需要指出的是, 必须编译为带有x86(i386)支持lib文件.
-因为Cocos2d-x在OS X下是32位的.</p>
 
-<figure class='code'><figcaption><span>HomeBrew安装boost库</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew install boost --universal
+<h2>下载最新版本Cocos2d-x</h2>
+
+<p>您可以在Cocos2d-x官网找到<a href="http://www.cocos2d-x.org/projects/cocos2d-x/wiki/Download">下载页面</a>  <br/>
+解压后到您需要的位置, 本文假设解压到以下位置</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/opt/cocos2d-2.1beta3-x-2.1.1</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>检查JDK</h2>
+
+<p>在终端中输入</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>java -version
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>上面这条命令中<code>--universal</code>即代表编译出来的boost的lib文件同时支持x86和x64.</p>
+<p>如果您没有安装JDK, 系统会帮您自动安装JDK. <br/>
+<img src="http://young40.github.com/upload/2013-02/set-up-c-a-osx-001-jdk.png"> <br/>
+安装过后您会看到如下输出</p>
 
-<h3>项目配置</h3>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>java version <span class="s2">&quot;1.6.0_37&quot;</span>
+</span><span class='line'>Java<span class="o">(</span>TM<span class="o">)</span> SE Runtime Environment <span class="o">(</span>build 1.6.0_37-b06-434-11M3909<span class="o">)</span>
+</span><span class='line'>Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM <span class="o">(</span>build 20.12-b01-434, mixed mode<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Cocos2d-x跨平台无疑做的很好, 但是如果手动创建一个结构良好的跨平台项目,还是一件非常棘手的事. <br/>
-幸好我们可以偷懒, 打开Cocos2d-x的源代码, samples目录下面都是已经配置好的跨平台的项目文件.
-合理利用, 将事半功倍.</p>
 
-<p>我们将samples目录下HelloCpp复制为ChatOfPomelo,打开找到proj.mac目录下面的<code>HelloCpp.xcodeproj</code>,
-可以将其重命名为<code>ChatOfPomelo-Mac.xcodeproj</code>, 以便于和接下来的ios项目有所区分.</p>
+<h2>下载最新版本Android ADT Bundle</h2>
 
-<p>在ChatOfPomelo下创建lib目录, 下载socket.io-clientpp和websocketpp并解压到lib目录下面.
-并将socket.io-clientpp/lib/rapidjson 复制到lib目录下面.  <br/>
-目录结构应该是这样的.</p>
+<p>Google将Android SDK, Eclipse, ADT(Android Developer Tools)打包在一起,称作Android ADT Bundle, 简化了Android开发环境的搭建. <br/>
+您可以在Android官网找到<a href="http://developer.android.com/sdk/index.html">下载页面</a>  <br/>
+解压到您需要的位置, 本文假设解压到以下位置</p>
 
-<figure class='code'><figcaption><span>目录</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>/opt/adt-bundle-mac-x86_64
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在终端中运行下面命令, 将ADT中的Eclipse放入您的程序文件夹, 方便启动</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ln -s /opt/adt-bundle-mac-x86_64/eclipse/Eclipse.app/ /Applications/Eclipse-ADT.app
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在/Applications中或者Launchpad中找到并打开Eclipse-ADT
+<img src="http://young40.github.com/upload/2013-02/set-up-c-a-osx-002-adt.png"></p>
+
+<h2>Eclipse的Retina支持</h2>
+
+<p>如果您在使用带Retina的Mackbook Pro, Eclipse暂时还不支持Retina. 但有一个简单的<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=382972">解决方案</a></p>
+
+<ol>
+<li>在 /opt/adt-bundle-mac-x86_64/eclipse 找到 Eclipse.app</li>
+<li>编辑<code>Contents/Info.plist</code></li>
+<li>找到</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;/dict&gt;
+</span><span class='line'>&lt;/plist&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在其上面添加</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;key&gt;NSHighResolutionCapable&lt;/key&gt;
+</span><span class='line'>&lt;<span class="nb">true</span>/&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>将Eclipse.app移动到新的文件夹, 然后再移动回来. (防止系统缓存了上面提及的Info.plist)</li>
+<li>OK啦.</li>
+</ol>
+
+
+<h2>Android SDK Manager</h2>
+
+<p>Android ADT Bundle中是包含了Android SDK Manager的. 启动您的Eclipse-ADT. 可以在工具栏中或者菜单中找到Android SDK Manager. <br/>
+<img src="http://young40.github.com/upload/2013-02/set-up-c-a-osx-003-sdk-1.png">  <br/>
+<img src="http://young40.github.com/upload/2013-02/set-up-c-a-osx-004-sdk-2.png"></p>
+
+<h2>Android NDK</h2>
+
+<p>您可以在Android官网找到Android的<a href="http://developer.android.com/tools/sdk/ndk/index.html">下载页面</a>  <br/>
+下载后解压到您需要的位置, 本文假设解压到以下位置</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>/opt/android-ndk
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>设置环境变量</h2>
+
+<p>我们需要将SDK, NDK以及Cocos2d-x的路径中添加到环境变量中. 将以下内容添加到~/.bash_profile文件</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">export </span><span class="nv">COCOS2DX_ROOT</span><span class="o">=</span>/opt/cocos2d-2.1beta3-x-2.1.1
+</span><span class='line'><span class="nb">export </span><span class="nv">ANDROID_SDK_ROOT</span><span class="o">=</span>/opt/adt-bundle-mac-x86_64/sdk
+</span><span class='line'><span class="nb">export </span><span class="nv">ANDROID_NDK_ROOT</span><span class="o">=</span>/opt/android-ndk
+</span><span class='line'><span class="nb">export </span><span class="nv">NDK_ROOT</span><span class="o">=</span>/opt/android-ndk
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$ANDROID_NDK_ROOT</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$ANDROID_SDK_ROOT</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>HelloWorld</h2>
+
+<p>万事俱备, 我们现在就可以开始激动人心的Cocos2d-x之旅了.   <br/>
+打开终端, 进入cocos2d-x所在目录并执行 <code>/opt/cocos2d-2.1beta3-x-2.1.1/create-android-project.sh</code>文件  <br/>
+根据提示输入对应信息.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -93,118 +180,117 @@ websocketpp需要著名的C++库, boost. 我是使用了HomeBrew来安装.
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ChatOfPomelo/
-</span><span class='line'>├── Classes
-</span><span class='line'>├── Resources
-</span><span class='line'>├── lib
-</span><span class='line'>│   ├── rapidjson
-</span><span class='line'>│   ├── socket.io-clientpp
-</span><span class='line'>│   └── websocketpp
-</span><span class='line'>├── proj.android
-</span><span class='line'>├── proj.blackberry
-</span><span class='line'>├── proj.ios
-</span><span class='line'>├── proj.linux
-</span><span class='line'>├── proj.mac
-</span><span class='line'>├── proj.marmalade
-</span><span class='line'>└── proj.win32
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>我们打开proj.mac下的项目文件, 在Xcode中打开项目设置页, 点开Targets的设置.
-在Build Settings下面找到<code>Search Paths</code>, 将<code>Always Search User Paths</code>设置为<code>Yes</code>. <br/>
-给<code>Header Search Paths</code> 依次添加下面路径:</p>
-
-<figure class='code'><figcaption><span>目录</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>/usr/local/include_code
-</span><span class='line'><span class="s2">&quot;$(SRCROOT)/../lib/socket.io-clientpp/src&quot;</span>
-</span><span class='line'><span class="s2">&quot;$(SRCROOT)/../lib/websocketpp/src&quot;</span>
-</span><span class='line'><span class="s2">&quot;$(SRCROOT)/../lib/rapidjson/include&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>如下图所示:
-<img src="http://young40.github.com/upload/2013-01/chat-of-pomelo-cocos2d-x-001.png"></p>
-
-<p>给<code>Library Search Paths</code>添加路径<code>/usr/local/lib</code>. 如下图:
-<img src="http://young40.github.com/upload/2013-01/chat-of-pomelo-cocos2d-x-002.png"></p>
-
-<p>其中<code>/usr/local/include</code>和<code>/usr/local/lib</code>是boost的所在位置(HomeBrew的默认安装位置).
-如果你的boost不在上述位置, 请自行更改.</p>
-
-<p>接下来将<code>websocketpp</code>的工程文件添加进来.参见下图:    <br/>
-<img src="http://young40.github.com/upload/2013-01/chat-of-pomelo-cocos2d-x-003.png"></p>
-
-<p>然后打开工程的设置, 在Targets的Build Phases页面,找到<code>Link Binary With Libraries</code>,
-添加<code>libwebsocketpp.a</code>, 以及boost的库文件(在/usr/local/lib中找到).</p>
-
-<figure class='code'><figcaption><span>boost 需要添加的库文件列表</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>libboost_date_time-mt.a
-</span><span class='line'>libboost_graph-mt.a
-</span><span class='line'>libboost_random-mt.a
-</span><span class='line'>libboost_regex-mt.a
-</span><span class='line'>libboost_system-mt.a
-</span><span class='line'>libboost_thread-mt.a
-</span><span class='line'>libboost_timer-mt.a
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>添加的方法参见下图:  <br/>
-<img src="http://young40.github.com/upload/2013-01/chat-of-pomelo-cocos2d-x-004.png"></p>
-
-<h2>文件Hack</h2>
-
-<p>我们在<code>HelloWorldScene.cpp</code>中添加一句<code>#include &lt;socket_io_client.hpp&gt;</code>. <br/>
-然后试图运行项目的话, 会看到几处报错(有可能你看到这篇文章的时候相关库文件已经更新了, 没有报错的话, 直接跳过这段即可.) <br/>
-报错的是<code>socket_io_client.hpp</code>中的<code>std::function</code>以及<code>std::unique_ptr</code>等.</p>
-
-<p>这是因为这些语句是C++11的新语法. 而如果在Xcode中启用C++11的支持,则Cocos2d-x无法通过编译.
-原因有人说是Cocos2d-x不支持C++11, 有人说是OS X自带的libc++库太旧的原因, Xcode4.6中会更新该库.
-我是小菜鸟一只, 也分不清谁说的对.</p>
-
-<p>但我们可以通过修改这些代码, 采用boost的API来完成相应的工作.
-而websocketpp这个项目又大量采用了boost, 所以修改为boost的API还是挺划算的.</p>
-
-<p>找到<code>socket_io_client.hpp</code>:</p>
-
-<figure class='code'><figcaption><span>socket_io_client.hpp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="c1">//typedef std::function&lt;void (socketio_events&amp;, const Value&amp;)&gt; eventFunc;</span>
-</span><span class='line'><span class="c1">//修改为</span>
-</span><span class='line'><span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span> <span class="p">(</span><span class="n">socketio_events</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Value</span><span class="o">&amp;</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">eventFunc</span><span class="p">;</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>Youngs-MacBook-Air:~ young40<span class="nv">$ </span><span class="nb">cd</span> /opt/cocos2d-2.1beta3-x-2.1.1/
+</span><span class='line'>Youngs-MacBook-Air:cocos2d-2.1beta3-x-2.1.1 young40<span class="nv">$ </span>./create-android-project.sh
+</span><span class='line'>use global definition of NDK_ROOT: /opt/android-ndk
+</span><span class='line'>use global definition of ANDROID_SDK_ROOT: /opt/adt-bundle-mac-x86_64/sdk
+</span><span class='line'>Input package path. For example: org.cocos2dx.example
+</span><span class='line'>com.young40.test  //这里输入了包名
+</span><span class='line'>Now cocos2d-x supports Android 2.2 or upper version
+</span><span class='line'>Available Android targets:
+</span><span class='line'>----------
+</span><span class='line'>id: 1 or <span class="s2">&quot;android-17&quot;</span>
+</span><span class='line'>     Name: Android 4.2
+</span><span class='line'>     Type: Platform
+</span><span class='line'>     API level: 17
+</span><span class='line'>     Revision: 1
+</span><span class='line'>     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 <span class="o">(</span>default<span class="o">)</span>, WVGA854, WXGA720, WXGA800, WXGA800-7in
+</span><span class='line'>     ABIs : armeabi-v7a
+</span><span class='line'>input target id:
+</span><span class='line'>1 //选择您需要的平台id
+</span><span class='line'>input your project name:
+</span><span class='line'>HelloWorld  //输入项目名称
+</span><span class='line'>Created project directory: /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android
 </span><span class='line'>
-</span><span class='line'><span class="c1">//std::unique_ptr&lt;boost::asio::deadline_timer&gt; m_heartbeatTimer;</span>
-</span><span class='line'><span class="c1">//修改为</span>
-</span><span class='line'><span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">deadline_timer</span><span class="o">&gt;</span> <span class="n">m_heartbeatTimer</span><span class="p">;</span>
+</span><span class='line'>.....
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Updated project.properties
+</span><span class='line'>Updated local.properties
+</span><span class='line'>Updated file /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/proguard-project.txt
+</span><span class='line'>Youngs-MacBook-Air:cocos2d-2.1beta3-x-2.1.1 young40<span class="nv">$ </span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>找到<code>socket_io_client.cpp</code>:</p>
+<p>从以上输出我们可以看到<code>create-android-project.sh</code>这个脚本帮我们在 /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld 下建立了新项目.</p>
 
-<figure class='code'><figcaption><span>socket_io_client.cpp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p>然后我们可以先在终端中调用&#8221;build_native.sh&#8221;脚本编译该项目的C++部分.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="c1">//m_heartbeatTimer = std::unique_ptr&lt;boost::asio::deadline_timer&gt;(new boost::asio::deadline_timer(con-&gt;get_io_service(), boost::posix_time::seconds(0)));</span>
-</span><span class='line'><span class="c1">//修改为</span>
-</span><span class='line'><span class="n">m_heartbeatTimer</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">deadline_timer</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">boost</span><span class="o">::</span><span class="n">asio</span><span class="o">::</span><span class="n">deadline_timer</span><span class="p">(</span><span class="n">con</span><span class="o">-&gt;</span><span class="n">get_io_service</span><span class="p">(),</span> <span class="n">boost</span><span class="o">::</span><span class="n">posix_time</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">0</span><span class="p">)));</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>Youngs-MacBook-Air:~ young40<span class="nv">$ </span><span class="nb">cd</span> /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/
+</span><span class='line'>Youngs-MacBook-Air:proj.android young40<span class="nv">$ </span>./build_native.sh
+</span><span class='line'><span class="nv">NDK_ROOT</span> <span class="o">=</span> /opt/android-ndk
+</span><span class='line'><span class="nv">COCOS2DX_ROOT</span> <span class="o">=</span> /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/../..
+</span><span class='line'><span class="nv">APP_ROOT</span> <span class="o">=</span> /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/..
+</span><span class='line'><span class="nv">APP_ANDROID_ROOT</span> <span class="o">=</span> /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android
+</span><span class='line'>Using prebuilt externals
+</span><span class='line'>make: Entering directory <span class="sb">`</span>/opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android<span class="s1">&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">.....</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">StaticLibrary  : libchipmunk.a</span>
+</span><span class='line'><span class="s1">StaticLibrary  : libextension.a</span>
+</span><span class='line'><span class="s1">SharedLibrary  : libgame.so</span>
+</span><span class='line'><span class="s1">Install        : libgame.so =&gt; libs/armeabi/libgame.so</span>
+</span><span class='line'><span class="s1">make: Leaving directory `/opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android&#39;</span>
+</span><span class='line'>Youngs-MacBook-Air:proj.android young40<span class="nv">$ </span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>这是整个项目应该就可以正常编译运行了. 如果没能正常运行, 你可能在某一步出错了,
-可以在下面评论分享下你的问题, 如果已经找到解决办法, 也要把解决方法也贴出来, 分享给大家哦, 亲!</p>
+<h2>导入Eclipse-ADT</h2>
+
+<p>打开Eclipse-ADT, 点击快捷键<code>command+N</code>打开新建项目窗口并选择<code>Android Project from Existing Code</code>   <br/>
+<img src="http://young40.github.com/upload/2013-02/set-up-c-a-osx-005-helloworld-1.png">  <br/>
+<img src="http://young40.github.com/upload/2013-02/set-up-c-a-osx-006-helloworld-2.png">  <br/>
+这时您可能会在eclipse的<code>Problems</code>窗口看到如下错误</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>The import org.cocos2dx.lib cannot be resolved HelloWorld.java /HelloWorld/src/com/young40/test    line 26 Java Problem
+</span><span class='line'>Cocos2dxActivity cannot be resolved to a <span class="nb">type    </span>HelloWorld.java  /HelloWorld/src/com/young40/test    line 30 Java Problem
+</span><span class='line'>Cocos2dxActivity cannot be resolved to a <span class="nb">type    </span>HelloWorld.java  /HelloWorld/src/com/young40/test    line 33 Java Problem
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>您需要将<code>/opt/cocos2d-2.1beta3-x-2.1.1/cocos2dx/platform/android/java</code>如上面处理一样也作为一个项目导入eclipse中  <br/>
+然后在HelloWorld项目上点击右键选择刷新, 可以看到错误就消失了.</p>
+
+<p>将您的手机设置成调试模式并用USB线连接到电脑, 在Eclipse中运行HelloWorld, 然后就能在手机上看到已经运行的HelloWorld了  <br/>
+<img src="http://young40.github.com/upload/2013-02/set-up-c-a-osx-007-screen.png"></p>
+
+<p>好了, 享受您的奇妙的Cocos2d-x之旅吧!</p>
 ]]></content>
   </entry>
   
@@ -2478,15 +2564,6 @@ http://weibo.com/1702027805/zay18wLT5</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[CocosBuilder 要点]]></title>
-    <link href="http://young40.github.com/blog/2012/12/20/cocosbuilder-key-point/"/>
-    <updated>2012-12-20T02:14:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/20/cocosbuilder-key-point</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[2d-x深读2:CCPlatformMacros.h]]></title>
     <link href="http://young40.github.com/blog/2012/12/17/cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/"/>
     <updated>2012-12-17T01:49:00+08:00</updated>
@@ -3503,118 +3580,6 @@ http://weibo.com/1702027805/zay18wLT5</p>
 </span><span class='line'><span class="cp">#endif  </span><span class="c1">// CC_PLATFORM_WIN32</span>
 </span><span class='line'>
 </span><span class='line'><span class="cp">#endif  </span><span class="c1">// __CC_PLATFORM_CONFIG_H__</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vim 生存手册]]></title>
-    <link href="http://young40.github.com/blog/2012/12/15/survive-in-vim/"/>
-    <updated>2012-12-15T00:23:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/15/survive-in-vim</id>
-    <content type="html"><![CDATA[<h2>模式</h2>
-
-<p>在普通模式按<code>i</code>进入插入模式
-在普通模式按<code>:</code>进入命令模式
-在插入模式按<code>esc</code>进入普通模式
-在普通模式按<code>v</code>进入可视模式</p>
-
-<!--more-->
-
-
-<h2>命令合成</h2>
-
-<p><code>dw</code>可以看做<code>d</code>(删除)+<code>w</code>(一个单词)合成的. 所以<code>dw</code>, 将向后删除一个单词
-数字+命令 会重复该命令
-例如: <code>2j</code> 会向下移动两次</p>
-
-<h2>基础命令</h2>
-
-<p><code>h</code>,<code>j</code>,<code>k</code>,<code>l</code>分别代表了向前一个字符,向下一行,向上一行,向后一个字符</p>
-
-<h2>定位</h2>
-
-<p><code>L</code> 移动到屏幕最后一行
-<code>M</code> 移动到屏幕中间一行
-<code>H</code> 移动到屏幕第一行
-<code>G</code> 移动到文件的最后一行
-<code>nG</code> 移动到文件第n行, 其中n为行数</p>
-
-<h2>翻页</h2>
-
-<p>Ctrl+u 向上翻半页
-Ctrl+d 向下翻半页
-Ctrl+b 向上翻一页
-Ctrl+f 向下翻一页</p>
-
-<h2>段落跳跃</h2>
-
-<p><code>{</code> 向上一个段落
-<code>}</code> 向下一个段落</p>
-
-<h1>命令模式</h1>
-
-<h2>定位</h2>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OS X常用Shell命令]]></title>
-    <link href="http://young40.github.com/blog/2012/12/14/os-x-shell-command/"/>
-    <updated>2012-12-14T20:45:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/14/os-x-shell-command</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span>清理 </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>find ./ -name <span class="s2">&quot;._*&quot;</span> -depth -exec rm <span class="o">{}</span> <span class="se">\;</span>
-</span><span class='line'>find ./ -name <span class="s2">&quot;._*&quot;</span> | xargs rm
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Github三板斧]]></title>
-    <link href="http://young40.github.com/blog/2012/12/14/easy-github/"/>
-    <updated>2012-12-14T15:05:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/14/easy-github</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span>初始化目录</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git init
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<!--more-->
-
-
-
-
-<figure class='code'><figcaption><span>添加文件</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git add somefile.php // 添加一个新文件
-</span><span class='line'>git add . // 将所有未纳入版本管理的文件添加进来
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>本地提交</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git commit -a -m <span class="s2">&quot;add ignore file&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>状态查看</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git status
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>忽略文件</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>git-ignore .DS_Store  //忽略一个文件 本质是将该文件名添加到.gitignore, 可以在每个目录设立不同的.gitignore文件, 会影响子目录
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>

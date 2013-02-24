@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CocosBuilder | 喜气羊羊]]></title>
   <link href="http://young40.github.com/blog/categories/cocosbuilder/atom.xml" rel="self"/>
   <link href="http://young40.github.com/"/>
-  <updated>2013-02-23T21:30:13+08:00</updated>
+  <updated>2013-02-24T18:43:17+08:00</updated>
   <id>http://young40.github.com/</id>
   <author>
     <name><![CDATA[Young40]]></name>
@@ -32,8 +32,8 @@
 <!--more-->
 
 
-<p>{% img /upload/2012-12/ccb-sbs-4-001.png %}
-{% img /upload/2012-12/ccb-sbs-4-002.png %}</p>
+<p><img src="/upload/2012-12/ccb-sbs-4-001.png">
+<img src="/upload/2012-12/ccb-sbs-4-002.png"></p>
 
 <h5>2</h5>
 
@@ -199,7 +199,7 @@ CCDirector::sharedDirector()-&gt;pushScene(scene);
 <p>}
 ```</p>
 
-<p>{% img /upload/2012-12/ccb-sbs-4-003.png %}</p>
+<p><img src="/upload/2012-12/ccb-sbs-4-003.png"></p>
 
 <h3>后记</h3>
 
@@ -213,7 +213,20 @@ CCDirector::sharedDirector()-&gt;pushScene(scene);
 
 <p>谢谢大家耐心看完我的文章.</p>
 
-<p>{% render_partial _posts/cocosbuilder-step-by-step-footer.markdown %}</p>
+<p><hr />
+代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> 
+
+- 本文是系列文章, 请查看其他文章:
+- [一步一步CocosBuilder(1)](http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/)
+- [一步一步CocosBuilder(2)](http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/)
+- [一步一步CocosBuilder(3)](http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/)
+- [一步一步CocosBuilder(4)完结](http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/)
+
+谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.
+
+新浪微博: [@杨世玲](http://weibo.com/young40) [http://weibo.com/young40](http://weibo.com/young40)
+
+</p>
 ]]></content>
   </entry>
   
@@ -483,7 +496,7 @@ void MainScene::onButtonTest(cocos2d::CCObject *pSender, cocos2d::extension::CCC
 
 <p><code>Sprites &amp; 9 Slice</code> 这个比较简单, 只是靠CocosBuilder就能完成任务了.</p>
 
-<p>{% img /upload/2012-12/ccb-sbs-3-001.png %}</p>
+<p><img src="/upload/2012-12/ccb-sbs-3-001.png"></p>
 
 <p>我拼的不太好, 嘿嘿. 主要是着重代码, 并非设计, 漂亮的事情交给美术妹纸吧.</p>
 
@@ -527,9 +540,22 @@ void ButtonsLayer::onBtnClicked(cocos2d::CCObject *pSender, cocos2d::extension::
 <p>}
 ```</p>
 
-<p>{% img /upload/2012-12/ccb-sbs-3-002.png %}</p>
+<p><img src="/upload/2012-12/ccb-sbs-3-002.png"></p>
 
-<p>{% render_partial _posts/cocosbuilder-step-by-step-footer.markdown %}</p>
+<p><hr />
+代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> 
+
+- 本文是系列文章, 请查看其他文章:
+- [一步一步CocosBuilder(1)](http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/)
+- [一步一步CocosBuilder(2)](http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/)
+- [一步一步CocosBuilder(3)](http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/)
+- [一步一步CocosBuilder(4)完结](http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/)
+
+谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.
+
+新浪微博: [@杨世玲](http://weibo.com/young40) [http://weibo.com/young40](http://weibo.com/young40)
+
+</p>
 ]]></content>
   </entry>
   
@@ -598,7 +624,7 @@ CCB v3.0加入了一个<code>resources-auto</code>的目录, 在发布的时候,
 然后再分别设置State Normal, State Highlighted的Sprite frame为<code>btn-test-0.png</code> &nbsp; <code>btn-test-1.png</code>. <br/>
 然后再设置下弹出效果. <br/>
 将这个节点再复制5份, 对齐. 再分别设置下Title和弹出效果.设置对齐的时候可能会比较麻烦. 可以从标尺那里拉出几条线, 用于对齐.将该对齐线拉出显示区域即可删除. <br/>
-{% img /upload/2012-12/ccb-sbs-2-001.png %}</p>
+<img src="/upload/2012-12/ccb-sbs-2-001.png"></p>
 
 <h5>9</h5>
 
@@ -790,9 +816,22 @@ void MainScene::onNodeLoaded(cocos2d::CCNode <em>pNode, cocos2d::extension::CCNo
 <code>``
 好啦, 运行就能看到</code>All Loaded`啦.</p>
 
-<p>{% img /upload/2012-12/ccb-sbs-2-002.png %}</p>
+<p><img src="/upload/2012-12/ccb-sbs-2-002.png"></p>
 
-<p>{% render_partial _posts/cocosbuilder-step-by-step-footer.markdown %}</p>
+<p><hr />
+代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> 
+
+- 本文是系列文章, 请查看其他文章:
+- [一步一步CocosBuilder(1)](http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/)
+- [一步一步CocosBuilder(2)](http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/)
+- [一步一步CocosBuilder(3)](http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/)
+- [一步一步CocosBuilder(4)完结](http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/)
+
+谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.
+
+新浪微博: [@杨世玲](http://weibo.com/young40) [http://weibo.com/young40](http://weibo.com/young40)
+
+</p>
 ]]></content>
   </entry>
   
@@ -822,7 +861,7 @@ CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源
 
 <p>贴下Xcode项目的目录,如果添加extensions应该逐个添加,否则可能会遇到编译错误,有可能会把其他平台文件错误添加进来.</p>
 
-<p>{% img /upload/2012-12/ccb-sbs-1-001.png %}</p>
+<p><img src="/upload/2012-12/ccb-sbs-1-001.png"></p>
 
 <p>做完这些准备工作后, 我们接下来按步来讲解.</p>
 
@@ -893,10 +932,10 @@ return scene;
 CCScene *pScene = MainScene::scene(); //HelloWorld::scene();
 ```
 4.注意CCB中发布选项的设置, 并发布一次.
-{% img /upload/2012-12/ccb-sbs-1-002.png %}</p>
+<img src="/upload/2012-12/ccb-sbs-1-002.png"></p>
 
 <p>5.如果没有错误的话, 你应该可以看到运行的效果.
-{% img /upload/2012-12/ccb-sbs-1-003.png %}</p>
+<img src="/upload/2012-12/ccb-sbs-1-003.png"></p>
 
 <p>Update:
 @王哲Walzer 说,CCB大部分是美术在用, 在美术圈讨论, 所以程序圈较少看到人在讨论, 其实用的公司挺多的.
@@ -952,16 +991,20 @@ http://weibo.com/1702027805/zay18wLT5</p>
 │   ├── ExtensionMacros.h
 │   └── cocos-ext.h
 </code>
-{% render_partial _posts/cocosbuilder-step-by-step-footer.markdown %}</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[CocosBuilder 要点]]></title>
-    <link href="http://young40.github.com/blog/2012/12/20/cocosbuilder-key-point/"/>
-    <updated>2012-12-20T02:14:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/20/cocosbuilder-key-point</id>
-    <content type="html"><![CDATA[
+<hr />
+代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> 
+
+- 本文是系列文章, 请查看其他文章:
+- [一步一步CocosBuilder(1)](http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/)
+- [一步一步CocosBuilder(2)](http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/)
+- [一步一步CocosBuilder(3)](http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/)
+- [一步一步CocosBuilder(4)完结](http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/)
+
+谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.
+
+新浪微博: [@杨世玲](http://weibo.com/young40) [http://weibo.com/young40](http://weibo.com/young40)
+
+</p>
 ]]></content>
   </entry>
   

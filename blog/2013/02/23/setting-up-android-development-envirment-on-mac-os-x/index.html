@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>喜气羊羊</title>
+  <title>搭建Mac OS X下cocos2d-x的Android开发环境 - 喜气羊羊</title>
   <meta name="author" content="Young40">
 
   
@@ -22,7 +22,7 @@ Device: Android 4.2.1 &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://young40.github.com/">
+  <link rel="canonical" href="http://young40.github.com/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -79,15 +79,12 @@ Device: Android 4.2.1 &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x/">搭建Mac OS X下cocos2d-x的Android开发环境</a></h1>
+      <h1 class="entry-title">搭建Mac OS X下cocos2d-x的Android开发环境</h1>
     
     
       <p class="meta">
@@ -110,7 +107,7 @@ Device: Android 4.2.1 &hellip;">
   </header>
 
 
-  <div class="entry-content"><h2>版本</h2>
+<div class="entry-content"><h2>版本</h2>
 
 <ul>
 <li>Cocos2d-x: cocos2d-2.1beta3-x-2.1.1</li>
@@ -384,69 +381,16 @@ Device: Android 4.2.1 &hellip;">
 
 <p>好了, 享受您的奇妙的Cocos2d-x之旅吧!</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/03/cocos2d-x-source-code-research-4-ccautoreleasepool/">2d-x深读4:CCAutoReleasePool</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Young40</span></span>
 
-<time datetime="2013-01-03T15:09:00+08:00" pubdate data-updated="true">Jan 3<span>rd</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>CCAutoReleasePool.h</code>主要定义了两个类<code>CCAutoReleasePool</code>和<code>CCPoolManager</code>.</p>
-
-<p>其实因为cocos2d-x自动管理内存的原因, 所以, 我们平时很少需要直接使用这两个类.  <br/>
-为了探究其中的自动管理内存的机制, 我们直接分析其代码.</p>
-
-<p>总体上来讲, 内存管理这块的机制难度或许比较大. 我研究了一天, 还是有诸多疑问.  <br/>
-暂时先放一放, 待我功力进化后再来继续研究这块.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/01/03/cocos2d-x-source-code-research-4-ccautoreleasepool/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/31/cocos2d-x-source-code-research-3-ccobject/">2d-x深读3:CCObject</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -458,384 +402,36 @@ Device: Android 4.2.1 &hellip;">
   
 
 
-<time datetime="2012-12-31T17:21:00+08:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>CCObject是绝大部分cocos2d-x类的基类, 我们就从这里一步一步揭开cocos2d-x的奥秘.</p>
-
-<p>CCObject承担了两个重要的功能, 拷贝机制和内存管理.</p>
-
-<h2>拷贝机制</h2>
-
-<p>打开<code>CCObject.h</code> 首先看到的是类CCCopying, 而CCObject是从该类派生. 从这个意义上来讲CCCopying才是大部分类的基类. <br/>
-但CCCopying其实非常简单, 再加上没有其他类从CCCopying派生, 所以说CCObject才是大部分类的基类也是不错的. 我认为CCCopying仅仅是一个接口性质.</p>
-
-<p>CCCopying这个类非常简单, 只有一个成员函数copyWithZone(CCZone *pZone); 简单到其实现只是为了报错. 尽管如此, 但其却承担了拷贝机制这一重要的功能.</p>
-
-<p>cocos2d-x和cocos2d-iphone是近亲, 所以cocos2d-x在API上会和cocos2d-iphone保持一致, 代码上也多有借鉴. CCObject明显就有很多NSObject的痕迹.
-当然我对Objective-c并不熟悉, 这里都是些猜测罢了. copyWithZone或许就是借鉴了Obj-c.</p>
-
-<p>我们先来看下拷贝机制, 至于CCObject的代码倒不忙着看.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/12/31/cocos2d-x-source-code-research-3-ccobject/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2013-02-23T21:14:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2013</time>
       
-  <header>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2012/12/29/cocosbuilder-step-by-step-part-four/">一步一步CocosBuilder(4)[完结]</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
+      <div class="sharing">
   
-
-
-<time datetime="2012-12-29T10:54:00+08:00" pubdate data-updated="true">Dec 29<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>这一节也是很轻松, 主要是牵涉到Timeline的切换. 其他的都是简单的界面制作. <br/>
-所以CocosBuilder的威力也体现在这里, 很少的代码就能驱动界面了.</p>
-
-<p>我们这次先做<code>Particle System</code>, <code>Scroll View</code>, 最后以<code>Animations</code>收官.</p>
-
-<h5>1</h5>
-
-<p>制作<code>Particle System</code>和<code>Scroll View</code>的界面很简单,我们也是以程序为重点, 所以不再赘述. <br/>
-只需要一句<code>this-&gt;openTest("ccb/Scroll.ccbi");</code>就可以调用新的界面了. <br/>
-其他诸如绑定之类相信大家已经是轻车熟路啦.</p>
-
+  
+  
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/12/29/cocosbuilder-step-by-step-part-four/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/28/cocosbuilder-step-by-step-part-three/">一步一步CocosBuilder(3)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-28T00:54:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今天要说的内容比较轻松, 重要的知识点不多. <br/>
-目标是实现<code>Menus &amp; Items</code>, <code>Sprites &amp; 9 Slice</code>, <code>Buttons &amp; Labels</code>.</p>
-
-<h5>1</h5>
-
-<p>首先我们在CocosBuilder中建立一个新的<code>Header.ccb</code>.具体请参见CocosBuilder的项目.   <br/>
-在创建的时候,勾选<code>Full Sceen</code>, 并且将分辨率的<code>Height</code>都修改为40. <br/>
-这个文件很简单, 根节点下只包含一个<code>CCLayerColor</code>,根节点的<code>Custom class</code>设置为<code>HeaderLayer</code>. <br/>
-<code>CCLayerColor</code>下面包含一个<code>CCLabelTTF</code>和<code>CCMenu</code>. <br/>
-<code>CCLabelTTF</code>的变量绑定为类型<code>Owner var</code>, 值为<code>mTitleLabelTTF</code>. <br/>
-<code>CCMenu</code>包含一个<code>CCMenuItemImage</code>. <code>CCMenuItemImage</code>的<code>Selector</code>属性设置为<code>onBackClicked</code>.    <br/>
-这个ccb作为一个公用的元素被其他ccb文件所引用. 是属于模块化的一个例子. <br/>
-然后我们在Xcode中新建一个<code>HeaderLayer</code>类, 并同时声明一个<code>HeaderLayerLoader</code>类.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/12/28/cocosbuilder-step-by-step-part-three/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+        <a class="basic-alignment left" href="/blog/2013/01/03/cocos2d-x-source-code-research-4-ccautoreleasepool/" title="Previous Post: 2d-x深读4:CCAutoReleasePool">&laquo; 2d-x深读4:CCAutoReleasePool</a>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/25/cocosbuilder-step-by-step-part-two/">一步一步CocosBuilder(2)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-25T21:15:00+08:00" pubdate data-updated="true">Dec 25<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>上一篇我们建立了基本的工作环境, 这一次我们将基本实现例子中的HelloCocosBuilder.</p>
-
-<h3>注意</h3>
-
-<p>这两天纠结了一个问题. 我发现按照上次的配置来实现例子, 图片的大小怎么都和例子中的搭配不上. 后来动用CCB的源代码才看出端倪.
-CCB v3.0加入了一个<code>resources-auto</code>的目录, 在发布的时候, 会自动缩放图片到对应的分辨率去. 因为图片的分辨率不合适(初步目测), 我们暂时不使用这功能. 请大家将上一篇文章
-中的<code>resources-auto</code>文件夹下图片移到父目录<code>ccb-source</code>下面. 这个也解释了为什么<code>resources-auto</code>有非图片文件会导致CCB崩溃的原因.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/12/25/cocosbuilder-step-by-step-part-two/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/21/cocosbuilder-step-by-step-part-one/">一步一步CocosBuilder(1)</a></h1>
-    
-    
-      <p class="meta">
-        
+    </p>
+  </footer>
+</article>
 
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-21T02:46:00+08:00" pubdate data-updated="true">Dec 21<span>st</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.
-CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.
-我想这个也是其不够流行的原因吧.</p>
-
-<p>如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力.
-我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实.
-我无论C++,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.</p>
-
-<p>这次的目的是基本实现原来v2.0中的例子.
-我采用的2d-x的版本是:cocos2d-2.1beta3-x-2.1.0, 以OS X版本为主, 以sample目录下的HelloCpp为基础改进. CCB的版本是v3.0alpha0.</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/12/21/cocosbuilder-step-by-step-part-one/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/17/cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/">2d-x深读2:CCPlatformMacros.h</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-17T01:49:00+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/include/ccConfig.h</code></li>
-<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/mac/CCPlatformDefine.h</code> //注意我是以mac平台研究的, 其他平台略有不同</li>
-<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/CCPlatformMacros.h</code></li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/12/17/cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/17/cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/">2d-x深读1:CCPlatformConfig.h</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-17T00:43:00+08:00" pubdate data-updated="true">Dec 17<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>准备好好学习下Cocos2d-x(以下简称2dx), 我正在很努力地学习C++.</p>
-
-<p>作为新手的我, 只能从最基本的代码读起. 就从<code>CCPlatformConfig.h</code>开始研究起吧, 这个文件没有include其他文件, 是最基本的文件.</p>
-
-<p>研究成果见代码.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/12/17/cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/14/cocos2d-x-is-awesome/">Cocos2d-x 真是太棒了</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-14T03:07:00+08:00" pubdate data-updated="true">Dec 14<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>大概从7月20号左右, 开始决定转向游戏, 首先接触了cocos2d-iphone, 学习了几天. 然后简单了解下就转向了cocos2d-x的学习.</p>
-
-<p>2d-x最令人开心的就是跨平台特性, 经过这段时间的尝试, 感觉跨平台特性确实很强大. 我一般都是在Xcode写代码, 以os x平台做调试, 然后ios平台就不用提了, 直接编译即可.
-Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是刚刚开始学习, 所以代码写的不标准, 那么在VS下面会无法通过编译. 主要是体现在一些需要将函数作为参数传入的地方,
-比较会不容易弄清楚回调函数的参数. Xcode我通通将<code>CCObject *sender</code>作为参数, 而VS要求就非常严格了.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/12/14/cocos2d-x-is-awesome/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/2/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -884,6 +480,7 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -898,7 +495,10 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
       var disqus_shortname = 'young40';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://young40.github.com/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x/';
+        var disqus_url = 'http://young40.github.com/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
