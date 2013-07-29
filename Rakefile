@@ -8,10 +8,11 @@ ssh_user       = "user@domain.com"
 ssh_port       = "22"
 document_root  = "~/website.com/"
 rsync_delete   = false
-deploy_default = "push"
+rsync_args     = ""  # Any extra arguments to pass to rsync
+deploy_default = "rsync"
 
 # This will be configured for you when you run config_deploy
-deploy_branch  = "master"
+deploy_branch  = "gh-pages"
 
 ## -- Misc Configs -- ##
 
@@ -19,7 +20,6 @@ public_dir      = "public"    # compiled site directory
 source_dir      = "source"    # source file directory
 blog_index_dir  = 'source'    # directory for your blog's index page (if you put your index in source/blog/index.html, set this to 'source/blog')
 deploy_dir      = "_deploy"   # deploy directory (for Github pages deployment)
-deploy_sae_dir  = "_deploy_sae" # deploy directory (for Sina App Engine deployment)
 stash_dir       = "_stash"    # directory to stash posts for speedy generation
 posts_dir       = "_posts"    # directory for blog files
 themes_dir      = ".themes"   # directory for blog files
@@ -92,10 +92,13 @@ end
 # usage rake new_post[my-new-post] or rake new_post['my new post'] or rake new_post (defaults to "new-post")
 desc "Begin a new post in #{source_dir}/#{posts_dir}"
 task :new_post, :title do |t, args|
+  if args.title
+    title = args.title
+  else
+    title = get_stdin("Enter a title for your post: ")
+  end
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   mkdir_p "#{source_dir}/#{posts_dir}"
-  args.with_defaults(:title => 'new-post')
-  title = args.title
   filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"
   if File.exist?(filename)
     abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
@@ -238,42 +241,28 @@ task :rsync do
     exclude = "--exclude-from '#{File.expand_path('./rsync-exclude')}'"
   end
   puts "## Deploying website via Rsync"
-  ok_failed system("rsync -avze 'ssh -p #{ssh_port}' #{exclude} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
+  ok_failed system("rsync -avze 'ssh -p #{ssh_port}' #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
 end
 
 desc "deploy public directory to github pages"
 multitask :push do
   puts "## Deploying branch to Github Pages "
+  puts "## Pulling any updates from Github Pages "
+  cd "#{deploy_dir}" do 
+    system "git pull"
+  end
   (Dir["#{deploy_dir}/*"]).each { |f| rm_rf(f) }
   Rake::Task[:copydot].invoke(public_dir, deploy_dir)
-  puts "\n## copying #{public_dir} to #{deploy_dir}"
+  puts "\n## Copying #{public_dir} to #{deploy_dir}"
   cp_r "#{public_dir}/.", deploy_dir
   cd "#{deploy_dir}" do
-    system "git add ."
-    system "git add -u"
+    system "git add -A"
     puts "\n## Commiting: Site updated at #{Time.now.utc}"
     message = "Site updated at #{Time.now.utc}"
     system "git commit -m \"#{message}\""
     puts "\n## Pushing generated #{deploy_dir} website"
-    system "git push origin #{deploy_branch} --force"
+    system "git push origin #{deploy_branch}"
     puts "\n## Github Pages deploy complete"
-  end
-end
-
-desc "deploy public directory to Sina App Engine"
-task :sae do
-  puts "## Deploying to SAE "
-  (Dir["#{deploy_sae_dir}/*"]).each { |f| rm_rf(f) }
-  Rake::Task[:copydot].invoke(public_dir, deploy_sae_dir)
-  puts "\n## copying #{public_dir} to #{deploy_sae_dir}"
-  cp_r "#{public_dir}/.", deploy_sae_dir
-  cd "#{deploy_sae_dir}" do
-    system "svn add *"
-    puts "\n## Commiting: Site updated at #{Time.now.utc}"
-    message = "Site updated at #{Time.now.utc}"
-    system "svn commit -m \"#{message}\""
-    puts "\n## Pushing generated #{deploy_sae_dir} website"
-    puts "\n## SAE deploy complete"
   end
 end
 
@@ -317,14 +306,20 @@ task :setup_github_pages, :repo do |t, args|
   if args.repo
     repo_url = args.repo
   else
-    puts "Enter the read/write url for your repository" 
-    puts "(For example, 'git@github.com:your_username/your_username.github.com)"
+    puts "Enter the read/write url for your repository"
+    puts "(For example, 'git@github.com:your_username/your_username.github.io)"
+    puts "           or 'https://github.com/your_username/your_username.github.io')"
     repo_url = get_stdin("Repository url: ")
   end
-  user = repo_url.match(/:([^\/]+)/)[1]
-  branch = (repo_url.match(/\/[\w-]+.github.com/).nil?) ? 'gh-pages' : 'master'
+  protocol = (repo_url.match(/(^git)@/).nil?) ? 'https' : 'git'
+  if protocol == 'git'
+    user = repo_url.match(/:([^\/]+)/)[1]
+  else
+    user = repo_url.match(/github\.com\/([^\/]+)/)[1]
+  end
+  branch = (repo_url.match(/\/[\w-]+\.github\.(?:io|com)/).nil?) ? 'gh-pages' : 'master'
   project = (branch == 'gh-pages') ? repo_url.match(/\/([^\.]+)/)[1] : ''
-  unless `git remote -v`.match(/origin.+?octopress.git/).nil?
+  unless (`git remote -v` =~ /origin.+?octopress(?:\.git)?/).nil?
     # If octopress is still the origin remote (from cloning) rename it to octopress
     system "git remote rename origin octopress"
     if branch == 'master'
@@ -342,7 +337,7 @@ task :setup_github_pages, :repo do |t, args|
       end
     end
   end
-  url = "http://#{user}.github.com"
+  url = "http://#{user}.github.io"
   url += "/#{project}" unless project == ''
   jekyll_config = IO.read('_config.yml')
   jekyll_config.sub!(/^url:.*$/, "url: #{url}")
@@ -366,38 +361,6 @@ task :setup_github_pages, :repo do |t, args|
     end
   end
   puts "\n---\n## Now you can deploy to #{url} with `rake deploy` ##"
-end
-
-desc "Set up _deploy_sae folder and deploy for Sina App Engie(SAE) deployment"
-task :setup_sae, [:appname, :version] do |t, args|
-    appname = ""
-    appversion = ""
-    if args.appname
-        appname = args.appname
-    else
-        puts "Enter your App Name for Sina App Engine"
-        appname = get_stdin("appname:")
-    end
-    if args.version
-        appversion = args.version
-    else
-        args.with_defaults(:version=>"1")
-        appversion = args.version
-        if args.appname
-            puts "Your Sina App Engine App Name is #{appname}"
-        end
-        puts "Using default app version 1"
-    end
-
-    svn_url = "https://svn.sinaapp.com/#{appname}/#{appversion}/"
-    puts "Your SAE SVN repository url is #{svn_url}"
-
-    rm_rf deploy_sae_dir
-    mkdir deploy_sae_dir
-    system "svn checkout #{svn_url} #{deploy_sae_dir}"
-    system "cp #{deploy_sae_dir}/config.yaml #{public_dir}/config.yaml"
-    
-    puts "\n---\n## Now you can deploy to `#{appname}` with `rake sae` ##"
 end
 
 def ok_failed(condition)
