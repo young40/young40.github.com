@@ -42,6 +42,7 @@ categories: [CocosBuilder, Cocos2d-x]
 如上图所示, 当前节点在iphone下距离其父节点左下角(50\*1, 50\*1), 在iphone retina下则就是(50\*2, 50\*2).
 
 ###全局缩放系数
+如果我们需要在屏幕上放一个CCLabelTTF, 字体大小设置为48, 分别放在480\*320分辨率的iphone上和960\*640分辨率的iphone retina上, 那么在iphone retina上显示会显得特别小.
 
 
 
