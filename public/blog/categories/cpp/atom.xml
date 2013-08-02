@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: CPP | 喜气羊羊]]></title>
+  <link href="http://young40.github.io/blog/categories/cpp/atom.xml" rel="self"/>
+  <link href="http://young40.github.io/"/>
+  <updated>2013-08-02T09:09:48+08:00</updated>
+  <id>http://young40.github.io/</id>
+  <author>
+    <name><![CDATA[Young40]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[C++随机数]]></title>
+    <link href="http://young40.github.io/blog/2012/12/12/random-number-in-cpp/"/>
+    <updated>2012-12-12T05:52:00+08:00</updated>
+    <id>http://young40.github.io/blog/2012/12/12/random-number-in-cpp</id>
+    <content type="html"><![CDATA[<p>这两天写一个方块消除游戏, 开局的时候就需要随机颜色方块布局. 在调试的时候, 发现似乎有些关卡总是相同的.
+终于发现了程序第一次打开的时候, 开局总是相同的.</p>
+
+<!--more-->
+
+
+<p>rand()可以产生0到之间的伪随机数, 可以利用srand()指定一个无符号整数作为种子. 如果种子相同, 那么产生的伪随机数列相同.
+默认种子为1, 所以如果不改变种子的话, 获得的随机数列总是相同的.</p>
+
+<p>``` cpp Random
+srand( time(0) );</p>
+
+<p>for (int i=0; i&lt;10; ++i)
+{</p>
+
+<pre><code>printf("%d\n", rand());
+</code></pre>
+
+<p>}
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[声明和定义的研究]]></title>
+    <link href="http://young40.github.io/blog/2012/12/10/declaration-and-definition-in-cpp/"/>
+    <updated>2012-12-10T07:35:00+08:00</updated>
+    <id>http://young40.github.io/blog/2012/12/10/declaration-and-definition-in-cpp</id>
+    <content type="html"><![CDATA[<p>最近一直在看C++, 基础的东西瞄了一遍就飘过了, 然后就记不得很清楚了.
+这两天觉得看书的时候, 对声明和定义的含义很含糊, 以至于都不是很明白书上在说什么地方了.
+看来有必要对声明和定义重新研究下, 既然架设了这个博客, 那么就写一篇博客吧.</p>
+
+<!--more-->
+
+
+<p>定义(Definiation)用于给变量分配存储空间, 还可以给变量指定初始值. 变量只能有一个定义.</p>
+
+<p>声明(Declaration)表明变量的类型和名字. 定义也是声明.可以通过extern这种方式来仅声明而不定义变量.</p>
+
+<p><code>c++ Declaration
+extern int i;
+</code></p>
+
+<p>定义会分配内存空间.</p>
+
+<p>可以多次声明.</p>
+
+<p>好吧, 这篇文章不能称之为研究, 仅仅是从C++ Primer抄下来的而已.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>CocosBuilder 多分辨率 - 喜气羊羊</title>
+  <meta name="author" content="Young40">
+
+  
+  <meta name="description" content="最近两个项目大量使用了CocosBuilder, 对于开发效率提高是巨大的. 一直计划写一篇博客谈谈CocosBuilder的多分辨率问题, 懒病加上一些疙疙瘩瘩的小事情, 拖延了一个多月, 才终于下定决定要尽快完成这篇博客. 在这篇文章中, 假定你比较熟悉CocosBuilder, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://young40.github.io/blog/2013/08/01/cocosbuilder-multi-resolution">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="喜气羊羊" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-827720-7']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">喜气羊羊</a></h1>
+  
+    <h2>代码是一种人生态度</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:young40.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">CocosBuilder 多分辨率</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-01T22:10:00+08:00" pubdate data-updated="true">Aug 1<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>最近两个项目大量使用了CocosBuilder, 对于开发效率提高是巨大的. 一直计划写一篇博客谈谈CocosBuilder的多分辨率问题, 懒病加上一些疙疙瘩瘩的小事情, 拖延了一个多月, 才终于下定决定要尽快完成这篇博客.</p>
+
+<p>在这篇文章中, 假定你比较熟悉CocosBuilder, 如果您还不是很熟悉CocosBuilder, 推荐您看下我的另外一篇文章. <a href="http://www.ityran.com/archives/2614">从零开始学习CocosBuilder</a> 我还是小菜鸟一个, 难免会有很多错误, 还望各位看客不吝赐教.</p>
+
+<p>版本:</p>
+
+<ul>
+<li>Cocos2d-x 2.1.4 <a href="http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip">http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip</a></li>
+<li>CocosBuilder 3.0alpha5 <a href="http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip">http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip</a></li>
+</ul>
+
+
+<p>最近几次Cocos2d-x和CocosBuilder(以下简写为2dx和ccb)都是联合发布的, 使用联合发布的版本会减少不兼容的可能.</p>
+
+<!--more-->
+
+
+<h2>基本概念</h2>
+
+<p>我觉得在分辨率中重要的概念就是<code>位置</code>, <code>大小</code>, <code>节点关系</code>, 可以通过位置, 大小, 节点关系的合理组合, 最终达到理想的界面. 当然, 换而言之, 这需要ccb的使用者更多的思考.</p>
+
+<h3>位置</h3>
+
+<p><img src="/upload/2013-08/ccb-multi-r-01.png">
+我们可以看到ccb中位置共有6种设置. 其中前四种设置方式代表了当前节点相对于其父节点的一个顶点的绝对位置.</p>
+
+<p><img src="/upload/2013-08/ccb-multi-r-02.png">
+如上图所示, 我们把<code>Click me</code> 按钮, 放在了距离其父节点右上角各50px.
+这种位置的设置方式, 一般在节点需要放在父节点一个角上时很有用.</p>
+
+<p><img src="/upload/2013-08/ccb-multi-r-03.png">
+第5种设置方式表示当前节点的坐标由其父节点大小(宽width, 高height)的百分比组成, 其中父节点的左下角为原点.
+如上图所示一个节点的父节点大小为200px*100px, 当前节点设置为(70%, 50%),那么当前节点距离其父节点左下角就应该是(140, 50).
+百分比设置是位置设置中最常用的方式, 只有当百分比设置不适合时才去考虑其他设置方式.</p>
+
+<p><img src="/upload/2013-08/ccb-multi-r-04.png">
+第6种设置方式其实就是第1种设置方式的x,y值分别乘以一个全局缩放系数. 我们接下来就讲这个全局缩放系数, 这里先假设iphone下为1, iphone retina下为2.
+如上图所示, 当前节点在iphone下距离其父节点左下角(50*1, 50*1), 在iphone retina下则就是(50*2, 50*2).</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Young40</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-01T22:10:00+08:00" pubdate data-updated="true">Aug 1<span>st</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/cocos2d-x/'>Cocos2d-x</a>, <a class='category' href='/blog/categories/cocosbuilder/'>CocosBuilder</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x/" title="Previous Post: 搭建Mac OS X下cocos2d-x的Android开发环境">&laquo; 搭建Mac OS X下cocos2d-x的Android开发环境</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+<h1>Categories</h1>
+<ul id="categories">
+    <li class='category'><a href='/blog/categories/cpp/'>CPP (2)</a></li>
+<li class='category'><a href='/blog/categories/cocos2d-x/'>Cocos2d-x (9)</a></li>
+<li class='category'><a href='/blog/categories/cocos2d-x-源代码研究/'>Cocos2d-x 源代码研究 (4)</a></li>
+<li class='category'><a href='/blog/categories/cocosbuilder/'>CocosBuilder (5)</a></li>
+<li class='category'><a href='/blog/categories/杂谈/'>杂谈 (2)</a></li>
+
+</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/01/cocosbuilder-multi-resolution/">CocosBuilder 多分辨率</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x/">搭建Mac OS X下cocos2d-x的Android开发环境</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/03/cocos2d-x-source-code-research-4-ccautoreleasepool/">2d-x深读4:CCAutoReleasePool</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/31/cocos2d-x-source-code-research-3-ccobject/">2d-x深读3:CCObject</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/29/cocosbuilder-step-by-step-part-four/">一步一步CocosBuilder(4)[完结]</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Young40 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'young40';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://young40.github.io/blog/2013/08/01/cocosbuilder-multi-resolution/';
+        var disqus_url = 'http://young40.github.io/blog/2013/08/01/cocosbuilder-multi-resolution/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
