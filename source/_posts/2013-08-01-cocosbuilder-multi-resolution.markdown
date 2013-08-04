@@ -210,6 +210,7 @@ ccb自带的帮助中`Setting scale and design size`, 需要做一些改进. 下
 运行下代码, 可以看下效果. 收工.
 
 
+工程下载: http://pan.baidu.com/share/link?shareid=3612867199&uk=2281999082
 
 
 
