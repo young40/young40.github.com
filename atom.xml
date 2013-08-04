@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[喜气羊羊]]></title>
-  <link href="http://young40.github.com/atom.xml" rel="self"/>
-  <link href="http://young40.github.com/"/>
-  <updated>2013-02-24T18:43:17+08:00</updated>
-  <id>http://young40.github.com/</id>
+  <link href="http://young40.github.io/atom.xml" rel="self"/>
+  <link href="http://young40.github.io/"/>
+  <updated>2013-08-04T23:15:46+08:00</updated>
+  <id>http://young40.github.io/</id>
   <author>
     <name><![CDATA[Young40]]></name>
     
@@ -14,10 +14,316 @@
 
   
   <entry>
+    <title type="html"><![CDATA[CocosBuilder 多分辨率]]></title>
+    <link href="http://young40.github.io/blog/2013/08/01/cocosbuilder-multi-resolution/"/>
+    <updated>2013-08-01T22:10:00+08:00</updated>
+    <id>http://young40.github.io/blog/2013/08/01/cocosbuilder-multi-resolution</id>
+    <content type="html"><![CDATA[<p>最近两个项目大量使用了CocosBuilder, 对于开发效率提高是巨大的. 一直计划写一篇博客谈谈CocosBuilder的多分辨率问题, 懒病加上一些疙疙瘩瘩的小事情, 拖延了一个多月, 才终于下定决定要尽快完成这篇博客.</p>
+
+<p>在这篇文章中, 假定你比较熟悉CocosBuilder, 如果您还不是很熟悉CocosBuilder, 推荐您看下我的另外一篇文章. <a href="http://www.ityran.com/archives/2614">从零开始学习CocosBuilder</a> 我还是小菜鸟一个, 难免会有很多错误, 还望各位看客不吝赐教.</p>
+
+<p>版本:</p>
+
+<ul>
+<li>Cocos2d-x 2.1.4 <a href="http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip">http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip</a></li>
+<li>CocosBuilder 3.0alpha5 <a href="http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip">http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip</a></li>
+</ul>
+
+
+<p>最近几次Cocos2d-x和CocosBuilder(以下简写为2dx和ccb)都是联合发布的, 使用联合发布的版本会减少不兼容的可能.</p>
+
+<!--more-->
+
+
+<h2>基本概念</h2>
+
+<p>我觉得在分辨率中重要的概念就是<code>位置</code>, <code>大小</code>, <code>节点关系</code>, 可以通过位置, 大小, 节点关系, 锚点等的合理组合, 最终达到理想的界面. 当然, 这需要ccb的使用者更多的思考. ^_&ndash;</p>
+
+<h3>位置</h3>
+
+<p><img src="http://young40.github.io/upload/2013-08/ccb-multi-r-01.png"></p>
+
+<p>我们可以看到ccb中位置共有6种设置. 其中前四种设置方式代表了当前节点相对于其父节点的一个顶点的绝对位置.</p>
+
+<p><img src="http://young40.github.io/upload/2013-08/ccb-multi-r-02.png"></p>
+
+<p>如上图所示, 我们把<code>Click me</code> 按钮, 放在了距离其父节点右上角各50px.
+这种位置的设置方式, 一般在节点需要放在父节点一个角上时很有用.</p>
+
+<p><img src="http://young40.github.io/upload/2013-08/ccb-multi-r-03.png"></p>
+
+<p>第5种设置方式表示当前节点的坐标由其父节点大小(宽width, 高height)的百分比组成, 其中父节点的左下角为原点.
+如上图所示一个节点的父节点大小为200px*100px, 当前节点设置为(70%, 50%),那么当前节点距离其父节点左下角就应该是(140, 50).
+百分比设置是位置设置中最常用的方式, 只有当百分比设置不适合时才去考虑其他设置方式.</p>
+
+<p><img src="http://young40.github.io/upload/2013-08/ccb-multi-r-04.png"></p>
+
+<p>第6种设置方式其实就是第1种设置方式的x,y值分别乘以一个全局缩放系数. 我们接下来就讲这个全局缩放系数, 这里先假设iphone下为1, iphone retina下为2.
+如上图所示, 当前节点在iphone下距离其父节点左下角(50*1, 50*1), 在iphone retina下则就是(50*2, 50*2).</p>
+
+<h3>全局缩放系数</h3>
+
+<p>如果我们需要在屏幕上放一个CCLabelTTF, 字体大小设置为48, 分别放在480*320分辨率的iphone上和960*640分辨率的iphone retina上, 那么在iphone retina上显示会显得特别小.
+这个时候我们就需要为游戏设置一个全局缩放系数, iphone下为1, iphone retina下为2, 那么ccb中设置字体大小为48, 在游戏中iphone上字体大小为48*1=48, iphone retina中字体大小为48*2=96.</p>
+
+<p>你可以在设置位置, 内容大小, 缩放, 字体大小的时候, 找到这个选项. 都是一样的道理, 对应的数据都需要乘以全局缩放系数.</p>
+
+<p>默认iphone(480*320)的全局缩放系数是1, iPad/iphone HD是2, iPad HD就是4了.
+当然你可以自己设置一套全局缩放系数.</p>
+
+<h3>内容大小</h3>
+
+<p><img src="http://young40.github.io/upload/2013-08/ccb-multi-r-05.png"></p>
+
+<p>只有如CCLayer, CCNode等几个节点可以设置内容大小. 可以有6个选项.</p>
+
+<ul>
+<li><ol>
+<li>绝对大小</li>
+</ol>
+</li>
+<li><ol>
+<li>百分比相对大小, 相对于父节点的大小</li>
+</ol>
+</li>
+<li><ol>
+<li>相对父节点大小, 宽高设置为(100, 100), 那么该节点比其父节点宽高各小100px. 如果设置为(0, 0), 那么该节点就和父节点一样大小.</li>
+</ol>
+</li>
+<li><ol>
+<li>宽度百分比, 高度绝对大小.</li>
+</ol>
+</li>
+<li><ol>
+<li>宽度绝对大小, 高度百分比.</li>
+</ol>
+</li>
+<li><ol>
+<li>绝对大小, 会被乘以全局缩放系数.</li>
+</ol>
+</li>
+</ul>
+
+
+<h2>基本操作</h2>
+
+<h3>多分辨率的文档</h3>
+
+<p><img src="http://young40.github.io/upload/2013-08/ccb-multi-r-06.png"></p>
+
+<p>从菜单中选择<code>Edit Resolutions...</code>, 打开编辑多分辨率对话框.</p>
+
+<p><img src="http://young40.github.io/upload/2013-08/ccb-multi-r-07.png"></p>
+
+<p>我们可以看到当前为iphone设置了(480*320)的分辨率, <code>Scale</code>这个选项就是我们上面提到的<code>全局缩放系数</code>, 值为1.
+为iPad设置了(1024*768)的分辨率, 全局缩放系数为2.</p>
+
+<p>我们可以点击<code>Add Predefined Resolution</code>, 来添加ccb预定义的分辨率. 比如添加一个iphone5的分辨率.
+哦, 什么, 分辨率是568*320???? <code>需要注意的是，CocosBuilder的工作是基于点（Point）的，而不是像素的。</code>.</p>
+
+<h4>Resolution Extension和resources-auto(插播)</h4>
+
+<p>ccb中有一个resources-auto的重要概念, 你可以只提供一套资源, ccb通过全局缩放系数, 来为你自动生成不同分辨率的图片.
+假设你为iPad retina(全局缩放系数为4)设计了一张100*100的图片.那么iphone会得到一张25*25的图片. iPad/iphone HD会得到一张50*50的图片.</p>
+
+<p>说到资源解决方案, 首先要决定你想要支持的最大分辨率. 假设需要完美支持iPad HD, 就按2048*1536来做资源, 此时全局缩放系数为4.
+把图片资源放置到resources-auto目录下, 那么ccb会帮我们自动缩放出其他需要的分辨率.
+嗯, 还需要像下图一样设置, 告诉ccb需要从4x来设置. 从菜单的<code>Publish Settings...</code>打开.</p>
+
+<p><img src="http://young40.github.io/upload/2013-08/ccb-multi-r-08.png"></p>
+
+<p>如果是和背景无关的图片, 一般来讲自动缩放就可以胜任了.</p>
+
+<p>如果需要在不同的分辨率下使用不同的图片, 比如一张背景图, iphone上使用960*640的图片, iPad上使用一张1024*768的图片.
+那么可以在资源目录创建resources-iphone, resources-ipad目录, 然后在resources-iphone放置一张960*640分辨率的图片demo.png, 在resources-ipad目录下放置一张1024*768分辨率的图片demo.png. 要注意需要保持其文件名相同.</p>
+
+<p>我们在ccb的工程目录下仍然只看到了一份demo.png, 不要着急, ccb会根据我们选用的不同的分辨率来给我们呈现不同的图片.</p>
+
+<p>ok, 插播结束. 继续说我们的多分辨率文档.</p>
+
+<p>其实, 我们可以给文档添加一个iphone hd, 以及正常iphone5尺寸的文档. 比较遗憾的是ccb不支持编辑<code>Resolution Extension</code>的列表.
+而ipad和iphonehd的设置是在一起的, 并且也没有iphone5的Resolution可以设置.
+所以我希望你没有需要必须要区分iphonehd/iphone5的需求, 在ccb里面是无法区分的. 令人欣慰的是, 我们还是可以在游戏里面区分他们.&ndash;_=</p>
+
+<p>给文档添加的分辨率是可以自定义的, 名字, 宽, 高, 全局缩放系数. 所以我们还是可以创建全尺寸的iphonehd/iphone5的分辨率.</p>
+
+<p><img src="http://young40.github.io/upload/2013-08/ccb-multi-r-09.png"></p>
+
+<p>然后, 我们可以在ccb的菜单中找到切换多分辨率的选项, 这样就可以很方便的预览在各个分辨率下的效果.
+注意他们的快捷键哦, 很有用哦.推荐在使用的时候, 经常在几个分辨率下切换查看效果是否正确理想.</p>
+
+<p><img src="http://young40.github.io/upload/2013-08/ccb-multi-r-10.png"></p>
+
+<h2>做一个ccb工程</h2>
+
+<p>是时候做一个ccb的工程了, 不过我有点羞涩要给你展示我做的工程. 因为它实在太丑了, 还是来一张截图吧, 希望没有吓到你.&ndash;_=</p>
+
+<p><img src="http://young40.github.io/upload/2013-08/ccb-multi-r-11.png"></p>
+
+<h2>代码一下</h2>
+
+<p>由于上面提到的一些限制, 只能基本上做到在ccb中做的, 就是我们在游戏中看到的.</p>
+
+<p>ccb自带的帮助中<code>Setting scale and design size</code>, 需要做一些改进. 下面是我的代码.</p>
+
+<figure class='code'><figcaption><span>AppDelegate.cpp </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'> <span class="c1">//set the correct resource for CocosBuilder</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">sizeIphone</span> <span class="o">=</span> <span class="n">CCSizeMake</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">320</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">sizeIphoneHD</span> <span class="o">=</span> <span class="n">CCSizeMake</span><span class="p">(</span><span class="mi">960</span><span class="p">,</span> <span class="mi">640</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">sizeIphone5</span> <span class="o">=</span> <span class="n">CCSizeMake</span><span class="p">(</span><span class="mi">1136</span><span class="p">,</span> <span class="mi">640</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">sizeIpad</span> <span class="o">=</span> <span class="n">CCSizeMake</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">768</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">sizeIpadHD</span> <span class="o">=</span> <span class="n">CCSizeMake</span><span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">1536</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">designSize</span> <span class="o">=</span> <span class="n">sizeIphoneHD</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">resourceSize</span> <span class="o">=</span> <span class="n">sizeIphoneHD</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">screenSize</span> <span class="o">=</span> <span class="n">CCEGLView</span><span class="o">::</span><span class="n">sharedOpenGLView</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getFrameSize</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">searchPaths</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">resDirOrders</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">TargetPlatform</span> <span class="n">platform</span> <span class="o">=</span> <span class="n">CCApplication</span><span class="o">::</span><span class="n">sharedApplication</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getTargetPlatform</span><span class="p">();</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">platform</span> <span class="o">==</span> <span class="n">kTargetIphone</span> <span class="o">||</span> <span class="n">platform</span> <span class="o">==</span> <span class="n">kTargetIpad</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">CCFileUtils</span><span class="o">::</span><span class="n">sharedFileUtils</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setSearchPaths</span><span class="p">(</span><span class="n">searchPaths</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">screenSize</span><span class="p">.</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">768</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">resourceSize</span> <span class="o">=</span> <span class="n">sizeIpadHD</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">designSize</span> <span class="o">=</span> <span class="n">sizeIpadHD</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">resDirOrders</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;resources-ipadhd&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">CCBReader</span><span class="o">::</span><span class="n">setResolutionScale</span><span class="p">(</span><span class="mf">4.0f</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">screenSize</span><span class="p">.</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">640</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">resourceSize</span> <span class="o">=</span> <span class="n">sizeIpad</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">designSize</span> <span class="o">=</span> <span class="n">resourceSize</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">resDirOrders</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;resources-ipad&quot;</span><span class="p">);</span>
+</span><span class='line'>                <span class="n">resDirOrders</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;resources-iphonehd&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">CCBReader</span><span class="o">::</span><span class="n">setResolutionScale</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">screenSize</span><span class="p">.</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">480</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">if</span> <span class="p">(</span><span class="n">screenSize</span><span class="p">.</span><span class="n">height</span> <span class="o">&gt;</span> <span class="mi">960</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                    <span class="n">designSize</span> <span class="o">=</span> <span class="n">sizeIphone5</span><span class="p">;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>                <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>                    <span class="n">designSize</span> <span class="o">=</span> <span class="n">sizeIphoneHD</span><span class="p">;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>                <span class="n">resourceSize</span> <span class="o">=</span> <span class="n">sizeIphoneHD</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">CCBReader</span><span class="o">::</span><span class="n">setResolutionScale</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">resDirOrders</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;resources-iphonehd&quot;</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">CCBReader</span><span class="o">::</span><span class="n">setResolutionScale</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">designSize</span> <span class="o">=</span> <span class="n">sizeIphone</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">resourceSize</span> <span class="o">=</span> <span class="n">sizeIphone</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">resDirOrders</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;resources-iphone&quot;</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">CCFileUtils</span><span class="o">::</span><span class="n">sharedFileUtils</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setSearchResolutionsOrder</span><span class="p">(</span><span class="n">resDirOrders</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">pDirector</span><span class="o">-&gt;</span><span class="n">setContentScaleFactor</span><span class="p">(</span><span class="n">resourceSize</span><span class="p">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">designSize</span><span class="p">.</span><span class="n">width</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">CCEGLView</span><span class="o">::</span><span class="n">sharedOpenGLView</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setDesignResolutionSize</span><span class="p">(</span>
+</span><span class='line'>                                                               <span class="n">designSize</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">designSize</span><span class="p">.</span><span class="n">height</span><span class="p">,</span>
+</span><span class='line'>                                                               <span class="n">kResolutionExactFit</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">CCNodeLoaderLibrary</span> <span class="o">*</span><span class="n">lib</span> <span class="o">=</span> <span class="n">CCNodeLoaderLibrary</span><span class="o">::</span><span class="n">newDefaultCCNodeLoaderLibrary</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">CCBReader</span> <span class="o">*</span><span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CCBReader</span><span class="p">(</span><span class="n">lib</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">CCScene</span> <span class="o">*</span><span class="n">scene</span> <span class="o">=</span> <span class="n">reader</span><span class="o">-&gt;</span><span class="n">createSceneWithNodeGraphFromFile</span><span class="p">(</span><span class="s">&quot;MainScene.ccbi&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">pDirector</span><span class="o">-&gt;</span><span class="n">runWithScene</span><span class="p">(</span><span class="n">scene</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里只支持了iOS, 如果需要支持Android的话, 可以挑选几个需要的分辨率, 邻近的分辨率坐下拉伸等策略.</p>
+
+<p>运行下代码, 可以看下效果. 收工.</p>
+
+<p>工程下载: <a href="http://pan.baidu.com/share/link?shareid=3612867199&amp;uk=2281999082">http://pan.baidu.com/share/link?shareid=3612867199&amp;uk=2281999082</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[搭建Mac OS X下cocos2d-x的Android开发环境]]></title>
-    <link href="http://young40.github.com/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x/"/>
+    <link href="http://young40.github.io/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x/"/>
     <updated>2013-02-23T21:14:00+08:00</updated>
-    <id>http://young40.github.com/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x</id>
+    <id>http://young40.github.io/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x</id>
     <content type="html"><![CDATA[<h2>版本</h2>
 
 <ul>
@@ -59,7 +365,7 @@
 
 
 <p>如果您没有安装JDK, 系统会帮您自动安装JDK. <br/>
-<img src="http://young40.github.com/upload/2013-02/set-up-c-a-osx-001-jdk.png"> <br/>
+<img src="http://young40.github.io/upload/2013-02/set-up-c-a-osx-001-jdk.png"> <br/>
 安装过后您会看到如下输出</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -90,7 +396,7 @@
 
 
 <p>在/Applications中或者Launchpad中找到并打开Eclipse-ADT
-<img src="http://young40.github.com/upload/2013-02/set-up-c-a-osx-002-adt.png"></p>
+<img src="http://young40.github.io/upload/2013-02/set-up-c-a-osx-002-adt.png"></p>
 
 <h2>Eclipse的Retina支持</h2>
 
@@ -128,8 +434,8 @@
 <h2>Android SDK Manager</h2>
 
 <p>Android ADT Bundle中是包含了Android SDK Manager的. 启动您的Eclipse-ADT. 可以在工具栏中或者菜单中找到Android SDK Manager. <br/>
-<img src="http://young40.github.com/upload/2013-02/set-up-c-a-osx-003-sdk-1.png">  <br/>
-<img src="http://young40.github.com/upload/2013-02/set-up-c-a-osx-004-sdk-2.png"></p>
+<img src="http://young40.github.io/upload/2013-02/set-up-c-a-osx-003-sdk-1.png">  <br/>
+<img src="http://young40.github.io/upload/2013-02/set-up-c-a-osx-004-sdk-2.png"></p>
 
 <h2>Android NDK</h2>
 
@@ -271,8 +577,8 @@
 <h2>导入Eclipse-ADT</h2>
 
 <p>打开Eclipse-ADT, 点击快捷键<code>command+N</code>打开新建项目窗口并选择<code>Android Project from Existing Code</code>   <br/>
-<img src="http://young40.github.com/upload/2013-02/set-up-c-a-osx-005-helloworld-1.png">  <br/>
-<img src="http://young40.github.com/upload/2013-02/set-up-c-a-osx-006-helloworld-2.png">  <br/>
+<img src="http://young40.github.io/upload/2013-02/set-up-c-a-osx-005-helloworld-1.png">  <br/>
+<img src="http://young40.github.io/upload/2013-02/set-up-c-a-osx-006-helloworld-2.png">  <br/>
 这时您可能会在eclipse的<code>Problems</code>窗口看到如下错误</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -288,7 +594,7 @@
 然后在HelloWorld项目上点击右键选择刷新, 可以看到错误就消失了.</p>
 
 <p>将您的手机设置成调试模式并用USB线连接到电脑, 在Eclipse中运行HelloWorld, 然后就能在手机上看到已经运行的HelloWorld了  <br/>
-<img src="http://young40.github.com/upload/2013-02/set-up-c-a-osx-007-screen.png"></p>
+<img src="http://young40.github.io/upload/2013-02/set-up-c-a-osx-007-screen.png"></p>
 
 <p>好了, 享受您的奇妙的Cocos2d-x之旅吧!</p>
 ]]></content>
@@ -296,9 +602,9 @@
   
   <entry>
     <title type="html"><![CDATA[2d-x深读4:CCAutoReleasePool]]></title>
-    <link href="http://young40.github.com/blog/2013/01/03/cocos2d-x-source-code-research-4-ccautoreleasepool/"/>
+    <link href="http://young40.github.io/blog/2013/01/03/cocos2d-x-source-code-research-4-ccautoreleasepool/"/>
     <updated>2013-01-03T15:09:00+08:00</updated>
-    <id>http://young40.github.com/blog/2013/01/03/cocos2d-x-source-code-research-4-ccautoreleasepool</id>
+    <id>http://young40.github.io/blog/2013/01/03/cocos2d-x-source-code-research-4-ccautoreleasepool</id>
     <content type="html"><![CDATA[<p><code>CCAutoReleasePool.h</code>主要定义了两个类<code>CCAutoReleasePool</code>和<code>CCPoolManager</code>.</p>
 
 <p>其实因为cocos2d-x自动管理内存的原因, 所以, 我们平时很少需要直接使用这两个类.  <br/>
@@ -317,7 +623,7 @@
 </ul>
 
 
-<figure class='code'><figcaption><span>CCAutoReleasePool&#46;h   (CCAutoReleasePool.h)</span> <a href='http://young40.github.com/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCAutoReleasePool.h'>download</a></figcaption>
+<figure class='code'><figcaption><span>CCAutoReleasePool&#46;h   (CCAutoReleasePool.h)</span> <a href='http://young40.github.io/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCAutoReleasePool.h'>download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -391,7 +697,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<figure class='code'><figcaption><span>CCAutoReleasePool&#46;cpp   (CCAutoReleasePool.cpp)</span> <a href='http://young40.github.com/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCAutoReleasePool.cpp'>download</a></figcaption>
+<figure class='code'><figcaption><span>CCAutoReleasePool&#46;cpp   (CCAutoReleasePool.cpp)</span> <a href='http://young40.github.io/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCAutoReleasePool.cpp'>download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -738,7 +1044,7 @@
 
 
 <ul>
-<li>参考1: http://4137613.blog.51cto.com/4127613/784134</li>
+<li>参考1: <a href="http://4137613.blog.51cto.com/4127613/784134">http://4137613.blog.51cto.com/4127613/784134</a></li>
 </ul>
 
 ]]></content>
@@ -746,9 +1052,9 @@
   
   <entry>
     <title type="html"><![CDATA[2d-x深读3:CCObject]]></title>
-    <link href="http://young40.github.com/blog/2012/12/31/cocos2d-x-source-code-research-3-ccobject/"/>
+    <link href="http://young40.github.io/blog/2012/12/31/cocos2d-x-source-code-research-3-ccobject/"/>
     <updated>2012-12-31T17:21:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/31/cocos2d-x-source-code-research-3-ccobject</id>
+    <id>http://young40.github.io/blog/2012/12/31/cocos2d-x-source-code-research-3-ccobject</id>
     <content type="html"><![CDATA[<p>CCObject是绝大部分cocos2d-x类的基类, 我们就从这里一步一步揭开cocos2d-x的奥秘.</p>
 
 <p>CCObject承担了两个重要的功能, 拷贝机制和内存管理.</p>
@@ -903,9 +1209,9 @@
 被自动管理的对象引用计数为0时, 会被自动释放.</p>
 
 <p>老G总结的内存管理使用的几点原则(见参考1): <br/>
-- 原则1: 谁生成(new, copy)谁负责release. <br/>
-- 原则2: 谁retain, 谁负责release.  <br/>
-- 原则3: 对于使用了autorelease的对象则不必管他.</p>
+&ndash; 原则1: 谁生成(new, copy)谁负责release. <br/>
+&ndash; 原则2: 谁retain, 谁负责release.  <br/>
+&ndash; 原则3: 对于使用了autorelease的对象则不必管他.</p>
 
 <h2>几个常用的函数指针</h2>
 
@@ -934,7 +1240,7 @@
 </ul>
 
 
-<figure class='code'><figcaption><span>CCobject&#46;h   (CCObject.h)</span> <a href='http://young40.github.com/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCObject.h'>download</a></figcaption>
+<figure class='code'><figcaption><span>CCobject&#46;h   (CCObject.h)</span> <a href='http://young40.github.io/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCObject.h'>download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -1036,7 +1342,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<figure class='code'><figcaption><span>CCobject&#46;cpp   (CCObject.cpp)</span> <a href='http://young40.github.com/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCObject.cpp'>download</a></figcaption>
+<figure class='code'><figcaption><span>CCobject&#46;cpp   (CCObject.cpp)</span> <a href='http://young40.github.io/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCObject.cpp'>download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -1197,7 +1503,7 @@
 
 
 <ul>
-<li>参考1: http://4137613.blog.51cto.com/4127613/784134</li>
+<li>参考1: <a href="http://4137613.blog.51cto.com/4127613/784134">http://4137613.blog.51cto.com/4127613/784134</a></li>
 </ul>
 
 ]]></content>
@@ -1205,9 +1511,9 @@
   
   <entry>
     <title type="html"><![CDATA[一步一步CocosBuilder(4)[完结]]]></title>
-    <link href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/"/>
+    <link href="http://young40.github.io/blog/2012/12/29/cocosbuilder-step-by-step-part-four/"/>
     <updated>2012-12-29T10:54:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four</id>
+    <id>http://young40.github.io/blog/2012/12/29/cocosbuilder-step-by-step-part-four</id>
     <content type="html"><![CDATA[<p>这一节也是很轻松, 主要是牵涉到Timeline的切换. 其他的都是简单的界面制作. <br/>
 所以CocosBuilder的威力也体现在这里, 很少的代码就能驱动界面了.</p>
 
@@ -1222,8 +1528,8 @@
 <!--more-->
 
 
-<p><img src="http://young40.github.com/upload/2012-12/ccb-sbs-4-001.png">
-<img src="http://young40.github.com/upload/2012-12/ccb-sbs-4-002.png"></p>
+<p><img src="http://young40.github.io/upload/2012-12/ccb-sbs-4-001.png">
+<img src="http://young40.github.io/upload/2012-12/ccb-sbs-4-002.png"></p>
 
 <h5>2</h5>
 
@@ -1468,7 +1774,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="http://young40.github.com/upload/2012-12/ccb-sbs-4-003.png"></p>
+<p><img src="http://young40.github.io/upload/2012-12/ccb-sbs-4-003.png"></p>
 
 <h3>后记</h3>
 
@@ -1504,9 +1810,9 @@
   
   <entry>
     <title type="html"><![CDATA[一步一步CocosBuilder(3)]]></title>
-    <link href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/"/>
+    <link href="http://young40.github.io/blog/2012/12/28/cocosbuilder-step-by-step-part-three/"/>
     <updated>2012-12-28T00:54:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three</id>
+    <id>http://young40.github.io/blog/2012/12/28/cocosbuilder-step-by-step-part-three</id>
     <content type="html"><![CDATA[<p>今天要说的内容比较轻松, 重要的知识点不多. <br/>
 目标是实现<code>Menus &amp; Items</code>, <code>Sprites &amp; 9 Slice</code>, <code>Buttons &amp; Labels</code>.</p>
 
@@ -1856,7 +2162,7 @@
 
 <p><code>Sprites &amp; 9 Slice</code> 这个比较简单, 只是靠CocosBuilder就能完成任务了.</p>
 
-<p><img src="http://young40.github.com/upload/2012-12/ccb-sbs-3-001.png"></p>
+<p><img src="http://young40.github.io/upload/2012-12/ccb-sbs-3-001.png"></p>
 
 <p>我拼的不太好, 嘿嘿. 主要是着重代码, 并非设计, 漂亮的事情交给美术妹纸吧.</p>
 
@@ -1929,7 +2235,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="http://young40.github.com/upload/2012-12/ccb-sbs-3-002.png"></p>
+<p><img src="http://young40.github.io/upload/2012-12/ccb-sbs-3-002.png"></p>
 
 <hr />
 
@@ -1953,9 +2259,9 @@
   
   <entry>
     <title type="html"><![CDATA[一步一步CocosBuilder(2)]]></title>
-    <link href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/"/>
+    <link href="http://young40.github.io/blog/2012/12/25/cocosbuilder-step-by-step-part-two/"/>
     <updated>2012-12-25T21:15:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two</id>
+    <id>http://young40.github.io/blog/2012/12/25/cocosbuilder-step-by-step-part-two</id>
     <content type="html"><![CDATA[<p>上一篇我们建立了基本的工作环境, 这一次我们将基本实现例子中的HelloCocosBuilder.</p>
 
 <h3>注意</h3>
@@ -2008,7 +2314,7 @@ CCB v3.0加入了一个<code>resources-auto</code>的目录, 在发布的时候,
 
 <h5>7</h5>
 
-<p>我们再添加一个<code>CCLabelBMFont</code>, 字体设置为<code>markerfelt24shadow.fnt</code>.Label的内容设置为&#8221;Hello Cocos2d-x!!!&#8221;, 然后调整下位置, 换个喜欢的颜色.</p>
+<p>我们再添加一个<code>CCLabelBMFont</code>, 字体设置为<code>markerfelt24shadow.fnt</code>.Label的内容设置为&#8221;Hello Cocos2d-x!!!&ldquo;, 然后调整下位置, 换个喜欢的颜色.</p>
 
 <h5>8</h5>
 
@@ -2016,7 +2322,7 @@ CCB v3.0加入了一个<code>resources-auto</code>的目录, 在发布的时候,
 然后再分别设置State Normal, State Highlighted的Sprite frame为<code>btn-test-0.png</code> &nbsp; <code>btn-test-1.png</code>. <br/>
 然后再设置下弹出效果. <br/>
 将这个节点再复制5份, 对齐. 再分别设置下Title和弹出效果.设置对齐的时候可能会比较麻烦. 可以从标尺那里拉出几条线, 用于对齐.将该对齐线拉出显示区域即可删除. <br/>
-<img src="http://young40.github.com/upload/2012-12/ccb-sbs-2-001.png"></p>
+<img src="http://young40.github.io/upload/2012-12/ccb-sbs-2-001.png"></p>
 
 <h5>9</h5>
 
@@ -2277,7 +2583,7 @@ CCB v3.0加入了一个<code>resources-auto</code>的目录, 在发布的时候,
 
 <p>好啦, 运行就能看到<code>All Loaded</code>啦.</p>
 
-<p><img src="http://young40.github.com/upload/2012-12/ccb-sbs-2-002.png"></p>
+<p><img src="http://young40.github.io/upload/2012-12/ccb-sbs-2-002.png"></p>
 
 <hr />
 
@@ -2301,9 +2607,9 @@ CCB v3.0加入了一个<code>resources-auto</code>的目录, 在发布的时候,
   
   <entry>
     <title type="html"><![CDATA[一步一步CocosBuilder(1)]]></title>
-    <link href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/"/>
+    <link href="http://young40.github.io/blog/2012/12/21/cocosbuilder-step-by-step-part-one/"/>
     <updated>2012-12-21T02:46:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one</id>
+    <id>http://young40.github.io/blog/2012/12/21/cocosbuilder-step-by-step-part-one</id>
     <content type="html"><![CDATA[<p>CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.
 CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.
 我想这个也是其不够流行的原因吧.</p>
@@ -2325,7 +2631,7 @@ CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源
 
 <p>贴下Xcode项目的目录,如果添加extensions应该逐个添加,否则可能会遇到编译错误,有可能会把其他平台文件错误添加进来.</p>
 
-<p><img src="http://young40.github.com/upload/2012-12/ccb-sbs-1-001.png"></p>
+<p><img src="http://young40.github.io/upload/2012-12/ccb-sbs-1-001.png"></p>
 
 <p>做完这些准备工作后, 我们接下来按步来讲解.</p>
 
@@ -2435,14 +2741,14 @@ CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源
 
 
 <p>4.注意CCB中发布选项的设置, 并发布一次.
-<img src="http://young40.github.com/upload/2012-12/ccb-sbs-1-002.png"></p>
+<img src="http://young40.github.io/upload/2012-12/ccb-sbs-1-002.png"></p>
 
 <p>5.如果没有错误的话, 你应该可以看到运行的效果.
-<img src="http://young40.github.com/upload/2012-12/ccb-sbs-1-003.png"></p>
+<img src="http://young40.github.io/upload/2012-12/ccb-sbs-1-003.png"></p>
 
 <p>Update:
 @王哲Walzer 说,CCB大部分是美术在用, 在美术圈讨论, 所以程序圈较少看到人在讨论, 其实用的公司挺多的.
-http://weibo.com/1702027805/zay18wLT5</p>
+<a href="http://weibo.com/1702027805/zay18wLT5">http://weibo.com/1702027805/zay18wLT5</a></p>
 
 <figure class='code'><figcaption><span>目录结构</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -2565,9 +2871,9 @@ http://weibo.com/1702027805/zay18wLT5</p>
   
   <entry>
     <title type="html"><![CDATA[2d-x深读2:CCPlatformMacros.h]]></title>
-    <link href="http://young40.github.com/blog/2012/12/17/cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/"/>
+    <link href="http://young40.github.io/blog/2012/12/17/cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/"/>
     <updated>2012-12-17T01:49:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/17/cocos2d-x-source-code-research-2-ccplatformmacros-dot-h</id>
+    <id>http://young40.github.io/blog/2012/12/17/cocos2d-x-source-code-research-2-ccplatformmacros-dot-h</id>
     <content type="html"><![CDATA[<ul>
 <li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/include/ccConfig.h</code></li>
 <li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/mac/CCPlatformDefine.h</code> //注意我是以mac平台研究的, 其他平台略有不同</li>
@@ -2837,7 +3143,7 @@ http://weibo.com/1702027805/zay18wLT5</p>
 </span><span class='line'><span class="cm"> @warning This feature is experimental</span>
 </span><span class='line'><span class="cm"> */</span>
 </span><span class='line'><span class="cp">#ifndef CC_DIRECTOR_DISPATCH_FAST_EVENTS</span>
-</span><span class='line'> <span class="cp">#define CC_DIRECTOR_DISPATCH_FAST_EVENTS 0</span>
+</span><span class='line'> <span class="err">#</span><span class="n">define</span> <span class="n">CC_DIRECTOR_DISPATCH_FAST_EVENTS</span> <span class="mi">0</span>
 </span><span class='line'><span class="cp">#endif</span>
 </span><span class='line'>
 </span><span class='line'><span class="cm">/** @def CC_DIRECTOR_MAC_USE_DISPLAY_LINK_THREAD</span>
@@ -2896,14 +3202,14 @@ http://weibo.com/1702027805/zay18wLT5</p>
 </span><span class='line'><span class="cm"> </span>
 </span><span class='line'><span class="cm"> */</span>
 </span><span class='line'><span class="cp">#ifndef CC_TEXTURE_ATLAS_USE_VAO</span>
-</span><span class='line'>    <span class="cp">#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)</span>
-</span><span class='line'>        <span class="cp">#define CC_TEXTURE_ATLAS_USE_VAO 1</span>
-</span><span class='line'>    <span class="cp">#else</span>
+</span><span class='line'>    <span class="err">#</span><span class="k">if</span> <span class="p">(</span><span class="n">CC_TARGET_PLATFORM</span> <span class="o">==</span> <span class="n">CC_PLATFORM_IOS</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">CC_TARGET_PLATFORM</span> <span class="o">==</span> <span class="n">CC_PLATFORM_MAC</span><span class="p">)</span>
+</span><span class='line'>        <span class="err">#</span><span class="n">define</span> <span class="n">CC_TEXTURE_ATLAS_USE_VAO</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="err">#</span><span class="k">else</span>
 </span><span class='line'>        <span class="cm">/* Some Windows display adapter driver cannot support VAO. */</span>
 </span><span class='line'>        <span class="cm">/* Some android devices cannot support VAO very well, so we disable it by default for android platform. */</span>
 </span><span class='line'>        <span class="cm">/* Blackberry also doesn&#39;t support this feature. */</span>
-</span><span class='line'>      <span class="cp">#define CC_TEXTURE_ATLAS_USE_VAO 0</span>
-</span><span class='line'>    <span class="cp">#endif</span>
+</span><span class='line'>      <span class="err">#</span><span class="n">define</span> <span class="n">CC_TEXTURE_ATLAS_USE_VAO</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">endif</span>
 </span><span class='line'><span class="cp">#endif</span>
 </span><span class='line'>
 </span><span class='line'>
@@ -3016,9 +3322,9 @@ http://weibo.com/1702027805/zay18wLT5</p>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="cp">#if defined(_USRDLL)</span>
-</span><span class='line'>    <span class="cp">#define CC_DLL     __declspec(dllexport)</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_DLL</span>     <span class="kr">__declspec</span><span class="p">(</span><span class="n">dllexport</span><span class="p">)</span>
 </span><span class='line'><span class="cp">#else         </span><span class="cm">/* use a DLL library */</span><span class="cp"></span>
-</span><span class='line'>    <span class="cp">#define CC_DLL     __declspec(dllimport)</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_DLL</span>     <span class="kr">__declspec</span><span class="p">(</span><span class="n">dllimport</span><span class="p">)</span>
 </span><span class='line'><span class="cp">#endif</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -3239,27 +3545,27 @@ http://weibo.com/1702027805/zay18wLT5</p>
 </span><span class='line'>
 </span><span class='line'><span class="c1">//CC_ENABLE_CACHE_TEXTURE_DATA 只在Android上启用, 会缓存纹理</span>
 </span><span class='line'><span class="cp">#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)</span>
-</span><span class='line'>    <span class="cp">#define CC_ENABLE_CACHE_TEXTURE_DATA       1</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_ENABLE_CACHE_TEXTURE_DATA</span>       <span class="mi">1</span>
 </span><span class='line'><span class="cp">#else</span>
-</span><span class='line'>    <span class="cp">#define CC_ENABLE_CACHE_TEXTURE_DATA       0</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_ENABLE_CACHE_TEXTURE_DATA</span>       <span class="mi">0</span>
 </span><span class='line'><span class="cp">#endif</span>
 </span><span class='line'>
 </span><span class='line'><span class="cp">#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)</span>
 </span><span class='line'><span class="c1">//重新绑定indices, 避免在android和win32下glDrawElements函数crash的bug</span>
-</span><span class='line'>    <span class="cp">#define CC_REBIND_INDICES_BUFFER  1</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_REBIND_INDICES_BUFFER</span>  <span class="mi">1</span>
 </span><span class='line'><span class="cp">#else</span>
-</span><span class='line'>    <span class="cp">#define CC_REBIND_INDICES_BUFFER  0</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_REBIND_INDICES_BUFFER</span>  <span class="mi">0</span>
 </span><span class='line'><span class="cp">#endif</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">//常用宏定义</span>
 </span><span class='line'><span class="cp">#ifdef __cplusplus </span><span class="c1">//namespace只在C++中起作用</span>
-</span><span class='line'>    <span class="cp">#define NS_CC_BEGIN                     namespace cocos2d {</span>
-</span><span class='line'>    <span class="cp">#define NS_CC_END                       }</span>
-</span><span class='line'>    <span class="cp">#define USING_NS_CC                     using namespace cocos2d  </span><span class="c1">//应该尽量使用USING_NS_CC, 兼容性更好</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">NS_CC_BEGIN</span>                     <span class="k">namespace</span> <span class="n">cocos2d</span> <span class="p">{</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">NS_CC_END</span>                       <span class="p">}</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">USING_NS_CC</span>                     <span class="k">using</span> <span class="k">namespace</span> <span class="n">cocos2d</span>  <span class="c1">//应该尽量使用USING_NS_CC, 兼容性更好</span>
 </span><span class='line'><span class="cp">#else</span>
-</span><span class='line'>    <span class="cp">#define NS_CC_BEGIN </span>
-</span><span class='line'>    <span class="cp">#define NS_CC_END </span>
-</span><span class='line'>    <span class="cp">#define USING_NS_CC </span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">NS_CC_BEGIN</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">NS_CC_END</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">USING_NS_CC</span>
 </span><span class='line'><span class="cp">#endif </span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">//成员函数快捷声明/定义宏</span>
@@ -3361,11 +3667,11 @@ http://weibo.com/1702027805/zay18wLT5</p>
 </span><span class='line'>
 </span><span class='line'><span class="c1">//定义废弃(deprecated)属性</span>
 </span><span class='line'><span class="cp">#if defined(__GNUC__) &amp;&amp; ((__GNUC__ &gt;= 4) || ((__GNUC__ == 3) &amp;&amp; (__GNUC_MINOR__ &gt;= 1)))</span>
-</span><span class='line'>    <span class="cp">#define CC_DEPRECATED_ATTRIBUTE __attribute__((deprecated))</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_DEPRECATED_ATTRIBUTE</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">deprecated</span><span class="p">))</span>
 </span><span class='line'><span class="cp">#elif _MSC_VER &gt;= 1400 </span><span class="c1">//vs 2005 or higher</span>
-</span><span class='line'>    <span class="cp">#define CC_DEPRECATED_ATTRIBUTE __declspec(deprecated) </span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_DEPRECATED_ATTRIBUTE</span> <span class="kr">__declspec</span><span class="p">(</span><span class="n">deprecated</span><span class="p">)</span>
 </span><span class='line'><span class="cp">#else</span>
-</span><span class='line'>    <span class="cp">#define CC_DEPRECATED_ATTRIBUTE</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_DEPRECATED_ATTRIBUTE</span>
 </span><span class='line'><span class="cp">#endif </span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -3374,9 +3680,9 @@ http://weibo.com/1702027805/zay18wLT5</p>
   
   <entry>
     <title type="html"><![CDATA[2d-x深读1:CCPlatformConfig.h]]></title>
-    <link href="http://young40.github.com/blog/2012/12/17/cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/"/>
+    <link href="http://young40.github.io/blog/2012/12/17/cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/"/>
     <updated>2012-12-17T00:43:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/17/cocos2d-x-source-code-research-1-ccplatformconfig-dot-h</id>
+    <id>http://young40.github.io/blog/2012/12/17/cocos2d-x-source-code-research-1-ccplatformconfig-dot-h</id>
     <content type="html"><![CDATA[<p>准备好好学习下Cocos2d-x(以下简称2dx), 我正在很努力地学习C++.</p>
 
 <p>作为新手的我, 只能从最基本的代码读起. 就从<code>CCPlatformConfig.h</code>开始研究起吧, 这个文件没有include其他文件, 是最基本的文件.</p>
@@ -3522,27 +3828,27 @@ http://weibo.com/1702027805/zay18wLT5</p>
 </span><span class='line'>
 </span><span class='line'><span class="c1">// iphone</span>
 </span><span class='line'><span class="cp">#if defined(CC_TARGET_OS_IPHONE)</span>
-</span><span class='line'>    <span class="cp">#undef  CC_TARGET_PLATFORM</span>
-</span><span class='line'>    <span class="cp">#define CC_TARGET_PLATFORM         CC_PLATFORM_IOS</span>
-</span><span class='line'>    <span class="cp">#define CC_SUPPORT_PVRTC </span><span class="c1">//支持prv压缩格式</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">undef</span>  <span class="n">CC_TARGET_PLATFORM</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_TARGET_PLATFORM</span>         <span class="n">CC_PLATFORM_IOS</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_SUPPORT_PVRTC</span> <span class="c1">//支持prv压缩格式</span>
 </span><span class='line'><span class="cp">#endif</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">// android</span>
 </span><span class='line'><span class="cp">#if defined(ANDROID)</span>
-</span><span class='line'>    <span class="cp">#undef  CC_TARGET_PLATFORM</span>
-</span><span class='line'>    <span class="cp">#define CC_TARGET_PLATFORM         CC_PLATFORM_ANDROID</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">undef</span>  <span class="n">CC_TARGET_PLATFORM</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_TARGET_PLATFORM</span>         <span class="n">CC_PLATFORM_ANDROID</span>
 </span><span class='line'><span class="cp">#endif</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">// win32</span>
 </span><span class='line'><span class="cp">#if defined(WIN32) &amp;&amp; defined(_WINDOWS)</span>
-</span><span class='line'>    <span class="cp">#undef  CC_TARGET_PLATFORM</span>
-</span><span class='line'>    <span class="cp">#define CC_TARGET_PLATFORM         CC_PLATFORM_WIN32</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">undef</span>  <span class="n">CC_TARGET_PLATFORM</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_TARGET_PLATFORM</span>         <span class="n">CC_PLATFORM_WIN32</span>
 </span><span class='line'><span class="cp">#endif</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">// linux</span>
 </span><span class='line'><span class="cp">#if defined(LINUX)</span>
-</span><span class='line'>    <span class="cp">#undef  CC_TARGET_PLATFORM</span>
-</span><span class='line'>    <span class="cp">#define CC_TARGET_PLATFORM         CC_PLATFORM_LINUX</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">undef</span>  <span class="n">CC_TARGET_PLATFORM</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_TARGET_PLATFORM</span>         <span class="n">CC_PLATFORM_LINUX</span>
 </span><span class='line'><span class="cp">#endif</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">// marmalade</span>
@@ -3559,8 +3865,8 @@ http://weibo.com/1702027805/zay18wLT5</p>
 </span><span class='line'>
 </span><span class='line'><span class="c1">// qnx</span>
 </span><span class='line'><span class="cp">#if defined(__QNX__)</span>
-</span><span class='line'>    <span class="cp">#undef  CC_TARGET_PLATFORM</span>
-</span><span class='line'>    <span class="cp">#define CC_TARGET_PLATFORM     CC_PLATFORM_BLACKBERRY</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">undef</span>  <span class="n">CC_TARGET_PLATFORM</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">define</span> <span class="n">CC_TARGET_PLATFORM</span>     <span class="n">CC_PLATFORM_BLACKBERRY</span>
 </span><span class='line'><span class="cp">#endif</span>
 </span><span class='line'>
 </span><span class='line'>
@@ -3571,7 +3877,7 @@ http://weibo.com/1702027805/zay18wLT5</p>
 </span><span class='line'><span class="c1">//不支持的平台,如果你在上面平台上遇到这个错误, 就可能是预定义变量, 或者编译器的环境变量设置错误</span>
 </span><span class='line'><span class="c1">// check user set platform</span>
 </span><span class='line'><span class="cp">#if ! CC_TARGET_PLATFORM</span>
-</span><span class='line'>    <span class="cp">#error  &quot;Cannot recognize the target platform; are you targeting an unsupported platform?&quot;</span>
+</span><span class='line'>    <span class="err">#</span><span class="n">error</span>  <span class="s">&quot;Cannot recognize the target platform; are you targeting an unsupported platform?&quot;</span>
 </span><span class='line'><span class="cp">#endif </span>
 </span><span class='line'>
 </span><span class='line'><span class="cp">#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)</span>
@@ -3587,9 +3893,9 @@ http://weibo.com/1702027805/zay18wLT5</p>
   
   <entry>
     <title type="html"><![CDATA[Cocos2d-x 真是太棒了]]></title>
-    <link href="http://young40.github.com/blog/2012/12/14/cocos2d-x-is-awesome/"/>
+    <link href="http://young40.github.io/blog/2012/12/14/cocos2d-x-is-awesome/"/>
     <updated>2012-12-14T03:07:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/14/cocos2d-x-is-awesome</id>
+    <id>http://young40.github.io/blog/2012/12/14/cocos2d-x-is-awesome</id>
     <content type="html"><![CDATA[<p>大概从7月20号左右, 开始决定转向游戏, 首先接触了cocos2d-iphone, 学习了几天. 然后简单了解下就转向了cocos2d-x的学习.</p>
 
 <p>2d-x最令人开心的就是跨平台特性, 经过这段时间的尝试, 感觉跨平台特性确实很强大. 我一般都是在Xcode写代码, 以os x平台做调试, 然后ios平台就不用提了, 直接编译即可.
@@ -3623,9 +3929,9 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
   
   <entry>
     <title type="html"><![CDATA[C++随机数]]></title>
-    <link href="http://young40.github.com/blog/2012/12/12/random-number-in-cpp/"/>
+    <link href="http://young40.github.io/blog/2012/12/12/random-number-in-cpp/"/>
     <updated>2012-12-12T05:52:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/12/random-number-in-cpp</id>
+    <id>http://young40.github.io/blog/2012/12/12/random-number-in-cpp</id>
     <content type="html"><![CDATA[<p>这两天写一个方块消除游戏, 开局的时候就需要随机颜色方块布局. 在调试的时候, 发现似乎有些关卡总是相同的.
 终于发现了程序第一次打开的时候, 开局总是相同的.</p>
 
@@ -3656,9 +3962,9 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
   
   <entry>
     <title type="html"><![CDATA[声明和定义的研究]]></title>
-    <link href="http://young40.github.com/blog/2012/12/10/declaration-and-definition-in-cpp/"/>
+    <link href="http://young40.github.io/blog/2012/12/10/declaration-and-definition-in-cpp/"/>
     <updated>2012-12-10T07:35:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/10/declaration-and-definition-in-cpp</id>
+    <id>http://young40.github.io/blog/2012/12/10/declaration-and-definition-in-cpp</id>
     <content type="html"><![CDATA[<p>最近一直在看C++, 基础的东西瞄了一遍就飘过了, 然后就记不得很清楚了.
 这两天觉得看书的时候, 对声明和定义的含义很含糊, 以至于都不是很明白书上在说什么地方了.
 看来有必要对声明和定义重新研究下, 既然架设了这个博客, 那么就写一篇博客吧.</p>
@@ -3685,9 +3991,9 @@ Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是
   
   <entry>
     <title type="html"><![CDATA[在OS X上折腾OctoPress]]></title>
-    <link href="http://young40.github.com/blog/2012/12/09/setup-octopress-on-os-x-10-dot-8/"/>
+    <link href="http://young40.github.io/blog/2012/12/09/setup-octopress-on-os-x-10-dot-8/"/>
     <updated>2012-12-09T10:19:00+08:00</updated>
-    <id>http://young40.github.com/blog/2012/12/09/setup-octopress-on-os-x-10-dot-8</id>
+    <id>http://young40.github.io/blog/2012/12/09/setup-octopress-on-os-x-10-dot-8</id>
     <content type="html"><![CDATA[<p>这两天心血来潮, 突然想在github上架设个博客玩玩了, 比较好的两个选择就是OctoPress和Jekyll-Bootstrap.
 昨天尝试了用Jekyll-Bootstrap, 感觉还不错啦, 我因为没有找到代码高亮的方法, 以及自定义的方法, 就放弃了.</p>
 
