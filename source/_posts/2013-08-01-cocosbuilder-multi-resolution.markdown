@@ -6,7 +6,7 @@ comments: true
 categories: [CocosBuilder, Cocos2d-x] 
 ---
 
-最近两个项目大量使用了CocosBuilder, 对于开发效率提高是巨大的. 一直计划写一篇博客谈谈CocosBuilder的多分辨率问题, 懒病加上一些疙疙瘩瘩的小事情, 拖延了一个多月, 才终于下定决定要尽快完成这篇博客.
+最近两个项目大量使用了CocosBuilder, 对于开发效率提高是巨大的. 一直计划写一篇博客谈谈CocosBuilder的多分辨率问题, 懒病加上一些疙疙瘩瘩的小事情, 拖延了一个多月, 才终于下定决心要尽快完成这篇博客.
 
 在这篇文章中, 假定你比较熟悉CocosBuilder, 如果您还不是很熟悉CocosBuilder, 推荐您看下我的另外一篇文章. [从零开始学习CocosBuilder](http://www.ityran.com/archives/2614) 我还是小菜鸟一个, 难免会有很多错误, 还望各位看客不吝赐教. 
 
@@ -21,7 +21,7 @@ categories: [CocosBuilder, Cocos2d-x]
 
 ##基本概念
 
-我觉得在分辨率中重要的概念就是`位置`, `大小`, `节点关系`, 可以通过位置, 大小, 节点关系, 锚点等的合理组合, 最终达到理想的界面. 当然, 这需要ccb的使用者更多的思考. ^\_-
+我觉得在多分辨率中重要的概念就是`位置`, `大小`, `节点关系`, 可以通过位置, 大小, 节点关系, 锚点等的合理组合, 最终达到理想的界面. 当然, 这需要ccb的使用者更多的思考. ^\_-
 
 ###位置
 {% img /upload/2013-08/ccb-multi-r-01.png %}
@@ -212,6 +212,8 @@ ccb自带的帮助中`Setting scale and design size`, 需要做一些改进. 下
 
 工程下载: http://pan.baidu.com/share/link?shareid=3612867199&uk=2281999082
 
+推荐看下bilt的两篇博客: http://blog.justbilt.com/569/ http://blog.justbilt.com/579/ 里面还罗列了数片前辈们关于多分辨率的文章, 我学习的过程中也受益匪浅. 
+一并致谢. 
 
 
 
