@@ -138,7 +138,7 @@ boost::shared_ptr<boost::asio::deadline_timer> m_heartbeatTimer;
 m_heartbeatTimer = boost::shared_ptr<boost::asio::deadline_timer>(new boost::asio::deadline_timer(con->get_io_service(), boost::posix_time::seconds(0)));
 ```
 打开`lib/rapidjson/include/rapidjson/document.h`:
-``` cp document.h
+``` cpp document.h
 //if (reader.Parse<parseFlags>(is, *this)) {
 修改为
 if (reader.template Parse<parseFlags>(is, *this)) {"
