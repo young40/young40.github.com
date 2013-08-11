@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>搭建Mac OS X下cocos2d-x的Android开发环境 - 喜气羊羊</title>
+  <meta name="author" content="Young40">
+
+  
+  <meta name="description" content="版本 Cocos2d-x: cocos2d-2.1beta3-x-2.1.1
+OS X: 10.8
+Android ADT Bundle: v21.1.0
+Android NDK: android-ndk-r8d
+Device: Android 4.2.1 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://young40.github.io/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="喜气羊羊" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-827720-7']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">喜气羊羊</a></h1>
+  
+    <h2>代码是一种人生态度</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:young40.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">搭建Mac OS X下cocos2d-x的Android开发环境</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-23T21:14:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>版本</h2>
+
+<ul>
+<li>Cocos2d-x: cocos2d-2.1beta3-x-2.1.1</li>
+<li>OS X: 10.8</li>
+<li>Android ADT Bundle: v21.1.0</li>
+<li>Android NDK: android-ndk-r8d</li>
+<li>Device: Android 4.2.1   <br/>
+这次我们测试的设备安装的是Android4.2.1, Cocos2d-x能支持Android2.2以上版本.</li>
+</ul>
+
+
+<h4>文件路径:</h4>
+
+<ul>
+<li>Cocos2d-x: /opt/cocos2d-2.1beta3-x-2.1.1</li>
+<li>Android ADT Bundle: /opt/adt-bundle-mac-x86_64</li>
+<li>Android NDK: /opt/android-ndk
+下文中提及的这些路径, 请替换成您自己的路径</li>
+</ul>
+
+
+<h2>下载最新版本Cocos2d-x</h2>
+
+<p>您可以在Cocos2d-x官网找到<a href="http://www.cocos2d-x.org/projects/cocos2d-x/wiki/Download">下载页面</a>  <br/>
+解压后到您需要的位置, 本文假设解压到以下位置</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/opt/cocos2d-2.1beta3-x-2.1.1</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>检查JDK</h2>
+
+<p>在终端中输入</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>java -version
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果您没有安装JDK, 系统会帮您自动安装JDK. <br/>
+<img src="/upload/2013-02/set-up-c-a-osx-001-jdk.png"> <br/>
+安装过后您会看到如下输出</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>java version <span class="s2">&quot;1.6.0_37&quot;</span>
+</span><span class='line'>Java<span class="o">(</span>TM<span class="o">)</span> SE Runtime Environment <span class="o">(</span>build 1.6.0_37-b06-434-11M3909<span class="o">)</span>
+</span><span class='line'>Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM <span class="o">(</span>build 20.12-b01-434, mixed mode<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>下载最新版本Android ADT Bundle</h2>
+
+<p>Google将Android SDK, Eclipse, ADT(Android Developer Tools)打包在一起,称作Android ADT Bundle, 简化了Android开发环境的搭建. <br/>
+您可以在Android官网找到<a href="http://developer.android.com/sdk/index.html">下载页面</a>  <br/>
+解压到您需要的位置, 本文假设解压到以下位置</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>/opt/adt-bundle-mac-x86_64
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在终端中运行下面命令, 将ADT中的Eclipse放入您的程序文件夹, 方便启动</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ln -s /opt/adt-bundle-mac-x86_64/eclipse/Eclipse.app/ /Applications/Eclipse-ADT.app
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在/Applications中或者Launchpad中找到并打开Eclipse-ADT
+<img src="/upload/2013-02/set-up-c-a-osx-002-adt.png"></p>
+
+<h2>Eclipse的Retina支持</h2>
+
+<p>如果您在使用带Retina的Mackbook Pro, Eclipse暂时还不支持Retina. 但有一个简单的<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=382972">解决方案</a></p>
+
+<ol>
+<li>在 /opt/adt-bundle-mac-x86_64/eclipse 找到 Eclipse.app</li>
+<li>编辑<code>Contents/Info.plist</code></li>
+<li>找到</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;/dict&gt;
+</span><span class='line'>&lt;/plist&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在其上面添加</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;key&gt;NSHighResolutionCapable&lt;/key&gt;
+</span><span class='line'>&lt;<span class="nb">true</span>/&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>将Eclipse.app移动到新的文件夹, 然后再移动回来. (防止系统缓存了上面提及的Info.plist)</li>
+<li>OK啦.</li>
+</ol>
+
+
+<h2>Android SDK Manager</h2>
+
+<p>Android ADT Bundle中是包含了Android SDK Manager的. 启动您的Eclipse-ADT. 可以在工具栏中或者菜单中找到Android SDK Manager. <br/>
+<img src="/upload/2013-02/set-up-c-a-osx-003-sdk-1.png">  <br/>
+<img src="/upload/2013-02/set-up-c-a-osx-004-sdk-2.png"></p>
+
+<h2>Android NDK</h2>
+
+<p>您可以在Android官网找到Android的<a href="http://developer.android.com/tools/sdk/ndk/index.html">下载页面</a>  <br/>
+下载后解压到您需要的位置, 本文假设解压到以下位置</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>/opt/android-ndk
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>设置环境变量</h2>
+
+<p>我们需要将SDK, NDK以及Cocos2d-x的路径中添加到环境变量中. 将以下内容添加到~/.bash_profile文件</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">export </span><span class="nv">COCOS2DX_ROOT</span><span class="o">=</span>/opt/cocos2d-2.1beta3-x-2.1.1
+</span><span class='line'><span class="nb">export </span><span class="nv">ANDROID_SDK_ROOT</span><span class="o">=</span>/opt/adt-bundle-mac-x86_64/sdk
+</span><span class='line'><span class="nb">export </span><span class="nv">ANDROID_NDK_ROOT</span><span class="o">=</span>/opt/android-ndk
+</span><span class='line'><span class="nb">export </span><span class="nv">NDK_ROOT</span><span class="o">=</span>/opt/android-ndk
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$ANDROID_NDK_ROOT</span>
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$ANDROID_SDK_ROOT</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>HelloWorld</h2>
+
+<p>万事俱备, 我们现在就可以开始激动人心的Cocos2d-x之旅了.   <br/>
+打开终端, 进入cocos2d-x所在目录并执行 <code>/opt/cocos2d-2.1beta3-x-2.1.1/create-android-project.sh</code>文件  <br/>
+根据提示输入对应信息.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>Youngs-MacBook-Air:~ young40<span class="nv">$ </span><span class="nb">cd</span> /opt/cocos2d-2.1beta3-x-2.1.1/
+</span><span class='line'>Youngs-MacBook-Air:cocos2d-2.1beta3-x-2.1.1 young40<span class="nv">$ </span>./create-android-project.sh
+</span><span class='line'>use global definition of NDK_ROOT: /opt/android-ndk
+</span><span class='line'>use global definition of ANDROID_SDK_ROOT: /opt/adt-bundle-mac-x86_64/sdk
+</span><span class='line'>Input package path. For example: org.cocos2dx.example
+</span><span class='line'>com.young40.test  //这里输入了包名
+</span><span class='line'>Now cocos2d-x supports Android 2.2 or upper version
+</span><span class='line'>Available Android targets:
+</span><span class='line'>----------
+</span><span class='line'>id: 1 or <span class="s2">&quot;android-17&quot;</span>
+</span><span class='line'>     Name: Android 4.2
+</span><span class='line'>     Type: Platform
+</span><span class='line'>     API level: 17
+</span><span class='line'>     Revision: 1
+</span><span class='line'>     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 <span class="o">(</span>default<span class="o">)</span>, WVGA854, WXGA720, WXGA800, WXGA800-7in
+</span><span class='line'>     ABIs : armeabi-v7a
+</span><span class='line'>input target id:
+</span><span class='line'>1 //选择您需要的平台id
+</span><span class='line'>input your project name:
+</span><span class='line'>HelloWorld  //输入项目名称
+</span><span class='line'>Created project directory: /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android
+</span><span class='line'>
+</span><span class='line'>.....
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Updated project.properties
+</span><span class='line'>Updated local.properties
+</span><span class='line'>Updated file /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/proguard-project.txt
+</span><span class='line'>Youngs-MacBook-Air:cocos2d-2.1beta3-x-2.1.1 young40<span class="nv">$ </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>从以上输出我们可以看到<code>create-android-project.sh</code>这个脚本帮我们在 /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld 下建立了新项目.</p>
+
+<p>然后我们可以先在终端中调用&#8221;build_native.sh&#8221;脚本编译该项目的C++部分.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>Youngs-MacBook-Air:~ young40<span class="nv">$ </span><span class="nb">cd</span> /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/
+</span><span class='line'>Youngs-MacBook-Air:proj.android young40<span class="nv">$ </span>./build_native.sh
+</span><span class='line'><span class="nv">NDK_ROOT</span> <span class="o">=</span> /opt/android-ndk
+</span><span class='line'><span class="nv">COCOS2DX_ROOT</span> <span class="o">=</span> /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/../..
+</span><span class='line'><span class="nv">APP_ROOT</span> <span class="o">=</span> /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/..
+</span><span class='line'><span class="nv">APP_ANDROID_ROOT</span> <span class="o">=</span> /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android
+</span><span class='line'>Using prebuilt externals
+</span><span class='line'>make: Entering directory <span class="sb">`</span>/opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android<span class="s1">&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">.....</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">StaticLibrary  : libchipmunk.a</span>
+</span><span class='line'><span class="s1">StaticLibrary  : libextension.a</span>
+</span><span class='line'><span class="s1">SharedLibrary  : libgame.so</span>
+</span><span class='line'><span class="s1">Install        : libgame.so =&gt; libs/armeabi/libgame.so</span>
+</span><span class='line'><span class="s1">make: Leaving directory `/opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android&#39;</span>
+</span><span class='line'>Youngs-MacBook-Air:proj.android young40<span class="nv">$ </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>导入Eclipse-ADT</h2>
+
+<p>打开Eclipse-ADT, 点击快捷键<code>command+N</code>打开新建项目窗口并选择<code>Android Project from Existing Code</code>   <br/>
+<img src="/upload/2013-02/set-up-c-a-osx-005-helloworld-1.png">  <br/>
+<img src="/upload/2013-02/set-up-c-a-osx-006-helloworld-2.png">  <br/>
+这时您可能会在eclipse的<code>Problems</code>窗口看到如下错误</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>The import org.cocos2dx.lib cannot be resolved HelloWorld.java /HelloWorld/src/com/young40/test    line 26 Java Problem
+</span><span class='line'>Cocos2dxActivity cannot be resolved to a <span class="nb">type    </span>HelloWorld.java  /HelloWorld/src/com/young40/test    line 30 Java Problem
+</span><span class='line'>Cocos2dxActivity cannot be resolved to a <span class="nb">type    </span>HelloWorld.java  /HelloWorld/src/com/young40/test    line 33 Java Problem
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>您需要将<code>/opt/cocos2d-2.1beta3-x-2.1.1/cocos2dx/platform/android/java</code>如上面处理一样也作为一个项目导入eclipse中  <br/>
+然后在HelloWorld项目上点击右键选择刷新, 可以看到错误就消失了.</p>
+
+<p>将您的手机设置成调试模式并用USB线连接到电脑, 在Eclipse中运行HelloWorld, 然后就能在手机上看到已经运行的HelloWorld了  <br/>
+<img src="/upload/2013-02/set-up-c-a-osx-007-screen.png"></p>
+
+<p>好了, 享受您的奇妙的Cocos2d-x之旅吧!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Young40</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-23T21:14:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/03/cocos2d-x-source-code-research-4-ccautoreleasepool/" title="Previous Post: 2d-x深读4:CCAutoReleasePool">&laquo; 2d-x深读4:CCAutoReleasePool</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/08/01/cocosbuilder-multi-resolution/" title="Next Post: CocosBuilder 多分辨率">CocosBuilder 多分辨率 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+<h1>Categories</h1>
+<ul id="categories">
+    <li class='category'><a href='/blog/categories/cpp/'>CPP (2)</a></li>
+<li class='category'><a href='/blog/categories/cocos2d-x/'>Cocos2d-x (9)</a></li>
+<li class='category'><a href='/blog/categories/cocos2d-x-源代码研究/'>Cocos2d-x 源代码研究 (4)</a></li>
+<li class='category'><a href='/blog/categories/cocosbuilder/'>CocosBuilder (5)</a></li>
+<li class='category'><a href='/blog/categories/杂谈/'>杂谈 (2)</a></li>
+
+</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/01/cocosbuilder-multi-resolution/">CocosBuilder 多分辨率</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x/">搭建Mac OS X下cocos2d-x的Android开发环境</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/03/cocos2d-x-source-code-research-4-ccautoreleasepool/">2d-x深读4:CCAutoReleasePool</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/31/cocos2d-x-source-code-research-3-ccobject/">2d-x深读3:CCObject</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/29/cocosbuilder-step-by-step-part-four/">一步一步CocosBuilder(4)[完结]</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Young40 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'young40';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://young40.github.io/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x/';
+        var disqus_url = 'http://young40.github.io/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

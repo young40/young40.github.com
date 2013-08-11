@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>CocosBuilder 多分辨率 - 喜气羊羊</title>
+  <meta name="author" content="Young40">
+
+  
+  <meta name="description" content="最近两个项目大量使用了CocosBuilder, 对于开发效率提高是巨大的. 一直计划写一篇博客谈谈CocosBuilder的多分辨率问题, 懒病加上一些疙疙瘩瘩的小事情, 拖延了一个多月, 才终于下定决定要尽快完成这篇博客. 在这篇文章中, 假定你比较熟悉CocosBuilder, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://young40.github.io/blog/2013/08/01/cocosbuilder-multi-resolution">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="喜气羊羊" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-827720-7']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">喜气羊羊</a></h1>
+  
+    <h2>代码是一种人生态度</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:young40.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">CocosBuilder 多分辨率</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-01T22:10:00+08:00" pubdate data-updated="true">Aug 1<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>最近两个项目大量使用了CocosBuilder, 对于开发效率提高是巨大的. 一直计划写一篇博客谈谈CocosBuilder的多分辨率问题, 懒病加上一些疙疙瘩瘩的小事情, 拖延了一个多月, 才终于下定决定要尽快完成这篇博客.</p>
+
+<p>在这篇文章中, 假定你比较熟悉CocosBuilder, 如果您还不是很熟悉CocosBuilder, 推荐您看下我的另外一篇文章. <a href="http://www.ityran.com/archives/2614">从零开始学习CocosBuilder</a> 我还是小菜鸟一个, 难免会有很多错误, 还望各位看客不吝赐教.</p>
+
+<p>版本:</p>
+
+<ul>
+<li>Cocos2d-x 2.1.4 <a href="http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip">http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip</a></li>
+<li>CocosBuilder 3.0alpha5 <a href="http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip">http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip</a></li>
+</ul>
+
+
+<p>最近几次Cocos2d-x和CocosBuilder(以下简写为2dx和ccb)都是联合发布的, 使用联合发布的版本会减少不兼容的可能.</p>
+
+<!--more-->
+
+
+<h2>基本概念</h2>
+
+<p>我觉得在分辨率中重要的概念就是<code>位置</code>, <code>大小</code>, <code>节点关系</code>, 可以通过位置, 大小, 节点关系, 锚点等的合理组合, 最终达到理想的界面. 当然, 这需要ccb的使用者更多的思考. ^_&ndash;</p>
+
+<h3>位置</h3>
+
+<p><img src="/upload/2013-08/ccb-multi-r-01.png"></p>
+
+<p>我们可以看到ccb中位置共有6种设置. 其中前四种设置方式代表了当前节点相对于其父节点的一个顶点的绝对位置.</p>
+
+<p><img src="/upload/2013-08/ccb-multi-r-02.png"></p>
+
+<p>如上图所示, 我们把<code>Click me</code> 按钮, 放在了距离其父节点右上角各50px.
+这种位置的设置方式, 一般在节点需要放在父节点一个角上时很有用.</p>
+
+<p><img src="/upload/2013-08/ccb-multi-r-03.png"></p>
+
+<p>第5种设置方式表示当前节点的坐标由其父节点大小(宽width, 高height)的百分比组成, 其中父节点的左下角为原点.
+如上图所示一个节点的父节点大小为200px*100px, 当前节点设置为(70%, 50%),那么当前节点距离其父节点左下角就应该是(140, 50).
+百分比设置是位置设置中最常用的方式, 只有当百分比设置不适合时才去考虑其他设置方式.</p>
+
+<p><img src="/upload/2013-08/ccb-multi-r-04.png"></p>
+
+<p>第6种设置方式其实就是第1种设置方式的x,y值分别乘以一个全局缩放系数. 我们接下来就讲这个全局缩放系数, 这里先假设iphone下为1, iphone retina下为2.
+如上图所示, 当前节点在iphone下距离其父节点左下角(50*1, 50*1), 在iphone retina下则就是(50*2, 50*2).</p>
+
+<h3>全局缩放系数</h3>
+
+<p>如果我们需要在屏幕上放一个CCLabelTTF, 字体大小设置为48, 分别放在480*320分辨率的iphone上和960*640分辨率的iphone retina上, 那么在iphone retina上显示会显得特别小.
+这个时候我们就需要为游戏设置一个全局缩放系数, iphone下为1, iphone retina下为2, 那么ccb中设置字体大小为48, 在游戏中iphone上字体大小为48*1=48, iphone retina中字体大小为48*2=96.</p>
+
+<p>你可以在设置位置, 内容大小, 缩放, 字体大小的时候, 找到这个选项. 都是一样的道理, 对应的数据都需要乘以全局缩放系数.</p>
+
+<p>默认iphone(480*320)的全局缩放系数是1, iPad/iphone HD是2, iPad HD就是4了.
+当然你可以自己设置一套全局缩放系数.</p>
+
+<h3>内容大小</h3>
+
+<p><img src="/upload/2013-08/ccb-multi-r-05.png"></p>
+
+<p>只有如CCLayer, CCNode等几个节点可以设置内容大小. 可以有6个选项.</p>
+
+<ul>
+<li><ol>
+<li>绝对大小</li>
+</ol>
+</li>
+<li><ol>
+<li>百分比相对大小, 相对于父节点的大小</li>
+</ol>
+</li>
+<li><ol>
+<li>相对父节点大小, 宽高设置为(100, 100), 那么该节点比其父节点宽高各小100px. 如果设置为(0, 0), 那么该节点就和父节点一样大小.</li>
+</ol>
+</li>
+<li><ol>
+<li>宽度百分比, 高度绝对大小.</li>
+</ol>
+</li>
+<li><ol>
+<li>宽度绝对大小, 高度百分比.</li>
+</ol>
+</li>
+<li><ol>
+<li>绝对大小, 会被乘以全局缩放系数.</li>
+</ol>
+</li>
+</ul>
+
+
+<h2>基本操作</h2>
+
+<h3>多分辨率的文档</h3>
+
+<p><img src="/upload/2013-08/ccb-multi-r-06.png"></p>
+
+<p>从菜单中选择<code>Edit Resolutions...</code>, 打开编辑多分辨率对话框.</p>
+
+<p><img src="/upload/2013-08/ccb-multi-r-07.png"></p>
+
+<p>我们可以看到当前为iphone设置了(480*320)的分辨率, <code>Scale</code>这个选项就是我们上面提到的<code>全局缩放系数</code>, 值为1.
+为iPad设置了(1024*768)的分辨率, 全局缩放系数为2.</p>
+
+<p>我们可以点击<code>Add Predefined Resolution</code>, 来添加ccb预定义的分辨率. 比如添加一个iphone5的分辨率.
+哦, 什么, 分辨率是568*320???? <code>需要注意的是，CocosBuilder的工作是基于点（Point）的，而不是像素的。</code>.</p>
+
+<h4>Resolution Extension和resources-auto(插播)</h4>
+
+<p>ccb中有一个resources-auto的重要概念, 你可以只提供一套资源, ccb通过全局缩放系数, 来为你自动生成不同分辨率的图片.
+假设你为iPad retina(全局缩放系数为4)设计了一张100*100的图片.那么iphone会得到一张25*25的图片. iPad/iphone HD会得到一张50*50的图片.</p>
+
+<p>说到资源解决方案, 首先要决定你想要支持的最大分辨率. 假设需要完美支持iPad HD, 就按2048*1536来做资源, 此时全局缩放系数为4.
+把图片资源放置到resources-auto目录下, 那么ccb会帮我们自动缩放出其他需要的分辨率.
+嗯, 还需要像下图一样设置, 告诉ccb需要从4x来设置. 从菜单的<code>Publish Settings...</code>打开.</p>
+
+<p><img src="/upload/2013-08/ccb-multi-r-08.png"></p>
+
+<p>如果是和背景无关的图片, 一般来讲自动缩放就可以胜任了.</p>
+
+<p>如果需要在不同的分辨率下使用不同的图片, 比如一张背景图, iphone上使用960*640的图片, iPad上使用一张1024*768的图片.
+那么可以在资源目录创建resources-iphone, resources-ipad目录, 然后在resources-iphone放置一张960*640分辨率的图片demo.png, 在resources-ipad目录下放置一张1024*768分辨率的图片demo.png. 要注意需要保持其文件名相同.</p>
+
+<p>我们在ccb的工程目录下仍然只看到了一份demo.png, 不要着急, ccb会根据我们选用的不同的分辨率来给我们呈现不同的图片.</p>
+
+<p>ok, 插播结束. 继续说我们的多分辨率文档.</p>
+
+<p>其实, 我们可以给文档添加一个iphone hd, 以及正常iphone5尺寸的文档. 比较遗憾的是ccb不支持编辑<code>Resolution Extension</code>的列表.
+而ipad和iphonehd的设置是在一起的, 并且也没有iphone5的Resolution可以设置.
+所以我希望你没有需要必须要区分iphonehd/iphone5的需求, 在ccb里面是无法区分的. 令人欣慰的是, 我们还是可以在游戏里面区分他们.&ndash;_=</p>
+
+<p>给文档添加的分辨率是可以自定义的, 名字, 宽, 高, 全局缩放系数. 所以我们还是可以创建全尺寸的iphonehd/iphone5的分辨率.</p>
+
+<p><img src="/upload/2013-08/ccb-multi-r-09.png"></p>
+
+<p>然后, 我们可以在ccb的菜单中找到切换多分辨率的选项, 这样就可以很方便的预览在各个分辨率下的效果.
+注意他们的快捷键哦, 很有用哦.推荐在使用的时候, 经常在几个分辨率下切换查看效果是否正确理想.</p>
+
+<p><img src="/upload/2013-08/ccb-multi-r-10.png"></p>
+
+<h2>做一个ccb工程</h2>
+
+<p>是时候做一个ccb的工程了, 不过我有点羞涩要给你展示我做的工程. 因为它实在太丑了, 还是来一张截图吧, 希望没有吓到你.&ndash;_=</p>
+
+<p><img src="/upload/2013-08/ccb-multi-r-11.png"></p>
+
+<h2>代码一下</h2>
+
+<p>由于上面提到的一些限制, 只能基本上做到在ccb中做的, 就是我们在游戏中看到的.</p>
+
+<p>ccb自带的帮助中<code>Setting scale and design size</code>, 需要做一些改进. 下面是我的代码.</p>
+
+<figure class='code'><figcaption><span>AppDelegate.cpp </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'> <span class="c1">//set the correct resource for CocosBuilder</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">sizeIphone</span> <span class="o">=</span> <span class="n">CCSizeMake</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">320</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">sizeIphoneHD</span> <span class="o">=</span> <span class="n">CCSizeMake</span><span class="p">(</span><span class="mi">960</span><span class="p">,</span> <span class="mi">640</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">sizeIphone5</span> <span class="o">=</span> <span class="n">CCSizeMake</span><span class="p">(</span><span class="mi">1136</span><span class="p">,</span> <span class="mi">640</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">sizeIpad</span> <span class="o">=</span> <span class="n">CCSizeMake</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">768</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">sizeIpadHD</span> <span class="o">=</span> <span class="n">CCSizeMake</span><span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">1536</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">designSize</span> <span class="o">=</span> <span class="n">sizeIphoneHD</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">resourceSize</span> <span class="o">=</span> <span class="n">sizeIphoneHD</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">CCSize</span> <span class="n">screenSize</span> <span class="o">=</span> <span class="n">CCEGLView</span><span class="o">::</span><span class="n">sharedOpenGLView</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getFrameSize</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">searchPaths</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">resDirOrders</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">TargetPlatform</span> <span class="n">platform</span> <span class="o">=</span> <span class="n">CCApplication</span><span class="o">::</span><span class="n">sharedApplication</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getTargetPlatform</span><span class="p">();</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">platform</span> <span class="o">==</span> <span class="n">kTargetIphone</span> <span class="o">||</span> <span class="n">platform</span> <span class="o">==</span> <span class="n">kTargetIpad</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">CCFileUtils</span><span class="o">::</span><span class="n">sharedFileUtils</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setSearchPaths</span><span class="p">(</span><span class="n">searchPaths</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">screenSize</span><span class="p">.</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">768</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="n">resourceSize</span> <span class="o">=</span> <span class="n">sizeIpadHD</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">designSize</span> <span class="o">=</span> <span class="n">sizeIpadHD</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">resDirOrders</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;resources-ipadhd&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">CCBReader</span><span class="o">::</span><span class="n">setResolutionScale</span><span class="p">(</span><span class="mf">4.0f</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">screenSize</span><span class="p">.</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">640</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">resourceSize</span> <span class="o">=</span> <span class="n">sizeIpad</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">designSize</span> <span class="o">=</span> <span class="n">resourceSize</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">resDirOrders</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;resources-ipad&quot;</span><span class="p">);</span>
+</span><span class='line'>                <span class="n">resDirOrders</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;resources-iphonehd&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">CCBReader</span><span class="o">::</span><span class="n">setResolutionScale</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">screenSize</span><span class="p">.</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">480</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                <span class="k">if</span> <span class="p">(</span><span class="n">screenSize</span><span class="p">.</span><span class="n">height</span> <span class="o">&gt;</span> <span class="mi">960</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>                    <span class="n">designSize</span> <span class="o">=</span> <span class="n">sizeIphone5</span><span class="p">;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>                <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>                    <span class="n">designSize</span> <span class="o">=</span> <span class="n">sizeIphoneHD</span><span class="p">;</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>                <span class="n">resourceSize</span> <span class="o">=</span> <span class="n">sizeIphoneHD</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">CCBReader</span><span class="o">::</span><span class="n">setResolutionScale</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">resDirOrders</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;resources-iphonehd&quot;</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>                <span class="n">CCBReader</span><span class="o">::</span><span class="n">setResolutionScale</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">designSize</span> <span class="o">=</span> <span class="n">sizeIphone</span><span class="p">;</span>
+</span><span class='line'>                <span class="n">resourceSize</span> <span class="o">=</span> <span class="n">sizeIphone</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">resDirOrders</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;resources-iphone&quot;</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">CCFileUtils</span><span class="o">::</span><span class="n">sharedFileUtils</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setSearchResolutionsOrder</span><span class="p">(</span><span class="n">resDirOrders</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">pDirector</span><span class="o">-&gt;</span><span class="n">setContentScaleFactor</span><span class="p">(</span><span class="n">resourceSize</span><span class="p">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">designSize</span><span class="p">.</span><span class="n">width</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">CCEGLView</span><span class="o">::</span><span class="n">sharedOpenGLView</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setDesignResolutionSize</span><span class="p">(</span>
+</span><span class='line'>                                                               <span class="n">designSize</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">designSize</span><span class="p">.</span><span class="n">height</span><span class="p">,</span>
+</span><span class='line'>                                                               <span class="n">kResolutionExactFit</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">CCNodeLoaderLibrary</span> <span class="o">*</span><span class="n">lib</span> <span class="o">=</span> <span class="n">CCNodeLoaderLibrary</span><span class="o">::</span><span class="n">newDefaultCCNodeLoaderLibrary</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">CCBReader</span> <span class="o">*</span><span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CCBReader</span><span class="p">(</span><span class="n">lib</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">CCScene</span> <span class="o">*</span><span class="n">scene</span> <span class="o">=</span> <span class="n">reader</span><span class="o">-&gt;</span><span class="n">createSceneWithNodeGraphFromFile</span><span class="p">(</span><span class="s">&quot;MainScene.ccbi&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">pDirector</span><span class="o">-&gt;</span><span class="n">runWithScene</span><span class="p">(</span><span class="n">scene</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这里只支持了iOS, 如果需要支持Android的话, 可以挑选几个需要的分辨率, 邻近的分辨率坐下拉伸等策略.</p>
+
+<p>运行下代码, 可以看下效果. 收工.</p>
+
+<p>工程下载: <a href="http://pan.baidu.com/share/link?shareid=3612867199&amp;uk=2281999082">http://pan.baidu.com/share/link?shareid=3612867199&amp;uk=2281999082</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Young40</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-01T22:10:00+08:00" pubdate data-updated="true">Aug 1<span>st</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/cocos2d-x/'>Cocos2d-x</a>, <a class='category' href='/blog/categories/cocosbuilder/'>CocosBuilder</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x/" title="Previous Post: 搭建Mac OS X下cocos2d-x的Android开发环境">&laquo; 搭建Mac OS X下cocos2d-x的Android开发环境</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+<h1>Categories</h1>
+<ul id="categories">
+    <li class='category'><a href='/blog/categories/cpp/'>CPP (2)</a></li>
+<li class='category'><a href='/blog/categories/cocos2d-x/'>Cocos2d-x (9)</a></li>
+<li class='category'><a href='/blog/categories/cocos2d-x-源代码研究/'>Cocos2d-x 源代码研究 (4)</a></li>
+<li class='category'><a href='/blog/categories/cocosbuilder/'>CocosBuilder (5)</a></li>
+<li class='category'><a href='/blog/categories/杂谈/'>杂谈 (2)</a></li>
+
+</ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/01/cocosbuilder-multi-resolution/">CocosBuilder 多分辨率</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/23/setting-up-android-development-envirment-on-mac-os-x/">搭建Mac OS X下cocos2d-x的Android开发环境</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/03/cocos2d-x-source-code-research-4-ccautoreleasepool/">2d-x深读4:CCAutoReleasePool</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/31/cocos2d-x-source-code-research-3-ccobject/">2d-x深读3:CCObject</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/29/cocosbuilder-step-by-step-part-four/">一步一步CocosBuilder(4)[完结]</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Young40 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'young40';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://young40.github.io/blog/2013/08/01/cocosbuilder-multi-resolution/';
+        var disqus_url = 'http://young40.github.io/blog/2013/08/01/cocosbuilder-multi-resolution/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
