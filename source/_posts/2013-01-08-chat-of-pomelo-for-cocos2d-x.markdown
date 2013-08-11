@@ -2,7 +2,6 @@
 layout: post
 title: "基于Pomelo和Cocos2d-x的聊天室"
 date: 2013-01-08 00:39
-published: false
 comments: true
 categories: ["Cocos2d-x"]
 ---
