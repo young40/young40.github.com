@@ -12,7 +12,7 @@ language:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://young40.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 tag_dir: tags
@@ -88,4 +88,4 @@ exclude_generator:
 deploy: 
   type: github
   repo: git@github.com:young40/young40.github.com.git
-  branch: public
+  branch: master
