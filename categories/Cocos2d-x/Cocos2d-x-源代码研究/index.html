@@ -1,0 +1,254 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>喜气羊羊 › Cocos2d-x 源代码研究</title>
+  <meta name="author" content="Young40">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="喜气羊羊"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="喜气羊羊" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5353535-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header"><div class="meta inner">
+  <h1><a href="/">喜气羊羊</a></h1>
+  <h2 id="header-h2">游来游去</h2>
+  <nav id="main-nav">
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/archives">文章归档</a></li>
+      
+      <li><a href="http://photo.jiabin.tk">相册</a></li>
+      
+      <li><a href="/links">友情链接</a></li>
+      
+      <li><a href="/about">关于</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title category">Cocos2d-x 源代码研究</h2>
+
+
+<article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2013/01/03/2013-01-03-cocos2d-x-source-code-research-4-ccautoreleasepool/">2d-x深读4:CCAutoReleasePool</a></h1>
+  
+
+      
+      <time datetime="2013-01-03T07:09:00.000Z">Jan 3 2013</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p><code>CCAutoReleasePool.h</code>主要定义了两个类<code>CCAutoReleasePool</code>和<code>CCPoolManager</code>.    </p>
+<p>其实因为cocos2d-x自动管理内存的原因, 所以, 我们平时很少需要直接使用这两个类.<br>为了探究其中的自动管理内存的机制, 我们直接分析其代码.   </p>
+<p>总体上来讲, 内存管理这块的机制难度或许比较大. 我研究了一天, 还是有诸多疑问.<br>暂时先放一放, 待我功力进化后再来继续研究这块.<br>
+      
+    </div>
+    
+      
+      <footer>
+        <div class="alignleft">
+          <a href="/2013/01/03/2013-01-03-cocos2d-x-source-code-research-4-ccautoreleasepool/#more" class="more-link">阅读全文 &gt;</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      
+    
+  </div>
+</article>
+
+
+
+
+<article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2012/12/31/2012-12-31-cocos2d-x-source-code-research-3-ccobject/">2d-x深读3:CCObject</a></h1>
+  
+
+      
+      <time datetime="2012-12-31T09:21:00.000Z">Dec 31 2012</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>CCObject是绝大部分cocos2d-x类的基类, 我们就从这里一步一步揭开cocos2d-x的奥秘.   </p>
+<p>CCObject承担了两个重要的功能, 拷贝机制和内存管理.    </p>
+<h2 id="拷贝机制">拷贝机制</h2>
+<p>打开<code>CCObject.h</code> 首先看到的是类CCCopying, 而CCObject是从该类派生. 从这个意义上来讲CCCopying才是大部分类的基类.<br>但CCCopying其实非常简单, 再加上没有其他类从CCCopying派生, 所以说CCObject才是大部分类的基类也是不错的. 我认为CCCopying仅仅是一个接口性质.   </p>
+<p>CCCopying这个类非常简单, 只有一个成员函数copyWithZone(CCZone *pZone); 简单到其实现只是为了报错. 尽管如此, 但其却承担了拷贝机制这一重要的功能.   </p>
+<p>cocos2d-x和cocos2d-iphone是近亲, 所以cocos2d-x在API上会和cocos2d-iphone保持一致, 代码上也多有借鉴. CCObject明显就有很多NSObject的痕迹.<br>当然我对Objective-c并不熟悉, 这里都是些猜测罢了. copyWithZone或许就是借鉴了Obj-c.   </p>
+<p>我们先来看下拷贝机制, 至于CCObject的代码倒不忙着看.   </p>
+<p>
+      
+    </div>
+    
+      
+      <footer>
+        <div class="alignleft">
+          <a href="/2012/12/31/2012-12-31-cocos2d-x-source-code-research-3-ccobject/#more" class="more-link">阅读全文 &gt;</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      
+    
+  </div>
+</article>
+
+
+
+
+<article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2012/12/17/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/">2d-x深读2:CCPlatformMacros.h</a></h1>
+  
+
+      
+      <time datetime="2012-12-16T17:49:00.000Z">Dec 17 2012</time>
+      
+    </header>
+    <div class="entry">
+      
+        <ul>
+<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/include/ccConfig.h</code></li>
+<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/mac/CCPlatformDefine.h</code> //注意我是以mac平台研究的, 其他平台略有不同</li>
+<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/CCPlatformMacros.h</code>
+      
+    </div>
+    
+      
+      <footer>
+        <div class="alignleft">
+          <a href="/2012/12/17/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/#more" class="more-link">阅读全文 &gt;</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      
+    
+  </div>
+</article>
+
+
+
+
+<article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2012/12/17/2012-12-17-cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/">2d-x深读1:CCPlatformConfig.h</a></h1>
+  
+
+      
+      <time datetime="2012-12-16T16:43:00.000Z">Dec 17 2012</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>准备好好学习下Cocos2d-x(以下简称2dx), 我正在很努力地学习C++.</p>
+<p>作为新手的我, 只能从最基本的代码读起. 就从<code>CCPlatformConfig.h</code>开始研究起吧, 这个文件没有include其他文件, 是最基本的文件.</p>
+<p>研究成果见代码.</p>
+
+      
+    </div>
+    
+      
+      <footer>
+        <div class="alignleft">
+          <a href="/2012/12/17/2012-12-17-cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/#more" class="more-link">阅读全文 &gt;</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      
+    
+  </div>
+</article>
+
+
+
+
+<div class="pagination">
+  <table width='100%'>
+    <tbody>
+    <tr>
+      <td width='120' align='left'>
+        
+      </td>
+      <td width='auto' align='center'>
+          <a href="/archives/">文章归档</a>
+      </td>
+      <td width='120' align='right'>
+        
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+</div></div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer"><div class="inner"><div class="alignleft">
+  <p>
+  
+    &copy; 2015 Young40
+  
+  </p>
+  <p>
+    Theme By <a href="http://jiabin.tk" >Byron</a> based on <a href="https://github.com/willerce/hexo-theme-noderce" >Noderce</a>
+  </p>
+
+</div>
+<div class="clearfix"></div></div></footer>
+  <script type="text/javascript">
+
+</script>
+
+</body>
+</html>

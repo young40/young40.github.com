@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>喜气羊羊 › 2d-x深读1:CCPlatformConfig.h</title>
+  <meta name="author" content="Young40">
+  
+  <meta name="description" content="准备好好学习下Cocos2d-x(以下简称2dx), 我正在很努力地学习C++.
+作为新手的我, 只能从最基本的代码读起. 就从CCPlatformConfig.h开始研究起吧, 这个文件没有include其他文件, 是最基本的文件.
+研究成果见代码.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="2d-x深读1:CCPlatformConfig.h"/>
+  <meta property="og:site_name" content="喜气羊羊"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="喜气羊羊" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5353535-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header"><div class="meta inner">
+  <h1><a href="/">喜气羊羊</a></h1>
+  <h2 id="header-h2">游来游去</h2>
+  <nav id="main-nav">
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/archives">文章归档</a></li>
+      
+      <li><a href="http://photo.jiabin.tk">相册</a></li>
+      
+      <li><a href="/links">友情链接</a></li>
+      
+      <li><a href="/about">关于</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title">2d-x深读1:CCPlatformConfig.h</h1>
+  
+
+      
+      <time datetime="2012-12-16T16:43:00.000Z">Dec 17 2012</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>准备好好学习下Cocos2d-x(以下简称2dx), 我正在很努力地学习C++.</p>
+<p>作为新手的我, 只能从最基本的代码读起. 就从<code>CCPlatformConfig.h</code>开始研究起吧, 这个文件没有include其他文件, 是最基本的文件.</p>
+<p>研究成果见代码.</p>
+<a id="more"></a>
+
+<ul>
+<li>版本:<code>cocos2d-2.1beta3-x-2.1.0</code></li>
+<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform</code></li>
+</ul>
+<figure class="highlight cpp"><figcaption><span>CCPlatformConfig.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#ifndef __CC_PLATFORM_CONFIG_H__</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> __CC_PLATFORM_CONFIG_H__</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">  Config of cocos2d-x project, per target platform.</div><div class="line">  */</div><div class="line"></div><div class="line"><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div><div class="line"><span class="comment">// pre configure</span></div><div class="line"><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div><div class="line"></div><div class="line"><span class="comment">// define supported target platform macro which CC uses.</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> CC_PLATFORM_UNKNOWN            0</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> CC_PLATFORM_IOS                1</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> CC_PLATFORM_ANDROID            2</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> CC_PLATFORM_WIN32              3</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> CC_PLATFORM_MARMALADE          4</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> CC_PLATFORM_LINUX              5</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> CC_PLATFORM_BADA               6</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> CC_PLATFORM_BLACKBERRY         7</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> CC_PLATFORM_MAC                8</span></div><div class="line"></div><div class="line"><span class="comment">//默认是unknown的</span></div><div class="line"><span class="comment">// Determine target platform by compile environment macro.</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> CC_TARGET_PLATFORM             CC_PLATFORM_UNKNOWN</span></div><div class="line"></div><div class="line"><span class="comment">//CC_TARGET_OS_MAC等是从编译器的环境变量传入的. 参加各编译器或者IDE的预定义宏设置</span></div><div class="line"></div><div class="line"><span class="comment">// mac</span></div><div class="line"><span class="preprocessor">#<span class="keyword">if</span> defined(CC_TARGET_OS_MAC)</span></div><div class="line"><span class="preprocessor">#<span class="keyword">undef</span>  CC_TARGET_PLATFORM <span class="comment">//先取消定义</span></span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> CC_TARGET_PLATFORM         CC_PLATFORM_MAC <span class="comment">//定义为MAC平台</span></span></div><div class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">// iphone</span></div><div class="line"><span class="preprocessor">#<span class="keyword">if</span> defined(CC_TARGET_OS_IPHONE)</span></div><div class="line">    <span class="preprocessor">#<span class="keyword">undef</span>  CC_TARGET_PLATFORM</span></div><div class="line">    <span class="preprocessor">#<span class="keyword">define</span> CC_TARGET_PLATFORM         CC_PLATFORM_IOS</span></div><div class="line">    <span class="preprocessor">#<span class="keyword">define</span> CC_SUPPORT_PVRTC <span class="comment">//支持prv压缩格式</span></span></div><div class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">// android</span></div><div class="line"><span class="preprocessor">#<span class="keyword">if</span> defined(ANDROID)</span></div><div class="line">    <span class="preprocessor">#<span class="keyword">undef</span>  CC_TARGET_PLATFORM</span></div><div class="line">    <span class="preprocessor">#<span class="keyword">define</span> CC_TARGET_PLATFORM         CC_PLATFORM_ANDROID</span></div><div class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">// win32</span></div><div class="line"><span class="preprocessor">#<span class="keyword">if</span> defined(WIN32) && defined(_WINDOWS)</span></div><div class="line">    <span class="preprocessor">#<span class="keyword">undef</span>  CC_TARGET_PLATFORM</span></div><div class="line">    <span class="preprocessor">#<span class="keyword">define</span> CC_TARGET_PLATFORM         CC_PLATFORM_WIN32</span></div><div class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">// linux</span></div><div class="line"><span class="preprocessor">#<span class="keyword">if</span> defined(LINUX)</span></div><div class="line">    <span class="preprocessor">#<span class="keyword">undef</span>  CC_TARGET_PLATFORM</span></div><div class="line">    <span class="preprocessor">#<span class="keyword">define</span> CC_TARGET_PLATFORM         CC_PLATFORM_LINUX</span></div><div class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">// marmalade</span></div><div class="line"><span class="preprocessor">#<span class="keyword">if</span> defined(MARMALADE)</span></div><div class="line"><span class="preprocessor">#<span class="keyword">undef</span>  CC_TARGET_PLATFORM</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> CC_TARGET_PLATFORM         CC_PLATFORM_MARMALADE</span></div><div class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">// bada</span></div><div class="line"><span class="preprocessor">#<span class="keyword">if</span> defined(SHP)</span></div><div class="line"><span class="preprocessor">#<span class="keyword">undef</span>  CC_TARGET_PLATFORM</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> CC_TARGET_PLATFORM         CC_PLATFORM_BADA</span></div><div class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">// qnx</span></div><div class="line"><span class="preprocessor">#<span class="keyword">if</span> defined(__QNX__)</span></div><div class="line">    <span class="preprocessor">#<span class="keyword">undef</span>  CC_TARGET_PLATFORM</span></div><div class="line">    <span class="preprocessor">#<span class="keyword">define</span> CC_TARGET_PLATFORM     CC_PLATFORM_BLACKBERRY</span></div><div class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div><div class="line"><span class="comment">// post configure</span></div><div class="line"><span class="comment">//////////////////////////////////////////////////////////////////////////</span></div><div class="line"></div><div class="line"><span class="comment">//不支持的平台,如果你在上面平台上遇到这个错误, 就可能是预定义变量, 或者编译器的环境变量设置错误</span></div><div class="line"><span class="comment">// check user set platform</span></div><div class="line"><span class="preprocessor">#<span class="keyword">if</span> ! CC_TARGET_PLATFORM</span></div><div class="line">    <span class="preprocessor">#<span class="keyword">error</span>  "Cannot recognize the target platform; are you targeting an unsupported platform?"</span></div><div class="line"><span class="preprocessor">#<span class="keyword">endif</span> </span></div><div class="line"></div><div class="line"><span class="preprocessor">#<span class="keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)</span></div><div class="line"><span class="preprocessor">#<span class="keyword">pragma</span> <span class="keyword">warning</span> (disable:4127) <span class="comment">//在win32平台不显示4127的warning, 这个具体用法可以参见</span></span></div><div class="line"><span class="comment">//http://blog.csdn.net/wowolook/article/details/8060334</span></div><div class="line"><span class="preprocessor">#<span class="keyword">endif</span>  <span class="comment">// CC_PLATFORM_WIN32</span></span></div><div class="line"></div><div class="line"><span class="preprocessor">#<span class="keyword">endif</span>  <span class="comment">// __CC_PLATFORM_CONFIG_H__</span></span></div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    <footer>
+      <div class="alignleft">
+      
+  
+  <div class="categories">
+    <a href="/categories/Cocos2d-x/">Cocos2d-x</a>, <a href="/categories/Cocos2d-x/Cocos2d-x-源代码研究/">Cocos2d-x 源代码研究</a>
+  </div>
+
+      
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    
+  </div>
+</article>
+
+
+<section id="comment">
+  
+            <!-- Duoshuo Comment BEGIN -->
+            <div class="ds-thread"></div>
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"jiabin"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = 'http://static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+            <!-- Duoshuo Comment END -->
+      
+  
+</section>
+
+</div></div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer"><div class="inner"><div class="alignleft">
+  <p>
+  
+    &copy; 2015 Young40
+  
+  </p>
+  <p>
+    Theme By <a href="http://jiabin.tk" >Byron</a> based on <a href="https://github.com/willerce/hexo-theme-noderce" >Noderce</a>
+  </p>
+
+</div>
+<div class="clearfix"></div></div></footer>
+  <script type="text/javascript">
+
+</script>
+
+</body>
+</html>

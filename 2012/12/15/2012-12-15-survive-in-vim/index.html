@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>喜气羊羊 › Vim 生存手册</title>
+  <meta name="author" content="Young40">
+  
+  <meta name="description" content="模式
+在普通模式按i进入插入模式在普通模式按:进入命令模式在插入模式按esc进入普通模式在普通模式按v进入可视模式">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Vim 生存手册"/>
+  <meta property="og:site_name" content="喜气羊羊"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="喜气羊羊" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5353535-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header"><div class="meta inner">
+  <h1><a href="/">喜气羊羊</a></h1>
+  <h2 id="header-h2">游来游去</h2>
+  <nav id="main-nav">
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/archives">文章归档</a></li>
+      
+      <li><a href="http://photo.jiabin.tk">相册</a></li>
+      
+      <li><a href="/links">友情链接</a></li>
+      
+      <li><a href="/about">关于</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title">Vim 生存手册</h1>
+  
+
+      
+      <time datetime="2012-12-14T16:23:00.000Z">Dec 15 2012</time>
+      
+    </header>
+    <div class="entry">
+      
+        <h2 id="模式">模式</h2>
+<p>在普通模式按<code>i</code>进入插入模式<br>在普通模式按<code>:</code>进入命令模式<br>在插入模式按<code>esc</code>进入普通模式<br>在普通模式按<code>v</code>进入可视模式</p>
+<a id="more"></a>
+
+
+<h2 id="命令合成">命令合成</h2>
+<p><code>dw</code>可以看做<code>d</code>(删除)+<code>w</code>(一个单词)合成的. 所以<code>dw</code>, 将向后删除一个单词<br>数字+命令 会重复该命令<br>例如: <code>2j</code> 会向下移动两次</p>
+<h2 id="基础命令">基础命令</h2>
+<p><code>h</code>,<code>j</code>,<code>k</code>,<code>l</code>分别代表了向前一个字符,向下一行,向上一行,向后一个字符</p>
+<h2 id="定位">定位</h2>
+<p><code>L</code> 移动到屏幕最后一行<br><code>M</code> 移动到屏幕中间一行<br><code>H</code> 移动到屏幕第一行<br><code>G</code> 移动到文件的最后一行<br><code>nG</code> 移动到文件第n行, 其中n为行数</p>
+<h2 id="翻页">翻页</h2>
+<p>Ctrl+u 向上翻半页<br>Ctrl+d 向下翻半页<br>Ctrl+b 向上翻一页<br>Ctrl+f 向下翻一页</p>
+<h2 id="段落跳跃">段落跳跃</h2>
+<p><code>{</code> 向上一个段落<br><code>}</code> 向下一个段落</p>
+<h1 id="命令模式">命令模式</h1>
+<h2 id="定位-1">定位</h2>
+
+      
+    </div>
+    
+    <footer>
+      <div class="alignleft">
+      
+  
+  <div class="categories">
+    <a href="/categories/Vim/">Vim</a>
+  </div>
+
+      
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    
+  </div>
+</article>
+
+
+<section id="comment">
+  
+            <!-- Duoshuo Comment BEGIN -->
+            <div class="ds-thread"></div>
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"jiabin"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = 'http://static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+            <!-- Duoshuo Comment END -->
+      
+  
+</section>
+
+</div></div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer"><div class="inner"><div class="alignleft">
+  <p>
+  
+    &copy; 2015 Young40
+  
+  </p>
+  <p>
+    Theme By <a href="http://jiabin.tk" >Byron</a> based on <a href="https://github.com/willerce/hexo-theme-noderce" >Noderce</a>
+  </p>
+
+</div>
+<div class="clearfix"></div></div></footer>
+  <script type="text/javascript">
+
+</script>
+
+</body>
+</html>

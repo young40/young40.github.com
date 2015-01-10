@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>喜气羊羊 › 在OS X上折腾OctoPress</title>
+  <meta name="author" content="Young40">
+  
+  <meta name="description" content="这两天心血来潮, 突然想在github上架设个博客玩玩了, 比较好的两个选择就是OctoPress和Jekyll-Bootstrap.昨天尝试了用Jekyll-Bootstrap, 感觉还不错啦, 我因为没有找到代码高亮的方法, 以及自定义的方法, 就放弃了.
+然后今天就尝试OctoPress, 不想op需要ruby 1.9.3, 而OS X 10.8自带的是1.8.7. 果然在执行rake generate的时候出错.
+我是有安装homebrew的软件包管理器的, 使用brew安装ruby, 结果Terminal下还是1.8.7.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="在OS X上折腾OctoPress"/>
+  <meta property="og:site_name" content="喜气羊羊"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="喜气羊羊" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5353535-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header"><div class="meta inner">
+  <h1><a href="/">喜气羊羊</a></h1>
+  <h2 id="header-h2">游来游去</h2>
+  <nav id="main-nav">
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/archives">文章归档</a></li>
+      
+      <li><a href="http://photo.jiabin.tk">相册</a></li>
+      
+      <li><a href="/links">友情链接</a></li>
+      
+      <li><a href="/about">关于</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title">在OS X上折腾OctoPress</h1>
+  
+
+      
+      <time datetime="2012-12-09T02:19:00.000Z">Dec 9 2012</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>这两天心血来潮, 突然想在github上架设个博客玩玩了, 比较好的两个选择就是OctoPress和Jekyll-Bootstrap.<br>昨天尝试了用Jekyll-Bootstrap, 感觉还不错啦, 我因为没有找到代码高亮的方法, 以及自定义的方法, 就放弃了.</p>
+<p>然后今天就尝试OctoPress, 不想op需要ruby 1.9.3, 而OS X 10.8自带的是1.8.7. 果然在执行rake generate的时候出错.</p>
+<p>我是有安装homebrew的软件包管理器的, 使用brew安装ruby, 结果Terminal下还是1.8.7.</p>
+<a id="more"></a>
+
+<p>然后就学习到有个东西叫做rvm, ruby版本管理器, 允许多个ruby同时安装. 官方的源速度太慢, 所以尝试用sed换成淘宝源, 网上别人给出的sed命令报错, 所以又复习了下vim替换, 全部替换了下.</p>
+<p>再接着安装bundler, 报错说RedCloth无法安装.网上搜索了下无果, 注意到中间的时候有个地方提示查看log, 然后发现以这个log为名字的log在系统里面太多了, 也区分不出路径. 索性将所有搜索到的都删除掉. 然后发现RedCloth安装文件需要gcc-4.2, 所以将gcc ln了一个gcc-4.2.</p>
+<p>另外, 由于对git不是很熟悉, octopress将主目录作为source分支, 而_deploy目录作为master分支, 为了弄明白这个问题, 我花费了更长的时间.不过也总算是对git的pull, push, branch理解更深入了一点 </p>
+<p>博客终于跑起来了, 还是非常开心.</p>
+<p>PS:我再说两点.<br>1.github的服务器有缓存,更新后, 可能需要强制刷新才能看到更新.<br>2.分类是支持中文的, 但rake preview不支持.<br>3.Disqus支持中文, 但是可能需要申请.可以在Disqus设置页面找到申请链接.</p>
+
+      
+    </div>
+    
+    <footer>
+      <div class="alignleft">
+      
+  
+  <div class="categories">
+    <a href="/categories/杂谈/">杂谈</a>
+  </div>
+
+      
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    
+  </div>
+</article>
+
+
+<section id="comment">
+  
+            <!-- Duoshuo Comment BEGIN -->
+            <div class="ds-thread"></div>
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"jiabin"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = 'http://static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+            <!-- Duoshuo Comment END -->
+      
+  
+</section>
+
+</div></div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer"><div class="inner"><div class="alignleft">
+  <p>
+  
+    &copy; 2015 Young40
+  
+  </p>
+  <p>
+    Theme By <a href="http://jiabin.tk" >Byron</a> based on <a href="https://github.com/willerce/hexo-theme-noderce" >Noderce</a>
+  </p>
+
+</div>
+<div class="clearfix"></div></div></footer>
+  <script type="text/javascript">
+
+</script>
+
+</body>
+</html>

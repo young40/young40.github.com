@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>喜气羊羊 › 一步一步CocosBuilder(1)</title>
+  <meta name="author" content="Young40">
+  
+  <meta name="description" content="CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.我想这个也是其不够流行的原因吧.
+如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力.我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实.我无论C++,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.
+这次的目的是基本实现原来v2.0中的例子.我采用的2d-x的版本是:cocos2d-2.1beta3-x-2.1.0, 以OS X版本为主, 以sample目录下的HelloCpp为基础改进. CCB的版本是v3.0alpha0.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="一步一步CocosBuilder(1)"/>
+  <meta property="og:site_name" content="喜气羊羊"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="喜气羊羊" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5353535-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header"><div class="meta inner">
+  <h1><a href="/">喜气羊羊</a></h1>
+  <h2 id="header-h2">游来游去</h2>
+  <nav id="main-nav">
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/archives">文章归档</a></li>
+      
+      <li><a href="http://photo.jiabin.tk">相册</a></li>
+      
+      <li><a href="/links">友情链接</a></li>
+      
+      <li><a href="/about">关于</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title">一步一步CocosBuilder(1)</h1>
+  
+
+      
+      <time datetime="2012-12-20T18:46:00.000Z">Dec 21 2012</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.<br>CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.<br>我想这个也是其不够流行的原因吧.</p>
+<p>如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力.<br>我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实.<br>我无论C++,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.</p>
+<p>这次的目的是基本实现原来v2.0中的例子.<br>我采用的2d-x的版本是:cocos2d-2.1beta3-x-2.1.0, 以OS X版本为主, 以sample目录下的HelloCpp为基础改进. CCB的版本是v3.0alpha0.</p>
+<a id="more"></a>
+
+<p>本文的目标是基本实现将CCB整合进Mac OS X版本的项目中.</p>
+<p>首先将2d-x源代码中sample目录下的HelloCpp目录重命名为TestCocosBuilder.并使用CocosBuilder创建新项目文件在其Resources文件夹中.<br>还需要将项目需要的图片资源放入Resources目录中. 具体可以参见我打包后的整体项目文件.还可以参见文末的目录树说明.</p>
+<p>贴下Xcode项目的目录,如果添加extensions应该逐个添加,否则可能会遇到编译错误,有可能会把其他平台文件错误添加进来.</p>
+<img src="/upload/2012-12/ccb-sbs-1-001.png">
+
+<p>做完这些准备工作后, 我们接下来按步来讲解. </p>
+<p>1.首先编辑下<code>AppMacros.h</code>, 修改以下代码</p>
+<figure class="highlight cpp"><figcaption><span>AppMacros.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> Resource smallResource  =  { cocos2d::CCSizeMake(<span class="number">480</span>, <span class="number">320</span>),   <span class="string">"resources-iphone"</span> };</div><div class="line"><span class="keyword">static</span> Resource mediumResource =  { cocos2d::CCSizeMake(<span class="number">1024</span>, <span class="number">768</span>),  <span class="string">"resources-ipad"</span>   };</div><div class="line"><span class="keyword">static</span> Resource largeResource  =  { cocos2d::CCSizeMake(<span class="number">2048</span>, <span class="number">1536</span>), <span class="string">"resources-ipadhd"</span> };</div></pre></td></tr></table></figure>
+
+<p>这一段主要是修改<code>HelloCpp</code>默认的资源目录, 配合CCB的发布路径.同时可以将原来几个目录中文件分别移入对应目录.<br>2.添加一个新类<code>MainScene</code>如下</p>
+<figure class="highlight cpp"><figcaption><span>MainScene.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#ifndef __HelloCpp__MainScene__</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> __HelloCpp__MainScene__</span></div><div class="line"></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> "cocos2d.h"</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> "cocos-ext.h"</span></div><div class="line"></div><div class="line"><span class="keyword">class</span> MainScene</div><div class="line">: <span class="keyword">public</span> cocos2d::CCLayer <span class="comment">//从CCLayer派生</span></div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">static</span> cocos2d::CCScene* scene();</div><div class="line">};</div><div class="line"></div><div class="line"><span class="preprocessor">#<span class="keyword">endif</span> /* defined(__HelloCpp__MainScene__) */</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight cpp"><figcaption><span>MainScene.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> "MainScene.h"</span></div><div class="line"></div><div class="line">USING_NS_CC;</div><div class="line">USING_NS_CC_EXT;</div><div class="line"></div><div class="line">CCScene* MainScene::scene()</div><div class="line">{</div><div class="line">    CCScene *scene = CCScene::create();</div><div class="line">    </div><div class="line">    CCNodeLoaderLibrary *lib = CCNodeLoaderLibrary::newDefaultCCNodeLoaderLibrary(); <span class="comment">//生成一个默认的Node Loader</span></div><div class="line">    </div><div class="line">    CCBReader *reader = <span class="keyword">new</span> CCBReader(lib); <span class="comment">//用node load lib 初始化一个ccb reader</span></div><div class="line">    </div><div class="line">    CCNode *node = reader-&gt;readNodeGraphFromFile(<span class="string">"MainScene.ccbi"</span>, scene); <span class="comment">//从ccbi文件中加载node</span></div><div class="line">    </div><div class="line">    reader-&gt;release(); <span class="comment">//注意手动释放内存</span></div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (node!=NULL)</div><div class="line">    {</div><div class="line">        scene-&gt;addChild(node); <span class="comment">//将node 添加到scene中</span></div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> scene;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>3.修改<code>AppDelegate.cpp</code>中默认的启动scene</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CCScene *pScene = MainScene::scene(); <span class="comment">//HelloWorld::scene();</span></div></pre></td></tr></table></figure>
+
+<p>4.注意CCB中发布选项的设置, 并发布一次.</p>
+<img src="/upload/2012-12/ccb-sbs-1-002.png">
+
+<p>5.如果没有错误的话, 你应该可以看到运行的效果.</p>
+<img src="/upload/2012-12/ccb-sbs-1-003.png">
+
+
+<p>Update:<br>@王哲Walzer 说,CCB大部分是美术在用, 在美术圈讨论, 所以程序圈较少看到人在讨论, 其实用的公司挺多的.<br><a href="http://weibo.com/1702027805/zay18wLT5" target="_blank" rel="external">http://weibo.com/1702027805/zay18wLT5</a></p>
+<figure class="highlight sh"><figcaption><span>目录结构</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">├── samples <span class="comment">#目录结构和2d-x源代码保持一致,相信大家对2d-x源代码很熟悉了.</span></div><div class="line">│   └── CocosBuilderTest <span class="comment">#项目所在目录</span></div><div class="line">│       ├── Classes <span class="comment">#代码所在目录</span></div><div class="line">│       ├── Resources <span class="comment">#资源目录</span></div><div class="line">│       │   ├── ccb <span class="comment">#ccb发布后的目录</span></div><div class="line">│       │   │   ├── HelloCocosBuilder.ccbi</div><div class="line">│       │   │   ├── ...</div><div class="line">│       │   │   └── TestSprites.ccbi</div><div class="line">│       │   ├── ccbResources <span class="comment">#发布后的默认ccb资源</span></div><div class="line">│       │   ├── fonts</div><div class="line">│       │   ├── resources-ipad <span class="comment">#注意这几个目录, 稍后我们会提及</span></div><div class="line">│       │   ├── resources-ipadhd</div><div class="line">│       │   ├── resources-iphone</div><div class="line">│       │   ├── resources-iphonehd</div><div class="line">│       ├── ccb-source <span class="comment">#ccb项目目录</span></div><div class="line">│       │   ├── ccb</div><div class="line">│       │   │   ├── HelloCocosBuilder.ccb <span class="comment">#这几个是原CocosBuilder例子中的ccb, 直接复制过来了.</span></div><div class="line">│       │   │   ├── ...</div><div class="line">│       │   │   └── TestSprites.ccbi</div><div class="line">│       │   ├── ccbResources</div><div class="line">│       │   ├── resources-auto <span class="comment">#CocosBuilderv3.0的资源目录, 似乎只能存放图片</span></div><div class="line">│       │   │   ├── btn<span class="operator">-a</span>-<span class="number">0</span>.png <span class="comment">#否则会引起发布是造成CocosBuilder崩溃</span></div><div class="line">│       │   │   ├── ...</div><div class="line">│       │   │   └── scale-<span class="number">9</span>-demo.png</div><div class="line">│       │   ├── MainScene.ccb <span class="comment">#默认生成的ccb, 我们这一次不对其更改</span></div><div class="line">│       │   ├── MainScene.js</div><div class="line">│       │   ├── animated-grossini.plist</div><div class="line">│       │   ├── animated-grossini.png</div><div class="line">│       │   ├── ccb-source.ccbproj</div><div class="line">│       │   ├── comic\ andy.ttf</div><div class="line">│       │   ├── grossini-generic.plist</div><div class="line">│       │   ├── grossini-generic.png</div><div class="line">│       │   ├── markerfelt24shadow.fnt</div><div class="line">│       │   └── markerfelt24shadow.png</div><div class="line">│       └── proj.mac</div><div class="line">│           ├── HelloCpp.xcodeproj <span class="comment">#项目文件, 暂时只支持mac os x</span></div><div class="line">├── cocos2dx <span class="comment">#2d-x文件</span></div><div class="line">├── extensions <span class="comment">#2d-x的扩展</span></div><div class="line">│   ├── CCBReader <span class="comment">#这个是解析CocosBuilder的主要CCBReader</span></div><div class="line">│   │   ├── CCBAnimationManager.cpp</div><div class="line">│   │   ├── CCBAnimationManager.h</div><div class="line">│   │   ├── ...</div><div class="line">│   │   └── CCSpriteLoader.h</div><div class="line">│   ├── GUI</div><div class="line">│   ├── network</div><div class="line">│   ├── physics_nodes</div><div class="line">│   ├── ExtensionMacros.h</div><div class="line">│   └── cocos-ext.h</div></pre></td></tr></table></figure>
+
+<p><hr><br>代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> </p>
+<ul>
+<li>本文是系列文章, 请查看其他文章:</li>
+<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="external">一步一步CocosBuilder(1)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="external">一步一步CocosBuilder(2)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="external">一步一步CocosBuilder(3)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="external">一步一步CocosBuilder(4)完结</a></li>
+</ul>
+<p>谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.</p>
+<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="external">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="external">http://weibo.com/young40</a></p>
+
+      
+    </div>
+    
+    <footer>
+      <div class="alignleft">
+      
+  
+  <div class="categories">
+    <a href="/categories/Cocos2d-x/">Cocos2d-x</a>, <a href="/categories/Cocos2d-x/CocosBuilder/">CocosBuilder</a>
+  </div>
+
+      
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    
+  </div>
+</article>
+
+
+<section id="comment">
+  
+            <!-- Duoshuo Comment BEGIN -->
+            <div class="ds-thread"></div>
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"jiabin"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = 'http://static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+            <!-- Duoshuo Comment END -->
+      
+  
+</section>
+
+</div></div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer"><div class="inner"><div class="alignleft">
+  <p>
+  
+    &copy; 2015 Young40
+  
+  </p>
+  <p>
+    Theme By <a href="http://jiabin.tk" >Byron</a> based on <a href="https://github.com/willerce/hexo-theme-noderce" >Noderce</a>
+  </p>
+
+</div>
+<div class="clearfix"></div></div></footer>
+  <script type="text/javascript">
+
+</script>
+
+</body>
+</html>

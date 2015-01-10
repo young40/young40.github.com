@@ -1,0 +1,293 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>喜气羊羊 › CocosBuilder</title>
+  <meta name="author" content="Young40">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="喜气羊羊"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="喜气羊羊" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5353535-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header"><div class="meta inner">
+  <h1><a href="/">喜气羊羊</a></h1>
+  <h2 id="header-h2">游来游去</h2>
+  <nav id="main-nav">
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/archives">文章归档</a></li>
+      
+      <li><a href="http://photo.jiabin.tk">相册</a></li>
+      
+      <li><a href="/links">友情链接</a></li>
+      
+      <li><a href="/about">关于</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title category">CocosBuilder</h2>
+
+
+<article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2013/08/01/cocosbuilder-multi-resolution/">CocosBuilder 多分辨率</a></h1>
+  
+
+      
+      <time datetime="2013-08-01T14:10:00.000Z">Aug 1 2013</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>最近两个项目大量使用了CocosBuilder, 对于开发效率提高是巨大的. 一直计划写一篇博客谈谈CocosBuilder的多分辨率问题, 懒病加上一些疙疙瘩瘩的小事情, 拖延了一个多月, 才终于下定决心要尽快完成这篇博客.</p>
+<p>在这篇文章中, 假定你比较熟悉CocosBuilder, 如果您还不是很熟悉CocosBuilder, 推荐您看下我的另外一篇文章. <a href="http://www.ityran.com/archives/2614" target="_blank" rel="external">从零开始学习CocosBuilder</a> 我还是小菜鸟一个, 难免会有很多错误, 还望各位看客不吝赐教. </p>
+<p>版本:</p>
+<ul>
+<li>Cocos2d-x 2.1.4 <a href="http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip" target="_blank" rel="external">http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip</a></li>
+<li>CocosBuilder 3.0alpha5 <a href="http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip" target="_blank" rel="external">http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip</a></li>
+</ul>
+<p>最近几次Cocos2d-x和CocosBuilder(以下简写为2dx和ccb)都是联合发布的, 使用联合发布的版本会减少不兼容的可能.</p>
+
+      
+    </div>
+    
+      
+      <footer>
+        <div class="alignleft">
+          <a href="/2013/08/01/cocosbuilder-multi-resolution/#more" class="more-link">阅读全文 &gt;</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      
+    
+  </div>
+</article>
+
+
+
+
+<article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2012/12/29/2012-12-29-cocosbuilder-step-by-step-part-four/">一步一步CocosBuilder(4)[完结]</a></h1>
+  
+
+      
+      <time datetime="2012-12-29T02:54:00.000Z">Dec 29 2012</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>这一节也是很轻松, 主要是牵涉到Timeline的切换. 其他的都是简单的界面制作.<br>所以CocosBuilder的威力也体现在这里, 很少的代码就能驱动界面了.   </p>
+<p>我们这次先做<code>Particle System</code>, <code>Scroll View</code>, 最后以<code>Animations</code>收官.   </p>
+<h5 id="1">1</h5>
+<p>制作<code>Particle System</code>和<code>Scroll View</code>的界面很简单,我们也是以程序为重点, 所以不再赘述.<br>只需要一句<code>this-&gt;openTest(&quot;ccb/Scroll.ccbi&quot;);</code>就可以调用新的界面了.<br>其他诸如绑定之类相信大家已经是轻车熟路啦.    </p>
+
+      
+    </div>
+    
+      
+      <footer>
+        <div class="alignleft">
+          <a href="/2012/12/29/2012-12-29-cocosbuilder-step-by-step-part-four/#more" class="more-link">阅读全文 &gt;</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      
+    
+  </div>
+</article>
+
+
+
+
+<article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2012/12/28/2012-12-28-cocosbuilder-step-by-step-part-three/">一步一步CocosBuilder(3)</a></h1>
+  
+
+      
+      <time datetime="2012-12-27T16:54:00.000Z">Dec 28 2012</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>今天要说的内容比较轻松, 重要的知识点不多.<br>目标是实现<code>Menus &amp; Items</code>, <code>Sprites &amp; 9 Slice</code>, <code>Buttons &amp; Labels</code>.   </p>
+<h5 id="1">1</h5>
+<p>首先我们在CocosBuilder中建立一个新的<code>Header.ccb</code>.具体请参见CocosBuilder的项目.<br>在创建的时候,勾选<code>Full Sceen</code>, 并且将分辨率的<code>Height</code>都修改为40.<br>这个文件很简单, 根节点下只包含一个<code>CCLayerColor</code>,根节点的<code>Custom class</code>设置为<code>HeaderLayer</code>.<br><code>CCLayerColor</code>下面包含一个<code>CCLabelTTF</code>和<code>CCMenu</code>.<br><code>CCLabelTTF</code>的变量绑定为类型<code>Owner var</code>, 值为<code>mTitleLabelTTF</code>.<br><code>CCMenu</code>包含一个<code>CCMenuItemImage</code>. <code>CCMenuItemImage</code>的<code>Selector</code>属性设置为<code>onBackClicked</code>.<br>这个ccb作为一个公用的元素被其他ccb文件所引用. 是属于模块化的一个例子.<br>然后我们在Xcode中新建一个<code>HeaderLayer</code>类, 并同时声明一个<code>HeaderLayerLoader</code>类.   </p>
+
+      
+    </div>
+    
+      
+      <footer>
+        <div class="alignleft">
+          <a href="/2012/12/28/2012-12-28-cocosbuilder-step-by-step-part-three/#more" class="more-link">阅读全文 &gt;</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      
+    
+  </div>
+</article>
+
+
+
+
+<article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2012/12/25/2012-12-25-cocosbuilder-step-by-step-part-two/">一步一步CocosBuilder(2)</a></h1>
+  
+
+      
+      <time datetime="2012-12-25T13:15:00.000Z">Dec 25 2012</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>上一篇我们建立了基本的工作环境, 这一次我们将基本实现例子中的HelloCocosBuilder.</p>
+<h3 id="注意">注意</h3>
+<p>这两天纠结了一个问题. 我发现按照上次的配置来实现例子, 图片的大小怎么都和例子中的搭配不上. 后来动用CCB的源代码才看出端倪.<br>CCB v3.0加入了一个<code>resources-auto</code>的目录, 在发布的时候, 会自动缩放图片到对应的分辨率去. 因为图片的分辨率不合适(初步目测), 我们暂时不使用这功能. 请大家将上一篇文章<br>中的<code>resources-auto</code>文件夹下图片移到父目录<code>ccb-source</code>下面. 这个也解释了为什么<code>resources-auto</code>有非图片文件会导致CCB崩溃的原因.</p>
+
+      
+    </div>
+    
+      
+      <footer>
+        <div class="alignleft">
+          <a href="/2012/12/25/2012-12-25-cocosbuilder-step-by-step-part-two/#more" class="more-link">阅读全文 &gt;</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      
+    
+  </div>
+</article>
+
+
+
+
+<article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title"><a href="/2012/12/21/2012-12-21-cocosbuilder-step-by-step-part-one/">一步一步CocosBuilder(1)</a></h1>
+  
+
+      
+      <time datetime="2012-12-20T18:46:00.000Z">Dec 21 2012</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.<br>CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.<br>我想这个也是其不够流行的原因吧.</p>
+<p>如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力.<br>我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实.<br>我无论C++,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.</p>
+<p>这次的目的是基本实现原来v2.0中的例子.<br>我采用的2d-x的版本是:cocos2d-2.1beta3-x-2.1.0, 以OS X版本为主, 以sample目录下的HelloCpp为基础改进. CCB的版本是v3.0alpha0.</p>
+
+      
+    </div>
+    
+      
+      <footer>
+        <div class="alignleft">
+          <a href="/2012/12/21/2012-12-21-cocosbuilder-step-by-step-part-one/#more" class="more-link">阅读全文 &gt;</a>
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      
+    
+  </div>
+</article>
+
+
+
+
+<div class="pagination">
+  <table width='100%'>
+    <tbody>
+    <tr>
+      <td width='120' align='left'>
+        
+      </td>
+      <td width='auto' align='center'>
+          <a href="/archives/">文章归档</a>
+      </td>
+      <td width='120' align='right'>
+        
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+</div></div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer"><div class="inner"><div class="alignleft">
+  <p>
+  
+    &copy; 2015 Young40
+  
+  </p>
+  <p>
+    Theme By <a href="http://jiabin.tk" >Byron</a> based on <a href="https://github.com/willerce/hexo-theme-noderce" >Noderce</a>
+  </p>
+
+</div>
+<div class="clearfix"></div></div></footer>
+  <script type="text/javascript">
+
+</script>
+
+</body>
+</html>

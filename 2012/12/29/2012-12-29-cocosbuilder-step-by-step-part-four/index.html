@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>喜气羊羊 › 一步一步CocosBuilder(4)[完结]</title>
+  <meta name="author" content="Young40">
+  
+  <meta name="description" content="这一节也是很轻松, 主要是牵涉到Timeline的切换. 其他的都是简单的界面制作.所以CocosBuilder的威力也体现在这里, 很少的代码就能驱动界面了.   
+我们这次先做Particle System, Scroll View, 最后以Animations收官.   
+1
+制作Particle System和Scroll View的界面很简单,我们也是以程序为重点, 所以不再赘述.只需要一句this-&amp;gt;openTest(&amp;quot;ccb/Scroll.ccbi&amp;quot;);就可以调用新的界面了.其他诸如绑定之类相信大家已经是轻车熟路啦.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="一步一步CocosBuilder(4)[完结]"/>
+  <meta property="og:site_name" content="喜气羊羊"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="喜气羊羊" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5353535-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header"><div class="meta inner">
+  <h1><a href="/">喜气羊羊</a></h1>
+  <h2 id="header-h2">游来游去</h2>
+  <nav id="main-nav">
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/archives">文章归档</a></li>
+      
+      <li><a href="http://photo.jiabin.tk">相册</a></li>
+      
+      <li><a href="/links">友情链接</a></li>
+      
+      <li><a href="/about">关于</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title">一步一步CocosBuilder(4)[完结]</h1>
+  
+
+      
+      <time datetime="2012-12-29T02:54:00.000Z">Dec 29 2012</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>这一节也是很轻松, 主要是牵涉到Timeline的切换. 其他的都是简单的界面制作.<br>所以CocosBuilder的威力也体现在这里, 很少的代码就能驱动界面了.   </p>
+<p>我们这次先做<code>Particle System</code>, <code>Scroll View</code>, 最后以<code>Animations</code>收官.   </p>
+<h5 id="1">1</h5>
+<p>制作<code>Particle System</code>和<code>Scroll View</code>的界面很简单,我们也是以程序为重点, 所以不再赘述.<br>只需要一句<code>this-&gt;openTest(&quot;ccb/Scroll.ccbi&quot;);</code>就可以调用新的界面了.<br>其他诸如绑定之类相信大家已经是轻车熟路啦.    </p>
+<a id="more"></a>
+
+<img src="/upload/2012-12/ccb-sbs-4-001.png"><br><img src="/upload/2012-12/ccb-sbs-4-002.png">
+
+
+<h5 id="2">2</h5>
+<p>好吧, 我承认一点, 制作<code>Animations</code>的界面的时候, 我直接复制了例子中的节点.<br>5个Timeline, 还是很复杂的, 应该是一个非常精细的工作. 向美术们致敬.   </p>
+<figure class="highlight cpp"><figcaption><span>AnimationsLayer.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> AnimationsLayer</div><div class="line">: <span class="keyword">public</span> cocos2d::CCLayer</div><div class="line">, <span class="keyword">public</span> cocos2d::extension::CCBSelectorResolver</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    AnimationsLayer();</div><div class="line">    ~AnimationsLayer();</div><div class="line">    </div><div class="line">    CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(AnimationsLayer, create);</div><div class="line">    </div><div class="line">    <span class="keyword">virtual</span> cocos2d::SEL_MenuHandler onResolveCCBCCMenuItemSelector(CCObject * pTarget, <span class="keyword">const</span> <span class="keyword">char</span>* pSelectorName);</div><div class="line">    <span class="keyword">virtual</span> cocos2d::extension::SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, <span class="keyword">const</span> <span class="keyword">char</span>* pSelectorName);    </div><div class="line">    <span class="keyword">void</span> setAnimationManager(cocos2d::extension::CCBAnimationManager *pAnimationManager);</div><div class="line">    </div><div class="line">    <span class="keyword">void</span> onIdle(cocos2d::CCObject * pSender, cocos2d::extension::CCControlEvent pCCControlEvent);</div><div class="line">    <span class="keyword">void</span> onWave(cocos2d::CCObject * pSender, cocos2d::extension::CCControlEvent pCCControlEvent);</div><div class="line">    <span class="keyword">void</span> onJump(cocos2d::CCObject * pSender, cocos2d::extension::CCControlEvent pCCControlEvent);</div><div class="line">    <span class="keyword">void</span> onFunky(cocos2d::CCObject * pSender, cocos2d::extension::CCControlEvent pCCControlEvent);</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    cocos2d::extension::CCBAnimationManager *mAnimationManager;</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keyword">class</span> AnimationsLayerLoader : <span class="keyword">public</span> cocos2d::extension::CCNodeLoader</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(AnimationsLayerLoader, loader);</div><div class="line"><span class="keyword">protected</span>:</div><div class="line">    CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(AnimationsLayer);</div><div class="line">};</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight cpp"><figcaption><span>AnimationsLayer.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">AnimationsLayer::AnimationsLayer()</div><div class="line">: mAnimationManager(NULL)</div><div class="line">{}</div><div class="line"></div><div class="line">AnimationsLayer::~AnimationsLayer()</div><div class="line">{</div><div class="line">    CC_SAFE_RELEASE_NULL(mAnimationManager);</div><div class="line">}</div><div class="line"></div><div class="line">SEL_MenuHandler AnimationsLayer::onResolveCCBCCMenuItemSelector(cocos2d::CCObject *pTarget, <span class="keyword">const</span> <span class="keyword">char</span> *pSelectorName)</div><div class="line">{</div><div class="line">    <span class="keyword">return</span> NULL;</div><div class="line">}</div><div class="line"></div><div class="line">SEL_CCControlHandler AnimationsLayer::onResolveCCBCCControlSelector(cocos2d::CCObject *pTarget, <span class="keyword">const</span> <span class="keyword">char</span> *pSelectorName)</div><div class="line">{</div><div class="line">    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(<span class="keyword">this</span>, <span class="string">"onIdle"</span>, AnimationsLayer::onIdle);</div><div class="line">    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(<span class="keyword">this</span>, <span class="string">"onJump"</span>, AnimationsLayer::onJump);</div><div class="line">    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(<span class="keyword">this</span>, <span class="string">"onWave"</span>, AnimationsLayer::onWave);</div><div class="line">    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(<span class="keyword">this</span>, <span class="string">"onFunky"</span>, AnimationsLayer::onFunky);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> NULL;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> AnimationsLayer::setAnimationManager(cocos2d::extension::CCBAnimationManager *pAnimationManager)</div><div class="line">{</div><div class="line">    CC_SAFE_RELEASE_NULL(mAnimationManager);</div><div class="line">    mAnimationManager = pAnimationManager;</div><div class="line">    CC_SAFE_RETAIN(mAnimationManager);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> AnimationsLayer::onIdle(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)</div><div class="line">{</div><div class="line">    <span class="keyword">this</span>-&gt;mAnimationManager-&gt;runAnimationsForSequenceNamedTweenDuration(<span class="string">"Idle"</span>, <span class="number">0.3f</span>);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> AnimationsLayer::onJump(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)</div><div class="line">{</div><div class="line">    <span class="keyword">this</span>-&gt;mAnimationManager-&gt;runAnimationsForSequenceNamedTweenDuration(<span class="string">"Jump"</span>, <span class="number">0.3f</span>);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> AnimationsLayer::onWave(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)</div><div class="line">{</div><div class="line">    <span class="keyword">this</span>-&gt;mAnimationManager-&gt;runAnimationsForSequenceNamedTweenDuration(<span class="string">"Wave"</span>, <span class="number">0.3f</span>);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> AnimationsLayer::onFunky(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)</div><div class="line">{</div><div class="line">    <span class="keyword">this</span>-&gt;mAnimationManager-&gt;runAnimationsForSequenceNamedTweenDuration(<span class="string">"Funky"</span>, <span class="number">0.3f</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>整个代码还是很简单. 和以前的几个例子稍微有点不同的是在调用的时候, 需要把<code>CCBReader</code>里面的<code>AnimationManger</code>传入.<br>好, 还是看下调用的代码吧.   </p>
+<figure class="highlight cpp"><figcaption><span>MainScene.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> MainScene::onAnimations(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)</div><div class="line">{</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> * pCCBFileName = <span class="string">"ccb/Animations.ccbi"</span>;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> * pCCNodeName = <span class="string">"AnimationsLayer"</span>;</div><div class="line">    cocos2d::extension::CCNodeLoader * pCCNodeLoader = AnimationsLayerLoader::loader();</div><div class="line">    </div><div class="line">    CCScene *scene = CCScene::create();</div><div class="line">    </div><div class="line">    CCNodeLoaderLibrary *lib = CCNodeLoaderLibrary::newDefaultCCNodeLoaderLibrary();</div><div class="line">    </div><div class="line">    lib-&gt;registerCCNodeLoader(<span class="string">"HeaderLayer"</span>, HeaderLayerLoader::loader());</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (pCCNodeName!=NULL && pCCNodeLoader!=NULL)</div><div class="line">    {</div><div class="line">        lib-&gt;registerCCNodeLoader(pCCNodeName, pCCNodeLoader);</div><div class="line">    }</div><div class="line">    </div><div class="line">    CCBReader *reader = <span class="keyword">new</span> CCBReader(lib);</div><div class="line">    CCNode *node = reader-&gt;readNodeGraphFromFile(pCCBFileName, <span class="keyword">this</span>);</div><div class="line">    reader-&gt;autorelease();</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (node != NULL)</div><div class="line">    {</div><div class="line">        <span class="comment">//获取AnimationManger 并传给AnimationsLayer</span></div><div class="line">        ((AnimationsLayer*)node) -&gt;setAnimationManager(reader-&gt;getAnimationManager());</div><div class="line">        </div><div class="line">        scene-&gt;addChild(node);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">this</span>-&gt;mTitleLabelTTF-&gt;setString(pCCBFileName);</div><div class="line">    </div><div class="line">    CCDirector::sharedDirector()-&gt;pushScene(scene);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<img src="/upload/2012-12/ccb-sbs-4-003.png">
+
+
+<h3 id="后记">后记</h3>
+<p>看到微博上@做游戏的老G 吐槽说CocosBuilder如何不好用, 学习难度比较大. 我也是很认可这一点.<br>但是只要是坚持把TestCpp例子完全读完了, 相信掌握CocosBuilder也是很快能够做到的.<br>既然你看完了这个教程. 相信你也已经能够很好地驾驭CocosBuilder. 关键还在实践呦!    </p>
+<p>微博上@Ghost_233 说了一个很好的思路, 直接从ccb文件中生成对应的C++类, 而且他还做了一些实践.<br>我暂时还没有研究他的代码, 不过肯定是可行. 这是一个很赞的思路.<br>希望大家能动手, 最好合作出来一个较好的工具来, 我想, 是不是集成到CocosBuilder会更好?   </p>
+<p>谢谢大家耐心看完我的文章.   </p>
+<p><hr><br>代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> </p>
+<ul>
+<li>本文是系列文章, 请查看其他文章:</li>
+<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="external">一步一步CocosBuilder(1)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="external">一步一步CocosBuilder(2)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="external">一步一步CocosBuilder(3)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="external">一步一步CocosBuilder(4)完结</a></li>
+</ul>
+<p>谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.</p>
+<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="external">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="external">http://weibo.com/young40</a></p>
+
+      
+    </div>
+    
+    <footer>
+      <div class="alignleft">
+      
+  
+  <div class="categories">
+    <a href="/categories/Cocos2d-x/">Cocos2d-x</a>, <a href="/categories/Cocos2d-x/CocosBuilder/">CocosBuilder</a>
+  </div>
+
+      
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    
+  </div>
+</article>
+
+
+<section id="comment">
+  
+            <!-- Duoshuo Comment BEGIN -->
+            <div class="ds-thread"></div>
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"jiabin"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = 'http://static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+            <!-- Duoshuo Comment END -->
+      
+  
+</section>
+
+</div></div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer"><div class="inner"><div class="alignleft">
+  <p>
+  
+    &copy; 2015 Young40
+  
+  </p>
+  <p>
+    Theme By <a href="http://jiabin.tk" >Byron</a> based on <a href="https://github.com/willerce/hexo-theme-noderce" >Noderce</a>
+  </p>
+
+</div>
+<div class="clearfix"></div></div></footer>
+  <script type="text/javascript">
+
+</script>
+
+</body>
+</html>

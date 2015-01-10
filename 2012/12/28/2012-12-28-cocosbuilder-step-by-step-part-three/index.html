@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>喜气羊羊 › 一步一步CocosBuilder(3)</title>
+  <meta name="author" content="Young40">
+  
+  <meta name="description" content="今天要说的内容比较轻松, 重要的知识点不多.目标是实现Menus &amp;amp; Items, Sprites &amp;amp; 9 Slice, Buttons &amp;amp; Labels.   
+1
+首先我们在CocosBuilder中建立一个新的Header.ccb.具体请参见CocosBuilder的项目.在创建的时候,勾选Full Sceen, 并且将分辨率的Height都修改为40.这个文件很简单, 根节点下只包含一个CCLayerColor,根节点的Custom class设置为HeaderLayer.CCLayerColor下面包含一个CCLabelTTF和CCMenu.CCLabelTTF的变量绑定为类型Owner var, 值为mTitleLabelTTF.CCMenu包含一个CCMenuItemImage. CCMenuItemImage的Selector属性设置为onBackClicked.这个ccb作为一个公用的元素被其他ccb文件所引用. 是属于模块化的一个例子.然后我们在Xcode中新建一个HeaderLayer类, 并同时声明一个HeaderLayerLoader类.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="一步一步CocosBuilder(3)"/>
+  <meta property="og:site_name" content="喜气羊羊"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="喜气羊羊" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5353535-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header"><div class="meta inner">
+  <h1><a href="/">喜气羊羊</a></h1>
+  <h2 id="header-h2">游来游去</h2>
+  <nav id="main-nav">
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/archives">文章归档</a></li>
+      
+      <li><a href="http://photo.jiabin.tk">相册</a></li>
+      
+      <li><a href="/links">友情链接</a></li>
+      
+      <li><a href="/about">关于</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title">一步一步CocosBuilder(3)</h1>
+  
+
+      
+      <time datetime="2012-12-27T16:54:00.000Z">Dec 28 2012</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>今天要说的内容比较轻松, 重要的知识点不多.<br>目标是实现<code>Menus &amp; Items</code>, <code>Sprites &amp; 9 Slice</code>, <code>Buttons &amp; Labels</code>.   </p>
+<h5 id="1">1</h5>
+<p>首先我们在CocosBuilder中建立一个新的<code>Header.ccb</code>.具体请参见CocosBuilder的项目.<br>在创建的时候,勾选<code>Full Sceen</code>, 并且将分辨率的<code>Height</code>都修改为40.<br>这个文件很简单, 根节点下只包含一个<code>CCLayerColor</code>,根节点的<code>Custom class</code>设置为<code>HeaderLayer</code>.<br><code>CCLayerColor</code>下面包含一个<code>CCLabelTTF</code>和<code>CCMenu</code>.<br><code>CCLabelTTF</code>的变量绑定为类型<code>Owner var</code>, 值为<code>mTitleLabelTTF</code>.<br><code>CCMenu</code>包含一个<code>CCMenuItemImage</code>. <code>CCMenuItemImage</code>的<code>Selector</code>属性设置为<code>onBackClicked</code>.<br>这个ccb作为一个公用的元素被其他ccb文件所引用. 是属于模块化的一个例子.<br>然后我们在Xcode中新建一个<code>HeaderLayer</code>类, 并同时声明一个<code>HeaderLayerLoader</code>类.   </p>
+<a id="more"></a>
+
+<figure class="highlight cpp"><figcaption><span>HeaderLayer.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> HeaderLayer</div><div class="line">: <span class="keyword">public</span> cocos2d::CCLayer</div><div class="line">, <span class="keyword">public</span> cocos2d::extension::CCBSelectorResolver</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(HeaderLayer, create);</div><div class="line">    </div><div class="line">    <span class="keyword">virtual</span> cocos2d::SEL_MenuHandler onResolveCCBCCMenuItemSelector(CCObject * pTarget, <span class="keyword">const</span> <span class="keyword">char</span>* pSelectorName);</div><div class="line">    <span class="keyword">virtual</span> cocos2d::extension::SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, <span class="keyword">const</span> <span class="keyword">char</span>* pSelectorName);</div><div class="line"></div><div class="line">    <span class="keyword">void</span> onBackClicked(CCObject *pSender);</div><div class="line"></div><div class="line">};</div><div class="line"></div><div class="line"><span class="keyword">class</span> HeaderLayerLoader : <span class="keyword">public</span> cocos2d::extension::CCLayerLoader</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(HeaderLayerLoader, loader);</div><div class="line"><span class="keyword">protected</span>:</div><div class="line">    CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(HeaderLayer);</div><div class="line">};</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight cpp"><figcaption><span>HeaderLayer.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">SEL_MenuHandler HeaderLayer::onResolveCCBCCMenuItemSelector(cocos2d::CCObject *pTarget, <span class="keyword">const</span> <span class="keyword">char</span> *pSelectorName)</div><div class="line">{</div><div class="line">    CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(<span class="keyword">this</span>, <span class="string">"onBackClicked"</span>, HeaderLayer::onBackClicked);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> NULL;</div><div class="line">}</div><div class="line"></div><div class="line">SEL_CCControlHandler HeaderLayer::onResolveCCBCCControlSelector(cocos2d::CCObject *pTarget, <span class="keyword">const</span> <span class="keyword">char</span> *pSelectorName)</div><div class="line">{</div><div class="line">    <span class="keyword">return</span> NULL;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> HeaderLayer::onBackClicked(cocos2d::CCObject *pSender)</div><div class="line">{</div><div class="line">    CCDirector::sharedDirector()-&gt;popScene();</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h5 id="2">2</h5>
+<p>在CocosBuilder中新建一个<code>Menus.ccb</code>, 并将根节点<code>Custom class</code>设置为<code>MenuLayer</code>.<br>再加入几个<code>CCMenuItemImage</code>, Selector分别设置为<code>onPressA</code>, <code>onPressB</code>, <code>onPressC</code>.<br>再加入一个<code>CCLabelBMFont</code>, 绑定<code>Doc root var</code>, 值为<code>mMessageLabelBMFont</code>.<br>在Xcode中新建一个类<code>MenuLayer</code>, 并且在<code>MenuLayer.h</code>中同时声明一个<code>MenuLayerLoader</code>类.   </p>
+<figure class="highlight cpp"><figcaption><span>MenuLayer.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> MenuLayer</div><div class="line">: <span class="keyword">public</span> cocos2d::CCLayer</div><div class="line">, <span class="keyword">public</span> cocos2d::extension::CCBMemberVariableAssigner</div><div class="line">, <span class="keyword">public</span> cocos2d::extension::CCBSelectorResolver</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    MenuLayer();</div><div class="line">    ~MenuLayer();</div><div class="line">    </div><div class="line">    CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(MenuLayer, create);</div><div class="line"></div><div class="line">    <span class="keyword">virtual</span> <span class="keyword">bool</span> onAssignCCBMemberVariable(CCObject* pTarget, <span class="keyword">const</span> <span class="keyword">char</span>* pMemberVariableName, CCNode* pNode);</div><div class="line">    <span class="keyword">virtual</span> cocos2d::SEL_MenuHandler onResolveCCBCCMenuItemSelector(CCObject * pTarget, <span class="keyword">const</span> <span class="keyword">char</span>* pSelectorName);</div><div class="line">    <span class="keyword">virtual</span> cocos2d::extension::SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, <span class="keyword">const</span> <span class="keyword">char</span>* pSelectorName);</div><div class="line"></div><div class="line">    <span class="keyword">void</span> onPressA(cocos2d::CCObject *pSender);</div><div class="line">    <span class="keyword">void</span> onPressB(cocos2d::CCObject *pSender);</div><div class="line">    <span class="keyword">void</span> onPressC(cocos2d::CCObject *pSender);</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line">    cocos2d::CCLabelBMFont *mMessageLabelBMFont;</div><div class="line">};</div><div class="line"></div><div class="line"><span class="keyword">class</span> MenuLayerLoader : <span class="keyword">public</span> cocos2d::extension::CCNodeLoaderLibrary</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(MenuLayerLoader, loader);</div><div class="line"><span class="keyword">protected</span>:</div><div class="line">    CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(MenuLayer);    </div><div class="line">};</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight cpp"><figcaption><span>MenuLayer.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">MenuLayer::MenuLayer()</div><div class="line">: mMessageLabelBMFont(NULL)</div><div class="line">{}</div><div class="line"></div><div class="line">MenuLayer::~MenuLayer()</div><div class="line">{</div><div class="line">    CC_SAFE_DELETE(mMessageLabelBMFont);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">bool</span> MenuLayer::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, <span class="keyword">const</span> <span class="keyword">char</span> *pMemberVariableName, cocos2d::CCNode *pNode)</div><div class="line">{</div><div class="line">    CCB_MEMBERVARIABLEASSIGNER_GLUE(<span class="keyword">this</span>, <span class="string">"mMessageLabelBMFont"</span>, CCLabelBMFont*, <span class="keyword">this</span>-&gt;mMessageLabelBMFont);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div><div class="line"></div><div class="line">SEL_MenuHandler MenuLayer::onResolveCCBCCMenuItemSelector(cocos2d::CCObject *pTarget, <span class="keyword">const</span> <span class="keyword">char</span> *pSelectorName)</div><div class="line">{</div><div class="line">    CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(<span class="keyword">this</span>, <span class="string">"onPressA"</span>, MenuLayer::onPressA);</div><div class="line">    CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(<span class="keyword">this</span>, <span class="string">"onPressB"</span>, MenuLayer::onPressB);</div><div class="line">    CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(<span class="keyword">this</span>, <span class="string">"onPressC_NO_Match"</span>, MenuLayer::onPressC);</div><div class="line">   <span class="comment">//注意这里, 我们给第三个绑定了一个不存在的SelectorName. </span></div><div class="line">    <span class="keyword">return</span> NULL;</div><div class="line">}</div><div class="line"></div><div class="line">SEL_CCControlHandler MenuLayer::onResolveCCBCCControlSelector(cocos2d::CCObject *pTarget, <span class="keyword">const</span> <span class="keyword">char</span> *pSelectorName)</div><div class="line">{</div><div class="line">    <span class="keyword">return</span> NULL;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> MenuLayer::onPressA(cocos2d::CCObject *pSender)</div><div class="line">{</div><div class="line">    <span class="keyword">this</span>-&gt;mMessageLabelBMFont-&gt;setString(<span class="string">"A pressed."</span>);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> MenuLayer::onPressB(cocos2d::CCObject *pSender)</div><div class="line">{</div><div class="line">    <span class="keyword">this</span>-&gt;mMessageLabelBMFont-&gt;setString(<span class="string">"B pressed."</span>);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> MenuLayer::onPressC(cocos2d::CCObject *pSender)</div><div class="line">{</div><div class="line">    <span class="keyword">this</span>-&gt;mMessageLabelBMFont-&gt;setString(<span class="string">"C pressed."</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h5 id="3">3</h5>
+<p>或许有点着急了吧, 我们如何让这个运行起来呢?<br>首先给<code>MainScene</code>增加一个新函数的声明及定义, 还需要增加一个变量用于和<code>Header.ccb</code>中的<code>mTitleLabelTTF</code>绑定.   </p>
+<figure class="highlight cpp"><figcaption><span>MainScene.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">void</span> openTest(<span class="keyword">const</span> <span class="keyword">char</span> * pCCBFileName, <span class="keyword">const</span> <span class="keyword">char</span> * pCCNodeName = NULL, cocos2d::extension::CCNodeLoader * pCCNodeLoader = NULL);</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    cocos2d::CCLabelTTF *mTitleLabelTTF;</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight cpp"><figcaption><span>MainScene.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> MainScene::openTest(<span class="keyword">const</span> <span class="keyword">char</span> * pCCBFileName, <span class="keyword">const</span> <span class="keyword">char</span> * pCCNodeName, cocos2d::extension::CCNodeLoader * pCCNodeLoader)</div><div class="line">{</div><div class="line">    CCScene *scene = CCScene::create();</div><div class="line">    </div><div class="line">    CCNodeLoaderLibrary *lib = CCNodeLoaderLibrary::newDefaultCCNodeLoaderLibrary();</div><div class="line">    </div><div class="line">    lib-&gt;registerCCNodeLoader(<span class="string">"HeaderLayer"</span>, HeaderLayerLoader::loader());</div><div class="line">    lib-&gt;registerCCNodeLoader(pCCNodeName, pCCNodeLoader);</div><div class="line">    </div><div class="line">    CCBReader *reader = <span class="keyword">new</span> CCBReader(lib);</div><div class="line">    CCNode *node = reader-&gt;readNodeGraphFromFile(pCCBFileName, <span class="keyword">this</span>);</div><div class="line">    reader-&gt;autorelease();</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (node != NULL)</div><div class="line">    {</div><div class="line">        scene-&gt;addChild(node);</div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="keyword">this</span>-&gt;mTitleLabelTTF-&gt;setString(pCCBFileName);</div><div class="line">    </div><div class="line">    CCDirector::sharedDirector()-&gt;pushScene(scene);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">bool</span> MainScene::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, <span class="keyword">const</span> <span class="keyword">char</span> *pMemberVariableName, cocos2d::CCNode *pNode)</div><div class="line">{</div><div class="line">    CCB_MEMBERVARIABLEASSIGNER_GLUE(<span class="keyword">this</span>, <span class="string">"mLabelText"</span>, CCLabelBMFont*, <span class="keyword">this</span>-&gt;mLabelText);</div><div class="line">    CCB_MEMBERVARIABLEASSIGNER_GLUE(<span class="keyword">this</span>, <span class="string">"mTitleLabelTTF"</span>, CCLabelTTF*, <span class="keyword">this</span>-&gt;mTitleLabelTTF);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div><div class="line"><span class="keyword">void</span> MainScene::onButtonTest(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)</div><div class="line">{</div><div class="line">    <span class="keyword">this</span>-&gt;openTest(<span class="string">"ccb/Menus.ccbi"</span>, <span class="string">"MenuLayer"</span>, MenuLayerLoader::loader());</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h5 id="4">4</h5>
+<p><code>Sprites &amp; 9 Slice</code> 这个比较简单, 只是靠CocosBuilder就能完成任务了.   </p>
+<img src="/upload/2012-12/ccb-sbs-3-001.png">
+
+<p>我拼的不太好, 嘿嘿. 主要是着重代码, 并非设计, 漂亮的事情交给美术妹纸吧.   </p>
+<h5 id="5">5</h5>
+<p><code>Buttons</code>这块主要是研究了<code>CCControlEvent</code>的各种情况. 我们只贴出核心代码.   </p>
+<figure class="highlight cpp"><figcaption><span>ButtonsLayer.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> ButtonsLayer::onBtnClicked(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)</div><div class="line">{</div><div class="line">    <span class="keyword">switch</span> (pCCControlEvent) {</div><div class="line">        <span class="keyword">case</span> CCControlEventTouchCancel:</div><div class="line">            <span class="keyword">this</span>-&gt;mEventLabelBMFont-&gt;setString(<span class="string">"Cancel"</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> CCControlEventTouchDown:</div><div class="line">            <span class="keyword">this</span>-&gt;mEventLabelBMFont-&gt;setString(<span class="string">"Touch Down"</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> CCControlEventTouchDragEnter:</div><div class="line">            <span class="keyword">this</span>-&gt;mEventLabelBMFont-&gt;setString(<span class="string">"Drag Enter"</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> CCControlEventTouchDragExit:</div><div class="line">            <span class="keyword">this</span>-&gt;mEventLabelBMFont-&gt;setString(<span class="string">"Drag Exit"</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> CCControlEventTouchDragInside:</div><div class="line">            <span class="keyword">this</span>-&gt;mEventLabelBMFont-&gt;setString(<span class="string">"Drag Inside"</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> CCControlEventTouchDragOutside:</div><div class="line">            <span class="keyword">this</span>-&gt;mEventLabelBMFont-&gt;setString(<span class="string">"Drag OutSide"</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> CCControlEventTouchUpInside:</div><div class="line">            <span class="keyword">this</span>-&gt;mEventLabelBMFont-&gt;setString(<span class="string">"Up Inside"</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> CCControlEventTouchUpOutside:</div><div class="line">            <span class="keyword">this</span>-&gt;mEventLabelBMFont-&gt;setString(<span class="string">"Up Outside"</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:<span class="comment">//所有的定义都在上面了,TestCPP里面有句经典的点评, 想看的可以去翻一下.</span></div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<img src="/upload/2012-12/ccb-sbs-3-002.png">
+
+
+<p><hr><br>代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> </p>
+<ul>
+<li>本文是系列文章, 请查看其他文章:</li>
+<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="external">一步一步CocosBuilder(1)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="external">一步一步CocosBuilder(2)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="external">一步一步CocosBuilder(3)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="external">一步一步CocosBuilder(4)完结</a></li>
+</ul>
+<p>谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.</p>
+<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="external">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="external">http://weibo.com/young40</a></p>
+
+      
+    </div>
+    
+    <footer>
+      <div class="alignleft">
+      
+  
+  <div class="categories">
+    <a href="/categories/Cocos2d-x/">Cocos2d-x</a>, <a href="/categories/Cocos2d-x/CocosBuilder/">CocosBuilder</a>
+  </div>
+
+      
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    
+  </div>
+</article>
+
+
+<section id="comment">
+  
+            <!-- Duoshuo Comment BEGIN -->
+            <div class="ds-thread"></div>
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"jiabin"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = 'http://static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+            <!-- Duoshuo Comment END -->
+      
+  
+</section>
+
+</div></div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer"><div class="inner"><div class="alignleft">
+  <p>
+  
+    &copy; 2015 Young40
+  
+  </p>
+  <p>
+    Theme By <a href="http://jiabin.tk" >Byron</a> based on <a href="https://github.com/willerce/hexo-theme-noderce" >Noderce</a>
+  </p>
+
+</div>
+<div class="clearfix"></div></div></footer>
+  <script type="text/javascript">
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>喜气羊羊 › 基于Pomelo和Cocos2d-x的聊天室</title>
+  <meta name="author" content="Young40">
+  
+  <meta name="description" content="据说聊天室和游戏系统有很多相似之处, 并且很多游戏本身就带着多人聊天系统. 所以Pomelo将聊天室作为了一个例子.    
+开源是非常棒的思想和运动, 我简单提两点体会,1.发现了问题可以不用等官方响应,自己有能力就可以马上修复. 2.你可以贡献自己的代码,很多人都可以贡献代码,可以让项目快速发展.当然一旦你的代码被接受并被很多人使用, 心中的成就感是不言而喻的.    
+之所以要提到开源, 是因为今天我们要用到的东西基本上全部是开源的, 并且我们还要对其中的代码做一些修改才能正常工作. 再一次为开源鼓掌!     
+这并不是一篇Pomelo,或者Cocos2d-x的入门说明, 需要你对这两者都有一定的了解.同时, 无论是Pomelo还是Cocos2d-x, 我都是新手, 如果文章中有错误的地方, 希望您能不吝指出.您可以在文章下面留言, 或者在新浪微博上发微薄 @杨世玲(需要说明的一点是, 请勿私信提问非隐私性技术问题, 我是希望您的问题, 我的或者其他朋友的回复,能被更多朋友搜索到,我希望我们的交流, 能让更多朋友受到启发, 受益. 这也是对社区和世界和平的一点贡献吧.)">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="基于Pomelo和Cocos2d-x的聊天室"/>
+  <meta property="og:site_name" content="喜气羊羊"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="喜气羊羊" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-5353535-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+
+<body>
+  <header id="header"><div class="meta inner">
+  <h1><a href="/">喜气羊羊</a></h1>
+  <h2 id="header-h2">游来游去</h2>
+  <nav id="main-nav">
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/archives">文章归档</a></li>
+      
+      <li><a href="http://photo.jiabin.tk">相册</a></li>
+      
+      <li><a href="/links">友情链接</a></li>
+      
+      <li><a href="/about">关于</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+</div>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  <div class="post-content">
+    <header>
+      
+  
+    <h1 class="title">基于Pomelo和Cocos2d-x的聊天室</h1>
+  
+
+      
+      <time datetime="2013-01-07T16:39:00.000Z">Jan 8 2013</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p>据说聊天室和游戏系统有很多相似之处, 并且很多游戏本身就带着多人聊天系统. 所以Pomelo将聊天室作为了一个例子.    </p>
+<p>开源是非常棒的思想和运动, 我简单提两点体会,<br>1.发现了问题可以不用等官方响应,自己有能力就可以马上修复. 2.你可以贡献自己的代码,很多人都可以贡献代码,可以让项目快速发展.<br>当然一旦你的代码被接受并被很多人使用, 心中的成就感是不言而喻的.    </p>
+<p>之所以要提到开源, 是因为今天我们要用到的东西基本上全部是开源的, 并且我们还要对其中的代码做一些修改才能正常工作. 再一次为开源鼓掌!     </p>
+<p>这并不是一篇Pomelo,或者Cocos2d-x的入门说明, 需要你对这两者都有一定的了解.<br>同时, 无论是Pomelo还是Cocos2d-x, 我都是新手, 如果文章中有错误的地方, 希望您能不吝指出.<br>您可以在文章下面留言, 或者在新浪微博上发微薄 @杨世玲<br>(需要说明的一点是, 请勿私信提问非隐私性技术问题, 我是希望您的问题, 我的或者其他朋友的回复,能被更多朋友搜索到,<br>我希望我们的交流, 能让更多朋友受到启发, 受益. 这也是对社区和世界和平的一点贡献吧.)    </p>
+<a id="more"></a>
+
+<p>下面是我们需要使用到的工具及其版本:    </p>
+<ul>
+<li>平台:OS X(10.8.2) Xcode(4.5.2)    </li>
+<li>Cocos2d-2.1beta3-x-2.1.0    </li>
+<li>Pomelo <a href="https://github.com/NetEase/pomelo" target="_blank" rel="external">https://github.com/NetEase/pomelo</a></li>
+<li>socket.io-clientpp <a href="https://github.com/ebshimizu/socket.io-clientpp" target="_blank" rel="external">https://github.com/ebshimizu/socket.io-clientpp</a></li>
+<li>websocketpp <a href="https://github.com/zaphoyd/websocketpp" target="_blank" rel="external">https://github.com/zaphoyd/websocketpp</a></li>
+<li>Rapidjson <a href="https://code.google.com/p/rapidjson/" target="_blank" rel="external">https://code.google.com/p/rapidjson/</a></li>
+<li>chatofpomelo <a href="https://github.com/NetEase/chatofpomelo" target="_blank" rel="external">https://github.com/NetEase/chatofpomelo</a></li>
+</ul>
+<p>查阅本文时请注意版本差异.        </p>
+<h3 id="环境配置">环境配置</h3>
+<p>我们的目标是实现OS X, IOS, Android三个平台下的chatofpomelo的Cocos2d-x版本.<br>所以需要安装各自平台的开发工具如Xcode,Eclipse,NDK等, 不是本文需要关心的内容. 相信大家也已经轻车熟路了.<br>Pomelo的安装 <code>npm install pomelo -g</code>, 如有疑问请查看Pomelo的Wiki.<br>websocketpp需要著名的C++库, boost. 我是使用了HomeBrew来安装.<br>其他安装方式请自省查阅相关文档, 有一点需要指出的是, 必须编译为带有x86(i386)支持lib文件.<br>因为Cocos2d-x在OS X下是32位的.     </p>
+<figure class="highlight sh"><figcaption><span>HomeBrew安装boost库</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install boost --universal</div></pre></td></tr></table></figure>
+
+<p>上面这条命令中<code>--universal</code>即代表编译出来的boost的lib文件同时支持x86和x64.    </p>
+<h3 id="项目配置">项目配置</h3>
+<p>Cocos2d-x跨平台无疑做的很好, 但是如果手动创建一个结构良好的跨平台项目,还是一件非常棘手的事.<br>幸好我们可以偷懒, 打开Cocos2d-x的源代码, samples目录下面都是已经配置好的跨平台的项目文件.<br>合理利用, 将事半功倍.    </p>
+<p>我们将samples目录下HelloCpp复制为ChatOfPomelo,打开找到proj.mac目录下面的<code>HelloCpp.xcodeproj</code>,<br>可以将其重命名为<code>ChatOfPomelo-Mac.xcodeproj</code>, 以便于和接下来的ios项目有所区分.   </p>
+<p>在ChatOfPomelo下创建lib目录, 下载socket.io-clientpp和websocketpp并解压到lib目录下面.<br>并将socket.io-clientpp/lib/rapidjson 复制到lib目录下面.<br>目录结构应该是这样的.</p>
+<figure class="highlight sh"><figcaption><span>目录</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">ChatOfPomelo/</div><div class="line">├── Classes</div><div class="line">├── Resources</div><div class="line">├── lib</div><div class="line">│   ├── rapidjson</div><div class="line">│   ├── socket.io-clientpp</div><div class="line">│   └── websocketpp</div><div class="line">├── proj.android</div><div class="line">├── proj.blackberry</div><div class="line">├── proj.ios</div><div class="line">├── proj.linux</div><div class="line">├── proj.mac</div><div class="line">├── proj.marmalade</div><div class="line">└── proj.win32</div></pre></td></tr></table></figure>
+
+<p>我们打开proj.mac下的项目文件, 在Xcode中打开项目设置页, 点开Targets的设置.<br>在Build Settings下面找到<code>Search Paths</code>, 将<code>Always Search User Paths</code>设置为<code>Yes</code>.<br>给<code>Header Search Paths</code> 依次添加下面路径:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/usr/local/include_code</div><div class="line"><span class="string">"<span class="variable">$(SRCROOT)</span>/../lib/socket.io-clientpp/src"</span></div><div class="line"><span class="string">"<span class="variable">$(SRCROOT)</span>/../lib/websocketpp/src"</span></div><div class="line"><span class="string">"<span class="variable">$(SRCROOT)</span>/../lib/rapidjson/include"</span></div></pre></td></tr></table></figure>
+
+<p>如下图所示:</p>
+<img src="/upload/2013-01/chat-of-pomelo-cocos2d-x-001.png">
+
+<p>给<code>Library Search Paths</code>添加路径<code>/usr/local/lib</code>. 如下图:</p>
+<img src="/upload/2013-01/chat-of-pomelo-cocos2d-x-002.png">
+
+<p>其中<code>/usr/local/include</code>和<code>/usr/local/lib</code>是boost的所在位置(HomeBrew的默认安装位置).<br>如果你的boost不在上述位置, 请自行更改.</p>
+<p>接下来将<code>websocketpp</code>的工程文件添加进来.参见下图:      </p>
+<img src="/upload/2013-01/chat-of-pomelo-cocos2d-x-003.png">
+
+<p>然后打开工程的设置, 在Targets的Build Phases页面,找到<code>Link Binary With Libraries</code>,<br>添加<code>libwebsocketpp.a</code>, 以及boost的库文件(在/usr/local/lib中找到).       </p>
+<figure class="highlight sh"><figcaption><span>boost 需要添加的库文件列表</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">libboost_date_time-mt.a</div><div class="line">libboost_graph-mt.a</div><div class="line">libboost_random-mt.a</div><div class="line">libboost_regex-mt.a</div><div class="line">libboost_system-mt.a</div><div class="line">libboost_thread-mt.a</div><div class="line">libboost_timer-mt.a</div></pre></td></tr></table></figure>
+
+<p>添加的方法参见下图:    </p>
+<img src="/upload/2013-01/chat-of-pomelo-cocos2d-x-004.png">
+
+<h2 id="文件Hack">文件Hack</h2>
+<p>我们在<code>HelloWorldScene.cpp</code>中添加一句<code>#include &lt;socket_io_client.hpp&gt;</code>.<br>然后试图运行项目的话, 会看到几处报错(有可能你看到这篇文章的时候相关库文件已经更新了, 没有报错的话, 直接跳过这段即可.)<br>报错的是<code>socket_io_client.hpp</code>中的<code>std::function</code>以及<code>std::unique_ptr</code>等.</p>
+<p>这是因为这些语句是C++11的新语法. 而如果在Xcode中启用C++11的支持,则Cocos2d-x无法通过编译.<br>原因有人说是Cocos2d-x不支持C++11, 有人说是OS X自带的libc++库太旧的原因, Xcode4.6中会更新该库.<br>我是小菜鸟一只, 也分不清谁说的对.    </p>
+<p>但我们可以通过修改这些代码, 采用boost的API来完成相应的工作.<br>而websocketpp这个项目又大量采用了boost, 所以修改为boost的API还是挺划算的.   </p>
+<p>找到<code>socket_io_client.hpp</code>:  </p>
+<figure class="highlight cpp"><figcaption><span>socket_io_client.hpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//typedef std::function&lt;void (socketio_events&, const Value&)&gt; eventFunc;</span></div><div class="line"><span class="comment">//修改为</span></div><div class="line"><span class="keyword">typedef</span> boost::function&lt;<span class="keyword">void</span> (socketio_events&, <span class="keyword">const</span> Value&)&gt; eventFunc;</div><div class="line"></div><div class="line"><span class="comment">//std::unique_ptr&lt;boost::asio::deadline_timer&gt; m_heartbeatTimer;</span></div><div class="line"><span class="comment">//修改为</span></div><div class="line">boost::<span class="built_in">shared_ptr</span>&lt;boost::asio::deadline_timer&gt; m_heartbeatTimer;</div></pre></td></tr></table></figure>
+
+<p>找到<code>socket_io_client.cpp</code>:</p>
+<figure class="highlight cpp"><figcaption><span>socket_io_client.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//m_heartbeatTimer = std::unique_ptr&lt;boost::asio::deadline_timer&gt;(new boost::asio::deadline_timer(con-&gt;get_io_service(), boost::posix_time::seconds(0)));</span></div><div class="line"><span class="comment">//修改为</span></div><div class="line">m_heartbeatTimer = boost::<span class="built_in">shared_ptr</span>&lt;boost::asio::deadline_timer&gt;(<span class="keyword">new</span> boost::asio::deadline_timer(con-&gt;get_io_service(), boost::posix_time::seconds(<span class="number">0</span>)));</div></pre></td></tr></table></figure>
+
+<p>打开<code>lib/rapidjson/include/rapidjson/document.h</code>:</p>
+<figure class="highlight cpp"><figcaption><span>document.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//if (reader.Parse&lt;parseFlags&gt;(is, *this)) {</div><div class="line">修改为</div><div class="line">if (reader.template Parse&lt;parseFlags&gt;(is, *this)) {"</div><div class="line">//这个是jsoncpp的一个bug, 新版本里面已经修复, 但socket_io_client绑定了旧版本, 暂未升级.</div></pre></td></tr></table></figure>
+
+<p>这是整个项目应该就可以正常编译运行了. 如果没能正常运行, 你可能在某一步出错了,<br>可以在下面评论分享下你的问题, 如果已经找到解决办法, 也要把解决方法也贴出来, 分享给大家哦, 亲!</p>
+<p>//将socket_io_client, websocketpp的cpp文件引入到项目.</p>
+
+      
+    </div>
+    
+    <footer>
+      <div class="alignleft">
+      
+  
+  <div class="categories">
+    <a href="/categories/Cocos2d-x/">Cocos2d-x</a>
+  </div>
+
+      
+      </div>
+      <div class="clearfix"></div>
+    </footer>
+    
+  </div>
+</article>
+
+
+<section id="comment">
+  
+            <!-- Duoshuo Comment BEGIN -->
+            <div class="ds-thread"></div>
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"jiabin"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = 'http://static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+            <!-- Duoshuo Comment END -->
+      
+  
+</section>
+
+</div></div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer"><div class="inner"><div class="alignleft">
+  <p>
+  
+    &copy; 2015 Young40
+  
+  </p>
+  <p>
+    Theme By <a href="http://jiabin.tk" >Byron</a> based on <a href="https://github.com/willerce/hexo-theme-noderce" >Noderce</a>
+  </p>
+
+</div>
+<div class="clearfix"></div></div></footer>
+  <script type="text/javascript">
+
+</script>
+
+</body>
+</html>
