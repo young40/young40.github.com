@@ -81,8 +81,15 @@ disqus_shortname:
 ## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
 ## Themes: https://github.com/hexojs/hexo/wiki/Themes
 theme: daisy
+plugins:
+  hexo-generator-feed
 exclude_generator:
 
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+          
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy: 
