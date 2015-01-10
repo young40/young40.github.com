@@ -1,0 +1,3 @@
+[submodule "themes/daisy"]
+	path = themes/daisy
+	url = git@github.com:young40/hexo-theme-daisy.git
