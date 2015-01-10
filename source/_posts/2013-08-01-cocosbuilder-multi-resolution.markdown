@@ -3,7 +3,8 @@ layout: post
 title: "CocosBuilder 多分辨率"
 date: 2013-08-01 22:10
 comments: true
-categories: [CocosBuilder, Cocos2d-x] 
+categories: [Cocos2d-x, CocosBuilder]
+
 ---
 
 最近两个项目大量使用了CocosBuilder, 对于开发效率提高是巨大的. 一直计划写一篇博客谈谈CocosBuilder的多分辨率问题, 懒病加上一些疙疙瘩瘩的小事情, 拖延了一个多月, 才终于下定决心要尽快完成这篇博客.
