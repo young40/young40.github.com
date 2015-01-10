@@ -85,5 +85,7 @@ exclude_generator:
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
-deploy:
-  type:
+deploy: 
+  type: github
+  repo: git@github.com:young40/young40.github.com.git
+  branch: public
