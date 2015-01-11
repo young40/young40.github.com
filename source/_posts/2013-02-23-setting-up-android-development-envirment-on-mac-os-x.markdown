@@ -15,6 +15,8 @@ categories:
 这次我们测试的设备安装的是Android4.2.1, Cocos2d-x能支持Android2.2以上版本.
 
 ####文件路径:
+<!--more-->
+
 * Cocos2d-x: /opt/cocos2d-2.1beta3-x-2.1.1
 * Android ADT Bundle: /opt/adt-bundle-mac-x86\_64
 * Android NDK: /opt/android-ndk

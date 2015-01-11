@@ -1,5 +1,6 @@
 title: 博客切换到Hexo
 date: 2015-01-11 04:59:39
+categories: [杂谈]
 tags:
 ---
 

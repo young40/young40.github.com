@@ -1,6 +1,5 @@
 title: 'pkgbuild 安装提示成功但找不到App的问题'
-categories:
-- OSX 杂谈
+categories: [杂谈]
 tags:
 - Mac OS X
 - pkgbuild
@@ -11,6 +10,8 @@ date: 2014-06-18 17:53:52
 
 
 打包的参数如下:
+<!--more-->
+
 ```
 pkgbuild --root App\
 			 --component-plist pkgCocoStudio.plist\
