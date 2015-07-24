@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-author: John Doe
-language:
+title: 喜气羊羊
+subtitle: 和平行世界的自己握手
+description: 一个游戏开发修行者的博客
+author: Peter Young
+language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://www.young40.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -69,3 +69,42 @@ theme: next
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type:
+
+# Theme config
+duoshuo_shortname: young40
+
+social:
+  GitHub: https://github.com/young40/
+  # Twitter: your-twitter-url
+  Weibo: http://weibo.com/young40
+
+# Creative Commons 4.0 International License.
+# http://creativecommons.org/
+# Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
+creative_commons: by-nc-sa
+
+since: 2012
+
+menu:
+  home: /
+  archives: /archives
+  categories: /categories
+  tags: /tags
+  about: /about
+
+scheme: Mist
+
+sidebar: always
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+
+avatar: http://tp2.sinaimg.cn/1702027805/180/5715090841/1
+
+# title, chinese available
+links_title: 友情链接
+# links
+links:
+  子龙山人: http://zilongshanren.com
