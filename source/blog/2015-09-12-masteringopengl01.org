@@ -1,0 +1,147 @@
+#+TITLE: 掌握 OpenGL01
+#+DATE: 2015-09-12
+#+SETUPFILE: ~/org/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES: 掌握 OpenGL
+#+JEKYLL_PUBLISHED: false
+
+* 目标 -- 构建 OpenGL 上下文
+在开始学习 OpenGL 时, 创建 OpenGL 上下文是比较困难的一件事情. 幸好又了 GLFW 这个开源的
+OpenGL 库, 可以让我们轻松地创建 OpenGL 上下文, 并且也可以处理键盘和鼠标等输入事件. 我们在
+本节内将通过 GLFW 来创建一个 OpenGL(4.1)的窗口. 
+
+{{{more}}}
+* 编译 GLFW
+我们可以在[[http://www.glfw.org][ GLFW 网站]] 找到[[https://github.com/glfw/glfw/releases/download/3.1.1/glfw-3.1.1.zip][下载链接]], 注意我们选用的为当前最新版本 3.1.1. 下载并解压. 这
+里需要指出的是, 建议大家可以浏览下 GLFW 的文档, 这对我们后续使用 GLFW 非常有帮助, 当然, 我在本
+文内也会解释重要的知识.
+
+编译 GLFW 是需要 Xcode 的, 我这里使用的是 Xcode7. 同时我们需要使用 cmake, 如果你没有, 可以使用
+强大的 OS X 包管理系统[[http://brew.sh/index_zh-cn.html][Homebrew]] 来安装.
+
+[[http://www.glfw.org/docs/latest/compile.html#compile_generate][这里]] 可以找到 GLFW 的编译指南, 也很简单：
+#+BEGIN_SRC sh
+cd <glfw-root-dir>
+mkdir glfw-build
+cd glfw-build
+cmake ..
+make
+#+END_SRC
+
+编译完成后, 可以在 glfw-build/src 下面找到 libglfw3.a 静态库文件, 以及<glfw-root-dir>/include
+下的头文件. 稍后会用到这些文件.
+
+* 设置 Xcode 工程
+使用 Xcode 建立一个新的 Command Line Tool 工程, 语言我们这里选择的是 C++. 将上面提到的 include
+目录加入到项目的搜索路径, 将 libglfw3.a 以及 Cocoa, OpenGL, IOKit, CoreVideo 等 Framework 加入
+到项目 Link Binary With Libraries 里面. Xcode 的使用已经超出本文的讨论范围, 如果对 Xcode 不熟悉
+可以参阅其文档.
+
+* 黑色的 OpenGL 窗口
+根据 GLFW 官网给出[[http://www.glfw.org/documentation.html][简单的示例代码]], 很容易创建出我们的第一个 OpenGL 窗口.
+
+#+BEGIN_SRC cpp
+int main(int argc, const char * argv[]) 
+{
+    GLFWwindow *window;
+    
+    if(!glfwInit())
+    {
+        return -1;
+    }
+    
+    window = glfwCreateWindow(960, 640, "Tutorial 01", nullptr, nullptr);
+    if(!window)
+    {
+        glfwTerminate();
+        return -1;
+    }
+    
+    glfwMakeContextCurrent(window);
+    
+    while (!glfwWindowShouldClose(window)) 
+    {
+        //glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+    
+    glfwTerminate();
+    
+    return 0;
+}
+#+END_SRC
+
+我们使用到了 GLFW 提供的 GLFWindow 类和 6 个函数.
+
+- glfwInit 初始化 glfw
+- glfwCreateWindow 创建窗口
+- glfwMakeContextCurrent 给当前窗口设置 OpenGL 上下文
+- glfwPollEvents 处理系统消息, 键盘鼠标等事件
+- glfwWindowShouldClose 检查窗口是否需要关闭
+- glfwTerminate 结束退出
+
+大家可能注意到了我注释掉了 glfwSwapBuffers 函数的调用, 原因是未进行进一步设置前这个函数的
+调用, 会导致我屏幕狂闪, 是的, 闪瞎了我的钛合金狗眼.
+
+* 设置 OpenGL 版本
+在程序主循环之前我们调用下面代码获取当前 OpenGL 版本.
+
+#+BEGIN_SRC cpp
+    cout << glGetString(GL_VERSION) << endl;
+#+END_SRC
+
+我的输出是: 2.1 NVIDIA-10.6.42 310.42.05f01，其中 2.1 表明了我们将要使用的 OpenGL 版本是
+2.1.
+
+如果你了解 OpenGL 的历史, 就会知道 2.1 是一个非常老的版本. 而我们所希望研究的是更为现代的
+OpenGL, 比如, 我电脑上支持的最高版本 OpenGL 4.1.
+
+我们在创建窗口之前, 调用下面代码:
+
+#+BEGIN_SRC cpp
+glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+#+END_SRC
+
+然后我们再观察 glGetString(GL_VERSION)的输出.
+我的输出为 4.1 NVIDIA-10.6.42 310.42.05f01, 其中 4.1 表明了我们将要使用的 OpenGL 版本是
+4.1. 太棒了, 可以使用最现代的 OpenGL 了.
+
+大家可以在 Mac App Store 免费下载到 OpenGL Extensions Viewer, 利用这个软件可以方便地查看
+自己电脑所能支持的 OpenGL 版本.
+
+* glfwSetErrorCallback 设置错误回调
+调用 glfwSetErrorCallback 可以给 glfw 添加一个回调函数, 当有错误发生时, 我们可以得到通知.
+我们在 main 函数前添加一个 glfw_error_callback 函数:
+
+#+BEGIN_SRC cpp
+extern "C"
+{
+    static void glfw_error_callback(int error, const char *desc)
+    {
+        fprintf(stderr, "Running got error: %d,\t %s\n", error, desc);
+    }
+}
+#+END_SRC
+
+在 glfwInit 初始化之后就可以设置错误发生时的回调.
+#+BEGIN_SRC cpp
+    glfwSetErrorCallback(glfw_error_callback)
+#+END_SRC
+
+为了能看到效果, 大家可以临时注释掉下面两行, 看下效果.
+#+BEGIN_SRC cpp
+glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+#+END_SRC
+
+* TODO 代码
+[http://localhost:4000/2015/09/12/2015-09-12-masteringopengl01/]
+
+* 其他
+本文是系列文章的一部分, 您可以在下面链接找到本系列索引.
+[http://young40.com]
+
+
