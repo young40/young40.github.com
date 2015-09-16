@@ -1,0 +1,25 @@
+#+TITLE: 简简单单 OpenGL 00
+#+DATE: 2015-09-11
+#+SETUPFILE: ~/org/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES: 简简单单 OpenGL
+#+JEKYLL_PUBLISHED: false
+
+* 版本
+- OpenGL 4.1
+- GLFW 3.1.1
+
+- OS X El Capitan 10.11(GM)
+- Xcode 7.0(GM)
+
+
+ssss
+
+为什么选择 OS X
+Win? iOS?
+
+
+为什么是现代 OpenGL
+* 
+
+{{{more}}}

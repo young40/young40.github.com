@@ -1,8 +1,8 @@
-#+TITLE: 掌握 OpenGL01
+#+TITLE: 简简单单 OpenGL 01
 #+DATE: 2015-09-12
 #+SETUPFILE: ~/org/setupfile.org
 #+JEKYLL_LAYOUT: post
-#+JEKYLL_CATEGORIES: 掌握 OpenGL
+#+JEKYLL_CATEGORIES: 简简单单 OpenGL
 #+JEKYLL_PUBLISHED: false
 
 * 目标 -- 构建 OpenGL 上下文
