@@ -5,6 +5,9 @@
 #+JEKYLL_CATEGORIES: 简简单单 OpenGL
 #+JEKYLL_PUBLISHED: false
 
+* 前言
+作为一个屌丝级的 Cocos 2D 程序员, 一直对 Unreal 等 3D 引擎垂涎三尺, 但苦于各种因
+素限制(主要是懒), 屡屡想征服 3D, 屡屡败下阵来. 
 * 版本
 - OpenGL 4.1
 - GLFW 3.1.1

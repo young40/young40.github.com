@@ -140,6 +140,8 @@ glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 * TODO 代码
 [http://localhost:4000/2015/09/12/2015-09-12-masteringopengl01/]
 
+* Tip
+- OpenGL 的函数都是以 gl 开头
 * 其他
 本文是系列文章的一部分, 您可以在下面链接找到本系列索引.
 [http://young40.com]
