@@ -1,0 +1,46 @@
+#+TITLE: 博客记
+#+DATE: 2015-07-25
+#+SETUPFILE: ~/org/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES: 杂谈
+#+JEKYLL_PUBLISHED: true
+
+很羡慕那些高产的博主，看下自己的上一篇文章还停留在1月份, 甚是惭愧. 最近，博客有一些好的变化，
+希望能激励自己，多学习， 多写文章。
+
+* 域名
+在网络上一直使用young40这个网名，所以十年前还在学校的时候注册过www.young40.com这个域名,
+但每年近百大洋的注册费用也是不小的负担，于是一两年后就停止续费了。上班了之后，想重新注册
+，发现已经被人注册，也联系不上注册者, 于是每年都会看下是否可以注册。
+上个月再次查看是否可以注册，我几乎不能相信自己的眼睛， 居然可以注册了，欣喜若狂，马上
+注册，相隔十年之后，再次拥有了这个域名。
+
+{{{more}}}
+
+* Octopress
+之前也在博客园等地方写过博客，一方面因为懒癌产出甚少，另一方面没有归属感。Github Pages流行之
+后，我也尝试在Github Pages上写博客了。 比较了几个Github Pages的博客工具之后，迅速被Octopress
+的强大，美观吸引了。是的，即使是默认主题，也是十分优美漂亮。
+
+* Hexo
+作为一个程序员，对各种语言本不该有偏见，但对于Ruby这种语言始终提不起兴趣，甚至到现在还没有看过他
+的语法。Octopress基于Ruby, 速度上也一直被诟病。 我对Node.js虽然没有花费太多的力气学习，但
+内心深处还是很狂热地热爱着Node.js。Hexo是Node.js开发的, 所以很快就迁移到了Hexo上。
+
+* Org-mode 和 Hexo3
+自从被子龙山人带入了Emacs邪教，Emacs就侵噬着我心灵的方方面面，到现在已经恨不得所有的事情都在Emacs
+里面完成。Org-mode作为Emacs特有的特性，也是必须学习和使用的，自然写博客这种事情， 也必须在Org-mode
+下完成。经过几天对比之后，终于选定了org-octopress作为博客写作的框架。尽管org-octopress 是为
+Octopress开发的，实际上Hexo和Octopress高度兼容，org-octopress也是可以直接用在Hexo上。在研究
+org-octopress的过程中， 也随便将Hexo更新为了3.1.1版本.
+
+* 迁移
+Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基本上就是保存好自己的_config.yml
+配置文件和source目录， 用新的(比如Hexo3)初始化一个新目录，然后将source目录放入新的目录, 
+将配置转移到新的_config.yml中即可.
+
+* 小结
+最近为了使用Emacs，耗费了大量的精力来学习Emacs, Spacemacs, Org-mode, GTD等知识，这次对博客
+进行了一次升级, 希望能激励自己多些文章， 将最近学习Emacs等心得都分享出来.
+
+本文使用Emacs 24.5, Org-mode 8.2以及org-octopress 完成.
