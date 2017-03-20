@@ -1,0 +1,14 @@
+#+TITLE: 简简单单 OpenGL 附录
+#+DATE: 2016-01-01
+#+SETUPFILE: ~/org/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES: 简简单单 OpenGL
+#+JEKYLL_PUBLISHED: false
+
+* 参考资料
+** 书籍
+** 博客
+** 视频
+** 文章
+
+{{{more}}}
