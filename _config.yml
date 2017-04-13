@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 喜气羊羊
+title: 杨世玲的游戏开发修行笔记
 subtitle: 和平行世界的自己握手
 description: 一个游戏开发修行者的博客
-author: Peter Young
+author: 杨世玲
 language: zh-Hans
 timezone:
 
@@ -112,3 +112,4 @@ links_title: 友情链接
 # links
 links:
   子龙山人: http://zilongshanren.com
+  bilt: http://blog.justbilt.com

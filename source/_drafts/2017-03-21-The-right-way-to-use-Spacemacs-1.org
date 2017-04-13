@@ -1,0 +1,8 @@
+#+TITLE: 我用Spacemacs的姿势(1)
+#+DATE: <2017-03-21>
+#+TAGS: Spacemacs
+#+CATEGORIES: Spacemacs
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+* 怎么看帮助
+`C-h v`  

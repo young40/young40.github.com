@@ -89,3 +89,27 @@ local name = self["lbl_name" .. i]
 我的新年来的比较晚，Late better than Never, 希望今年能再多些思考，多写文字，多读点书，多点收入。
 
 再来回看正题，从懒这个美德出发，我们在写代码时，处处都可能有值得优化的地方，留心观察，能提出问题，找到解决方案只是时间问题。提出好的问题，才是最宝贵的。
+* Update
+[[http://blog.justbilt.com][bilt兄]] 看了这篇博客以后，告诉我可以将有序列的节点以数组的方式访问更有效率，我马上更新了下代码，使用起来果然更加方便了.
+下面是带序列的节点组合成数组的一个小函数。
+#+BEGIN_SRC lua
+  function groupNode(group, name, child) -- 聚合序列节点为数组
+    local _pre, _num = string.match(name, "(.+)(%d+)$")
+    if not _pre then
+      return
+    end
+
+    if string.sub(_pre, -1) == "_" then
+      _pre = string.sub(_pre, 1, #_pre-1)
+    end
+
+    if not group[_pre] then
+      group[_pre] = {}
+    end
+
+    group[_pre][_num] = child
+  end
+#+END_SRC
+如果节点名字是`nod_text1`, `nod_text2`... 或者`img_press_1`, `img_press_2`...的节点则可以用self.nod_text[1], self.nod_text[2]来访问了
+
+感谢bilt兄!
