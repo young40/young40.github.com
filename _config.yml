@@ -75,7 +75,8 @@ deploy:
   repo: git@github.com:young40/young40.github.com.git
 
 # Theme config
-duoshuo_shortname: young40
+# duoshuo_shortname: young40
+disqus_shortname: young40
 
 social:
   GitHub: https://github.com/young40/
