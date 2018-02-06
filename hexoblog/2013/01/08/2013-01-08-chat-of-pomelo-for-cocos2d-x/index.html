@@ -1,0 +1,685 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+    
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/hexoblog/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/hexoblog/css/main.css?v=0.4.4"/>
+
+
+    <meta name="description" content="一个游戏开发修行者的博客" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/hexoblog/hexoblog/atom.xml" title="杨世玲的游戏开发修行笔记" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/hexoblog/favicon.ico?v=0.4.4" />
+
+
+<meta name="description" content="据说聊天室和游戏系统有很多相似之处, 并且很多游戏本身就带着多人聊天系统. 所以Pomelo将聊天室作为了一个例子.     开源是非常棒的思想和运动, 我简单提两点体会,1.发现了问题可以不用等官方响应,自己有能力就可以马上修复. 2.你可以贡献自己的代码,很多人都可以贡献代码,可以让项目快速发展.当然一旦你的代码被接受并被很多人使用, 心中的成就感是不言而喻的.     之所以要提到开源, 是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Pomelo和Cocos2d-x的聊天室">
+<meta property="og:url" content="http://www.young40.com/2013/01/08/2013-01-08-chat-of-pomelo-for-cocos2d-x/index.html">
+<meta property="og:site_name" content="杨世玲的游戏开发修行笔记">
+<meta property="og:description" content="据说聊天室和游戏系统有很多相似之处, 并且很多游戏本身就带着多人聊天系统. 所以Pomelo将聊天室作为了一个例子.     开源是非常棒的思想和运动, 我简单提两点体会,1.发现了问题可以不用等官方响应,自己有能力就可以马上修复. 2.你可以贡献自己的代码,很多人都可以贡献代码,可以让项目快速发展.当然一旦你的代码被接受并被很多人使用, 心中的成就感是不言而喻的.     之所以要提到开源, 是">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.young40.com/hexoblog/upload/2013-01/chat-of-pomelo-cocos2d-x-001.png">
+<meta property="og:image" content="http://www.young40.com/hexoblog/upload/2013-01/chat-of-pomelo-cocos2d-x-002.png">
+<meta property="og:image" content="http://www.young40.com/hexoblog/upload/2013-01/chat-of-pomelo-cocos2d-x-003.png">
+<meta property="og:image" content="http://www.young40.com/hexoblog/upload/2013-01/chat-of-pomelo-cocos2d-x-004.png">
+<meta property="og:updated_time" content="2017-03-14T07:53:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于Pomelo和Cocos2d-x的聊天室">
+<meta name="twitter:description" content="据说聊天室和游戏系统有很多相似之处, 并且很多游戏本身就带着多人聊天系统. 所以Pomelo将聊天室作为了一个例子.     开源是非常棒的思想和运动, 我简单提两点体会,1.发现了问题可以不用等官方响应,自己有能力就可以马上修复. 2.你可以贡献自己的代码,很多人都可以贡献代码,可以让项目快速发展.当然一旦你的代码被接受并被很多人使用, 心中的成就感是不言而喻的.     之所以要提到开源, 是">
+<meta name="twitter:image" content="http://www.young40.com/hexoblog/upload/2013-01/chat-of-pomelo-cocos2d-x-001.png">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+    <title> 基于Pomelo和Cocos2d-x的聊天室 // 杨世玲的游戏开发修行笔记 </title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+
+
+<div class="container one-column page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/hexoblog/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">杨世玲的游戏开发修行笔记</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexoblog/" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexoblog/archives" rel="section">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexoblog/tags" rel="section">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div id="content" class="content">
+                
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              基于Pomelo和Cocos2d-x的聊天室
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2013-01-08T00:39:00+08:00" content="2013-01-08">
+            2013-01-08
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/hexoblog/categories/Cocos2d-x/" itemprop="url" rel="index"><span itemprop="name">Cocos2d-x</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/hexoblog/2013/01/08/2013-01-08-chat-of-pomelo-for-cocos2d-x/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2013/01/08/2013-01-08-chat-of-pomelo-for-cocos2d-x/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>据说聊天室和游戏系统有很多相似之处, 并且很多游戏本身就带着多人聊天系统. 所以Pomelo将聊天室作为了一个例子.    </p>
+<p>开源是非常棒的思想和运动, 我简单提两点体会,<br>1.发现了问题可以不用等官方响应,自己有能力就可以马上修复. 2.你可以贡献自己的代码,很多人都可以贡献代码,可以让项目快速发展.<br>当然一旦你的代码被接受并被很多人使用, 心中的成就感是不言而喻的.    </p>
+<p>之所以要提到开源, 是因为今天我们要用到的东西基本上全部是开源的, 并且我们还要对其中的代码做一些修改才能正常工作. 再一次为开源鼓掌!     </p>
+<p>这并不是一篇Pomelo,或者Cocos2d-x的入门说明, 需要你对这两者都有一定的了解.<br>同时, 无论是Pomelo还是Cocos2d-x, 我都是新手, 如果文章中有错误的地方, 希望您能不吝指出.<br>您可以在文章下面留言, 或者在新浪微博上发微薄 @杨世玲<br>(需要说明的一点是, 请勿私信提问非隐私性技术问题, 我是希望您的问题, 我的或者其他朋友的回复,能被更多朋友搜索到,<br>我希望我们的交流, 能让更多朋友受到启发, 受益. 这也是对社区和世界和平的一点贡献吧.)    </p>
+<a id="more"></a>
+<p>下面是我们需要使用到的工具及其版本:    </p>
+<ul>
+<li>平台:OS X(10.8.2) Xcode(4.5.2)    </li>
+<li>Cocos2d-2.1beta3-x-2.1.0    </li>
+<li>Pomelo <a href="https://github.com/NetEase/pomelo" target="_blank" rel="external">https://github.com/NetEase/pomelo</a></li>
+<li>socket.io-clientpp <a href="https://github.com/ebshimizu/socket.io-clientpp" target="_blank" rel="external">https://github.com/ebshimizu/socket.io-clientpp</a></li>
+<li>websocketpp <a href="https://github.com/zaphoyd/websocketpp" target="_blank" rel="external">https://github.com/zaphoyd/websocketpp</a></li>
+<li>Rapidjson <a href="https://code.google.com/p/rapidjson/" target="_blank" rel="external">https://code.google.com/p/rapidjson/</a></li>
+<li>chatofpomelo <a href="https://github.com/NetEase/chatofpomelo" target="_blank" rel="external">https://github.com/NetEase/chatofpomelo</a></li>
+</ul>
+<p>查阅本文时请注意版本差异.        </p>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>我们的目标是实现OS X, IOS, Android三个平台下的chatofpomelo的Cocos2d-x版本.<br>所以需要安装各自平台的开发工具如Xcode,Eclipse,NDK等, 不是本文需要关心的内容. 相信大家也已经轻车熟路了.<br>Pomelo的安装 <code>npm install pomelo -g</code>, 如有疑问请查看Pomelo的Wiki.<br>websocketpp需要著名的C++库, boost. 我是使用了HomeBrew来安装.<br>其他安装方式请自省查阅相关文档, 有一点需要指出的是, 必须编译为带有x86(i386)支持lib文件.<br>因为Cocos2d-x在OS X下是32位的.<br><figure class="highlight sh"><figcaption><span>HomeBrew安装boost库</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install boost --universal</div></pre></td></tr></table></figure></p>
+<p>上面这条命令中<code>--universal</code>即代表编译出来的boost的lib文件同时支持x86和x64.    </p>
+<h3 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h3><p>Cocos2d-x跨平台无疑做的很好, 但是如果手动创建一个结构良好的跨平台项目,还是一件非常棘手的事.<br>幸好我们可以偷懒, 打开Cocos2d-x的源代码, samples目录下面都是已经配置好的跨平台的项目文件.<br>合理利用, 将事半功倍.    </p>
+<p>我们将samples目录下HelloCpp复制为ChatOfPomelo,打开找到proj.mac目录下面的<code>HelloCpp.xcodeproj</code>,<br>可以将其重命名为<code>ChatOfPomelo-Mac.xcodeproj</code>, 以便于和接下来的ios项目有所区分.   </p>
+<p>在ChatOfPomelo下创建lib目录, 下载socket.io-clientpp和websocketpp并解压到lib目录下面.<br>并将socket.io-clientpp/lib/rapidjson 复制到lib目录下面.<br>目录结构应该是这样的.<br><figure class="highlight sh"><figcaption><span>目录</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">ChatOfPomelo/</div><div class="line">├── Classes</div><div class="line">├── Resources</div><div class="line">├── lib</div><div class="line">│   ├── rapidjson</div><div class="line">│   ├── socket.io-clientpp</div><div class="line">│   └── websocketpp</div><div class="line">├── proj.android</div><div class="line">├── proj.blackberry</div><div class="line">├── proj.ios</div><div class="line">├── proj.linux</div><div class="line">├── proj.mac</div><div class="line">├── proj.marmalade</div><div class="line">└── proj.win32</div></pre></td></tr></table></figure></p>
+<p>我们打开proj.mac下的项目文件, 在Xcode中打开项目设置页, 点开Targets的设置.<br>在Build Settings下面找到<code>Search Paths</code>, 将<code>Always Search User Paths</code>设置为<code>Yes</code>.<br>给<code>Header Search Paths</code> 依次添加下面路径:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/usr/<span class="built_in">local</span>/include_code</div><div class="line"><span class="string">"<span class="variable">$(SRCROOT)</span>/../lib/socket.io-clientpp/src"</span></div><div class="line"><span class="string">"<span class="variable">$(SRCROOT)</span>/../lib/websocketpp/src"</span></div><div class="line"><span class="string">"<span class="variable">$(SRCROOT)</span>/../lib/rapidjson/include"</span></div></pre></td></tr></table></figure></p>
+<p>如下图所示:<br><img src="/hexoblog/upload/2013-01/chat-of-pomelo-cocos2d-x-001.png"></p>
+<p>给<code>Library Search Paths</code>添加路径<code>/usr/local/lib</code>. 如下图:<br><img src="/hexoblog/upload/2013-01/chat-of-pomelo-cocos2d-x-002.png"></p>
+<p>其中<code>/usr/local/include</code>和<code>/usr/local/lib</code>是boost的所在位置(HomeBrew的默认安装位置).<br>如果你的boost不在上述位置, 请自行更改.</p>
+<p>接下来将<code>websocketpp</code>的工程文件添加进来.参见下图:<br><img src="/hexoblog/upload/2013-01/chat-of-pomelo-cocos2d-x-003.png"></p>
+<p>然后打开工程的设置, 在Targets的Build Phases页面,找到<code>Link Binary With Libraries</code>,<br>添加<code>libwebsocketpp.a</code>, 以及boost的库文件(在/usr/local/lib中找到).<br><figure class="highlight sh"><figcaption><span>boost 需要添加的库文件列表</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">libboost_date_time-mt.a</div><div class="line">libboost_graph-mt.a</div><div class="line">libboost_random-mt.a</div><div class="line">libboost_regex-mt.a</div><div class="line">libboost_system-mt.a</div><div class="line">libboost_thread-mt.a</div><div class="line">libboost_timer-mt.a</div></pre></td></tr></table></figure></p>
+<p>添加的方法参见下图:<br><img src="/hexoblog/upload/2013-01/chat-of-pomelo-cocos2d-x-004.png"></p>
+<p>##文件Hack<br>我们在<code>HelloWorldScene.cpp</code>中添加一句<code>#include &lt;socket_io_client.hpp&gt;</code>.<br>然后试图运行项目的话, 会看到几处报错(有可能你看到这篇文章的时候相关库文件已经更新了, 没有报错的话, 直接跳过这段即可.)<br>报错的是<code>socket_io_client.hpp</code>中的<code>std::function</code>以及<code>std::unique_ptr</code>等.</p>
+<p>这是因为这些语句是C++11的新语法. 而如果在Xcode中启用C++11的支持,则Cocos2d-x无法通过编译.<br>原因有人说是Cocos2d-x不支持C++11, 有人说是OS X自带的libc++库太旧的原因, Xcode4.6中会更新该库.<br>我是小菜鸟一只, 也分不清谁说的对.    </p>
+<p>但我们可以通过修改这些代码, 采用boost的API来完成相应的工作.<br>而websocketpp这个项目又大量采用了boost, 所以修改为boost的API还是挺划算的.   </p>
+<p>找到<code>socket_io_client.hpp</code>:<br><figure class="highlight cpp"><figcaption><span>socket_io_client.hpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//typedef std::function&lt;void (socketio_events&amp;, const Value&amp;)&gt; eventFunc;</span></div><div class="line"><span class="comment">//修改为</span></div><div class="line"><span class="keyword">typedef</span> boost::function&lt;<span class="keyword">void</span> (socketio_events&amp;, <span class="keyword">const</span> Value&amp;)&gt; eventFunc;</div><div class="line"></div><div class="line"><span class="comment">//std::unique_ptr&lt;boost::asio::deadline_timer&gt; m_heartbeatTimer;</span></div><div class="line"><span class="comment">//修改为</span></div><div class="line">boost::<span class="built_in">shared_ptr</span>&lt;boost::asio::deadline_timer&gt; m_heartbeatTimer;</div></pre></td></tr></table></figure></p>
+<p>找到<code>socket_io_client.cpp</code>:<br><figure class="highlight cpp"><figcaption><span>socket_io_client.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//m_heartbeatTimer = std::unique_ptr&lt;boost::asio::deadline_timer&gt;(new boost::asio::deadline_timer(con-&gt;get_io_service(), boost::posix_time::seconds(0)));</span></div><div class="line"><span class="comment">//修改为</span></div><div class="line">m_heartbeatTimer = boost::<span class="built_in">shared_ptr</span>&lt;boost::asio::deadline_timer&gt;(<span class="keyword">new</span> boost::asio::deadline_timer(con-&gt;get_io_service(), boost::posix_time::seconds(<span class="number">0</span>)));</div></pre></td></tr></table></figure></p>
+<p>打开<code>lib/rapidjson/include/rapidjson/document.h</code>:<br><figure class="highlight cpp"><figcaption><span>document.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//if (reader.Parse&lt;parseFlags&gt;(is, *this)) &#123;</span></div><div class="line">修改为</div><div class="line"><span class="keyword">if</span> (reader.<span class="keyword">template</span> Parse&lt;parseFlags&gt;(is, *<span class="keyword">this</span>)) &#123;<span class="string">"</span></div><div class="line"><span class="string">//这个是jsoncpp的一个bug, 新版本里面已经修复, 但socket_io_client绑定了旧版本, 暂未升级.</span></div></pre></td></tr></table></figure></p>
+<p>这是整个项目应该就可以正常编译运行了. 如果没能正常运行, 你可能在某一步出错了,<br>可以在下面评论分享下你的问题, 如果已经找到解决办法, 也要把解决方法也贴出来, 分享给大家哦, 亲!</p>
+<p>//将socket_io_client, websocketpp的cpp文件引入到项目.</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexoblog/2013/02/23/2013-02-23-setting-up-android-development-envirment-on-mac-os-x/" rel="prev">搭建Mac OS X下cocos2d-x的Android开发环境</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexoblog/2013/01/03/2013-01-03-cocos2d-x-source-code-research-4-ccautoreleasepool/" rel="next">2d-x深读4:CCAutoReleasePool</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+            </div>
+
+            
+
+            
+              <div class="comments" id="comments">
+                
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                  </div>
+                
+              </div>
+            
+        </div>
+
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://tp2.sinaimg.cn/1702027805/180/5715090841/1" alt="杨世玲" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">杨世玲</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">一个游戏开发修行者的博客</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/hexoblog/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/hexoblog/tags">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/hexoblog/hexoblog/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/young40/" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/young40" target="_blank">Weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/hexoblog/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://zilongshanren.com" target="_blank">子龙山人</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.justbilt.com" target="_blank">bilt</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境配置"><span class="nav-number">1.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目配置"><span class="nav-number">2.</span> <span class="nav-text">项目配置</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="copyright" >
+  
+  &copy; &nbsp;  2012 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杨世玲</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+        </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+</div>
+
+<script type="text/javascript" src="/hexoblog/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'young40';
+      var disqus_identifier = '2013/01/08/2013-01-08-chat-of-pomelo-for-cocos2d-x/';
+      var disqus_title = '基于Pomelo和Cocos2d-x的聊天室';
+      var disqus_url = 'http://www.young40.com/2013/01/08/2013-01-08-chat-of-pomelo-for-cocos2d-x/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/hexoblog/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/hexoblog/js/fancy-box.js?v=0.4.4"></script>
+
+
+  <script type="text/javascript" src="/hexoblog/js/helpers.js?v=0.4.4"></script>
+  
+
+  <script type="text/javascript" src="/hexoblog/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/hexoblog/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/hexoblog/js/motion_global.js?v=0.4.4" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/hexoblog/js/search-toggle.js"></script>
+
+
+  
+<script type="text/javascript" src="/hexoblog/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (CONFIG.sidebar === 'always') {
+            displaySidebar();
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+<!-- lazyload -->
+<script type="text/javascript" src="/hexoblog/js/lazyload.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#posts img").lazyload({
+            placeholder: "/hexoblog/images/loading.gif",
+            effect: "fadeIn"
+        });
+    });
+</script>
+</body>
+</html>

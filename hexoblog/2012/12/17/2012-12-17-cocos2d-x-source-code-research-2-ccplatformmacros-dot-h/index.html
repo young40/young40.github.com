@@ -1,0 +1,664 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+    
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/hexoblog/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/hexoblog/css/main.css?v=0.4.4"/>
+
+
+    <meta name="description" content="一个游戏开发修行者的博客" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/hexoblog/hexoblog/atom.xml" title="杨世玲的游戏开发修行笔记" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/hexoblog/favicon.ico?v=0.4.4" />
+
+
+<meta name="description" content="路径:cocos2d-2.1beta3-x-2.1.0/cocos2dx/include/ccConfig.h 路径:cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/mac/CCPlatformDefine.h //注意我是以mac平台研究的, 其他平台略有不同 路径:cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/CC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2d-x深读2:CCPlatformMacros.h">
+<meta property="og:url" content="http://www.young40.com/2012/12/17/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/index.html">
+<meta property="og:site_name" content="杨世玲的游戏开发修行笔记">
+<meta property="og:description" content="路径:cocos2d-2.1beta3-x-2.1.0/cocos2dx/include/ccConfig.h 路径:cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/mac/CCPlatformDefine.h //注意我是以mac平台研究的, 其他平台略有不同 路径:cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/CC">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-03-14T07:53:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2d-x深读2:CCPlatformMacros.h">
+<meta name="twitter:description" content="路径:cocos2d-2.1beta3-x-2.1.0/cocos2dx/include/ccConfig.h 路径:cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/mac/CCPlatformDefine.h //注意我是以mac平台研究的, 其他平台略有不同 路径:cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/CC">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+    <title> 2d-x深读2:CCPlatformMacros.h // 杨世玲的游戏开发修行笔记 </title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+
+
+<div class="container one-column page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/hexoblog/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">杨世玲的游戏开发修行笔记</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexoblog/" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexoblog/archives" rel="section">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexoblog/tags" rel="section">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div id="content" class="content">
+                
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              2d-x深读2:CCPlatformMacros.h
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2012-12-17T01:49:00+08:00" content="2012-12-17">
+            2012-12-17
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/hexoblog/categories/Cocos2d-x/" itemprop="url" rel="index"><span itemprop="name">Cocos2d-x</span></a></span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/hexoblog/categories/Cocos2d-x/Cocos2d-x-源代码研究/" itemprop="url" rel="index"><span itemprop="name">Cocos2d-x 源代码研究</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/hexoblog/2012/12/17/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2012/12/17/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><ul>
+<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/include/ccConfig.h</code></li>
+<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/mac/CCPlatformDefine.h</code> //注意我是以mac平台研究的, 其他平台略有不同</li>
+<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/CCPlatformMacros.h</code><a id="more"></a>
+<figure class="highlight cpp"><figcaption><span>ccConfig.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"platform/CCPlatformConfig.h"</span></span></div><div class="line"></div><div class="line"><span class="comment">//设置为1后会include CCPhysicsScript 和 CCPhysicsDebugNode 添加到物理引擎支持</span></div><div class="line"><span class="comment">//需要保证Chipmunk在搜索路径中</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_ENABLE_CHIPMUNK_INTEGRATION</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_ENABLE_CHIPMUNK_INTEGRATION 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">//设置为1后会include CCPhysicsScript 添加到Box2D的支持</span></div><div class="line"><span class="comment">//同样需要保证Box2D会在搜索路径中</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_ENABLE_BOX2D_INTEGRATION</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_ENABLE_BOX2D_INTEGRATION 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">/** </span></div><div class="line"><span class="comment"> 设置为1后,2d学会维护一个OpenGL状态缓存来避免不必要的切换</span></div><div class="line"><span class="comment"> 为了使用这个功能,需要用下列函数来替换GL的对应函数</span></div><div class="line"><span class="comment">    - ccGLUseProgram() instead of glUseProgram()</span></div><div class="line"><span class="comment">    - ccGLDeleteProgram() instead of glDeleteProgram()</span></div><div class="line"><span class="comment">    - ccGLBlendFunc() instead of glBlendFunc()</span></div><div class="line"><span class="comment">如果这个功能被禁止, 那么这些函数会直接调用对应的GL函数, 当然就没有缓存了</span></div><div class="line"><span class="comment">打开这个功能能提高速度</span></div><div class="line"><span class="comment">如果你的代码是从GL ES 1.1升级过来的, 保持这个功能被禁用. 如果各种功能正常的话, 你可以启用这个功能</span></div><div class="line"><span class="comment">#ifndef CC_ENABLE_GL_STATE_CACHE</span></div><div class="line"><span class="comment">#define CC_ENABLE_GL_STATE_CACHE 1</span></div><div class="line"><span class="comment">#endif</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">启用后,纹理的坐标会用这个公式来计算</span></div><div class="line"><span class="comment">- texCoord.left = (rect.origin.x*2+1) / (texture.wide*2);</span></div><div class="line"><span class="comment">- texCoord.right = texCoord.left + (rect.size.width*2-2)/(texture.wide*2);</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">The same for bottom and top.</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">This formula prevents artifacts by using 99% of the texture.</span></div><div class="line"><span class="comment">The "correct" way to prevent artifacts is by using the spritesheet-artifact-fixer.py or a similar tool.</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">受影响的类:</span></div><div class="line"><span class="comment">- CCSprite / CCSpriteBatchNode and subclasses: CCLabelBMFont, CCTMXTiledMap</span></div><div class="line"><span class="comment">- CCLabelAtlas</span></div><div class="line"><span class="comment">- CCQuadParticleSystem</span></div><div class="line"><span class="comment">- CCTileMap</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">//默认0.5秒, 更新下FPS的数据. 数字越大FPS数据越可靠.</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_DIRECTOR_STATS_INTERVAL</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_DIRECTOR_STATS_INTERVAL (0.5f)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">//FPS数据显示位置,默认左下</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_DIRECTOR_FPS_POSITION</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_DIRECTOR_FPS_POSITION ccp(0,0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">/** @def CC_DIRECTOR_DISPATCH_FAST_EVENTS</span></div><div class="line"><span class="comment"> If enabled, and only when it is used with CCFastDirector, the main loop will wait 0.04 seconds to</span></div><div class="line"><span class="comment"> dispatch all the events, even if there are not events to dispatch.</span></div><div class="line"><span class="comment"> If your game uses lot's of events (eg: touches) it might be a good idea to enable this feature.</span></div><div class="line"><span class="comment"> Otherwise, it is safe to leave it disabled.</span></div><div class="line"><span class="comment"> </span></div><div class="line"><span class="comment"> To enable set it to 1. Disabled by default.</span></div><div class="line"><span class="comment"> </span></div><div class="line"><span class="comment"> @warning This feature is experimental</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_DIRECTOR_DISPATCH_FAST_EVENTS</span></div><div class="line"> <span class="meta">#<span class="meta-keyword">define</span> CC_DIRECTOR_DISPATCH_FAST_EVENTS 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">/** @def CC_DIRECTOR_MAC_USE_DISPLAY_LINK_THREAD</span></div><div class="line"><span class="comment">If enabled, cocos2d-mac will run on the Display Link thread. If disabled cocos2d-mac will run in its own thread.</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">If enabled, the images will be drawn at the "correct" time, but the events might not be very responsive.</span></div><div class="line"><span class="comment">If disabled, some frames might be skipped, but the events will be dispatched as they arrived.</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">To enable set it to a 1, to disable it set to 0. Enabled by default.</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">Only valid for cocos2d-mac. Not supported on cocos2d-ios.</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_DIRECTOR_MAC_USE_DISPLAY_LINK_THREAD</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_DIRECTOR_MAC_USE_DISPLAY_LINK_THREAD 1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">/** @def CC_NODE_RENDER_SUBPIXEL</span></div><div class="line"><span class="comment"> If enabled, the CCNode objects (CCSprite, CCLabel,etc) will be able to render in subpixels.</span></div><div class="line"><span class="comment"> If disabled, integer pixels will be used.</span></div><div class="line"><span class="comment"> </span></div><div class="line"><span class="comment"> To enable set it to 1. Enabled by default.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_NODE_RENDER_SUBPIXEL</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_NODE_RENDER_SUBPIXEL 1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">/** @def CC_SPRITEBATCHNODE_RENDER_SUBPIXEL</span></div><div class="line"><span class="comment"> If enabled, the CCSprite objects rendered with CCSpriteBatchNode will be able to render in subpixels.</span></div><div class="line"><span class="comment"> If disabled, integer pixels will be used.</span></div><div class="line"><span class="comment"> </span></div><div class="line"><span class="comment"> To enable set it to 1. Enabled by default.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_SPRITEBATCHNODE_RENDER_SUBPIXEL</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_SPRITEBATCHNODE_RENDER_SUBPIXEL    1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">/** @def CC_TEXTURE_ATLAS_USE_TRIANGLE_STRIP</span></div><div class="line"><span class="comment"> Use GL_TRIANGLE_STRIP instead of GL_TRIANGLES when rendering the texture atlas.</span></div><div class="line"><span class="comment"> It seems it is the recommend way, but it is much slower, so, enable it at your own risk</span></div><div class="line"><span class="comment"> </span></div><div class="line"><span class="comment"> To enable set it to a value different than 0. Disabled by default.</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_TEXTURE_ATLAS_USE_TRIANGLE_STRIP</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_TEXTURE_ATLAS_USE_TRIANGLE_STRIP 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">//VAO定点数组对象</span></div><div class="line"><span class="comment">/** @def CC_TEXTURE_ATLAS_USE_VAO</span></div><div class="line"><span class="comment"> By default, CCTextureAtlas (used by many cocos2d classes) will use VAO (Vertex Array Objects).</span></div><div class="line"><span class="comment"> Apple recommends its usage but they might consume a lot of memory, specially if you use many of them.</span></div><div class="line"><span class="comment"> So for certain cases, where you might need hundreds of VAO objects, it might be a good idea to disable it.</span></div><div class="line"><span class="comment"> </span></div><div class="line"><span class="comment"> To disable it set it to 0. Enabled by default.</span></div><div class="line"><span class="comment"> </span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_TEXTURE_ATLAS_USE_VAO</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)</span></div><div class="line">        <span class="meta">#<span class="meta-keyword">define</span> CC_TEXTURE_ATLAS_USE_VAO 1</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">        <span class="comment">/* Some Windows display adapter driver cannot support VAO. */</span></div><div class="line">        <span class="comment">/* Some android devices cannot support VAO very well, so we disable it by default for android platform. */</span></div><div class="line">        <span class="comment">/* Blackberry also doesn't support this feature. */</span></div><div class="line">		<span class="meta">#<span class="meta-keyword">define</span> CC_TEXTURE_ATLAS_USE_VAO 0</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/** @def CC_USE_LA88_LABELS</span></div><div class="line"><span class="comment"> If enabled, it will use LA88 (Luminance Alpha 16-bit textures) for CCLabelTTF objects.</span></div><div class="line"><span class="comment"> If it is disabled, it will use A8 (Alpha 8-bit textures).</span></div><div class="line"><span class="comment"> LA88 textures are 6% faster than A8 textures, but they will consume 2x memory.</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment"> This feature is enabled by default.</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment"> @since v0.99.5</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_USE_LA88_LABELS</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_USE_LA88_LABELS 1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">  启用后,所有CCSprite的子类都会花上一个边框,方便调试</span></div><div class="line"><span class="comment"> 0 -- disabled</span></div><div class="line"><span class="comment"> 1 -- draw bounding box</span></div><div class="line"><span class="comment"> 2 -- draw texture box</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_SPRITE_DEBUG_DRAW</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_SPRITE_DEBUG_DRAW 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">//CCSpriteBatchNode的调试用加边框</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_SPRITEBATCHNODE_DEBUG_DRAW</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_SPRITEBATCHNODE_DEBUG_DRAW 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">//CCLabelBMFont调试加边框</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_LABELBMFONT_DEBUG_DRAW</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_LABELBMFONT_DEBUG_DRAW 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">//LabeltAtlas调试加边框</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_LABELATLAS_DEBUG_DRAW</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_LABELATLAS_DEBUG_DRAW 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">/** @def CC_ENABLE_PROFILERS</span></div><div class="line"><span class="comment"> If enabled, will activate various profilers within cocos2d. This statistical data will be output to the console</span></div><div class="line"><span class="comment"> once per second showing average time (in milliseconds) required to execute the specific routine(s).</span></div><div class="line"><span class="comment"> Useful for debugging purposes only. It is recommended to leave it disabled.</span></div><div class="line"><span class="comment"> </span></div><div class="line"><span class="comment"> To enable set it to a value different than 0. Disabled by default.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_ENABLE_PROFILERS</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_ENABLE_PROFILERS 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">/** Enable Lua engine debug log */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CC_LUA_ENGINE_DEBUG</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_LUA_ENGINE_DEBUG 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight cpp"><figcaption><span>mac/CCPlatformDefine.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt; //引入assert</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_DLL <span class="comment">//CC_DLL只在win32平台下有效</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> CC_DISABLE_ASSERT &gt; 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_ASSERT(cond) <span class="comment">//禁用了assert</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_ASSERT(cond) assert(cond) <span class="comment">//启用了assert</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_UNUSED_PARAM(unusedparam) (void)unusedparam</span></div><div class="line"></div><div class="line"><span class="comment">//定义空指针</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> NULL</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> NULL    0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> NULL    ((void *)0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
+<p>我们可以看到win32中不同的部分比如<code>CC_DLL</code><br><figure class="highlight cpp"><figcaption><span>win32/CCPlatformDefine.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(_USRDLL)</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> CC_DLL     __declspec(dllexport)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span>         <span class="comment">/* use a DLL library */</span></span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> CC_DLL     __declspec(dllimport)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure></p>
+<p>Linux部分也是<code>CC_DLL</code>不同<br><figure class="highlight cpp"><figcaption><span>linux/CCPlatformDefine.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(_USRDLL)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_DLL __attribute__ ((visibility (<span class="meta-string">"default"</span>)))</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span>         <span class="comment">/* use a DLL library */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_DLL __attribute__ ((visibility (<span class="meta-string">"default"</span>)))</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure></p>
+<p>Android中比较不同的部分是<code>CC_ASSERT</code><br><figure class="highlight cpp"><figcaption><span>android/CCPlatformDefine.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_ASSERT(cond) \</span></div><div class="line"><span class="keyword">if</span> (! (cond)) \</div><div class="line">&#123; \</div><div class="line">    <span class="keyword">char</span> content[<span class="number">256</span>]; \</div><div class="line">    <span class="built_in">sprintf</span>(content, <span class="string">"%s function:%s line:%d"</span>, __FILE__, __FUNCTION__, __LINE__);  \</div><div class="line">    CCMessageBox(content, <span class="string">"Assert error"</span>); \</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们最后再来看下<code>CCPlatformMacros.h</code><br><figure class="highlight cpp"><figcaption><span>CCPlatformMacros.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ccConfig.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"CCPlatformConfig.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"CCPlatformDefine.h"</span></span></div><div class="line"></div><div class="line"><span class="comment">//CREATE_FUNC是2d-x的一个核心功能,一般采用例如`MySpriter *my = MySpriter::create()`的形式调用.</span></div><div class="line"><span class="comment">//这里的create()成员函数即是由CREATE_FUNC创建, 来达到让2d-x来管理内存分配的功能</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CREATE_FUNC(__TYPE__) \</span></div><div class="line">static __TYPE__* create() \</div><div class="line">&#123; \</div><div class="line">    __TYPE__ *pRet = <span class="keyword">new</span> __TYPE__(); \</div><div class="line">    <span class="keyword">if</span> (pRet &amp;&amp; pRet-&gt;init()) \</div><div class="line">    &#123; \</div><div class="line">        pRet-&gt;autorelease(); \</div><div class="line">        <span class="keyword">return</span> pRet; \</div><div class="line">    &#125; \</div><div class="line">    <span class="keyword">else</span> \</div><div class="line">    &#123; \</div><div class="line">        <span class="keyword">delete</span> pRet; \</div><div class="line">        pRet = <span class="literal">NULL</span>; \</div><div class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>; \</div><div class="line">    &#125; \</div><div class="line">&#125;</div><div class="line"><span class="comment">//早期版本还有一个NODE_FUNC完成和CREATE_FUNC一样的功能,已经废弃,不再讨论</span></div><div class="line"></div><div class="line"><span class="comment">//CC_ENABLE_CACHE_TEXTURE_DATA 只在Android上启用, 会缓存纹理</span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> CC_ENABLE_CACHE_TEXTURE_DATA       1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> CC_ENABLE_CACHE_TEXTURE_DATA       0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)</span></div><div class="line"><span class="comment">//重新绑定indices, 避免在android和win32下glDrawElements函数crash的bug</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> CC_REBIND_INDICES_BUFFER  1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> CC_REBIND_INDICES_BUFFER  0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="comment">//常用宏定义</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus <span class="comment">//namespace只在C++中起作用</span></span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> NS_CC_BEGIN                     namespace cocos2d &#123;</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> NS_CC_END                       &#125;</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> USING_NS_CC                     using namespace cocos2d  <span class="comment">//应该尽量使用USING_NS_CC, 兼容性更好</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> NS_CC_BEGIN </span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> NS_CC_END </span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> USING_NS_CC </span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> </span></div><div class="line"></div><div class="line"><span class="comment">//成员函数快捷声明/定义宏</span></div><div class="line"><span class="comment">//多使用这些宏, 可以方便地定义出合乎面向对象原则的成员变量.</span></div><div class="line"><span class="comment">//需要注意的是这些调用了这些宏之后, 应该养成重新写public, private等标号的习惯. 因为之后的都会变成public</span></div><div class="line"><span class="comment">//定义的成员变量都是protected的</span></div><div class="line"><span class="comment">//只读的成员变量</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_PROPERTY_READONLY(varType, varName, funName)\</span></div><div class="line"><span class="keyword">protected</span>: varType varName;\</div><div class="line"><span class="keyword">public</span>: <span class="keyword">virtual</span> varType get##funName(<span class="keyword">void</span>);</div><div class="line"></div><div class="line"><span class="comment">//getter是为引用</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_PROPERTY_READONLY_PASS_BY_REF(varType, varName, funName)\</span></div><div class="line"><span class="keyword">protected</span>: varType varName;\</div><div class="line"><span class="keyword">public</span>: <span class="keyword">virtual</span> <span class="keyword">const</span> varType&amp; get##funName(<span class="keyword">void</span>);</div><div class="line"></div><div class="line"><span class="comment">//可读可写成员变量</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_PROPERTY(varType, varName, funName)\</span></div><div class="line"><span class="keyword">protected</span>: varType varName;\</div><div class="line"><span class="keyword">public</span>: <span class="keyword">virtual</span> varType get##funName(<span class="keyword">void</span>);\</div><div class="line"><span class="keyword">public</span>: <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="built_in">set</span>##funName(varType var);</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_PROPERTY_PASS_BY_REF(varType, varName, funName)\</span></div><div class="line"><span class="keyword">protected</span>: varType varName;\</div><div class="line"><span class="keyword">public</span>: <span class="keyword">virtual</span> varType get##funName(<span class="keyword">void</span>);\</div><div class="line"><span class="keyword">public</span>: <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="built_in">set</span>##funName(<span class="keyword">const</span> varType&amp; var);</div><div class="line"></div><div class="line"><span class="comment">//以上的getter,setter只有声明, 下面的这些带有定义</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_SYNTHESIZE_READONLY(varType, varName, funName)\</span></div><div class="line"><span class="keyword">protected</span>: varType varName;\</div><div class="line"><span class="keyword">public</span>: <span class="keyword">virtual</span> varType get##funName(<span class="keyword">void</span>) <span class="keyword">const</span> &#123; <span class="keyword">return</span> varName; &#125;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_SYNTHESIZE_READONLY_PASS_BY_REF(varType, varName, funName)\</span></div><div class="line"><span class="keyword">protected</span>: varType varName;\</div><div class="line"><span class="keyword">public</span>: <span class="keyword">virtual</span> <span class="keyword">const</span> varType&amp; get##funName(<span class="keyword">void</span>) <span class="keyword">const</span> &#123; <span class="keyword">return</span> varName; &#125;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_SYNTHESIZE(varType, varName, funName)\</span></div><div class="line"><span class="keyword">protected</span>: varType varName;\</div><div class="line"><span class="keyword">public</span>: <span class="keyword">virtual</span> varType get##funName(<span class="keyword">void</span>) <span class="keyword">const</span> &#123; <span class="keyword">return</span> varName; &#125;\</div><div class="line"><span class="keyword">public</span>: <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="built_in">set</span>##funName(varType var)&#123; varName = var; &#125;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_SYNTHESIZE_PASS_BY_REF(varType, varName, funName)\</span></div><div class="line"><span class="keyword">protected</span>: varType varName;\</div><div class="line"><span class="keyword">public</span>: <span class="keyword">virtual</span> varType get##funName(<span class="keyword">void</span>) <span class="keyword">const</span> &#123; <span class="keyword">return</span> varName; &#125;\</div><div class="line"><span class="keyword">public</span>: <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="built_in">set</span>##funName(<span class="keyword">const</span> varType&amp; var)&#123; varName = var; &#125;</div><div class="line"></div><div class="line"><span class="comment">//setter中会retain一次var, 防止被gc回收.</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_SYNTHESIZE_RETAIN(varType, varName, funName)    \</span></div><div class="line"><span class="keyword">private</span>: varType varName; \</div><div class="line"><span class="keyword">public</span>: <span class="keyword">virtual</span> varType get##funName(<span class="keyword">void</span>) <span class="keyword">const</span> &#123; <span class="keyword">return</span> varName; &#125; \</div><div class="line"><span class="keyword">public</span>: <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="built_in">set</span>##funName(varType var)   \</div><div class="line">&#123; \</div><div class="line">    <span class="keyword">if</span> (varName != var) \</div><div class="line">    &#123; \</div><div class="line">        CC_SAFE_RETAIN(var); \</div><div class="line">        CC_SAFE_RELEASE(varName); \</div><div class="line">        varName = var; \</div><div class="line">    &#125; \</div><div class="line">&#125; </div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_SAFE_DELETE(p)            do &#123; <span class="meta-keyword">if</span>(p) &#123; delete (p); (p) = 0; &#125; &#125; while(0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_SAFE_DELETE_ARRAY(p)     do &#123; <span class="meta-keyword">if</span>(p) &#123; delete[] (p); (p) = 0; &#125; &#125; while(0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_SAFE_FREE(p)                do &#123; <span class="meta-keyword">if</span>(p) &#123; free(p); (p) = 0; &#125; &#125; while(0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_SAFE_RELEASE(p)            do &#123; <span class="meta-keyword">if</span>(p) &#123; (p)-&gt;release(); &#125; &#125; while(0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_SAFE_RELEASE_NULL(p)        do &#123; <span class="meta-keyword">if</span>(p) &#123; (p)-&gt;release(); (p) = 0; &#125; &#125; while(0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_SAFE_RETAIN(p)            do &#123; <span class="meta-keyword">if</span>(p) &#123; (p)-&gt;retain(); &#125; &#125; while(0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CC_BREAK_IF(cond)            <span class="meta-keyword">if</span>(cond) break</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> __CCLOGWITHFUNCTION(s, ...) \</span></div><div class="line">    CCLog(<span class="string">"%s : %s"</span>,__FUNCTION__, CCString::createWithFormat(s, ##__VA_ARGS__)-&gt;getCString())</div><div class="line"></div><div class="line"><span class="comment">//这个宏定义要注意大小写, 会很容易和cocos2d::CCLog弄错, 因为代码提示的问题.</span></div><div class="line"><span class="comment">// cocos2d debug</span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> !defined(COCOS2D_DEBUG) || COCOS2D_DEBUG == 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CCLOG(...)       do &#123;&#125; while (0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CCLOGINFO(...)   do &#123;&#125; while (0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CCLOGERROR(...)  do &#123;&#125; while (0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CCLOGWARN(...)   do &#123;&#125; while (0)</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">elif</span> COCOS2D_DEBUG == 1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CCLOG(format, ...)      cocos2d::CCLog(format, ##__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CCLOGERROR(format,...)  cocos2d::CCLog(format, ##__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CCLOGINFO(format,...)   do &#123;&#125; while (0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CCLOGWARN(...) __CCLOGWITHFUNCTION(__VA_ARGS__)</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">elif</span> COCOS2D_DEBUG &gt; 1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CCLOG(format, ...)      cocos2d::CCLog(format, ##__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CCLOGERROR(format,...)  cocos2d::CCLog(format, ##__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CCLOGINFO(format,...)   cocos2d::CCLog(format, ##__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> CCLOGWARN(...) __CCLOGWITHFUNCTION(__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// COCOS2D_DEBUG</span></span></div><div class="line"></div><div class="line"><span class="comment">// Lua engine debug</span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> !defined(COCOS2D_DEBUG) || COCOS2D_DEBUG == 0 || CC_LUA_ENGINE_DEBUG == 0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LUALOG(...)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LUALOG(format, ...)     cocos2d::CCLog(format, ##__VA_ARGS__)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// Lua engine debug</span></span></div><div class="line"></div><div class="line"><span class="comment">//定义废弃(deprecated)属性</span></div><div class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(__GNUC__) &amp;&amp; ((__GNUC__ &gt;= 4) || ((__GNUC__ == 3) &amp;&amp; (__GNUC_MINOR__ &gt;= 1)))</span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> CC_DEPRECATED_ATTRIBUTE __attribute__((deprecated))</span></div><div class="line"><span class="meta">#<span class="meta-keyword">elif</span> _MSC_VER &gt;= 1400 <span class="comment">//vs 2005 or higher</span></span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> CC_DEPRECATED_ATTRIBUTE __declspec(deprecated) </span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">    <span class="meta">#<span class="meta-keyword">define</span> CC_DEPRECATED_ATTRIBUTE</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexoblog/2012/12/21/2012-12-21-cocosbuilder-step-by-step-part-one/" rel="prev">一步一步CocosBuilder(1)</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexoblog/2012/12/17/2012-12-17-cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/" rel="next">2d-x深读1:CCPlatformConfig.h</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+            </div>
+
+            
+
+            
+              <div class="comments" id="comments">
+                
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                  </div>
+                
+              </div>
+            
+        </div>
+
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://tp2.sinaimg.cn/1702027805/180/5715090841/1" alt="杨世玲" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">杨世玲</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">一个游戏开发修行者的博客</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/hexoblog/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/hexoblog/tags">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/hexoblog/hexoblog/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/young40/" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/young40" target="_blank">Weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/hexoblog/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://zilongshanren.com" target="_blank">子龙山人</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.justbilt.com" target="_blank">bilt</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="copyright" >
+  
+  &copy; &nbsp;  2012 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杨世玲</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+        </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+</div>
+
+<script type="text/javascript" src="/hexoblog/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'young40';
+      var disqus_identifier = '2012/12/17/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/';
+      var disqus_title = '2d-x深读2:CCPlatformMacros.h';
+      var disqus_url = 'http://www.young40.com/2012/12/17/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/hexoblog/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/hexoblog/js/fancy-box.js?v=0.4.4"></script>
+
+
+  <script type="text/javascript" src="/hexoblog/js/helpers.js?v=0.4.4"></script>
+  
+
+  <script type="text/javascript" src="/hexoblog/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/hexoblog/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/hexoblog/js/motion_global.js?v=0.4.4" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/hexoblog/js/search-toggle.js"></script>
+
+
+  
+<script type="text/javascript" src="/hexoblog/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (CONFIG.sidebar === 'always') {
+            displaySidebar();
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+<!-- lazyload -->
+<script type="text/javascript" src="/hexoblog/js/lazyload.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#posts img").lazyload({
+            placeholder: "/hexoblog/images/loading.gif",
+            effect: "fadeIn"
+        });
+    });
+</script>
+</body>
+</html>
