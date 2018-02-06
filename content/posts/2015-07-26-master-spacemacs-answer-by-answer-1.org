@@ -1,0 +1,81 @@
+#+TITLE: Spacemacs 一问一答(一)
+#+DATE: 2015-07-26T12:00:00+08:00
+#+SETUPFILE: ~/org/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES: 
+#+JEKYLL_PUBLISHED: true
+#+DRAFT: true
+
+* 你为什么会选择Spacemacs?
+在选择编辑器这件事上, 我一直在追随子龙山人的脚步. 在他的带领下, 我成为了光荣的Vim党员, 继而又蜕变成了Emacs邪教徒.
+
+在最初使用Emacs的日子里，过的很艰难，一向崇尚从零开始的我，迷失在了配置的迷雾中。再加上被人忽悠去做了Cocos IDE的小白鼠，
+看起来就要和Emacs无缘了，然而...
+
+#+TODO: 删除线
+然而有一天，我看到的子龙酷拽Spacemacs的视频，+再加上Cocos IDE项目被其Cocos官方放弃，我面临着无编辑器可用的囧境+。
+说实在话， 我被震撼了。熟悉的Vim的操作方式，简易而强大的配置功能， 还有强过Markdown百倍的Org-mode, 美味的番茄工作法...
+
+这就是我想要的编辑器, 征服神的编辑器，做一个编辑器的神!!!
+
+
+{{{more}}}
+
+* 简单介绍下Spacemacs?
+Spacemacs是Emacs的一个配置框架, 帮助你快速地打造自己的专属Emacs. 借助于evil-mode, Spacemacs致力于将Model Editing带到Emacs平台.
+所以，我觉得Spacemacs给了Vim党一个非常好的机会迁移到Emcas平台。+ Spacemacs使用了melpa.org的第三方package包管理系统,
+这基本上可以涵盖你的所有需求，你所做的只是对需要用到的package进行配置。+ Spacemacs有非常棒的第三方包管理系统，
+melpa.org上2500+ 个包，可以直接被安装调用， 你所做的只是对需要用到的package进行配置。
+
+* 我该如何入门?
+首先，你应该知道Spacemacs的官网即其托管在Github上的源码. 我想你此刻应该打开了Spacemacs的Github页面，顺手Star
+一下总是没错的。 接着, 你应该阅读下面几篇文档.
++ README.md
++ DOCUMENTATION.org
++ CONVENTIONS.org
++ HOWTOs.org
++ VIMUSERS.org
++ CONTRIBUTE.org
+读完这些文档，你就可以按照 README.md 中 安装这一段进行安装了。赶快去试试吧。
+
+* 应该如何选择Emacs的版本?
+在上面提到的 README.md 中， 你可以找到Spacemacs官方推荐的OS X的GUI版本，相信官方推荐的总是没错的。在终端中也可以使用，
+但某些功能可能需要GUI才行。另外，建议尽可能升级到最新的stable版本。什么？你问Windows版本？ 对不起，您可以关闭这个页面了，
+请您赶紧打开苹果官网，订购一台Mac，在Mac上打开本页面了.
+
+* 我是否应该学习Elisp?
+因为Spacemacs的配置都是Elisp语法， 所以，掌握基本的Elisp语法，是必须的。推荐您阅读 叶文彬 大神的 <Elisp 入门>,
+很容易找到.
+
+* Spacemacs 是怎么工作的?
+作为一个刚入门的菜鸟，我只能告诉你，我简单的理解。~/.emacs.d 目录保存了Spacemacs的核心框架和预先配置好的各种layer.
+你可以在~/.emacs.d/contrib目录里找到官方配置好的各种layer. ~/.emacs.d/elpa 目录保存了下载到的package。
+~/.emacs.d/private/ 目录可以保存你自己layer， 但强烈不建议你放在这里。
+
+* 关于 .spacemacs 文件，你能说点什么吗？
+首先，.spacemacs 位于你的用户目录(~/)下，如果你不小心弄丢，弄乱了，弄错了. 可以从~/.emacs.d/core/templates/.spacemacs.template
+复制一份到~/.spacemacs.
+
+其次，上手之后，你应该会有自己的layer，如果你配置自己的layer目录，可以找到下面这个变量。需要注意的是，目录需要以 "/" 
+结尾，别问我为什么要特别强调这个.
+例如我的，dotspacemacs-configuration-layer-path '("~/dot/spacemacs-private/")
+ 
+再次，推荐你在dotspacemacs-configuration-layers变量里配置需要加载的layer时，按字母顺序来排放这些layer
+
+* 能不能看下你的Spacemacs的配置？
+我是用Spacemacs仅仅只是入门，还有很多东西需要学习研究。我的配置大部分都是从子龙山人的配置里面摘录出来的, 我也
+推荐你研究下子龙山人的配置，链接1 链接2。但鉴于我是一个菜鸟，我的配置可能也比较适合刚入门的童鞋研究，我的配置链接.
+同时我也在不断更新着我的配置，如果你已经打开了Github的页面，那么不如顺手Star一下我的配置吧。
+
+* 如何创建一个layer?
+
+
+
+http://melpa.org/#/
+
+https://github.com/syl20bnr/spacemacs/blob/master/doc/DOCUMENTATION.org
+https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org
+https://github.com/syl20bnr/spacemacs/blob/master/doc/CONTRIBUTE.org
+https://github.com/syl20bnr/spacemacs/blob/master/doc/CONVENTIONS.org
+https://github.com/syl20bnr/spacemacs/blob/master/doc/HOWTOs.org
+

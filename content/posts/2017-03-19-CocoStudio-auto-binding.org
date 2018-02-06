@@ -1,0 +1,116 @@
+#+TITLE: CocoStudio 节点自动绑定
+#+DATE: 2017-03-19T12:00:00+08:00
+#+SETUPFILE: ~/org/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES: 
+#+JEKYLL_TAGS: 
+#+JEKYLL_PUBLISHED: true
+#+DRAFT: true
+
+* 懒是美德
+换了一份工作, 第一步就是需要熟悉现有的代码。作为一个优化狂人，很容易就能从中看出值得优化的地方来。随手打开一个约2600多行的lua文件，发现满屏的seekNodeByName，简单统计一下约260行，10%。
+我们在使用CocoStudio的时候，在代码中确实需要使用节点的Name来寻找节点，但不要忘记lua语言的动态性，恰当利用则事半功倍。更何况，懒是一种美德，我们努力思考，就能少写不少代码。
+
+{{{more}}}
+
+* 自动绑定
+假设我们有一个demo.csd文件，结构如下:
+#+BEGIN_SRC 
+|--Root
+    |--spr_Background
+    |--lbl_Title
+    |--Node_DefaultName
+#+END_SRC
+
+
+代码加载的时候，如果能自动绑定到代码改多好啊!
+#+BEGIN_SRC lua
+DemoLayer = class("DemoLayer", function() return cc.Layer:create() end
+
+function DemoLayer:init()
+  loadCSB("demo.csb", self)
+
+  self.lbl_Title:setString("自动绑定太爽了") -- 如何能爽这一下???
+end
+#+END_SRC
+
+* 来个实现
+下面是一份简单的实现。`attachedTo[nodeName] = child` 中，利用lua的动态性，直接给`attachedTo`这个对象增加新的属性，
+这样就能在`loadCSB("demo.csb", self)`后，直接用`self.lbl_Title`来访问节点了。
+#+BEGIN_SRC lua
+function loadCSB(csbName)
+	local csbNode = cc.CSLoader:createNode(csbName)
+
+  gt.bindNodeByName(csbNode, attachedTo)
+
+  return csbNode
+end
+
+function bindNodeByName(node, attachedTo)
+  local matchTable = {spr_=true, nod_=true, btn_=true, lbl_=true}
+
+  for _, child in ipairs(node:getChildren()) do
+    local nodeName = child:getName()
+    local nodeNameSub = string.sub(nodeName, 0, 4)
+
+    if matchTable[nodeNameSub] then
+      attachedTo[nodeName] = child
+    end
+
+    bindNodeByName(child, attachedTo)
+  end
+end
+#+END_SRC
+
+* 一个规则
+CocoStudio在编辑csd文件的时候，会给节点加上默认的名字，通常这些名字都是乱七八糟，在代码里再使用这些名字，代码也会变得丑陋不堪。
+所以，有必要在CocoStudio中给节点一个有意义的名字，同时如果加上一个规则，还能减少节点绑定的数量。
+#+BEGIN_SRC lua
+local matchTable = {spr_=true, nod_=true, btn_=true, lbl_=true}
+if matchTable[nodeNameSub] then
+   -- 是感兴趣的节点，匹配到了
+end
+#+END_SRC
+我在示例中的规则是以spr_, nod_等为前缀的节点。这里的matchTable有点意思，spr_这些并不是它的值，而是键(key), 所以拿到前缀之后，
+可以快速匹配，并不需要再跑一个循环了^_-.
+
+* 有个技巧
+可能会有有序的节点，比如lbl_name1, lbl_name2, lbl_name3..., 我们固然可以通过类似于self.lbl_name1等来访问，但有时我们在比如for循环中
+如何访问这些节点呢？答案是我们可以利用下标的形式来访问这些节点.
+#+BEGIN_SRC lua
+local name = self["lbl_name" .. i]
+#+END_SRC
+
+* 还有没有
+这只是一个简单的版本，简单的工程也够用了。复杂一些的话，比如可以加上重名检测，对于列表型的节点加以更多的处理，等等。。。
+如果你遇到问题，不妨通过微博联系我。
+
+* 结束感悟
+年复一年，终究是一事无成。能真切地感受到与日俱增的压力, 翻翻上一篇博客已经是一年多年前了，2016年竟是一字未写。想想前面两年的计划，多半是未完成，还有最可惜的Unreal的梦想。
+我的新年来的比较晚，Late better than Never, 希望今年能再多些思考，多写文字，多读点书，多点收入。
+
+再来回看正题，从懒这个美德出发，我们在写代码时，处处都可能有值得优化的地方，留心观察，能提出问题，找到解决方案只是时间问题。提出好的问题，才是最宝贵的。
+* Update
+[[http://blog.justbilt.com][bilt兄]] 看了这篇博客以后，告诉我可以将有序列的节点以数组的方式访问更有效率，我马上更新了下代码，使用起来果然更加方便了.
+下面是带序列的节点组合成数组的一个小函数。
+#+BEGIN_SRC lua
+  function groupNode(group, name, child) -- 聚合序列节点为数组
+    local _pre, _num = string.match(name, "(.+)(%d+)$")
+    if not _pre then
+      return
+    end
+
+    if string.sub(_pre, -1) == "_" then
+      _pre = string.sub(_pre, 1, #_pre-1)
+    end
+
+    if not group[_pre] then
+      group[_pre] = {}
+    end
+
+    group[_pre][_num] = child
+  end
+#+END_SRC
+如果节点名字是`nod_text1`, `nod_text2`... 或者`img_press_1`, `img_press_2`...的节点则可以用self.nod_text[1], self.nod_text[2]来访问了
+
+感谢bilt兄!

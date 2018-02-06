@@ -1,0 +1,71 @@
+#+TITLE: 一次 git 花样实战
+#+DATE: 2015-12-22T12:00:00+08:00
+#+SETUPFILE: ~/org/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES: 
+#+JEKYLL_TAGS: 
+#+JEKYLL_PUBLISHED: true
+#+DRAFT: true
+
+* 情况
+周五在家工作了一天，向公司一个提交不频繁的库加了几个提交，但没有推送。其中一个提交，包含了一个 110M 的 cocos2d-x 静态库(是的，
+我知道不推荐提交这个，但我还是提交了^_-). 这个库托管在 Oschina 开源中国的 git 站, 周一的时候，我尝试推送这几个提交，发现 Oschina 有
+100M 文件大小的限制，纳尼？
+
+于是开始了 git 的花样实战. 
+
+再说一遍, 情况大概是这样, master 分支，我的提交按时间顺序是 C1, C4, C5, 中间有 pull 下来的其他同事的提交以及 merge. C1 包含 110M 文件 110M.a.
+
+{{{more}}}
+
+* 备份
+万事先备份.
+
+git checkout -b masterbackup
+
+* 获取服务器最新提交
+git fetch
+
+这样可以将本地的 origin/master 获取到服务器最新的提交.
+
+* 重建 master 分支
+重建方式是, 删除本地 master, 并重新从 origin/master 创建 master
+
+git branch -D master 
+注意此时在 masterbackup 分支
+
+git checkout -b master origin/master
+
+* 重做 C1, 并修改提交
+git cherry-pick C1
+
+注意此处得到的并不是 C1，应为 C1'
+
+git rm 110M.a
+
+删除了无法提交的文件
+
+我这里采用了 split 的方法将其分割为几个小文件, 其他人只需要简单合并这几个文件即可
+
+git add 110M.a_PART1 110M.a_PART2 110M.a_PART3
+
+git commit --amend
+
+这个命令可以修改上次提交, 将已经加入到 stage 区的修改合并到上次提交(即 C1')
+注意这个命令，万万不可再 push 后使用. (其实是不推荐 push 后使用)
+
+这样我们就修复了这个无法提交的文件了.
+
+* 同样重做 C4, C5
+git cherry-pick C4
+
+git cherry-pick C5
+
+没有什么好说的
+
+* 推送, 清理战场
+git push origin master
+
+git branch -D masterbackup
+
+搞定!
