@@ -1,0 +1,694 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+    
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/hexoblog/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/hexoblog/css/main.css?v=0.4.4"/>
+
+
+    <meta name="description" content="一个游戏开发修行者的博客" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/hexoblog/hexoblog/atom.xml" title="杨世玲的游戏开发修行笔记" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/hexoblog/favicon.ico?v=0.4.4" />
+
+
+<meta name="description" content="上一篇我们建立了基本的工作环境, 这一次我们将基本实现例子中的HelloCocosBuilder. ###注意这两天纠结了一个问题. 我发现按照上次的配置来实现例子, 图片的大小怎么都和例子中的搭配不上. 后来动用CCB的源代码才看出端倪.CCB v3.0加入了一个resources-auto的目录, 在发布的时候, 会自动缩放图片到对应的分辨率去. 因为图片的分辨率不合适(初步目测), 我们暂时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一步一步CocosBuilder(2)">
+<meta property="og:url" content="http://www.young40.com/2012/12/25/2012-12-25-cocosbuilder-step-by-step-part-two/index.html">
+<meta property="og:site_name" content="杨世玲的游戏开发修行笔记">
+<meta property="og:description" content="上一篇我们建立了基本的工作环境, 这一次我们将基本实现例子中的HelloCocosBuilder. ###注意这两天纠结了一个问题. 我发现按照上次的配置来实现例子, 图片的大小怎么都和例子中的搭配不上. 后来动用CCB的源代码才看出端倪.CCB v3.0加入了一个resources-auto的目录, 在发布的时候, 会自动缩放图片到对应的分辨率去. 因为图片的分辨率不合适(初步目测), 我们暂时">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.young40.com/hexoblog/upload/2012-12/ccb-sbs-2-001.png">
+<meta property="og:image" content="http://www.young40.com/hexoblog/upload/2012-12/ccb-sbs-2-002.png">
+<meta property="og:updated_time" content="2017-03-14T07:53:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一步一步CocosBuilder(2)">
+<meta name="twitter:description" content="上一篇我们建立了基本的工作环境, 这一次我们将基本实现例子中的HelloCocosBuilder. ###注意这两天纠结了一个问题. 我发现按照上次的配置来实现例子, 图片的大小怎么都和例子中的搭配不上. 后来动用CCB的源代码才看出端倪.CCB v3.0加入了一个resources-auto的目录, 在发布的时候, 会自动缩放图片到对应的分辨率去. 因为图片的分辨率不合适(初步目测), 我们暂时">
+<meta name="twitter:image" content="http://www.young40.com/hexoblog/upload/2012-12/ccb-sbs-2-001.png">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+    <title> 一步一步CocosBuilder(2) // 杨世玲的游戏开发修行笔记 </title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+
+
+<div class="container one-column page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/hexoblog/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">杨世玲的游戏开发修行笔记</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexoblog/" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexoblog/archives" rel="section">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexoblog/tags" rel="section">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div id="content" class="content">
+                
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              一步一步CocosBuilder(2)
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2012-12-25T21:15:00+08:00" content="2012-12-25">
+            2012-12-25
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/hexoblog/categories/Cocos2d-x/" itemprop="url" rel="index"><span itemprop="name">Cocos2d-x</span></a></span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/hexoblog/categories/Cocos2d-x/CocosBuilder/" itemprop="url" rel="index"><span itemprop="name">CocosBuilder</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/hexoblog/2012/12/25/2012-12-25-cocosbuilder-step-by-step-part-two/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2012/12/25/2012-12-25-cocosbuilder-step-by-step-part-two/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>上一篇我们建立了基本的工作环境, 这一次我们将基本实现例子中的HelloCocosBuilder.</p>
+<p>###注意<br>这两天纠结了一个问题. 我发现按照上次的配置来实现例子, 图片的大小怎么都和例子中的搭配不上. 后来动用CCB的源代码才看出端倪.<br>CCB v3.0加入了一个<code>resources-auto</code>的目录, 在发布的时候, 会自动缩放图片到对应的分辨率去. 因为图片的分辨率不合适(初步目测), 我们暂时不使用这功能. 请大家将上一篇文章<br>中的<code>resources-auto</code>文件夹下图片移到父目录<code>ccb-source</code>下面. 这个也解释了为什么<code>resources-auto</code>有非图片文件会导致CCB崩溃的原因.</p>
+<a id="more"></a>
+<p>#####1<br>在CCB中打开MainScene.ccb,按<code>delete</code>键删除已经存在的几个Sprite.</p>
+<p>#####2<br>添加一个<code>CCLayerGradient</code>到屏幕, 如果有问题的话, 可以参见下文档. 选中该节点, 我们可以在右侧看到他的属性, 常规的属性有比如位置, 大小, 锚点, 缩放, 旋转, 标签.<br>我们现在将其设置为大小为100%x100%的大小, 即满屏.</p>
+<p>#####3<br>从左侧的文件中将<code>burst.png</code>拖入屏幕, 也可以使用工具栏添加然后再选择属性<code>Sprite frame</code>.<br>可以在节点树上双击该节点给其重命名, 我们将该节点命名为<code>CCSprite-burst</code>, 便于识别.<br>同样我们将其中心的设置到屏幕中心50%x50%, 缩放到2.5倍.<br>然后将<code>Blend src</code>, <code>Blend dst</code> 都设置为<code>One</code>, 好吧, 我暂时还不知道这个Blend是什么东西. 有知道的朋友不妨在评论中告诉我下, 或者参考资料.<br>大概是透明之类的东西吧.   </p>
+<p>#####4<br>然后我们再添加一个<code>CCParticleSystemQuad</code>粒子系统, 就是工具栏的那个Fx按钮.<br>将其位置设为最下居中, 在最下边<code>Particle Texture</code>设置为<code>ccbParticleSnow.png</code>效果,粒子系统还是很复杂的,估计能单独讲很久了. 这里就不再展开了.   </p>
+<p>#####5<br>将<code>logo-icon.png</code>拖入屏幕, 放在左上角合适位置, 并将其缩放到0.5. 节点重命名为<code>CCSprite-logo-icon</code>.<br>接下来就是动画的制作了.选中节点, 可以在菜单栏中<code>Animation =&gt; Insert KeyFrame</code>找到插入Framekey的各种快捷键.或许我们需要记熟他们.<br>首先让我们给<code>Timeline</code>设置下时间.双击时间可以编辑, 我们输入00:03:00, 就是3秒钟. 后面最后一位是帧数, 每秒30帧.<br>按下小三角可以展开当前节点的各种KeyFrame.<br>拖动时间轴游标到1秒10帧,按下键盘<code>S</code>, 可以插入一个Scale类型的KeyFrame, 这时将当前节点Scale属性改为0.<br>然后继续拖动时间轴游标到2秒10帧, 再插入一个Scale KeyFrame, 并将Scale属性改为0.5. 这时点击播放按钮, 可以看到logo会蹦出来.<br>然后在紫色条上点击右键, 可以看到动作菜单, 我们选择<code>Bounce Out</code>, 这个时候再点击播放, 就可以看到logo蹦出的时候会有一个弹震的效果.<br>再来说明两点, 紫色条设置不同的动作, 可以看到上面会有一点阴影变化, 可以帮助我们快速确认设置的是什么动作.<br>如果不小心加多了KeyFrame, 那么可以点击选择KeyFrame, 然后点击<code>delete</code>键删除.<br>还有需要注意的是, 如果游标不在KeyFrame的点上, 那么此时无法编辑该节点属性, 移动到相应的KeyFrame点即可.   </p>
+<p>#####6<br>然后依法炮制, 将<code>logo.png</code>加入, 你可以给其设置想要的动画效果.</p>
+<p>#####7<br>我们再添加一个<code>CCLabelBMFont</code>, 字体设置为<code>markerfelt24shadow.fnt</code>.Label的内容设置为”Hello Cocos2d-x!!!”, 然后调整下位置, 换个喜欢的颜色.</p>
+<p>#####8<br>我们再添加一个<code>CCControlButton</code>, Title设置为<code>Menu &amp; Item</code>.<br>然后再分别设置State Normal, State Highlighted的Sprite frame为<code>btn-test-0.png</code> &nbsp; <code>btn-test-1.png</code>.<br>然后再设置下弹出效果.<br>将这个节点再复制5份, 对齐. 再分别设置下Title和弹出效果.设置对齐的时候可能会比较麻烦. 可以从标尺那里拉出几条线, 用于对齐.将该对齐线拉出显示区域即可删除.<br><img src="/hexoblog/upload/2012-12/ccb-sbs-2-001.png"></p>
+<p>#####9<br>最后将左右的两片叶子加入屏幕, 设置个动画即可.<br>然后将CCB项目发布一下, 在Xcode里面将项目运行一下. 就可以看到效果了.</p>
+<p>#####10<br>我们接下来研究文件和类的绑定, 控件和变量的绑定, 以及事件和函数的绑定.<br>我们在CCB中将根节点的<code>Custom class</code>设置为<code>MainScene</code>.<br>我们在Xcode中打开<code>MainScene.h</code>, 给<code>MainScene</code>增加一个新的函数<code>CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(MainScene, create);</code>.<br>最后的代码应该如下:<br><figure class="highlight cpp"><figcaption><span>MainScene</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainScene</span></span></div><div class="line"><span class="class">:</span> <span class="keyword">public</span> cocos2d::CCLayer</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">static</span> cocos2d::<span class="function">CCScene* <span class="title">scene</span><span class="params">()</span></span>;</div><div class="line">    </div><div class="line">    CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(MainScene, create);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>然后在<code>MainScene.h</code>中添加一个新类<code>MainSceneLayerLoader</code>代码如下:<br><figure class="highlight cpp"><figcaption><span>MainSceneLayerLoader</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainSceneLayerLoader</span> :</span> <span class="keyword">public</span> cocos2d::extension::CCLayerLoader</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(MainSceneLayerLoader, loader);</div><div class="line"><span class="keyword">protected</span>:</div><div class="line">    CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(MainScene);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>如果需要探究的话, 可以点开相应的函数定义. 也都是些简单的工作.<br>吐槽下, 这些名字真的是太难记. 可能需要多熟悉下, 搞清楚其原理了才好.   </p>
+<p>然后我们在<code>MainScene.cpp</code>中添加一行注册将ccb文件和类绑定起来.<br><figure class="highlight cpp"><figcaption><span>MainScene::scene()</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CCNodeLoaderLibrary *lib = CCNodeLoaderLibrary::newDefaultCCNodeLoaderLibrary();</div><div class="line">lib-&gt;registerCCNodeLoader(<span class="string">"MainScene"</span>, MainSceneLayerLoader::loader());</div></pre></td></tr></table></figure></p>
+<p>然后运行下, 确保没有错误.<br>这几行代码, 就是ccb文件和类绑定的最简模式了.   </p>
+<p>#####11<br>接着我们研究下控件和变量的绑定.<br>我们先在CCB中给<code>CCLabelBMFont</code>添加一个<code>Doc root var</code>类型的绑定<code>mLabelText</code>.<br>一个需要注意的地方就是CCB v3.0alpha似乎无法将<code>jsControlled</code>设置为<code>false</code>, 所以可能需要手工打开<code>MainScene.ccb</code>将其改为<code>false</code>.<br><figure class="highlight xml"><figcaption><span>MainScene.ccb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>jsControlled<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">false</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p>然后在Xcode中给<code>MainScene</code>增加一个从<code>CCBMemberVariableAssigner</code>的继承并实现其虚函数. 并且添加相应的变量.<br><figure class="highlight cpp"><figcaption><span>MainScene</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainScene</span></span></div><div class="line"><span class="class">:</span> <span class="keyword">public</span> cocos2d::CCLayer</div><div class="line">, <span class="keyword">public</span> cocos2d::extension::CCBMemberVariableAssigner</div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    MainScene();</div><div class="line">    ~MainScene();</div><div class="line">    </div><div class="line">    <span class="keyword">static</span> cocos2d::<span class="function">CCScene* <span class="title">scene</span><span class="params">()</span></span>;</div><div class="line">        </div><div class="line">    CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD(MainScene, create);</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">onAssignCCBMemberVariable</span><span class="params">(cocos2d::CCObject* pTarget, <span class="keyword">const</span> <span class="keyword">char</span>* pMemberVariableName, cocos2d::CCNode* pNode)</span></span>;</div><div class="line">    </div><div class="line"><span class="keyword">private</span>:</div><div class="line">    cocos2d::CCLabelBMFont *mLabelText;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>在<code>MainScene.cpp</code>中需要添加的是:<br><figure class="highlight cpp"><figcaption><span>MainScene.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">MainScene::MainScene()<span class="comment">//构造函数</span></div><div class="line">: mLabelText(<span class="literal">NULL</span>)</div><div class="line">&#123;&#125;</div><div class="line"></div><div class="line">MainScene::~MainScene()<span class="comment">//析构函数中释放内存不能忘</span></div><div class="line">&#123;</div><div class="line">    CC_SAFE_DELETE(mLabelText);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">bool</span> MainScene::onAssignCCBMemberVariable(cocos2d::CCObject *pTarget, <span class="keyword">const</span> <span class="keyword">char</span> *pMemberVariableName, cocos2d::CCNode *pNode)</div><div class="line">&#123;</div><div class="line">    CCB_MEMBERVARIABLEASSIGNER_GLUE(<span class="keyword">this</span>, <span class="string">"mLabelText"</span>, CCLabelBMFont*, <span class="keyword">this</span>-&gt;mLabelText);</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>需要注意的是, 由于绑定较晚, 所以无法在init函数中使用变量<code>mLabelText</code>.   </p>
+<p>#####12<br>接下来我们研究事件和函数的绑定.<br>在CCB中找到<code>Menu &amp; Item</code>这个<code>CCControlButton</code>, 并设置其Selector为<code>onButtonTest</code>.Target设置为<code>Document root</code>.<br>这里需要注意的是, 设置值的时候,cocos2d-iphone似乎比较喜欢设置成<code>onButtonTest:</code>即多个<code>:</code>的形式. 我们在cocos2d-x中保持一致即可.不必加<code>:</code>.<br>然后打开<code>MainScene.h</code>给<code>MainScene</code>再增加一个继承.<br><figure class="highlight cpp"><figcaption><span>MainScene</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainScene</span></span></div><div class="line"><span class="class">:</span> <span class="keyword">public</span> cocos2d::CCLayer</div><div class="line">, <span class="keyword">public</span> cocos2d::extension::CCBMemberVariableAssigner</div><div class="line">, <span class="keyword">public</span> cocos2d::extension::CCBSelectorResolver</div></pre></td></tr></table></figure></p>
+<p>还有需要实现的函数<br><figure class="highlight cpp"><figcaption><span>MainScene</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">virtual</span> cocos2d::<span class="function">SEL_MenuHandler <span class="title">onResolveCCBCCMenuItemSelector</span><span class="params">(cocos2d::CCObject * pTarget, <span class="keyword">const</span> <span class="keyword">char</span>* pSelectorName)</span></span>;</div><div class="line"><span class="keyword">virtual</span> cocos2d::extension::<span class="function">SEL_CCControlHandler <span class="title">onResolveCCBCCControlSelector</span><span class="params">(cocos2d::CCObject * pTarget, <span class="keyword">const</span> <span class="keyword">char</span>* pSelectorName)</span></span>;</div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">onButtonTest</span><span class="params">(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)</span></span>;</div></pre></td></tr></table></figure></p>
+<p>接下来是增加的函数的实现<br><figure class="highlight cpp"><figcaption><span>MainScene.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">SEL_MenuHandler MainScene::onResolveCCBCCMenuItemSelector(cocos2d::CCObject *pTarget, <span class="keyword">const</span> <span class="keyword">char</span> *pSelectorName)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">SEL_CCControlHandler MainScene::onResolveCCBCCControlSelector(cocos2d::CCObject *pTarget, <span class="keyword">const</span> <span class="keyword">char</span> *pSelectorName)</div><div class="line">&#123;</div><div class="line">    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(<span class="keyword">this</span>, <span class="string">"onButtonTest"</span>, MainScene::onButtonTest);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">void</span> MainScene::onButtonTest(cocos2d::CCObject *pSender, cocos2d::extension::CCControlEvent pCCControlEvent)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">this</span>-&gt;mLabelText-&gt;setString(<span class="string">"Hello CocosBuilder!!!"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>好了, 现在运行一下, 点击按钮, 就会看到<code>Hello Cocos2d-x!!!</code>变成了<code>Hello CocosBuilder!!!</code>了.   </p>
+<p>#####13<br>刚才我们提到变量绑定较init函数(更别提运行更早的构造函数了)更晚. 那么如何运行后就控制这些控件呢?<br>方法当然是有, 我们需要增加一个<code>CCNodeLoaderListener</code>, 并实现其接口.新增代码如下:<br><figure class="highlight cpp"><figcaption><span>MainScene</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">, <span class="keyword">public</span> cocos2d::extension::CCBSelectorResolver</div><div class="line">, <span class="keyword">public</span> cocos2d::extension::CCNodeLoaderListener</div><div class="line">&#123;</div><div class="line">    <span class="comment">///......代码省略鸟</span></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">onNodeLoaded</span><span class="params">(cocos2d::CCNode * pNode, cocos2d::extension::CCNodeLoader * pNodeLoader)</span></span>;</div><div class="line">    <span class="comment">///......代码省略鸟</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><figcaption><span>MainScene.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> MainScene::onNodeLoaded(cocos2d::CCNode *pNode, cocos2d::extension::CCNodeLoader *pNodeLoader)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">this</span>-&gt;mLabelText-&gt;setString(<span class="string">"All Loaded"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>好啦, 运行就能看到<code>All Loaded</code>啦.   </p>
+<img src="/hexoblog/upload/2012-12/ccb-sbs-2-002.png">
+<p><hr><br>代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> </p>
+<ul>
+<li>本文是系列文章, 请查看其他文章:</li>
+<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="external">一步一步CocosBuilder(1)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="external">一步一步CocosBuilder(2)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="external">一步一步CocosBuilder(3)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="external">一步一步CocosBuilder(4)完结</a></li>
+</ul>
+<p>谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.</p>
+<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="external">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="external">http://weibo.com/young40</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexoblog/2012/12/28/2012-12-28-cocosbuilder-step-by-step-part-three/" rel="prev">一步一步CocosBuilder(3)</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexoblog/2012/12/21/2012-12-21-cocosbuilder-step-by-step-part-one/" rel="next">一步一步CocosBuilder(1)</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+            </div>
+
+            
+
+            
+              <div class="comments" id="comments">
+                
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                  </div>
+                
+              </div>
+            
+        </div>
+
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://tp2.sinaimg.cn/1702027805/180/5715090841/1" alt="杨世玲" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">杨世玲</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">一个游戏开发修行者的博客</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/hexoblog/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/hexoblog/tags">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/hexoblog/hexoblog/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/young40/" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/young40" target="_blank">Weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/hexoblog/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://zilongshanren.com" target="_blank">子龙山人</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.justbilt.com" target="_blank">bilt</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="copyright" >
+  
+  &copy; &nbsp;  2012 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杨世玲</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+        </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+</div>
+
+<script type="text/javascript" src="/hexoblog/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'young40';
+      var disqus_identifier = '2012/12/25/2012-12-25-cocosbuilder-step-by-step-part-two/';
+      var disqus_title = '一步一步CocosBuilder(2)';
+      var disqus_url = 'http://www.young40.com/2012/12/25/2012-12-25-cocosbuilder-step-by-step-part-two/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/hexoblog/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/hexoblog/js/fancy-box.js?v=0.4.4"></script>
+
+
+  <script type="text/javascript" src="/hexoblog/js/helpers.js?v=0.4.4"></script>
+  
+
+  <script type="text/javascript" src="/hexoblog/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/hexoblog/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/hexoblog/js/motion_global.js?v=0.4.4" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/hexoblog/js/search-toggle.js"></script>
+
+
+  
+<script type="text/javascript" src="/hexoblog/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (CONFIG.sidebar === 'always') {
+            displaySidebar();
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+<!-- lazyload -->
+<script type="text/javascript" src="/hexoblog/js/lazyload.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#posts img").lazyload({
+            placeholder: "/hexoblog/images/loading.gif",
+            effect: "fadeIn"
+        });
+    });
+</script>
+</body>
+</html>

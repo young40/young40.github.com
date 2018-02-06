@@ -1,0 +1,683 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+    
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/hexoblog/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/hexoblog/css/main.css?v=0.4.4"/>
+
+
+    <meta name="description" content="一个游戏开发修行者的博客" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/hexoblog/hexoblog/atom.xml" title="杨世玲的游戏开发修行笔记" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/hexoblog/favicon.ico?v=0.4.4" />
+
+
+<meta name="description" content="CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.我想这个也是其不够流行的原因吧. 如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一步一步CocosBuilder(1)">
+<meta property="og:url" content="http://www.young40.com/2012/12/21/2012-12-21-cocosbuilder-step-by-step-part-one/index.html">
+<meta property="og:site_name" content="杨世玲的游戏开发修行笔记">
+<meta property="og:description" content="CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.我想这个也是其不够流行的原因吧. 如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.young40.com/hexoblog/upload/2012-12/ccb-sbs-1-001.png">
+<meta property="og:image" content="http://www.young40.com/hexoblog/upload/2012-12/ccb-sbs-1-002.png">
+<meta property="og:image" content="http://www.young40.com/hexoblog/upload/2012-12/ccb-sbs-1-003.png">
+<meta property="og:updated_time" content="2017-03-14T07:53:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一步一步CocosBuilder(1)">
+<meta name="twitter:description" content="CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.我想这个也是其不够流行的原因吧. 如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0">
+<meta name="twitter:image" content="http://www.young40.com/hexoblog/upload/2012-12/ccb-sbs-1-001.png">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+    <title> 一步一步CocosBuilder(1) // 杨世玲的游戏开发修行笔记 </title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+
+
+<div class="container one-column page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/hexoblog/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">杨世玲的游戏开发修行笔记</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexoblog/" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexoblog/archives" rel="section">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexoblog/tags" rel="section">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div id="content" class="content">
+                
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              一步一步CocosBuilder(1)
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2012-12-21T02:46:00+08:00" content="2012-12-21">
+            2012-12-21
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/hexoblog/categories/Cocos2d-x/" itemprop="url" rel="index"><span itemprop="name">Cocos2d-x</span></a></span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/hexoblog/categories/Cocos2d-x/CocosBuilder/" itemprop="url" rel="index"><span itemprop="name">CocosBuilder</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/hexoblog/2012/12/21/2012-12-21-cocosbuilder-step-by-step-part-one/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2012/12/21/2012-12-21-cocosbuilder-step-by-step-part-one/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.<br>CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.<br>我想这个也是其不够流行的原因吧.</p>
+<p>如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力.<br>我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实.<br>我无论C++,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.</p>
+<p>这次的目的是基本实现原来v2.0中的例子.<br>我采用的2d-x的版本是:cocos2d-2.1beta3-x-2.1.0, 以OS X版本为主, 以sample目录下的HelloCpp为基础改进. CCB的版本是v3.0alpha0.</p>
+<a id="more"></a>
+<p>本文的目标是基本实现将CCB整合进Mac OS X版本的项目中.</p>
+<p>首先将2d-x源代码中sample目录下的HelloCpp目录重命名为TestCocosBuilder.并使用CocosBuilder创建新项目文件在其Resources文件夹中.<br>还需要将项目需要的图片资源放入Resources目录中. 具体可以参见我打包后的整体项目文件.还可以参见文末的目录树说明.</p>
+<p>贴下Xcode项目的目录,如果添加extensions应该逐个添加,否则可能会遇到编译错误,有可能会把其他平台文件错误添加进来.</p>
+<img src="/hexoblog/upload/2012-12/ccb-sbs-1-001.png">
+<p>做完这些准备工作后, 我们接下来按步来讲解. </p>
+<p>1.首先编辑下<code>AppMacros.h</code>, 修改以下代码<br><figure class="highlight cpp"><figcaption><span>AppMacros.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> Resource smallResource  =  &#123; cocos2d::CCSizeMake(<span class="number">480</span>, <span class="number">320</span>),   <span class="string">"resources-iphone"</span> &#125;;</div><div class="line"><span class="keyword">static</span> Resource mediumResource =  &#123; cocos2d::CCSizeMake(<span class="number">1024</span>, <span class="number">768</span>),  <span class="string">"resources-ipad"</span>   &#125;;</div><div class="line"><span class="keyword">static</span> Resource largeResource  =  &#123; cocos2d::CCSizeMake(<span class="number">2048</span>, <span class="number">1536</span>), <span class="string">"resources-ipadhd"</span> &#125;;</div></pre></td></tr></table></figure></p>
+<p>这一段主要是修改<code>HelloCpp</code>默认的资源目录, 配合CCB的发布路径.同时可以将原来几个目录中文件分别移入对应目录.<br>2.添加一个新类<code>MainScene</code>如下<br><figure class="highlight cpp"><figcaption><span>MainScene.h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __HelloCpp__MainScene__</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> __HelloCpp__MainScene__</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cocos2d.h"</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"cocos-ext.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainScene</span></span></div><div class="line"><span class="class">:</span> <span class="keyword">public</span> cocos2d::CCLayer <span class="comment">//从CCLayer派生</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">static</span> cocos2d::<span class="function">CCScene* <span class="title">scene</span><span class="params">()</span></span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* defined(__HelloCpp__MainScene__) */</span></span></div></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><figcaption><span>MainScene.cpp</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"MainScene.h"</span></span></div><div class="line"></div><div class="line">USING_NS_CC;</div><div class="line">USING_NS_CC_EXT;</div><div class="line"></div><div class="line">CCScene* MainScene::scene()</div><div class="line">&#123;</div><div class="line">    CCScene *scene = CCScene::create();</div><div class="line">    </div><div class="line">    CCNodeLoaderLibrary *lib = CCNodeLoaderLibrary::newDefaultCCNodeLoaderLibrary(); <span class="comment">//生成一个默认的Node Loader</span></div><div class="line">    </div><div class="line">    CCBReader *reader = <span class="keyword">new</span> CCBReader(lib); <span class="comment">//用node load lib 初始化一个ccb reader</span></div><div class="line">    </div><div class="line">    CCNode *node = reader-&gt;readNodeGraphFromFile(<span class="string">"MainScene.ccbi"</span>, scene); <span class="comment">//从ccbi文件中加载node</span></div><div class="line">    </div><div class="line">    reader-&gt;release(); <span class="comment">//注意手动释放内存</span></div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (node!=<span class="literal">NULL</span>)</div><div class="line">    &#123;</div><div class="line">        scene-&gt;addChild(node); <span class="comment">//将node 添加到scene中</span></div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> scene;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3.修改<code>AppDelegate.cpp</code>中默认的启动scene<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CCScene *pScene = MainScene::scene(); <span class="comment">//HelloWorld::scene();</span></div></pre></td></tr></table></figure></p>
+<p>4.注意CCB中发布选项的设置, 并发布一次.<br><img src="/hexoblog/upload/2012-12/ccb-sbs-1-002.png"></p>
+<p>5.如果没有错误的话, 你应该可以看到运行的效果.<br><img src="/hexoblog/upload/2012-12/ccb-sbs-1-003.png"></p>
+<p>Update:<br>@王哲Walzer 说,CCB大部分是美术在用, 在美术圈讨论, 所以程序圈较少看到人在讨论, 其实用的公司挺多的.<br><a href="http://weibo.com/1702027805/zay18wLT5" target="_blank" rel="external">http://weibo.com/1702027805/zay18wLT5</a></p>
+<figure class="highlight sh"><figcaption><span>目录结构</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">├── samples <span class="comment">#目录结构和2d-x源代码保持一致,相信大家对2d-x源代码很熟悉了.</span></div><div class="line">│   └── CocosBuilderTest <span class="comment">#项目所在目录</span></div><div class="line">│       ├── Classes <span class="comment">#代码所在目录</span></div><div class="line">│       ├── Resources <span class="comment">#资源目录</span></div><div class="line">│       │   ├── ccb <span class="comment">#ccb发布后的目录</span></div><div class="line">│       │   │   ├── HelloCocosBuilder.ccbi</div><div class="line">│       │   │   ├── ...</div><div class="line">│       │   │   └── TestSprites.ccbi</div><div class="line">│       │   ├── ccbResources <span class="comment">#发布后的默认ccb资源</span></div><div class="line">│       │   ├── fonts</div><div class="line">│       │   ├── resources-ipad <span class="comment">#注意这几个目录, 稍后我们会提及</span></div><div class="line">│       │   ├── resources-ipadhd</div><div class="line">│       │   ├── resources-iphone</div><div class="line">│       │   ├── resources-iphonehd</div><div class="line">│       ├── ccb-source <span class="comment">#ccb项目目录</span></div><div class="line">│       │   ├── ccb</div><div class="line">│       │   │   ├── HelloCocosBuilder.ccb <span class="comment">#这几个是原CocosBuilder例子中的ccb, 直接复制过来了.</span></div><div class="line">│       │   │   ├── ...</div><div class="line">│       │   │   └── TestSprites.ccbi</div><div class="line">│       │   ├── ccbResources</div><div class="line">│       │   ├── resources-auto <span class="comment">#CocosBuilderv3.0的资源目录, 似乎只能存放图片</span></div><div class="line">│       │   │   ├── btn<span class="_">-a</span>-0.png <span class="comment">#否则会引起发布是造成CocosBuilder崩溃</span></div><div class="line">│       │   │   ├── ...</div><div class="line">│       │   │   └── scale-9-demo.png</div><div class="line">│       │   ├── MainScene.ccb <span class="comment">#默认生成的ccb, 我们这一次不对其更改</span></div><div class="line">│       │   ├── MainScene.js</div><div class="line">│       │   ├── animated-grossini.plist</div><div class="line">│       │   ├── animated-grossini.png</div><div class="line">│       │   ├── ccb-source.ccbproj</div><div class="line">│       │   ├── comic\ andy.ttf</div><div class="line">│       │   ├── grossini-generic.plist</div><div class="line">│       │   ├── grossini-generic.png</div><div class="line">│       │   ├── markerfelt24shadow.fnt</div><div class="line">│       │   └── markerfelt24shadow.png</div><div class="line">│       └── proj.mac</div><div class="line">│           ├── HelloCpp.xcodeproj <span class="comment">#项目文件, 暂时只支持mac os x</span></div><div class="line">├── cocos2dx <span class="comment">#2d-x文件</span></div><div class="line">├── extensions <span class="comment">#2d-x的扩展</span></div><div class="line">│   ├── CCBReader <span class="comment">#这个是解析CocosBuilder的主要CCBReader</span></div><div class="line">│   │   ├── CCBAnimationManager.cpp</div><div class="line">│   │   ├── CCBAnimationManager.h</div><div class="line">│   │   ├── ...</div><div class="line">│   │   └── CCSpriteLoader.h</div><div class="line">│   ├── GUI</div><div class="line">│   ├── network</div><div class="line">│   ├── physics_nodes</div><div class="line">│   ├── ExtensionMacros.h</div><div class="line">│   └── cocos-ext.h</div></pre></td></tr></table></figure>
+<p><hr><br>代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> </p>
+<ul>
+<li>本文是系列文章, 请查看其他文章:</li>
+<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="external">一步一步CocosBuilder(1)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="external">一步一步CocosBuilder(2)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="external">一步一步CocosBuilder(3)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="external">一步一步CocosBuilder(4)完结</a></li>
+</ul>
+<p>谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.</p>
+<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="external">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="external">http://weibo.com/young40</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexoblog/2012/12/25/2012-12-25-cocosbuilder-step-by-step-part-two/" rel="prev">一步一步CocosBuilder(2)</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexoblog/2012/12/17/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/" rel="next">2d-x深读2:CCPlatformMacros.h</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+            </div>
+
+            
+
+            
+              <div class="comments" id="comments">
+                
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                  </div>
+                
+              </div>
+            
+        </div>
+
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://tp2.sinaimg.cn/1702027805/180/5715090841/1" alt="杨世玲" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">杨世玲</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">一个游戏开发修行者的博客</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/hexoblog/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/hexoblog/tags">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/hexoblog/hexoblog/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/young40/" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/young40" target="_blank">Weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/hexoblog/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://zilongshanren.com" target="_blank">子龙山人</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.justbilt.com" target="_blank">bilt</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="copyright" >
+  
+  &copy; &nbsp;  2012 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杨世玲</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+        </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+</div>
+
+<script type="text/javascript" src="/hexoblog/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'young40';
+      var disqus_identifier = '2012/12/21/2012-12-21-cocosbuilder-step-by-step-part-one/';
+      var disqus_title = '一步一步CocosBuilder(1)';
+      var disqus_url = 'http://www.young40.com/2012/12/21/2012-12-21-cocosbuilder-step-by-step-part-one/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/hexoblog/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/hexoblog/js/fancy-box.js?v=0.4.4"></script>
+
+
+  <script type="text/javascript" src="/hexoblog/js/helpers.js?v=0.4.4"></script>
+  
+
+  <script type="text/javascript" src="/hexoblog/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/hexoblog/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/hexoblog/js/motion_global.js?v=0.4.4" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/hexoblog/js/search-toggle.js"></script>
+
+
+  
+<script type="text/javascript" src="/hexoblog/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (CONFIG.sidebar === 'always') {
+            displaySidebar();
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+<!-- lazyload -->
+<script type="text/javascript" src="/hexoblog/js/lazyload.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#posts img").lazyload({
+            placeholder: "/hexoblog/images/loading.gif",
+            effect: "fadeIn"
+        });
+    });
+</script>
+</body>
+</html>

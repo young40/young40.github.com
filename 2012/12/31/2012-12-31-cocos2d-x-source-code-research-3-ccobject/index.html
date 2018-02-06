@@ -1,0 +1,691 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+    
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/hexoblog/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/hexoblog/css/main.css?v=0.4.4"/>
+
+
+    <meta name="description" content="一个游戏开发修行者的博客" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/hexoblog/hexoblog/atom.xml" title="杨世玲的游戏开发修行笔记" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/hexoblog/favicon.ico?v=0.4.4" />
+
+
+<meta name="description" content="CCObject是绝大部分cocos2d-x类的基类, 我们就从这里一步一步揭开cocos2d-x的奥秘.    CCObject承担了两个重要的功能, 拷贝机制和内存管理.     ##拷贝机制打开CCObject.h 首先看到的是类CCCopying, 而CCObject是从该类派生. 从这个意义上来讲CCCopying才是大部分类的基类.但CCCopying其实非常简单, 再加上没有其他类从">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2d-x深读3:CCObject">
+<meta property="og:url" content="http://www.young40.com/2012/12/31/2012-12-31-cocos2d-x-source-code-research-3-ccobject/index.html">
+<meta property="og:site_name" content="杨世玲的游戏开发修行笔记">
+<meta property="og:description" content="CCObject是绝大部分cocos2d-x类的基类, 我们就从这里一步一步揭开cocos2d-x的奥秘.    CCObject承担了两个重要的功能, 拷贝机制和内存管理.     ##拷贝机制打开CCObject.h 首先看到的是类CCCopying, 而CCObject是从该类派生. 从这个意义上来讲CCCopying才是大部分类的基类.但CCCopying其实非常简单, 再加上没有其他类从">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-03-14T07:53:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2d-x深读3:CCObject">
+<meta name="twitter:description" content="CCObject是绝大部分cocos2d-x类的基类, 我们就从这里一步一步揭开cocos2d-x的奥秘.    CCObject承担了两个重要的功能, 拷贝机制和内存管理.     ##拷贝机制打开CCObject.h 首先看到的是类CCCopying, 而CCObject是从该类派生. 从这个意义上来讲CCCopying才是大部分类的基类.但CCCopying其实非常简单, 再加上没有其他类从">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+    <title> 2d-x深读3:CCObject // 杨世玲的游戏开发修行笔记 </title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+
+
+<div class="container one-column page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/hexoblog/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">杨世玲的游戏开发修行笔记</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexoblog/" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexoblog/archives" rel="section">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexoblog/tags" rel="section">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div id="content" class="content">
+                
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              2d-x深读3:CCObject
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2012-12-31T17:21:00+08:00" content="2012-12-31">
+            2012-12-31
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/hexoblog/categories/Cocos2d-x/" itemprop="url" rel="index"><span itemprop="name">Cocos2d-x</span></a></span>
+
+              
+              
+                ， 
+              
+
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/hexoblog/categories/Cocos2d-x/Cocos2d-x-源代码研究/" itemprop="url" rel="index"><span itemprop="name">Cocos2d-x 源代码研究</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/hexoblog/2012/12/31/2012-12-31-cocos2d-x-source-code-research-3-ccobject/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2012/12/31/2012-12-31-cocos2d-x-source-code-research-3-ccobject/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>CCObject是绝大部分cocos2d-x类的基类, 我们就从这里一步一步揭开cocos2d-x的奥秘.   </p>
+<p>CCObject承担了两个重要的功能, 拷贝机制和内存管理.    </p>
+<p>##拷贝机制<br>打开<code>CCObject.h</code> 首先看到的是类CCCopying, 而CCObject是从该类派生. 从这个意义上来讲CCCopying才是大部分类的基类.<br>但CCCopying其实非常简单, 再加上没有其他类从CCCopying派生, 所以说CCObject才是大部分类的基类也是不错的. 我认为CCCopying仅仅是一个接口性质.   </p>
+<p>CCCopying这个类非常简单, 只有一个成员函数copyWithZone(CCZone *pZone); 简单到其实现只是为了报错. 尽管如此, 但其却承担了拷贝机制这一重要的功能.   </p>
+<p>cocos2d-x和cocos2d-iphone是近亲, 所以cocos2d-x在API上会和cocos2d-iphone保持一致, 代码上也多有借鉴. CCObject明显就有很多NSObject的痕迹.<br>当然我对Objective-c并不熟悉, 这里都是些猜测罢了. copyWithZone或许就是借鉴了Obj-c.   </p>
+<p>我们先来看下拷贝机制, 至于CCObject的代码倒不忙着看.   </p>
+<a id="more"></a>
+<p>这两段代码来至于类CCArray, 我们可以看到调用了原对象的copy()来拷贝一份新的CCArray.<br>而copy()则定义于CCObject中, 其工作就是调用copyWithZone.  </p>
+<figure class="highlight cpp"><figcaption><span>CCArray</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">CCArray* CCArray::createWithArray(CCArray* otherArray)</div><div class="line">&#123;</div><div class="line">    CCArray* pRet = (CCArray*)otherArray-&gt;copy();</div><div class="line">    pRet-&gt;autorelease();</div><div class="line">    <span class="keyword">return</span> pRet;</div><div class="line">&#125;</div><div class="line"><span class="comment">/////----------////</span></div><div class="line">CCObject* CCArray::copyWithZone(CCZone* pZone)</div><div class="line">&#123;</div><div class="line">    CCAssert(pZone == <span class="literal">NULL</span>, <span class="string">"CCArray should not be inherited."</span>);</div><div class="line">    CCArray* pArray = <span class="keyword">new</span> CCArray();</div><div class="line">    pArray-&gt;initWithCapacity(<span class="keyword">this</span>-&gt;data-&gt;num &gt; <span class="number">0</span> ? <span class="keyword">this</span>-&gt;data-&gt;num : <span class="number">1</span>);</div><div class="line"></div><div class="line">    CCObject* pObj = <span class="literal">NULL</span>;</div><div class="line">    CCObject* pTmpObj = <span class="literal">NULL</span>;</div><div class="line">    CCARRAY_FOREACH(<span class="keyword">this</span>, pObj)</div><div class="line">    &#123;</div><div class="line">        pTmpObj = pObj-&gt;copy();</div><div class="line">        pArray-&gt;addObject(pTmpObj);</div><div class="line">        pTmpObj-&gt;release();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> pArray;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里面牵涉到两个概念, 深拷贝和浅拷贝. 不清楚的大家可以搜索下, 简而言之, 深拷贝才真正的完全拷贝. cocos2d-x实现的是深拷贝.<br>我们在上面CCArray::copyWithZone中可以看到拷贝时对array的各个成员也执行了copy()的动作.<br>这样才能防止如果obj2是obj1的浅拷贝, 很容易出现array的元素有可能被过早释放的情况.   </p>
+<p>这里我们还可以一并说下CCZone这个类, 这个类也很简单, 只有一个构造函数和成员变量.<br><figure class="highlight cpp"><figcaption><span>CCZone</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CC_DLL</span> <span class="title">CCZone</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CCZone(CCObject *pObject = <span class="literal">NULL</span>);</div><div class="line"></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CCObject *m_pCopyObject;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>我想CCZone存在的目的就是为了调用copyWithZone的时候对象传递方便.比如我们还可以看下CCSpeed的copyWithZone函数.<br><figure class="highlight cpp"><figcaption><span>CCSpeed</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">CCObject *CCSpeed::copyWithZone(CCZone *pZone)</div><div class="line">&#123;</div><div class="line">    CCZone* pNewZone = <span class="literal">NULL</span>;</div><div class="line">    CCSpeed* pRet = <span class="literal">NULL</span>;</div><div class="line">    <span class="keyword">if</span>(pZone &amp;&amp; pZone-&gt;m_pCopyObject) <span class="comment">//in case of being called at sub class</span></div><div class="line">    &#123;</div><div class="line">        pRet = (CCSpeed*)(pZone-&gt;m_pCopyObject);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        pRet = <span class="keyword">new</span> CCSpeed();</div><div class="line">        pZone = pNewZone = <span class="keyword">new</span> CCZone(pRet);</div><div class="line">    &#125;</div><div class="line">    CCAction::copyWithZone(pZone);</div><div class="line"></div><div class="line">    pRet-&gt;initWithAction( (CCActionInterval*)(m_pInnerAction-&gt;copy()-&gt;autorelease()) , m_fSpeed );</div><div class="line">    </div><div class="line">    CC_SAFE_DELETE(pNewZone);</div><div class="line">    <span class="keyword">return</span> pRet;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们可以看到构建了一个pZone, 然后调用父类的<code>CCAction::copyWithZone(pZone);</code>.<br>完全是为了copyWithZone方便传递变量而创建的.   </p>
+<p>拷贝机制看起来有点复杂, 但其实用起来很简单. 我觉得就两点, 1,使用copy()调用 2.各个类对自己的copyWithZone负责.</p>
+<p>##内存管理<br>cocos2d-x的内存管理采用了引用计数的方法. 曾经看到过有人吐槽其内存管理在多线程下不好用.   </p>
+<p>CCObject及其子类的对象在创建时, 引用计数默认为1, 每次retain后引用计数加1. 每次release后引用计数减1.<br>被自动管理的对象引用计数为0时, 会被自动释放.</p>
+<p>老G总结的内存管理使用的几点原则(见参考1):   </p>
+<ul>
+<li>原则1: 谁生成(new, copy)谁负责release.   </li>
+<li>原则2: 谁retain, 谁负责release.    </li>
+<li>原则3: 对于使用了autorelease的对象则不必管他.   </li>
+</ul>
+<p>##几个常用的函数指针<br>当我看到下面这两句的时候, 我完全懵了.   </p>
+<pre><code class="cpp"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_SCHEDULE)</span><span class="params">(<span class="keyword">float</span>)</span></span>;
+<span class="meta">#<span class="meta-keyword">define</span> schedule_selector(_SELECTOR) (SEL_SCHEDULE)(&amp;_SELECTOR)</span>
+</code></pre>
+<p>如果你也对函数指针不熟悉的话, 请翻下相关内容吧.<br>在这两句里面, 第一句其实是定义了一个返回类型为void的, 名字为SEL_SCHEDULE的, 参数为float的函数指针.<br>第二句其实是一个函数类型转换, 将(&amp;_SELECTOR)强制转换成SEL_SCHEDULE类型的函数指针.   </p>
+<p>通常需要回调函数的时候, 就需要用到这些函数指针. 这里就不再赘述, 以后应该会提及相关知识.   </p>
+<p>好, 我们接下来直接翻代码吧.  </p>
+<ul>
+<li>版本:<code>cocos2d-2.1beta3-x-2.1.0</code></li>
+<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/cocoa/CCObject.h</code></li>
+<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/cocoa/CCObject.cpp</code></li>
+</ul>
+<figure class="highlight cpp"><figcaption><span>CCobject\.h</span><a href="/hexoblog/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCObject.h">view raw</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CC_DLL</span> <span class="title">CCCopying</span></span></div><div class="line"><span class="class">{</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">virtual</span> CCObject* <span class="title">copyWithZone</span><span class="params">(CCZone* pZone)</span></span>;</div><div class="line">};</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CC_DLL</span> <span class="title">CCObject</span> :</span> <span class="keyword">public</span> CCCopying</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span>        m_uID;<span class="comment">//这两个是支持lua等脚本语言用的, 我们不去管他.</span></div><div class="line">    <span class="keyword">int</span>                 m_nLuaID;</div><div class="line"><span class="keyword">protected</span>:</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span>        m_uReference;<span class="comment">//引用计数</span></div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span>        m_uAutoReleaseCount;<span class="comment">//autorelease计数</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CCObject(<span class="keyword">void</span>);</div><div class="line">    <span class="keyword">virtual</span> ~CCObject(<span class="keyword">void</span>);</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">release</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">retain</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line">    <span class="function">CCObject* <span class="title">autorelease</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line">    <span class="function">CCObject* <span class="title">copy</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSingleReference</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">retainCount</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">isEqual</span><span class="params">(<span class="keyword">const</span> CCObject* pObject)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">float</span> dt)</span> </span>{CC_UNUSED_PARAM(dt);};</div><div class="line">   <span class="comment">//CCAutoreleasePool作为友元类 </span></div><div class="line">    <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">CCAutoreleasePool</span>;</span></div><div class="line">};</div><div class="line"></div><div class="line"><span class="comment">//几个常用的函数指针.</span></div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_SCHEDULE)</span><span class="params">(<span class="keyword">float</span>)</span></span>;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_CallFunc)</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_CallFuncN)</span><span class="params">(CCNode*)</span></span>;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_CallFuncND)</span><span class="params">(CCNode*, <span class="keyword">void</span>*)</span></span>;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_CallFuncO)</span><span class="params">(CCObject*)</span></span>;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_MenuHandler)</span><span class="params">(CCObject*)</span></span>;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_EventHandler)</span><span class="params">(CCEvent*)</span></span>;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(CCObject::*SEL_Compare)</span><span class="params">(CCObject*)</span></span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> schedule_selector(_SELECTOR) (SEL_SCHEDULE)(&amp;_SELECTOR)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> callfunc_selector(_SELECTOR) (SEL_CallFunc)(&amp;_SELECTOR)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> callfuncN_selector(_SELECTOR) (SEL_CallFuncN)(&amp;_SELECTOR)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> callfuncND_selector(_SELECTOR) (SEL_CallFuncND)(&amp;_SELECTOR)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> callfuncO_selector(_SELECTOR) (SEL_CallFuncO)(&amp;_SELECTOR)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> menu_selector(_SELECTOR) (SEL_MenuHandler)(&amp;_SELECTOR)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> event_selector(_SELECTOR) (SEL_EventHandler)(&amp;_SELECTOR)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> compare_selector(_SELECTOR) (SEL_Compare)(&amp;_SELECTOR)</span></div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><figcaption><span>CCobject\.cpp</span><a href="/hexoblog/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCObject.cpp">view raw</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line">CCObject* CCCopying::copyWithZone(CCZone *pZone)</div><div class="line">{<span class="comment">//CCObject的派生类需要调用copy()则必须重写该函数</span></div><div class="line">    CC_UNUSED_PARAM(pZone);</div><div class="line">    CCAssert(<span class="number">0</span>, <span class="string">"not implement"</span>);<span class="comment">//不重写会报错.</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div><div class="line"></div><div class="line">CCObject::CCObject(<span class="keyword">void</span>)</div><div class="line">:m_uAutoReleaseCount(<span class="number">0</span>)</div><div class="line">,m_uReference(<span class="number">1</span>) <span class="comment">// 引用计数默认为1</span></div><div class="line">,m_nLuaID(<span class="number">0</span>)</div><div class="line">{</div><div class="line">    <span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> uObjectCount = <span class="number">0</span>;</div><div class="line">    m_uID = ++uObjectCount;<span class="comment">//脚本语言相关, 不去管他.</span></div><div class="line">}</div><div class="line"></div><div class="line">CCObject::~CCObject(<span class="keyword">void</span>)</div><div class="line">{<span class="comment">//析构函数</span></div><div class="line">    <span class="keyword">if</span> (m_uAutoReleaseCount &gt; <span class="number">0</span>)</div><div class="line">    {<span class="comment">//自动引用计数则从管理池中删除</span></div><div class="line">        CCPoolManager::sharedPoolManager()-&gt;removeObject(<span class="keyword">this</span>);</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span> (m_nLuaID)<span class="comment">//脚本语言相关.</span></div><div class="line">    {</div><div class="line">        CCScriptEngineManager::sharedManager()-&gt;getScriptEngine()-&gt;removeScriptObjectByCCObject(<span class="keyword">this</span>);</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span></div><div class="line">    {<span class="comment">//看起来脚本语言支持被深度嵌入, 如果能设置个宏直接去掉其支持多好.</span></div><div class="line">        CCScriptEngineProtocol* pEngine = CCScriptEngineManager::sharedManager()-&gt;getScriptEngine();</div><div class="line">        <span class="keyword">if</span> (pEngine != <span class="literal">NULL</span> &amp;&amp; pEngine-&gt;getScriptType() == kScriptTypeJavascript)</div><div class="line">        {</div><div class="line">            pEngine-&gt;removeScriptObjectByCCObject(<span class="keyword">this</span>);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="comment">// copy实质上是对copyWithZone的调用.</span></div><div class="line">CCObject* CCObject::copy()</div><div class="line">{</div><div class="line">    <span class="keyword">return</span> copyWithZone(<span class="number">0</span>);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> CCObject::release(<span class="keyword">void</span>)</div><div class="line">{</div><div class="line">    CCAssert(m_uReference &gt; <span class="number">0</span>, <span class="string">"reference count should greater than 0"</span>);</div><div class="line">    --m_uReference;<span class="comment">//引用计数自减</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span> (m_uReference == <span class="number">0</span>)</div><div class="line">    {<span class="comment">//如果引用计数为0, 调用release会立即释放内存.</span></div><div class="line">        <span class="keyword">delete</span> <span class="keyword">this</span>;</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> CCObject::retain(<span class="keyword">void</span>)</div><div class="line">{</div><div class="line">    CCAssert(m_uReference &gt; <span class="number">0</span>, <span class="string">"reference count should greater than 0"</span>);</div><div class="line">    ++m_uReference;<span class="comment">//引用计数自增.</span></div><div class="line">}</div><div class="line"></div><div class="line">CCObject* CCObject::autorelease(<span class="keyword">void</span>)</div><div class="line">{<span class="comment">//autorelease将对象加入自动内存管理池.</span></div><div class="line">    CCPoolManager::sharedPoolManager()-&gt;addObject(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">bool</span> CCObject::isSingleReference(<span class="keyword">void</span>)</div><div class="line">{<span class="comment">//判断对象是否仅被引用了一次</span></div><div class="line">    <span class="keyword">return</span> m_uReference == <span class="number">1</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> CCObject::retainCount(<span class="keyword">void</span>)</div><div class="line">{<span class="comment">//返回引用次数</span></div><div class="line">    <span class="keyword">return</span> m_uReference;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">bool</span> CCObject::isEqual(<span class="keyword">const</span> CCObject *pObject)</div><div class="line">{<span class="comment">//判断对象是否为同一个对象.</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span> == pObject;</div><div class="line">}</div></pre></td></tr></table></figure>
+<ul>
+<li>参考1: <a href="http://4137613.blog.51cto.com/4127613/784134" target="_blank" rel="external">http://4137613.blog.51cto.com/4127613/784134</a></li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexoblog/2013/01/03/2013-01-03-cocos2d-x-source-code-research-4-ccautoreleasepool/" rel="prev">2d-x深读4:CCAutoReleasePool</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexoblog/2012/12/29/2012-12-29-cocosbuilder-step-by-step-part-four/" rel="next">一步一步CocosBuilder(4)[完结]</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+            </div>
+
+            
+
+            
+              <div class="comments" id="comments">
+                
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                  </div>
+                
+              </div>
+            
+        </div>
+
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://tp2.sinaimg.cn/1702027805/180/5715090841/1" alt="杨世玲" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">杨世玲</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">一个游戏开发修行者的博客</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/hexoblog/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/hexoblog/tags">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/hexoblog/hexoblog/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/young40/" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/young40" target="_blank">Weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/hexoblog/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://zilongshanren.com" target="_blank">子龙山人</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.justbilt.com" target="_blank">bilt</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="copyright" >
+  
+  &copy; &nbsp;  2012 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杨世玲</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+        </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+</div>
+
+<script type="text/javascript" src="/hexoblog/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'young40';
+      var disqus_identifier = '2012/12/31/2012-12-31-cocos2d-x-source-code-research-3-ccobject/';
+      var disqus_title = '2d-x深读3:CCObject';
+      var disqus_url = 'http://www.young40.com/2012/12/31/2012-12-31-cocos2d-x-source-code-research-3-ccobject/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/hexoblog/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/hexoblog/js/fancy-box.js?v=0.4.4"></script>
+
+
+  <script type="text/javascript" src="/hexoblog/js/helpers.js?v=0.4.4"></script>
+  
+
+  <script type="text/javascript" src="/hexoblog/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/hexoblog/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/hexoblog/js/motion_global.js?v=0.4.4" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/hexoblog/js/search-toggle.js"></script>
+
+
+  
+<script type="text/javascript" src="/hexoblog/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (CONFIG.sidebar === 'always') {
+            displaySidebar();
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+<!-- lazyload -->
+<script type="text/javascript" src="/hexoblog/js/lazyload.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#posts img").lazyload({
+            placeholder: "/hexoblog/images/loading.gif",
+            effect: "fadeIn"
+        });
+    });
+</script>
+</body>
+</html>

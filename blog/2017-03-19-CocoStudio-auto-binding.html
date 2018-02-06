@@ -1,0 +1,498 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+    
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/hexoblog/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/hexoblog/css/main.css?v=0.4.4"/>
+
+
+    <meta name="description" content="一个游戏开发修行者的博客" />
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+  <link rel="alternate" href="/hexoblog/hexoblog/atom.xml" title="杨世玲的游戏开发修行笔记" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/hexoblog/favicon.ico?v=0.4.4" />
+
+
+<meta name="description" content="懒是美德   换了一份工作, 第一步就是需要熟悉现有的代码。作为一个优化狂人，很容易就能从中看出值得优化的地方来。随手打开一个约2600多行的lua文件，发现满屏的seekNodeByName，简单统计一下约260行，10%。 我们在使用CocoStudio的时候，在代码中确实需要使用节点的Name来寻找节点，但不要忘记lua语言的动态性，恰当利用则事半功倍。更何况，懒是一种美德，我们努力思考，">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CocoStudio 节点自动绑定">
+<meta property="og:url" content="http://www.young40.com/blog/2017-03-19-CocoStudio-auto-binding.html">
+<meta property="og:site_name" content="杨世玲的游戏开发修行笔记">
+<meta property="og:description" content="懒是美德   换了一份工作, 第一步就是需要熟悉现有的代码。作为一个优化狂人，很容易就能从中看出值得优化的地方来。随手打开一个约2600多行的lua文件，发现满屏的seekNodeByName，简单统计一下约260行，10%。 我们在使用CocoStudio的时候，在代码中确实需要使用节点的Name来寻找节点，但不要忘记lua语言的动态性，恰当利用则事半功倍。更何况，懒是一种美德，我们努力思考，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-07T10:14:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CocoStudio 节点自动绑定">
+<meta name="twitter:description" content="懒是美德   换了一份工作, 第一步就是需要熟悉现有的代码。作为一个优化狂人，很容易就能从中看出值得优化的地方来。随手打开一个约2600多行的lua文件，发现满屏的seekNodeByName，简单统计一下约260行，10%。 我们在使用CocoStudio的时候，在代码中确实需要使用节点的Name来寻找节点，但不要忘记lua语言的动态性，恰当利用则事半功倍。更何况，懒是一种美德，我们努力思考，">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+    <title>
+  
+
+  
+    CocoStudio 节点自动绑定 // 杨世玲的游戏开发修行笔记
+  
+</title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+
+
+<div class="container one-column ">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/hexoblog/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">杨世玲的游戏开发修行笔记</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexoblog/" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexoblog/archives" rel="section">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexoblog/tags" rel="section">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div id="content" class="content">
+                
+
+  <div id="posts" class="posts-expand">
+    
+    
+      
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">懒是美德</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+换了一份工作, 第一步就是需要熟悉现有的代码。作为一个优化狂人，很容易就能从中看出值得优化的地方来。随手打开一个约2600多行的lua文件，发现满屏的seekNodeByName，简单统计一下约260行，10%。
+我们在使用CocoStudio的时候，在代码中确实需要使用节点的Name来寻找节点，但不要忘记lua语言的动态性，恰当利用则事半功倍。更何况，懒是一种美德，我们努力思考，就能少写不少代码。
+</p>
+
+<p>
+<a id="more"></a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">自动绑定</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+假设我们有一个demo.csd文件，结构如下:
+</p>
+<pre class="example">
+|--Root
+    |--spr_Background
+    |--lbl_Title
+    |--Node_DefaultName
+</pre>
+
+
+<p>
+代码加载的时候，如果能自动绑定到代码改多好啊!
+</p>
+<div class="org-src-container">
+
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line">DemoLayer = class(<span class="string">"DemoLayer"</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span></span> <span class="keyword">return</span> cc.Layer:create() <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">DemoLayer:init</span><span class="params">()</span></span></span><br><span class="line">  loadCSB(<span class="string">"demo.csb"</span>, self)</span><br><span class="line"></span><br><span class="line">  self.lbl_Title:setString(<span class="string">"自动绑定太爽了"</span>) <span class="comment">-- 如何能爽这一下???</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">来个实现</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+下面是一份简单的实现。`attachedTo[nodeName] = child` 中，利用lua的动态性，直接给`attachedTo`这个对象增加新的属性，
+这样就能在`loadCSB("demo.csb", self)`后，直接用`self.lbl_Title`来访问节点了。
+</p>
+<div class="org-src-container">
+
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadCSB</span><span class="params">(csbName)</span></span></span><br><span class="line">	<span class="keyword">local</span> csbNode = cc.CSLoader:createNode(csbName)</span><br><span class="line"></span><br><span class="line">  gt.bindNodeByName(csbNode, attachedTo)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> csbNode</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bindNodeByName</span><span class="params">(node, attachedTo)</span></span></span><br><span class="line">  <span class="keyword">local</span> matchTable = {spr_=<span class="keyword">true</span>, nod_=<span class="keyword">true</span>, btn_=<span class="keyword">true</span>, lbl_=<span class="keyword">true</span>}</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> _, child <span class="keyword">in</span> <span class="built_in">ipairs</span>(node:getChildren()) <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">local</span> nodeName = child:getName()</span><br><span class="line">    <span class="keyword">local</span> nodeNameSub = <span class="built_in">string</span>.sub(nodeName, <span class="number">0</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> matchTable[nodeNameSub] <span class="keyword">then</span></span><br><span class="line">      attachedTo[nodeName] = child</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    bindNodeByName(child, attachedTo)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">一个规则</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+CocoStudio在编辑csd文件的时候，会给节点加上默认的名字，通常这些名字都是乱七八糟，在代码里再使用这些名字，代码也会变得丑陋不堪。
+所以，有必要在CocoStudio中给节点一个有意义的名字，同时如果加上一个规则，还能减少节点绑定的数量。
+</p>
+<div class="org-src-container">
+
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">local</span> matchTable = {spr_=<span class="keyword">true</span>, nod_=<span class="keyword">true</span>, btn_=<span class="keyword">true</span>, lbl_=<span class="keyword">true</span>}</span><br><span class="line"><span class="keyword">if</span> matchTable[nodeNameSub] <span class="keyword">then</span></span><br><span class="line">   <span class="comment">-- 是感兴趣的节点，匹配到了</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</div>
+<p>
+我在示例中的规则是以spr_, nod_等为前缀的节点。这里的matchTable有点意思，spr_这些并不是它的值，而是键(key), 所以拿到前缀之后，
+可以快速匹配，并不需要再跑一个循环了^_-.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">有个技巧</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+可能会有有序的节点，比如lbl_name1, lbl_name2, lbl_name3&#x2026;, 我们固然可以通过类似于self.lbl_name1等来访问，但有时我们在比如for循环中
+如何访问这些节点呢？答案是我们可以利用下标的形式来访问这些节点.
+</p>
+<div class="org-src-container">
+
+<figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">local</span> name = self[<span class="string">"lbl_name"</span> .. i]</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">还有没有</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+这只是一个简单的版本，简单的工程也够用了。复杂一些的话，比如可以加上重名检测，对于列表型的节点加以更多的处理，等等。。。
+如果你遇到问题，不妨通过微博联系我。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">结束感悟</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+年复一年，终究是一事无成。能真切地感受到与日俱增的压力, 翻翻上一篇博客已经是一年多年前了，2016年竟是一字未写。想想前面两年的计划，多半是未完成，还有最可惜的Unreal的梦想。
+我的新年来的比较晚，Late better than Never, 希望今年能再多些思考，多写文字，多读点书，多点收入。
+</p>
+
+<p>
+再来回看正题，从懒这个美德出发，我们在写代码时，处处都可能有值得优化的地方，留心观察，能提出问题，找到解决方案只是时间问题。提出好的问题，才是最宝贵的。
+</p>
+</div>
+</div>
+
+<p class="date">Date: 2017-03-19</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
+
+    
+  </div>
+
+
+            </div>
+
+            
+
+            
+              <div class="comments" id="comments">
+                
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                  </div>
+                
+              </div>
+            
+        </div>
+
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://tp2.sinaimg.cn/1702027805/180/5715090841/1" alt="杨世玲" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">杨世玲</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">一个游戏开发修行者的博客</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/hexoblog/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/hexoblog/tags">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/hexoblog/hexoblog/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/young40/" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/young40" target="_blank">Weibo</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/hexoblog/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">友情链接</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://zilongshanren.com" target="_blank">子龙山人</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="http://blog.justbilt.com" target="_blank">bilt</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="copyright" >
+  
+  &copy; &nbsp;  2012 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杨世玲</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+        </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+</div>
+
+<script type="text/javascript" src="/hexoblog/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'young40';
+      var disqus_identifier = 'blog/2017-03-19-CocoStudio-auto-binding.html';
+      var disqus_title = 'CocoStudio 节点自动绑定';
+      var disqus_url = 'http://www.young40.com/blog/2017-03-19-CocoStudio-auto-binding.html';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/hexoblog/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/hexoblog/js/fancy-box.js?v=0.4.4"></script>
+
+
+  <script type="text/javascript" src="/hexoblog/js/helpers.js?v=0.4.4"></script>
+  
+
+  <script type="text/javascript" src="/hexoblog/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/hexoblog/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/hexoblog/js/motion_global.js?v=0.4.4" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/hexoblog/js/search-toggle.js"></script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (CONFIG.sidebar === 'always') {
+            displaySidebar();
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+<!-- lazyload -->
+<script type="text/javascript" src="/hexoblog/js/lazyload.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#posts img").lazyload({
+            placeholder: "/hexoblog/images/loading.gif",
+            effect: "fadeIn"
+        });
+    });
+</script>
+</body>
+</html>
