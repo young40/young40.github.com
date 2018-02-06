@@ -71,6 +71,16 @@ copyright = "&copy; 2018 Copyright 杨世玲"
     url = "/tags"
     weight = 4
 
+[[menu.main]]
+    name = "分类"
+    url = "/categories"
+    weight = 4
+
+[[menu.main]]
+    name = "历史文章"
+    url = "http://www.young40.com/hexoblog/"
+    weight = 4
+
 [related]
   # Only include matches with rank >= threshold. This is a normalized rank between 0 and 100.
   threshold = 80
