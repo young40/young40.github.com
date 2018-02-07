@@ -4,9 +4,9 @@
   <subtitle>和平行世界的自己握手</subtitle>
   <link href="/hexoblog/atom.xml" rel="self"/>
   
-  <link href="http://www.young40.com/"/>
-  <updated>2017-08-07T10:14:37.000Z</updated>
-  <id>http://www.young40.com/</id>
+  <link href="http://www.young40.com/hexoblog/"/>
+  <updated>2018-02-07T16:05:47.143Z</updated>
+  <id>http://www.young40.com/hexoblog/</id>
   
   <author>
     <name>杨世玲</name>
@@ -16,11 +16,46 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>新站点</title>
+    <link href="http://www.young40.com/hexoblog/2018/02/08/2018-02-08-New-Site/"/>
+    <id>http://www.young40.com/hexoblog/2018/02/08/2018-02-08-New-Site/</id>
+    <published>2018-02-08T00:00:00.000Z</published>
+    <updated>2018-02-07T16:05:47.143Z</updated>
+    
+    <content type="html"><![CDATA[
+
+<p>
+这是备份站, 请进主站:
+<a href="http://www.young40.com">http://www.young40.com</a>
+</p>
+
+<p class="date">Date: 2018-02-08</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="noopener">Validate</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      
+
+&lt;p&gt;
+这是备份站, 请进主站:
+&lt;a href=&quot;http://www.young40.com&quot;&gt;http://www.young40.com&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p class=&quot;date&quot;&gt;Date: 2018-02-08&lt;/p&gt;
+&lt;p class=&quot;validati
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>CocoStudio 节点自动绑定</title>
-    <link href="http://www.young40.com/2017/03/19/2017-03-19-CocoStudio-auto-binding/"/>
-    <id>http://www.young40.com/2017/03/19/2017-03-19-CocoStudio-auto-binding/</id>
+    <link href="http://www.young40.com/hexoblog/2017/03/19/2017-03-19-CocoStudio-auto-binding/"/>
+    <id>http://www.young40.com/hexoblog/2017/03/19/2017-03-19-CocoStudio-auto-binding/</id>
     <published>2017-03-19T00:00:00.000Z</published>
-    <updated>2017-08-07T10:14:37.000Z</updated>
+    <updated>2018-02-07T15:54:22.413Z</updated>
     
     <content type="html"><![CDATA[
 
@@ -136,7 +171,7 @@ CocoStudio在编辑csd文件的时候，会给节点加上默认的名字，通�
 <h2 id="sec-8">Update</h2>
 <div class="outline-text-2" id="text-8">
 <p>
-<a href="http://blog.justbilt.com" target="_blank" rel="external">bilt兄</a> 看了这篇博客以后，告诉我可以将有序列的节点以数组的方式访问更有效率，我马上更新了下代码，使用起来果然更加方便了.
+<a href="http://blog.justbilt.com" target="_blank" rel="noopener">bilt兄</a> 看了这篇博客以后，告诉我可以将有序列的节点以数组的方式访问更有效率，我马上更新了下代码，使用起来果然更加方便了.
 下面是带序列的节点组合成数组的一个小函数。
 </p>
 <div class="org-src-container">
@@ -154,7 +189,7 @@ CocoStudio在编辑csd文件的时候，会给节点加上默认的名字，通�
 </div>
 
 <p class="date">Date: 2017-03-19</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="noopener">Validate</a></p>
 ]]></content>
     
     <summary type="html">
@@ -176,10 +211,10 @@ CocoStudio在编辑csd文件的时候，会给节点加上默认的名字，通�
   
   <entry>
     <title>一次 git 花样实战</title>
-    <link href="http://www.young40.com/2015/12/22/2015-12-22-using-git-as-magics/"/>
-    <id>http://www.young40.com/2015/12/22/2015-12-22-using-git-as-magics/</id>
+    <link href="http://www.young40.com/hexoblog/2015/12/22/2015-12-22-using-git-as-magics/"/>
+    <id>http://www.young40.com/hexoblog/2015/12/22/2015-12-22-using-git-as-magics/</id>
     <published>2015-12-22T00:00:00.000Z</published>
-    <updated>2017-08-07T10:14:37.000Z</updated>
+    <updated>2018-02-07T15:54:22.413Z</updated>
     
     <content type="html"><![CDATA[
 
@@ -328,7 +363,7 @@ git branch -D masterbackup
 </div>
 
 <p class="date">Date: 2015-12-22</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="noopener">Validate</a></p>
 ]]></content>
     
     <summary type="html">
@@ -359,10 +394,10 @@ git branch -D masterbackup
   
   <entry>
     <title>Spacemacs 一问一答(一)</title>
-    <link href="http://www.young40.com/2015/07/26/2015-07-26-master-spacemacs-answer-by-answer-1/"/>
-    <id>http://www.young40.com/2015/07/26/2015-07-26-master-spacemacs-answer-by-answer-1/</id>
+    <link href="http://www.young40.com/hexoblog/2015/07/26/2015-07-26-master-spacemacs-answer-by-answer-1/"/>
+    <id>http://www.young40.com/hexoblog/2015/07/26/2015-07-26-master-spacemacs-answer-by-answer-1/</id>
     <published>2015-07-26T00:00:00.000Z</published>
-    <updated>2017-08-07T10:14:37.000Z</updated>
+    <updated>2018-02-07T15:54:22.413Z</updated>
     
     <content type="html"><![CDATA[
 
@@ -501,21 +536,21 @@ melpa.org上2500+ 个包，可以直接被安装调用， 你所做的只是对�
 <h2 id="sec-9">如何创建一个layer?</h2>
 <div class="outline-text-2" id="text-9">
 <p>
-<a href="http://melpa.org/#/" target="_blank" rel="external">http://melpa.org/#/</a>
+<a href="http://melpa.org/#/" target="_blank" rel="noopener">http://melpa.org/#/</a>
 </p>
 
 <p>
-<a href="https://github.com/syl20bnr/spacemacs/blob/master/doc/DOCUMENTATION.org" target="_blank" rel="external">https://github.com/syl20bnr/spacemacs/blob/master/doc/DOCUMENTATION.org</a>
-<a href="https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org" target="_blank" rel="external">https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org</a>
-<a href="https://github.com/syl20bnr/spacemacs/blob/master/doc/CONTRIBUTE.org" target="_blank" rel="external">https://github.com/syl20bnr/spacemacs/blob/master/doc/CONTRIBUTE.org</a>
-<a href="https://github.com/syl20bnr/spacemacs/blob/master/doc/CONVENTIONS.org" target="_blank" rel="external">https://github.com/syl20bnr/spacemacs/blob/master/doc/CONVENTIONS.org</a>
-<a href="https://github.com/syl20bnr/spacemacs/blob/master/doc/HOWTOs.org" target="_blank" rel="external">https://github.com/syl20bnr/spacemacs/blob/master/doc/HOWTOs.org</a>
+<a href="https://github.com/syl20bnr/spacemacs/blob/master/doc/DOCUMENTATION.org" target="_blank" rel="noopener">https://github.com/syl20bnr/spacemacs/blob/master/doc/DOCUMENTATION.org</a>
+<a href="https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org" target="_blank" rel="noopener">https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org</a>
+<a href="https://github.com/syl20bnr/spacemacs/blob/master/doc/CONTRIBUTE.org" target="_blank" rel="noopener">https://github.com/syl20bnr/spacemacs/blob/master/doc/CONTRIBUTE.org</a>
+<a href="https://github.com/syl20bnr/spacemacs/blob/master/doc/CONVENTIONS.org" target="_blank" rel="noopener">https://github.com/syl20bnr/spacemacs/blob/master/doc/CONVENTIONS.org</a>
+<a href="https://github.com/syl20bnr/spacemacs/blob/master/doc/HOWTOs.org" target="_blank" rel="noopener">https://github.com/syl20bnr/spacemacs/blob/master/doc/HOWTOs.org</a>
 </p>
 </div>
 </div>
 
 <p class="date">Date: 2015-07-26</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="noopener">Validate</a></p>
 ]]></content>
     
     <summary type="html">
@@ -551,10 +586,10 @@ melpa.org上2500+ 个包，可以直接被安装调用， 你所做的只是对�
   
   <entry>
     <title>博客记</title>
-    <link href="http://www.young40.com/2015/07/25/2015-07-25-blogging-updated/"/>
-    <id>http://www.young40.com/2015/07/25/2015-07-25-blogging-updated/</id>
+    <link href="http://www.young40.com/hexoblog/2015/07/25/2015-07-25-blogging-updated/"/>
+    <id>http://www.young40.com/hexoblog/2015/07/25/2015-07-25-blogging-updated/</id>
     <published>2015-07-25T00:00:00.000Z</published>
-    <updated>2017-08-07T10:14:37.000Z</updated>
+    <updated>2018-02-07T15:54:22.413Z</updated>
     
     <content type="html"><![CDATA[
 
@@ -641,7 +676,7 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
 </div>
 
 <p class="date">Date: 2015-07-25</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="noopener">Validate</a></p>
 ]]></content>
     
     <summary type="html">
@@ -671,14 +706,14 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
   
   <entry>
     <title>初识Emacs(一)</title>
-    <link href="http://www.young40.com/2015/01/11/2015-01-11-meet-emacs-01/"/>
-    <id>http://www.young40.com/2015/01/11/2015-01-11-meet-emacs-01/</id>
+    <link href="http://www.young40.com/hexoblog/2015/01/11/2015-01-11-meet-emacs-01/"/>
+    <id>http://www.young40.com/hexoblog/2015/01/11/2015-01-11-meet-emacs-01/</id>
     <published>2015-01-11T04:54:46.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:54:22.412Z</updated>
     
-    <content type="html"><![CDATA[<p>#版本<br>Mac OS X 10.10 中自带的Emacs 版本是22.+,  对于什么版本都求新的我来说, 自然需要祭出Homebrew, 安装最新的版本<br><code>brew install emacs</code><br>安装后版本为24.4, ^_^<br>如果你不知掉Homebrew是什么, 参见这里: <a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="external">http://brew.sh/index_zh-cn.html</a><br>另外, 还有Emacs for OS X可选:<a href="http://emacsformacosx.com/" target="_blank" rel="external">http://emacsformacosx.com/</a></p>
+    <content type="html"><![CDATA[<p>#版本<br>Mac OS X 10.10 中自带的Emacs 版本是22.+,  对于什么版本都求新的我来说, 自然需要祭出Homebrew, 安装最新的版本<br><code>brew install emacs</code><br>安装后版本为24.4, ^_^<br>如果你不知掉Homebrew是什么, 参见这里: <a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="noopener">http://brew.sh/index_zh-cn.html</a><br>另外, 还有Emacs for OS X可选:<a href="http://emacsformacosx.com/" target="_blank" rel="noopener">http://emacsformacosx.com/</a></p>
 <a id="more"></a>
-<p>#Meta 键<br>马上就遇到了麻烦.<br>Emacs中比较重要的两个键为<code>Control</code> 和 <code>Meta</code>. 默认<code>Control</code> 键为<code>Ctrl</code>键, 可是我找不到我的<code>Meta</code>键了. 大部分人说<code>Meta</code> 键为<code>Alt</code>键, 试了几遍也不行. 放狗来搜, 原来是要对终端进行设置.<br>设置方法参见:<br>For iTerm2: <a href="http://xor.lonnen.com/2013/01/04/emacs-on-osx.html" target="_blank" rel="external">http://xor.lonnen.com/2013/01/04/emacs-on-osx.html</a> (英文)<br>For Terminal: <a href="http://blog.sina.com.cn/s/blog_62b58cd00100z9p0.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_62b58cd00100z9p0.html</a><br>Emacs for OS X无此问题.</p>
+<p>#Meta 键<br>马上就遇到了麻烦.<br>Emacs中比较重要的两个键为<code>Control</code> 和 <code>Meta</code>. 默认<code>Control</code> 键为<code>Ctrl</code>键, 可是我找不到我的<code>Meta</code>键了. 大部分人说<code>Meta</code> 键为<code>Alt</code>键, 试了几遍也不行. 放狗来搜, 原来是要对终端进行设置.<br>设置方法参见:<br>For iTerm2: <a href="http://xor.lonnen.com/2013/01/04/emacs-on-osx.html" target="_blank" rel="noopener">http://xor.lonnen.com/2013/01/04/emacs-on-osx.html</a> (英文)<br>For Terminal: <a href="http://blog.sina.com.cn/s/blog_62b58cd00100z9p0.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_62b58cd00100z9p0.html</a><br>Emacs for OS X无此问题.</p>
 <h1 id="组合键"><a href="#组合键" class="headerlink" title="组合键"></a>组合键</h1><p>Emacs的教程, 用<code>C-</code>代表了<code>Control</code>的组合键, <code>M-</code> 代表了<code>Meta</code>的组合键</p>
 <p>#指南<br>C-h t 可以打开指南, 虽然是英文的, 但是都非常简单. 可以跟着练习.</p>
 <h1 id="基础移动"><a href="#基础移动" class="headerlink" title="基础移动"></a>基础移动</h1><p>f 和 b分别代表forward向前, backward向后</p>
@@ -690,26 +725,26 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
 <p>小于号, 大于号<br>M-&lt; 光标移动到文件头部<br>M-&gt; 光标移动的文件尾部</p>
 <p>当然, 方向键也可以移动光标, 不过强烈不推荐</p>
 <p>#打开保存退出<br>C-x C-f 打开文件<br>C-x C-s 保存文件<br>C-x C-c 退出Emacs</p>
-<p>#小结<br>据说成为Emacs高手需要一年的时间<br><a href="http://blog.csdn.net/redguardtoo/article/details/7222501" target="_blank" rel="external">http://blog.csdn.net/redguardtoo/article/details/7222501</a>,<br>但掌握这么多基本上可以在Emacs下面生存下来吧.<br>上面这些都是从Emacs自带的指南摘录下来的, 看看也好, 还是推荐自己跟着指南学一遍.</p>
+<p>#小结<br>据说成为Emacs高手需要一年的时间<br><a href="http://blog.csdn.net/redguardtoo/article/details/7222501" target="_blank" rel="noopener">http://blog.csdn.net/redguardtoo/article/details/7222501</a>,<br>但掌握这么多基本上可以在Emacs下面生存下来吧.<br>上面这些都是从Emacs自带的指南摘录下来的, 看看也好, 还是推荐自己跟着指南学一遍.</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;#版本&lt;br&gt;Mac OS X 10.10 中自带的Emacs 版本是22.+,  对于什么版本都求新的我来说, 自然需要祭出Homebrew, 安装最新的版本&lt;br&gt;&lt;code&gt;brew install emacs&lt;/code&gt;&lt;br&gt;安装后版本为24.4, ^_^&lt;br&gt;如果你不知掉Homebrew是什么, 参见这里: &lt;a href=&quot;http://brew.sh/index_zh-cn.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://brew.sh/index_zh-cn.html&lt;/a&gt;&lt;br&gt;另外, 还有Emacs for OS X可选:&lt;a href=&quot;http://emacsformacosx.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://emacsformacosx.com/&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;#版本&lt;br&gt;Mac OS X 10.10 中自带的Emacs 版本是22.+,  对于什么版本都求新的我来说, 自然需要祭出Homebrew, 安装最新的版本&lt;br&gt;&lt;code&gt;brew install emacs&lt;/code&gt;&lt;br&gt;安装后版本为24.4, ^_^&lt;br&gt;如果你不知掉Homebrew是什么, 参见这里: &lt;a href=&quot;http://brew.sh/index_zh-cn.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://brew.sh/index_zh-cn.html&lt;/a&gt;&lt;br&gt;另外, 还有Emacs for OS X可选:&lt;a href=&quot;http://emacsformacosx.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://emacsformacosx.com/&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
-      <category term="Emacs" scheme="http://www.young40.com/categories/Emacs/"/>
+      <category term="Emacs" scheme="http://www.young40.com/hexoblog/categories/Emacs/"/>
     
     
   </entry>
   
   <entry>
     <title>博客切换到Hexo</title>
-    <link href="http://www.young40.com/2015/01/11/2015-01-11-from-octopress-to-hexo/"/>
-    <id>http://www.young40.com/2015/01/11/2015-01-11-from-octopress-to-hexo/</id>
+    <link href="http://www.young40.com/hexoblog/2015/01/11/2015-01-11-from-octopress-to-hexo/"/>
+    <id>http://www.young40.com/hexoblog/2015/01/11/2015-01-11-from-octopress-to-hexo/</id>
     <published>2015-01-10T20:59:39.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:53:53.688Z</updated>
     
     <content type="html"><![CDATA[<p>太惭愧了, 过去的一年时间里, 居然没有怎么写博客. 回想起来, 除了恋爱, 结婚, 生子什么事情也没有办成.</p>
 <p>谢谢亲爱的陪伴, 上帝赐予我们小生命. 没有你们, 我实在是难以向自己交差.</p>
@@ -727,9 +762,9 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
 <ol>
 <li><p>创建空分支<br><code>git checkout --orphan hexo</code><br>用上面的命令创建一个空的分支<code>hexo</code><br>删除目录下的文件, 仅保留git相关文件</p>
 </li>
-<li><p>创建Hexo环境<br>参见Hexo的文档, 不再赘述<br><a href="http://hexo.io/docs/setup.html" target="_blank" rel="external">http://hexo.io/docs/setup.html</a><br>可以用<code>hexo server</code>, 在本地看下是否正常<br>正常后将<code>hexo</code>分支推送到你的github pages仓库</p>
+<li><p>创建Hexo环境<br>参见Hexo的文档, 不再赘述<br><a href="http://hexo.io/docs/setup.html" target="_blank" rel="noopener">http://hexo.io/docs/setup.html</a><br>可以用<code>hexo server</code>, 在本地看下是否正常<br>正常后将<code>hexo</code>分支推送到你的github pages仓库</p>
 </li>
-<li><p>迁移<br>依旧是参见Hexo的文档<br><a href="http://hexo.io/docs/migration.html" target="_blank" rel="external">http://hexo.io/docs/migration.html</a><br>我还迁移了保存图片的目录</p>
+<li><p>迁移<br>依旧是参见Hexo的文档<br><a href="http://hexo.io/docs/migration.html" target="_blank" rel="noopener">http://hexo.io/docs/migration.html</a><br>我还迁移了保存图片的目录</p>
 </li>
 <li><p>发布<br>OctoPress发布在了Github上的master分支, 所以要清除其原有内容.</p>
 <ul>
@@ -752,17 +787,17 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
     
     </summary>
     
-      <category term="杂谈" scheme="http://www.young40.com/categories/%E6%9D%82%E8%B0%88/"/>
+      <category term="杂谈" scheme="http://www.young40.com/hexoblog/categories/%E6%9D%82%E8%B0%88/"/>
     
     
   </entry>
   
   <entry>
     <title>pkgbuild 安装提示成功但找不到App的问题</title>
-    <link href="http://www.young40.com/2014/06/18/2014-06-18-An-Issue-About-pkgbuild-install-location-Changed/"/>
-    <id>http://www.young40.com/2014/06/18/2014-06-18-An-Issue-About-pkgbuild-install-location-Changed/</id>
+    <link href="http://www.young40.com/hexoblog/2014/06/18/2014-06-18-An-Issue-About-pkgbuild-install-location-Changed/"/>
+    <id>http://www.young40.com/hexoblog/2014/06/18/2014-06-18-An-Issue-About-pkgbuild-install-location-Changed/</id>
     <published>2014-06-18T09:53:52.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:53:53.688Z</updated>
     
     <content type="html"><![CDATA[<p>这几天用 <code>pkgbuild</code> 来打包 <code>CocoStudio for Mac</code>, 遇到了一个极其诡异的问题. 安装打包好的 <code>CocoStudio.pkg</code>, 有时在<code>/Applications</code> 里面居然找不到 <code>CocoStudio</code>. -_-!!!</p>
 <p>打包的参数如下:<br><a id="more"></a></p>
@@ -786,28 +821,28 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
     
     </summary>
     
-      <category term="杂谈" scheme="http://www.young40.com/categories/%E6%9D%82%E8%B0%88/"/>
+      <category term="杂谈" scheme="http://www.young40.com/hexoblog/categories/%E6%9D%82%E8%B0%88/"/>
     
     
-      <category term="Mac OS X" scheme="http://www.young40.com/tags/Mac-OS-X/"/>
+      <category term="Mac OS X" scheme="http://www.young40.com/hexoblog/tags/Mac-OS-X/"/>
     
-      <category term="pkgbuild" scheme="http://www.young40.com/tags/pkgbuild/"/>
+      <category term="pkgbuild" scheme="http://www.young40.com/hexoblog/tags/pkgbuild/"/>
     
   </entry>
   
   <entry>
     <title>CocosBuilder 多分辨率</title>
-    <link href="http://www.young40.com/2013/08/01/2013-08-01-cocosbuilder-multi-resolution/"/>
-    <id>http://www.young40.com/2013/08/01/2013-08-01-cocosbuilder-multi-resolution/</id>
+    <link href="http://www.young40.com/hexoblog/2013/08/01/2013-08-01-cocosbuilder-multi-resolution/"/>
+    <id>http://www.young40.com/hexoblog/2013/08/01/2013-08-01-cocosbuilder-multi-resolution/</id>
     <published>2013-08-01T14:10:00.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:53:53.688Z</updated>
     
     <content type="html"><![CDATA[<p>最近两个项目大量使用了CocosBuilder, 对于开发效率提高是巨大的. 一直计划写一篇博客谈谈CocosBuilder的多分辨率问题, 懒病加上一些疙疙瘩瘩的小事情, 拖延了一个多月, 才终于下定决心要尽快完成这篇博客.</p>
-<p>在这篇文章中, 假定你比较熟悉CocosBuilder, 如果您还不是很熟悉CocosBuilder, 推荐您看下我的另外一篇文章. <a href="http://www.ityran.com/archives/2614" target="_blank" rel="external">从零开始学习CocosBuilder</a> 我还是小菜鸟一个, 难免会有很多错误, 还望各位看客不吝赐教. </p>
+<p>在这篇文章中, 假定你比较熟悉CocosBuilder, 如果您还不是很熟悉CocosBuilder, 推荐您看下我的另外一篇文章. <a href="http://www.ityran.com/archives/2614" target="_blank" rel="noopener">从零开始学习CocosBuilder</a> 我还是小菜鸟一个, 难免会有很多错误, 还望各位看客不吝赐教. </p>
 <p>版本:</p>
 <ul>
-<li>Cocos2d-x 2.1.4 <a href="http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip" target="_blank" rel="external">http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip</a></li>
-<li>CocosBuilder 3.0alpha5 <a href="http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip" target="_blank" rel="external">http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip</a></li>
+<li>Cocos2d-x 2.1.4 <a href="http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip" target="_blank" rel="noopener">http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip</a></li>
+<li>CocosBuilder 3.0alpha5 <a href="http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip" target="_blank" rel="noopener">http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip</a></li>
 </ul>
 <p>最近几次Cocos2d-x和CocosBuilder(以下简写为2dx和ccb)都是联合发布的, 使用联合发布的版本会减少不兼容的可能.</p>
 <a id="more"></a>
@@ -878,36 +913,36 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
 <figure class="highlight cpp"><figcaption><span>AppDelegate.cpp </span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//set the correct resource for CocosBuilder</span></div><div class="line">   &#123;</div><div class="line">       CCSize sizeIphone = CCSizeMake(<span class="number">480</span>, <span class="number">320</span>);</div><div class="line">       CCSize sizeIphoneHD = CCSizeMake(<span class="number">960</span>, <span class="number">640</span>);</div><div class="line">       CCSize sizeIphone5 = CCSizeMake(<span class="number">1136</span>, <span class="number">640</span>);</div><div class="line">       CCSize sizeIpad = CCSizeMake(<span class="number">1024</span>, <span class="number">768</span>);</div><div class="line">       CCSize sizeIpadHD = CCSizeMake(<span class="number">2048</span>, <span class="number">1536</span>);</div><div class="line">       </div><div class="line">       CCSize designSize = sizeIphoneHD;</div><div class="line">       CCSize resourceSize = sizeIphoneHD;</div><div class="line">       CCSize screenSize = CCEGLView::sharedOpenGLView()-&gt;getFrameSize();</div><div class="line">       </div><div class="line">       <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; searchPaths;</div><div class="line">       <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; resDirOrders;</div><div class="line">       </div><div class="line">       TargetPlatform platform = CCApplication::sharedApplication()-&gt;getTargetPlatform();</div><div class="line">       <span class="keyword">if</span> (platform == kTargetIphone || platform == kTargetIpad)</div><div class="line">       &#123;</div><div class="line">           CCFileUtils::sharedFileUtils()-&gt;setSearchPaths(searchPaths);</div><div class="line">           </div><div class="line">           <span class="keyword">if</span> (screenSize.width &gt; <span class="number">768</span>)</div><div class="line">           &#123;</div><div class="line">               resourceSize = sizeIpadHD;</div><div class="line">               designSize = sizeIpadHD;</div><div class="line">               resDirOrders.push_back(<span class="string">"resources-ipadhd"</span>);</div><div class="line">               </div><div class="line">               CCBReader::setResolutionScale(<span class="number">4.0f</span>);</div><div class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (screenSize.width &gt; <span class="number">640</span>) &#123;</div><div class="line">               resourceSize = sizeIpad;</div><div class="line">               designSize = resourceSize;</div><div class="line">               resDirOrders.push_back(<span class="string">"resources-ipad"</span>);</div><div class="line">               resDirOrders.push_back(<span class="string">"resources-iphonehd"</span>);</div><div class="line">               </div><div class="line">               CCBReader::setResolutionScale(<span class="number">2.0f</span>);</div><div class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (screenSize.width &gt; <span class="number">480</span>) &#123;</div><div class="line">               <span class="keyword">if</span> (screenSize.height &gt; <span class="number">960</span>) &#123;</div><div class="line">                   designSize = sizeIphone5;</div><div class="line">               &#125;</div><div class="line">               <span class="keyword">else</span> &#123;</div><div class="line">                   designSize = sizeIphoneHD;</div><div class="line">               &#125;</div><div class="line">               resourceSize = sizeIphoneHD;</div><div class="line">               </div><div class="line">               CCBReader::setResolutionScale(<span class="number">2.0f</span>);</div><div class="line">               </div><div class="line">               resDirOrders.push_back(<span class="string">"resources-iphonehd"</span>);</div><div class="line">           &#125; <span class="keyword">else</span> &#123;</div><div class="line">               CCBReader::setResolutionScale(<span class="number">1.0f</span>);</div><div class="line"></div><div class="line">               designSize = sizeIphone;</div><div class="line">               resourceSize = sizeIphone;</div><div class="line">               </div><div class="line">               resDirOrders.push_back(<span class="string">"resources-iphone"</span>);</div><div class="line">           &#125;</div><div class="line">           </div><div class="line">           CCFileUtils::sharedFileUtils()-&gt;setSearchResolutionsOrder(resDirOrders);</div><div class="line">       &#125;</div><div class="line">       </div><div class="line">       pDirector-&gt;setContentScaleFactor(resourceSize.width / designSize.width);</div><div class="line">       CCEGLView::sharedOpenGLView()-&gt;setDesignResolutionSize(</div><div class="line">                                                              designSize.width, designSize.height,</div><div class="line">                                                              kResolutionExactFit);</div><div class="line">   &#125;</div><div class="line">   </div><div class="line">   CCNodeLoaderLibrary *lib = CCNodeLoaderLibrary::newDefaultCCNodeLoaderLibrary();</div><div class="line">   </div><div class="line">   CCBReader *reader = <span class="keyword">new</span> CCBReader(lib);</div><div class="line">   </div><div class="line">   CCScene *scene = reader-&gt;createSceneWithNodeGraphFromFile(<span class="string">"MainScene.ccbi"</span>);</div><div class="line">   </div><div class="line">   pDirector-&gt;runWithScene(scene);</div></pre></td></tr></table></figure>
 <p>这里只支持了iOS, 如果需要支持Android的话, 可以挑选几个需要的分辨率, 邻近的分辨率坐下拉伸等策略.</p>
 <p>运行下代码, 可以看下效果. 收工.</p>
-<p>工程下载: <a href="http://pan.baidu.com/share/link?shareid=3612867199&amp;uk=2281999082" target="_blank" rel="external">http://pan.baidu.com/share/link?shareid=3612867199&amp;uk=2281999082</a></p>
-<p>推荐看下bilt的两篇博客: <a href="http://blog.justbilt.com/569/" target="_blank" rel="external">http://blog.justbilt.com/569/</a> <a href="http://blog.justbilt.com/579/" target="_blank" rel="external">http://blog.justbilt.com/579/</a> 里面还罗列了数片前辈们关于多分辨率的文章, 我学习的过程中也受益匪浅.<br>一并致谢. </p>
+<p>工程下载: <a href="http://pan.baidu.com/share/link?shareid=3612867199&amp;uk=2281999082" target="_blank" rel="noopener">http://pan.baidu.com/share/link?shareid=3612867199&amp;uk=2281999082</a></p>
+<p>推荐看下bilt的两篇博客: <a href="http://blog.justbilt.com/569/" target="_blank" rel="noopener">http://blog.justbilt.com/569/</a> <a href="http://blog.justbilt.com/579/" target="_blank" rel="noopener">http://blog.justbilt.com/579/</a> 里面还罗列了数片前辈们关于多分辨率的文章, 我学习的过程中也受益匪浅.<br>一并致谢. </p>
 ]]></content>
     
     <summary type="html">
     
       &lt;p&gt;最近两个项目大量使用了CocosBuilder, 对于开发效率提高是巨大的. 一直计划写一篇博客谈谈CocosBuilder的多分辨率问题, 懒病加上一些疙疙瘩瘩的小事情, 拖延了一个多月, 才终于下定决心要尽快完成这篇博客.&lt;/p&gt;
-&lt;p&gt;在这篇文章中, 假定你比较熟悉CocosBuilder, 如果您还不是很熟悉CocosBuilder, 推荐您看下我的另外一篇文章. &lt;a href=&quot;http://www.ityran.com/archives/2614&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;从零开始学习CocosBuilder&lt;/a&gt; 我还是小菜鸟一个, 难免会有很多错误, 还望各位看客不吝赐教. &lt;/p&gt;
+&lt;p&gt;在这篇文章中, 假定你比较熟悉CocosBuilder, 如果您还不是很熟悉CocosBuilder, 推荐您看下我的另外一篇文章. &lt;a href=&quot;http://www.ityran.com/archives/2614&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;从零开始学习CocosBuilder&lt;/a&gt; 我还是小菜鸟一个, 难免会有很多错误, 还望各位看客不吝赐教. &lt;/p&gt;
 &lt;p&gt;版本:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Cocos2d-x 2.1.4 &lt;a href=&quot;http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;CocosBuilder 3.0alpha5 &lt;a href=&quot;http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Cocos2d-x 2.1.4 &lt;a href=&quot;http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;CocosBuilder 3.0alpha5 &lt;a href=&quot;http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;最近几次Cocos2d-x和CocosBuilder(以下简写为2dx和ccb)都是联合发布的, 使用联合发布的版本会减少不兼容的可能.&lt;/p&gt;
     
     </summary>
     
-      <category term="Cocos2d-x" scheme="http://www.young40.com/categories/Cocos2d-x/"/>
+      <category term="Cocos2d-x" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/"/>
     
-      <category term="CocosBuilder" scheme="http://www.young40.com/categories/Cocos2d-x/CocosBuilder/"/>
+      <category term="CocosBuilder" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/CocosBuilder/"/>
     
     
   </entry>
   
   <entry>
     <title>搭建Mac OS X下cocos2d-x的Android开发环境</title>
-    <link href="http://www.young40.com/2013/02/23/2013-02-23-setting-up-android-development-envirment-on-mac-os-x/"/>
-    <id>http://www.young40.com/2013/02/23/2013-02-23-setting-up-android-development-envirment-on-mac-os-x/</id>
+    <link href="http://www.young40.com/hexoblog/2013/02/23/2013-02-23-setting-up-android-development-envirment-on-mac-os-x/"/>
+    <id>http://www.young40.com/hexoblog/2013/02/23/2013-02-23-setting-up-android-development-envirment-on-mac-os-x/</id>
     <published>2013-02-23T13:14:00.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:53:53.687Z</updated>
     
     <content type="html"><![CDATA[<p>##版本</p>
 <ul>
@@ -923,13 +958,13 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
 <li>Android ADT Bundle: /opt/adt-bundle-mac-x86_64</li>
 <li>Android NDK: /opt/android-ndk<br>下文中提及的这些路径, 请替换成您自己的路径</li>
 </ul>
-<p>##下载最新版本Cocos2d-x<br>您可以在Cocos2d-x官网找到<a href="http://www.cocos2d-x.org/projects/cocos2d-x/wiki/Download" target="_blank" rel="external">下载页面</a><br>解压后到您需要的位置, 本文假设解压到以下位置<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/opt/cocos2d<span class="number">-2.1</span>beta3-x<span class="number">-2.1</span><span class="number">.1</span></div></pre></td></tr></table></figure></p>
+<p>##下载最新版本Cocos2d-x<br>您可以在Cocos2d-x官网找到<a href="http://www.cocos2d-x.org/projects/cocos2d-x/wiki/Download" target="_blank" rel="noopener">下载页面</a><br>解压后到您需要的位置, 本文假设解压到以下位置<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/opt/cocos2d<span class="number">-2.1</span>beta3-x<span class="number">-2.1</span><span class="number">.1</span></div></pre></td></tr></table></figure></p>
 <p>##检查JDK<br>在终端中输入<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -version</div></pre></td></tr></table></figure></p>
 <p>如果您没有安装JDK, 系统会帮您自动安装JDK.<br><img src="/hexoblog/upload/2013-02/set-up-c-a-osx-001-jdk.png"><br>安装过后您会看到如下输出<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">java version <span class="string">"1.6.0_37"</span></div><div class="line">Java(TM) SE Runtime Environment (build 1.6.0_37-b06-434-11M3909)</div><div class="line">Java HotSpot(TM) 64-Bit<span class="built_in"> Server </span>VM (build 20.12-b01-434, mixed mode)</div></pre></td></tr></table></figure></p>
-<p>##下载最新版本Android ADT Bundle<br>Google将Android SDK, Eclipse, ADT(Android Developer Tools)打包在一起,称作Android ADT Bundle, 简化了Android开发环境的搭建.<br>您可以在Android官网找到<a href="http://developer.android.com/sdk/index.html" target="_blank" rel="external">下载页面</a><br>解压到您需要的位置, 本文假设解压到以下位置<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/<span class="meta">opt</span>/adt-<span class="keyword">bundle-mac-x86_64</span></div></pre></td></tr></table></figure></p>
+<p>##下载最新版本Android ADT Bundle<br>Google将Android SDK, Eclipse, ADT(Android Developer Tools)打包在一起,称作Android ADT Bundle, 简化了Android开发环境的搭建.<br>您可以在Android官网找到<a href="http://developer.android.com/sdk/index.html" target="_blank" rel="noopener">下载页面</a><br>解压到您需要的位置, 本文假设解压到以下位置<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/<span class="meta">opt</span>/adt-<span class="keyword">bundle-mac-x86_64</span></div></pre></td></tr></table></figure></p>
 <p>在终端中运行下面命令, 将ADT中的Eclipse放入您的程序文件夹, 方便启动<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ln -s /opt/adt-bundle-mac-x86_64/eclipse/Eclipse.app/ /Applications/Eclipse-ADT.app</div></pre></td></tr></table></figure></p>
 <p>在/Applications中或者Launchpad中找到并打开Eclipse-ADT<br><img src="/hexoblog/upload/2013-02/set-up-c-a-osx-002-adt.png"></p>
-<p>##Eclipse的Retina支持<br>如果您在使用带Retina的Mackbook Pro, Eclipse暂时还不支持Retina. 但有一个简单的<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=382972" target="_blank" rel="external">解决方案</a>   </p>
+<p>##Eclipse的Retina支持<br>如果您在使用带Retina的Mackbook Pro, Eclipse暂时还不支持Retina. 但有一个简单的<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=382972" target="_blank" rel="noopener">解决方案</a>   </p>
 <ol>
 <li>在 /opt/adt-bundle-mac-x86_64/eclipse 找到 Eclipse.app</li>
 <li>编辑<code>Contents/Info.plist</code></li>
@@ -942,7 +977,7 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
 <li>OK啦.</li>
 </ol>
 <p>##Android SDK Manager<br>Android ADT Bundle中是包含了Android SDK Manager的. 启动您的Eclipse-ADT. 可以在工具栏中或者菜单中找到Android SDK Manager.<br><img src="/hexoblog/upload/2013-02/set-up-c-a-osx-003-sdk-1.png"><br><img src="/hexoblog/upload/2013-02/set-up-c-a-osx-004-sdk-2.png">    </p>
-<p>##Android NDK<br>您可以在Android官网找到Android的<a href="http://developer.android.com/tools/sdk/ndk/index.html" target="_blank" rel="external">下载页面</a><br>下载后解压到您需要的位置, 本文假设解压到以下位置<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/<span class="meta">opt</span>/<span class="keyword">android-ndk</span></div></pre></td></tr></table></figure></p>
+<p>##Android NDK<br>您可以在Android官网找到Android的<a href="http://developer.android.com/tools/sdk/ndk/index.html" target="_blank" rel="noopener">下载页面</a><br>下载后解压到您需要的位置, 本文假设解压到以下位置<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/<span class="meta">opt</span>/<span class="keyword">android-ndk</span></div></pre></td></tr></table></figure></p>
 <p>##设置环境变量<br>我们需要将SDK, NDK以及Cocos2d-x的路径中添加到环境变量中. 将以下内容添加到~/.bash_profile文件<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="builtin-name">export</span> <span class="attribute">COCOS2DX_ROOT</span>=/opt/cocos2d-2.1beta3-x-2.1.1</div><div class="line"><span class="builtin-name">export</span> <span class="attribute">ANDROID_SDK_ROOT</span>=/opt/adt-bundle-mac-x86_64/sdk</div><div class="line"><span class="builtin-name">export</span> <span class="attribute">ANDROID_NDK_ROOT</span>=/opt/android-ndk</div><div class="line"><span class="builtin-name">export</span> <span class="attribute">NDK_ROOT</span>=/opt/android-ndk</div><div class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$ANDROID_NDK_ROOT</div><div class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$ANDROID_SDK_ROOT</div></pre></td></tr></table></figure></p>
 <p>##HelloWorld<br>万事俱备, 我们现在就可以开始激动人心的Cocos2d-x之旅了.<br>打开终端, 进入cocos2d-x所在目录并执行 <code>/opt/cocos2d-2.1beta3-x-2.1.1/create-android-project.sh</code>文件<br>根据提示输入对应信息.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">Youngs-MacBook-Air:~ young40$ cd /opt/cocos2d-2.1beta3-x-2.1.1/</div><div class="line">Youngs-MacBook-Air:cocos2d-2.1beta3-x-2.1.1 young40$ ./<span class="keyword">create</span>-android-project.sh </div><div class="line"><span class="keyword">use</span> <span class="keyword">global</span> definition <span class="keyword">of</span> NDK_ROOT: /opt/android-ndk</div><div class="line"><span class="keyword">use</span> <span class="keyword">global</span> definition <span class="keyword">of</span> ANDROID_SDK_ROOT: /opt/adt-bundle-mac-x86_64/sdk</div><div class="line"><span class="keyword">Input</span> <span class="keyword">package</span> path. <span class="keyword">For</span> example: org.cocos2dx.example</div><div class="line">com.young40.test  //这里输入了包名</div><div class="line"><span class="keyword">Now</span> cocos2d-x supports Android <span class="number">2.2</span> <span class="keyword">or</span> <span class="keyword">upper</span> <span class="keyword">version</span></div><div class="line">Available Android targets:</div><div class="line"><span class="comment">----------</span></div><div class="line"><span class="keyword">id</span>: <span class="number">1</span> <span class="keyword">or</span> <span class="string">"android-17"</span></div><div class="line">     <span class="keyword">Name</span>: Android <span class="number">4.2</span></div><div class="line">     <span class="keyword">Type</span>: Platform</div><div class="line">     API <span class="keyword">level</span>: <span class="number">17</span></div><div class="line">     Revision: <span class="number">1</span></div><div class="line">     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (<span class="keyword">default</span>), WVGA854, WXGA720, WXGA800, WXGA800<span class="number">-7</span><span class="keyword">in</span></div><div class="line">     ABIs : armeabi-v7a</div><div class="line"><span class="keyword">input</span> target <span class="keyword">id</span>:</div><div class="line"><span class="number">1</span> //选择您需要的平台<span class="keyword">id</span></div><div class="line"><span class="keyword">input</span> your <span class="keyword">project</span> <span class="keyword">name</span>:</div><div class="line">HelloWorld  //输入项目名称</div><div class="line">Created <span class="keyword">project</span> <span class="keyword">directory</span>: /opt/cocos2d<span class="number">-2.1</span>beta3-x<span class="number">-2.1</span><span class="number">.1</span>/HelloWorld/proj.android</div><div class="line"></div><div class="line">.....</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">Updated</span> project.properties</div><div class="line"><span class="keyword">Updated</span> local.properties</div><div class="line"><span class="keyword">Updated</span> <span class="keyword">file</span> /opt/cocos2d<span class="number">-2.1</span>beta3-x<span class="number">-2.1</span><span class="number">.1</span>/HelloWorld/proj.android/proguard-project.txt</div><div class="line">Youngs-MacBook-Air:cocos2d<span class="number">-2.1</span>beta3-x<span class="number">-2.1</span><span class="number">.1</span> young40$</div></pre></td></tr></table></figure></p>
 <p>从以上输出我们可以看到<code>create-android-project.sh</code>这个脚本帮我们在 /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld 下建立了新项目.    </p>
@@ -972,10 +1007,10 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
   
   <entry>
     <title>基于Pomelo和Cocos2d-x的聊天室</title>
-    <link href="http://www.young40.com/2013/01/08/2013-01-08-chat-of-pomelo-for-cocos2d-x/"/>
-    <id>http://www.young40.com/2013/01/08/2013-01-08-chat-of-pomelo-for-cocos2d-x/</id>
+    <link href="http://www.young40.com/hexoblog/2013/01/08/2013-01-08-chat-of-pomelo-for-cocos2d-x/"/>
+    <id>http://www.young40.com/hexoblog/2013/01/08/2013-01-08-chat-of-pomelo-for-cocos2d-x/</id>
     <published>2013-01-07T16:39:00.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:53:53.687Z</updated>
     
     <content type="html"><![CDATA[<p>据说聊天室和游戏系统有很多相似之处, 并且很多游戏本身就带着多人聊天系统. 所以Pomelo将聊天室作为了一个例子.    </p>
 <p>开源是非常棒的思想和运动, 我简单提两点体会,<br>1.发现了问题可以不用等官方响应,自己有能力就可以马上修复. 2.你可以贡献自己的代码,很多人都可以贡献代码,可以让项目快速发展.<br>当然一旦你的代码被接受并被很多人使用, 心中的成就感是不言而喻的.    </p>
@@ -986,11 +1021,11 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
 <ul>
 <li>平台:OS X(10.8.2) Xcode(4.5.2)    </li>
 <li>Cocos2d-2.1beta3-x-2.1.0    </li>
-<li>Pomelo <a href="https://github.com/NetEase/pomelo" target="_blank" rel="external">https://github.com/NetEase/pomelo</a></li>
-<li>socket.io-clientpp <a href="https://github.com/ebshimizu/socket.io-clientpp" target="_blank" rel="external">https://github.com/ebshimizu/socket.io-clientpp</a></li>
-<li>websocketpp <a href="https://github.com/zaphoyd/websocketpp" target="_blank" rel="external">https://github.com/zaphoyd/websocketpp</a></li>
-<li>Rapidjson <a href="https://code.google.com/p/rapidjson/" target="_blank" rel="external">https://code.google.com/p/rapidjson/</a></li>
-<li>chatofpomelo <a href="https://github.com/NetEase/chatofpomelo" target="_blank" rel="external">https://github.com/NetEase/chatofpomelo</a></li>
+<li>Pomelo <a href="https://github.com/NetEase/pomelo" target="_blank" rel="noopener">https://github.com/NetEase/pomelo</a></li>
+<li>socket.io-clientpp <a href="https://github.com/ebshimizu/socket.io-clientpp" target="_blank" rel="noopener">https://github.com/ebshimizu/socket.io-clientpp</a></li>
+<li>websocketpp <a href="https://github.com/zaphoyd/websocketpp" target="_blank" rel="noopener">https://github.com/zaphoyd/websocketpp</a></li>
+<li>Rapidjson <a href="https://code.google.com/p/rapidjson/" target="_blank" rel="noopener">https://code.google.com/p/rapidjson/</a></li>
+<li>chatofpomelo <a href="https://github.com/NetEase/chatofpomelo" target="_blank" rel="noopener">https://github.com/NetEase/chatofpomelo</a></li>
 </ul>
 <p>查阅本文时请注意版本差异.        </p>
 <h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>我们的目标是实现OS X, IOS, Android三个平台下的chatofpomelo的Cocos2d-x版本.<br>所以需要安装各自平台的开发工具如Xcode,Eclipse,NDK等, 不是本文需要关心的内容. 相信大家也已经轻车熟路了.<br>Pomelo的安装 <code>npm install pomelo -g</code>, 如有疑问请查看Pomelo的Wiki.<br>websocketpp需要著名的C++库, boost. 我是使用了HomeBrew来安装.<br>其他安装方式请自省查阅相关文档, 有一点需要指出的是, 必须编译为带有x86(i386)支持lib文件.<br>因为Cocos2d-x在OS X下是32位的.<br><figure class="highlight sh"><figcaption><span>HomeBrew安装boost库</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install boost --universal</div></pre></td></tr></table></figure></p>
@@ -1024,17 +1059,17 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
     
     </summary>
     
-      <category term="Cocos2d-x" scheme="http://www.young40.com/categories/Cocos2d-x/"/>
+      <category term="Cocos2d-x" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/"/>
     
     
   </entry>
   
   <entry>
     <title>2d-x深读4:CCAutoReleasePool</title>
-    <link href="http://www.young40.com/2013/01/03/2013-01-03-cocos2d-x-source-code-research-4-ccautoreleasepool/"/>
-    <id>http://www.young40.com/2013/01/03/2013-01-03-cocos2d-x-source-code-research-4-ccautoreleasepool/</id>
+    <link href="http://www.young40.com/hexoblog/2013/01/03/2013-01-03-cocos2d-x-source-code-research-4-ccautoreleasepool/"/>
+    <id>http://www.young40.com/hexoblog/2013/01/03/2013-01-03-cocos2d-x-source-code-research-4-ccautoreleasepool/</id>
     <published>2013-01-03T07:09:00.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:54:22.412Z</updated>
     
     <content type="html"><![CDATA[<p><code>CCAutoReleasePool.h</code>主要定义了两个类<code>CCAutoReleasePool</code>和<code>CCPoolManager</code>.    </p>
 <p>其实因为cocos2d-x自动管理内存的原因, 所以, 我们平时很少需要直接使用这两个类.<br>为了探究其中的自动管理内存的机制, 我们直接分析其代码.   </p>
@@ -1048,7 +1083,7 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
 <figure class="highlight cpp"><figcaption><span>CCAutoReleasePool\.h</span><a href="/hexoblog/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCAutoReleasePool.h">view raw</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 声明CCAutoreleasePool类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CC_DLL</span> <span class="title">CCAutoreleasePool</span> :</span> <span class="keyword">public</span> CCObject</div><div class="line">{<span class="comment">//注意这个m_pCurReleasePool是一个私有成员. 居然没有加标号.</span></div><div class="line">    CCArray*    m_pManagedObjectArray;    </div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CCAutoreleasePool(<span class="keyword">void</span>);</div><div class="line">    ~CCAutoreleasePool(<span class="keyword">void</span>);</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addObject</span><span class="params">(CCObject *pObject)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">removeObject</span><span class="params">(CCObject *pObject)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>;</div><div class="line">};</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CC_DLL</span> <span class="title">CCPoolManager</span></span></div><div class="line"><span class="class">{</span><span class="comment">//下面这三个成员变量依然是私有的.</span></div><div class="line">    CCArray*    m_pReleasePoolStack;    </div><div class="line">    CCAutoreleasePool*                    m_pCurReleasePool;</div><div class="line"></div><div class="line">    <span class="function">CCAutoreleasePool* <span class="title">getCurReleasePool</span><span class="params">()</span></span>;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CCPoolManager();</div><div class="line">    ~CCPoolManager();</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">removeObject</span><span class="params">(CCObject* pObject)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addObject</span><span class="params">(CCObject* pObject)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">static</span> CCPoolManager* <span class="title">sharedPoolManager</span><span class="params">()</span></span>;</div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">purgePoolManager</span><span class="params">()</span></span>;</div><div class="line">    <span class="comment">//友元</span></div><div class="line">    <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">CCAutoreleasePool</span>;</span></div><div class="line">};</div></pre></td></tr></table></figure>
 <figure class="highlight cpp"><figcaption><span>CCAutoReleasePool\.cpp</span><a href="/hexoblog/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCAutoReleasePool.cpp">view raw</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> CCPoolManager* s_pPoolManager = <span class="literal">NULL</span>;<span class="comment">// 用作单例模式的静态变量.</span></div><div class="line"></div><div class="line">CCAutoreleasePool::CCAutoreleasePool(<span class="keyword">void</span>)</div><div class="line">{</div><div class="line">    m_pManagedObjectArray = <span class="keyword">new</span> CCArray();</div><div class="line">    m_pManagedObjectArray-&gt;init();</div><div class="line">}</div><div class="line"></div><div class="line">CCAutoreleasePool::~CCAutoreleasePool(<span class="keyword">void</span>)</div><div class="line">{</div><div class="line">    CC_SAFE_DELETE(m_pManagedObjectArray);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> CCAutoreleasePool::addObject(CCObject* pObject)</div><div class="line">{</div><div class="line">    m_pManagedObjectArray-&gt;addObject(pObject);</div><div class="line">    <span class="comment">// CCAutoreleasePool是CCObject的友元类, 可以直接访问CCObject的protect成员变量.</span></div><div class="line">    CCAssert(pObject-&gt;m_uReference &gt; <span class="number">1</span>, <span class="string">"reference count should be greater than 1"</span>);</div><div class="line">    ++(pObject-&gt;m_uAutoReleaseCount);</div><div class="line">    pObject-&gt;release(); <span class="comment">// no ref count, in this case autorelease pool added.</span></div><div class="line">}</div><div class="line"><span class="comment">// 下面这个遍历似乎是为了应对被多次加入pool</span></div><div class="line"><span class="keyword">void</span> CCAutoreleasePool::removeObject(CCObject* pObject)</div><div class="line">{</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; pObject-&gt;m_uAutoReleaseCount; ++i)</div><div class="line">    {</div><div class="line">        m_pManagedObjectArray-&gt;removeObject(pObject, <span class="literal">false</span>);</div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="comment">// 清空池</span></div><div class="line"><span class="keyword">void</span> CCAutoreleasePool::clear()</div><div class="line">{</div><div class="line">    <span class="keyword">if</span>(m_pManagedObjectArray-&gt;count() &gt; <span class="number">0</span>)</div><div class="line">    {</div><div class="line">        <span class="comment">//CCAutoreleasePool* pReleasePool;</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _DEBUG</span></div><div class="line">        <span class="keyword">int</span> nIndex = m_pManagedObjectArray-&gt;count() - <span class="number">1</span>;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line">        CCObject* pObj = <span class="literal">NULL</span>;</div><div class="line">        CCARRAY_FOREACH_REVERSE(m_pManagedObjectArray, pObj)<span class="comment">//反序遍历</span></div><div class="line">        {</div><div class="line">            <span class="comment">// 这里还是令人费解, 为何会使用break, 而不是使用continue完成遍历????</span></div><div class="line">            <span class="keyword">if</span>(!pObj)</div><div class="line">                <span class="keyword">break</span>;</div><div class="line"></div><div class="line">            --(pObj-&gt;m_uAutoReleaseCount);</div><div class="line">            <span class="comment">//(*it)-&gt;release();</span></div><div class="line">            <span class="comment">//delete (*it);</span></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _DEBUG</span></div><div class="line">            nIndex--;</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">        }</div><div class="line"></div><div class="line">        m_pManagedObjectArray-&gt;removeAllObjects();</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">// CCPoolManager的单例</span></div><div class="line">CCPoolManager* CCPoolManager::sharedPoolManager()</div><div class="line">{</div><div class="line">    <span class="keyword">if</span> (s_pPoolManager == <span class="literal">NULL</span>)</div><div class="line">    {</div><div class="line">        s_pPoolManager = <span class="keyword">new</span> CCPoolManager();</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> s_pPoolManager;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">// 销毁当前manager</span></div><div class="line"><span class="keyword">void</span> CCPoolManager::purgePoolManager()</div><div class="line">{</div><div class="line">    CC_SAFE_DELETE(s_pPoolManager);</div><div class="line">}</div><div class="line"><span class="comment">//构造函数</span></div><div class="line">CCPoolManager::CCPoolManager()</div><div class="line">{</div><div class="line">    m_pReleasePoolStack = <span class="keyword">new</span> CCArray();    </div><div class="line">    m_pReleasePoolStack-&gt;init();</div><div class="line">    m_pCurReleasePool = <span class="number">0</span>;</div><div class="line">}</div><div class="line"><span class="comment">// 析构函数</span></div><div class="line">CCPoolManager::~CCPoolManager()</div><div class="line">{</div><div class="line">     finalize();</div><div class="line"></div><div class="line">     <span class="comment">// 这个注释也让人费解. 为什么只移除第一个, 而不是遍历????</span></div><div class="line">     <span class="comment">// we only release the last autorelease pool here </span></div><div class="line">    m_pCurReleasePool = <span class="number">0</span>;</div><div class="line">     m_pReleasePoolStack-&gt;removeObjectAtIndex(<span class="number">0</span>);</div><div class="line"> </div><div class="line">     CC_SAFE_DELETE(m_pReleasePoolStack);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> CCPoolManager::finalize()</div><div class="line">{</div><div class="line">    <span class="keyword">if</span>(m_pReleasePoolStack-&gt;count() &gt; <span class="number">0</span>)</div><div class="line">    {</div><div class="line">        <span class="comment">//CCAutoreleasePool* pReleasePool;</span></div><div class="line">        CCObject* pObj = <span class="literal">NULL</span>;</div><div class="line">        CCARRAY_FOREACH(m_pReleasePoolStack, pObj)</div><div class="line">        {</div><div class="line">            <span class="comment">// 这里有点令人不解, 为什么遍历还没有完成就break了??? </span></div><div class="line">            <span class="comment">// 或许是因为pop push的方式不会在中间产生为NULL的池.</span></div><div class="line">            <span class="keyword">if</span>(!pObj)</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            CCAutoreleasePool* pPool = (CCAutoreleasePool*)pObj;</div><div class="line">            pPool-&gt;clear();</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="comment">//创建一个新池, 注意其中pPool的引用计数的变化.</span></div><div class="line"><span class="keyword">void</span> CCPoolManager::push()</div><div class="line">{</div><div class="line">    CCAutoreleasePool* pPool = <span class="keyword">new</span> CCAutoreleasePool();       <span class="comment">//ref = 1</span></div><div class="line">    m_pCurReleasePool = pPool;</div><div class="line"></div><div class="line">    m_pReleasePoolStack-&gt;addObject(pPool);                   <span class="comment">//ref = 2</span></div><div class="line"></div><div class="line">    pPool-&gt;release();                                       <span class="comment">//ref = 1</span></div><div class="line">}</div><div class="line"><span class="comment">//销毁当前池</span></div><div class="line"><span class="keyword">void</span> CCPoolManager::pop()</div><div class="line">{</div><div class="line">    <span class="keyword">if</span> (! m_pCurReleasePool)</div><div class="line">    {</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line"></div><div class="line">     <span class="keyword">int</span> nCount = m_pReleasePoolStack-&gt;count();</div><div class="line"></div><div class="line">    m_pCurReleasePool-&gt;clear();</div><div class="line"> </div><div class="line">      <span class="keyword">if</span>(nCount &gt; <span class="number">1</span>)</div><div class="line">      {<span class="comment">//注意这里removeObjectAtIndex会将当前池的引用技术减1, 从而销毁当前池.</span></div><div class="line">        m_pReleasePoolStack-&gt;removeObjectAtIndex(nCount<span class="number">-1</span>);</div><div class="line"></div><div class="line"><span class="comment">//         if(nCount &gt; 1)</span></div><div class="line"><span class="comment">//         {</span></div><div class="line"><span class="comment">//             m_pCurReleasePool = m_pReleasePoolStack-&gt;objectAtIndex(nCount - 2);</span></div><div class="line"><span class="comment">//             return;</span></div><div class="line"><span class="comment">//         }</span></div><div class="line">        m_pCurReleasePool = (CCAutoreleasePool*)m_pReleasePoolStack-&gt;objectAtIndex(nCount - <span class="number">2</span>);</div><div class="line">    }</div><div class="line"><span class="comment">//如果没有意外, 这里会最少保留一个池不会被销毁. 但最后一个池还是会被清空..</span></div><div class="line">    <span class="comment">/*m_pCurReleasePool = NULL;*/</span></div><div class="line">}</div><div class="line"><span class="comment">// 从当前池中移除对象.</span></div><div class="line"><span class="keyword">void</span> CCPoolManager::removeObject(CCObject* pObject)</div><div class="line">{</div><div class="line">    CCAssert(m_pCurReleasePool, <span class="string">"current auto release pool should not be null"</span>);</div><div class="line"></div><div class="line">    m_pCurReleasePool-&gt;removeObject(pObject);</div><div class="line">}</div><div class="line"><span class="comment">//添加一个对象到当前池</span></div><div class="line"><span class="keyword">void</span> CCPoolManager::addObject(CCObject* pObject)</div><div class="line">{</div><div class="line">    getCurReleasePool()-&gt;addObject(pObject);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//形成单例模式</span></div><div class="line">CCAutoreleasePool* CCPoolManager::getCurReleasePool()</div><div class="line">{</div><div class="line">    <span class="keyword">if</span>(!m_pCurReleasePool)</div><div class="line">    {</div><div class="line">        push();</div><div class="line">    }</div><div class="line"></div><div class="line">    CCAssert(m_pCurReleasePool, <span class="string">"current auto release pool should not be null"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> m_pCurReleasePool;</div><div class="line">}</div></pre></td></tr></table></figure>
 <ul>
-<li>参考1: <a href="http://4137613.blog.51cto.com/4127613/784134" target="_blank" rel="external">http://4137613.blog.51cto.com/4127613/784134</a></li>
+<li>参考1: <a href="http://4137613.blog.51cto.com/4127613/784134" target="_blank" rel="noopener">http://4137613.blog.51cto.com/4127613/784134</a></li>
 </ul>
 ]]></content>
     
@@ -1060,19 +1095,19 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
     
     </summary>
     
-      <category term="Cocos2d-x" scheme="http://www.young40.com/categories/Cocos2d-x/"/>
+      <category term="Cocos2d-x" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/"/>
     
-      <category term="Cocos2d-x 源代码研究" scheme="http://www.young40.com/categories/Cocos2d-x/Cocos2d-x-%E6%BA%90%E4%BB%A3%E7%A0%81%E7%A0%94%E7%A9%B6/"/>
+      <category term="Cocos2d-x 源代码研究" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/Cocos2d-x-%E6%BA%90%E4%BB%A3%E7%A0%81%E7%A0%94%E7%A9%B6/"/>
     
     
   </entry>
   
   <entry>
     <title>2d-x深读3:CCObject</title>
-    <link href="http://www.young40.com/2012/12/31/2012-12-31-cocos2d-x-source-code-research-3-ccobject/"/>
-    <id>http://www.young40.com/2012/12/31/2012-12-31-cocos2d-x-source-code-research-3-ccobject/</id>
+    <link href="http://www.young40.com/hexoblog/2012/12/31/2012-12-31-cocos2d-x-source-code-research-3-ccobject/"/>
+    <id>http://www.young40.com/hexoblog/2012/12/31/2012-12-31-cocos2d-x-source-code-research-3-ccobject/</id>
     <published>2012-12-31T09:21:00.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:53:53.687Z</updated>
     
     <content type="html"><![CDATA[<p>CCObject是绝大部分cocos2d-x类的基类, 我们就从这里一步一步揭开cocos2d-x的奥秘.   </p>
 <p>CCObject承担了两个重要的功能, 拷贝机制和内存管理.    </p>
@@ -1111,7 +1146,7 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
 <figure class="highlight cpp"><figcaption><span>CCobject\.h</span><a href="/hexoblog/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCObject.h">view raw</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CC_DLL</span> <span class="title">CCCopying</span></span></div><div class="line"><span class="class">{</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">virtual</span> CCObject* <span class="title">copyWithZone</span><span class="params">(CCZone* pZone)</span></span>;</div><div class="line">};</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CC_DLL</span> <span class="title">CCObject</span> :</span> <span class="keyword">public</span> CCCopying</div><div class="line">{</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span>        m_uID;<span class="comment">//这两个是支持lua等脚本语言用的, 我们不去管他.</span></div><div class="line">    <span class="keyword">int</span>                 m_nLuaID;</div><div class="line"><span class="keyword">protected</span>:</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span>        m_uReference;<span class="comment">//引用计数</span></div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span>        m_uAutoReleaseCount;<span class="comment">//autorelease计数</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    CCObject(<span class="keyword">void</span>);</div><div class="line">    <span class="keyword">virtual</span> ~CCObject(<span class="keyword">void</span>);</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">release</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">retain</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line">    <span class="function">CCObject* <span class="title">autorelease</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line">    <span class="function">CCObject* <span class="title">copy</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSingleReference</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">retainCount</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">isEqual</span><span class="params">(<span class="keyword">const</span> CCObject* pObject)</span></span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">float</span> dt)</span> </span>{CC_UNUSED_PARAM(dt);};</div><div class="line">   <span class="comment">//CCAutoreleasePool作为友元类 </span></div><div class="line">    <span class="keyword">friend</span> <span class="class"><span class="keyword">class</span> <span class="title">CCAutoreleasePool</span>;</span></div><div class="line">};</div><div class="line"></div><div class="line"><span class="comment">//几个常用的函数指针.</span></div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_SCHEDULE)</span><span class="params">(<span class="keyword">float</span>)</span></span>;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_CallFunc)</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_CallFuncN)</span><span class="params">(CCNode*)</span></span>;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_CallFuncND)</span><span class="params">(CCNode*, <span class="keyword">void</span>*)</span></span>;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_CallFuncO)</span><span class="params">(CCObject*)</span></span>;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_MenuHandler)</span><span class="params">(CCObject*)</span></span>;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(CCObject::*SEL_EventHandler)</span><span class="params">(CCEvent*)</span></span>;</div><div class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(CCObject::*SEL_Compare)</span><span class="params">(CCObject*)</span></span>;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> schedule_selector(_SELECTOR) (SEL_SCHEDULE)(&amp;_SELECTOR)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> callfunc_selector(_SELECTOR) (SEL_CallFunc)(&amp;_SELECTOR)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> callfuncN_selector(_SELECTOR) (SEL_CallFuncN)(&amp;_SELECTOR)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> callfuncND_selector(_SELECTOR) (SEL_CallFuncND)(&amp;_SELECTOR)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> callfuncO_selector(_SELECTOR) (SEL_CallFuncO)(&amp;_SELECTOR)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> menu_selector(_SELECTOR) (SEL_MenuHandler)(&amp;_SELECTOR)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> event_selector(_SELECTOR) (SEL_EventHandler)(&amp;_SELECTOR)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> compare_selector(_SELECTOR) (SEL_Compare)(&amp;_SELECTOR)</span></div></pre></td></tr></table></figure>
 <figure class="highlight cpp"><figcaption><span>CCobject\.cpp</span><a href="/hexoblog/downloads/code/cocos2d-x-research/2.1.1/cocos2dx/cocoa/CCObject.cpp">view raw</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line">CCObject* CCCopying::copyWithZone(CCZone *pZone)</div><div class="line">{<span class="comment">//CCObject的派生类需要调用copy()则必须重写该函数</span></div><div class="line">    CC_UNUSED_PARAM(pZone);</div><div class="line">    CCAssert(<span class="number">0</span>, <span class="string">"not implement"</span>);<span class="comment">//不重写会报错.</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div><div class="line"></div><div class="line">CCObject::CCObject(<span class="keyword">void</span>)</div><div class="line">:m_uAutoReleaseCount(<span class="number">0</span>)</div><div class="line">,m_uReference(<span class="number">1</span>) <span class="comment">// 引用计数默认为1</span></div><div class="line">,m_nLuaID(<span class="number">0</span>)</div><div class="line">{</div><div class="line">    <span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> uObjectCount = <span class="number">0</span>;</div><div class="line">    m_uID = ++uObjectCount;<span class="comment">//脚本语言相关, 不去管他.</span></div><div class="line">}</div><div class="line"></div><div class="line">CCObject::~CCObject(<span class="keyword">void</span>)</div><div class="line">{<span class="comment">//析构函数</span></div><div class="line">    <span class="keyword">if</span> (m_uAutoReleaseCount &gt; <span class="number">0</span>)</div><div class="line">    {<span class="comment">//自动引用计数则从管理池中删除</span></div><div class="line">        CCPoolManager::sharedPoolManager()-&gt;removeObject(<span class="keyword">this</span>);</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span> (m_nLuaID)<span class="comment">//脚本语言相关.</span></div><div class="line">    {</div><div class="line">        CCScriptEngineManager::sharedManager()-&gt;getScriptEngine()-&gt;removeScriptObjectByCCObject(<span class="keyword">this</span>);</div><div class="line">    }</div><div class="line">    <span class="keyword">else</span></div><div class="line">    {<span class="comment">//看起来脚本语言支持被深度嵌入, 如果能设置个宏直接去掉其支持多好.</span></div><div class="line">        CCScriptEngineProtocol* pEngine = CCScriptEngineManager::sharedManager()-&gt;getScriptEngine();</div><div class="line">        <span class="keyword">if</span> (pEngine != <span class="literal">NULL</span> &amp;&amp; pEngine-&gt;getScriptType() == kScriptTypeJavascript)</div><div class="line">        {</div><div class="line">            pEngine-&gt;removeScriptObjectByCCObject(<span class="keyword">this</span>);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="comment">// copy实质上是对copyWithZone的调用.</span></div><div class="line">CCObject* CCObject::copy()</div><div class="line">{</div><div class="line">    <span class="keyword">return</span> copyWithZone(<span class="number">0</span>);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> CCObject::release(<span class="keyword">void</span>)</div><div class="line">{</div><div class="line">    CCAssert(m_uReference &gt; <span class="number">0</span>, <span class="string">"reference count should greater than 0"</span>);</div><div class="line">    --m_uReference;<span class="comment">//引用计数自减</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span> (m_uReference == <span class="number">0</span>)</div><div class="line">    {<span class="comment">//如果引用计数为0, 调用release会立即释放内存.</span></div><div class="line">        <span class="keyword">delete</span> <span class="keyword">this</span>;</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> CCObject::retain(<span class="keyword">void</span>)</div><div class="line">{</div><div class="line">    CCAssert(m_uReference &gt; <span class="number">0</span>, <span class="string">"reference count should greater than 0"</span>);</div><div class="line">    ++m_uReference;<span class="comment">//引用计数自增.</span></div><div class="line">}</div><div class="line"></div><div class="line">CCObject* CCObject::autorelease(<span class="keyword">void</span>)</div><div class="line">{<span class="comment">//autorelease将对象加入自动内存管理池.</span></div><div class="line">    CCPoolManager::sharedPoolManager()-&gt;addObject(<span class="keyword">this</span>);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">bool</span> CCObject::isSingleReference(<span class="keyword">void</span>)</div><div class="line">{<span class="comment">//判断对象是否仅被引用了一次</span></div><div class="line">    <span class="keyword">return</span> m_uReference == <span class="number">1</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> CCObject::retainCount(<span class="keyword">void</span>)</div><div class="line">{<span class="comment">//返回引用次数</span></div><div class="line">    <span class="keyword">return</span> m_uReference;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">bool</span> CCObject::isEqual(<span class="keyword">const</span> CCObject *pObject)</div><div class="line">{<span class="comment">//判断对象是否为同一个对象.</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span> == pObject;</div><div class="line">}</div></pre></td></tr></table></figure>
 <ul>
-<li>参考1: <a href="http://4137613.blog.51cto.com/4127613/784134" target="_blank" rel="external">http://4137613.blog.51cto.com/4127613/784134</a></li>
+<li>参考1: <a href="http://4137613.blog.51cto.com/4127613/784134" target="_blank" rel="noopener">http://4137613.blog.51cto.com/4127613/784134</a></li>
 </ul>
 ]]></content>
     
@@ -1126,19 +1161,19 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
     
     </summary>
     
-      <category term="Cocos2d-x" scheme="http://www.young40.com/categories/Cocos2d-x/"/>
+      <category term="Cocos2d-x" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/"/>
     
-      <category term="Cocos2d-x 源代码研究" scheme="http://www.young40.com/categories/Cocos2d-x/Cocos2d-x-%E6%BA%90%E4%BB%A3%E7%A0%81%E7%A0%94%E7%A9%B6/"/>
+      <category term="Cocos2d-x 源代码研究" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/Cocos2d-x-%E6%BA%90%E4%BB%A3%E7%A0%81%E7%A0%94%E7%A9%B6/"/>
     
     
   </entry>
   
   <entry>
     <title>一步一步CocosBuilder(4)[完结]</title>
-    <link href="http://www.young40.com/2012/12/29/2012-12-29-cocosbuilder-step-by-step-part-four/"/>
-    <id>http://www.young40.com/2012/12/29/2012-12-29-cocosbuilder-step-by-step-part-four/</id>
+    <link href="http://www.young40.com/hexoblog/2012/12/29/2012-12-29-cocosbuilder-step-by-step-part-four/"/>
+    <id>http://www.young40.com/hexoblog/2012/12/29/2012-12-29-cocosbuilder-step-by-step-part-four/</id>
     <published>2012-12-29T02:54:00.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:53:53.687Z</updated>
     
     <content type="html"><![CDATA[<p>这一节也是很轻松, 主要是牵涉到Timeline的切换. 其他的都是简单的界面制作.<br>所以CocosBuilder的威力也体现在这里, 很少的代码就能驱动界面了.   </p>
 <p>我们这次先做<code>Particle System</code>, <code>Scroll View</code>, 最后以<code>Animations</code>收官.   </p>
@@ -1155,13 +1190,13 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
 <p><hr><br>代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> </p>
 <ul>
 <li>本文是系列文章, 请查看其他文章:</li>
-<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="external">一步一步CocosBuilder(1)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="external">一步一步CocosBuilder(2)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="external">一步一步CocosBuilder(3)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="external">一步一步CocosBuilder(4)完结</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="noopener">一步一步CocosBuilder(1)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="noopener">一步一步CocosBuilder(2)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="noopener">一步一步CocosBuilder(3)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="noopener">一步一步CocosBuilder(4)完结</a></li>
 </ul>
 <p>谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.</p>
-<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="external">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="external">http://weibo.com/young40</a></p>
+<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="noopener">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="noopener">http://weibo.com/young40</a></p>
 ]]></content>
     
     <summary type="html">
@@ -1172,19 +1207,19 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
     
     </summary>
     
-      <category term="Cocos2d-x" scheme="http://www.young40.com/categories/Cocos2d-x/"/>
+      <category term="Cocos2d-x" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/"/>
     
-      <category term="CocosBuilder" scheme="http://www.young40.com/categories/Cocos2d-x/CocosBuilder/"/>
+      <category term="CocosBuilder" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/CocosBuilder/"/>
     
     
   </entry>
   
   <entry>
     <title>一步一步CocosBuilder(3)</title>
-    <link href="http://www.young40.com/2012/12/28/2012-12-28-cocosbuilder-step-by-step-part-three/"/>
-    <id>http://www.young40.com/2012/12/28/2012-12-28-cocosbuilder-step-by-step-part-three/</id>
+    <link href="http://www.young40.com/hexoblog/2012/12/28/2012-12-28-cocosbuilder-step-by-step-part-three/"/>
+    <id>http://www.young40.com/hexoblog/2012/12/28/2012-12-28-cocosbuilder-step-by-step-part-three/</id>
     <published>2012-12-27T16:54:00.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:53:53.686Z</updated>
     
     <content type="html"><![CDATA[<p>今天要说的内容比较轻松, 重要的知识点不多.<br>目标是实现<code>Menus &amp; Items</code>, <code>Sprites &amp; 9 Slice</code>, <code>Buttons &amp; Labels</code>.   </p>
 <p>#####1<br>首先我们在CocosBuilder中建立一个新的<code>Header.ccb</code>.具体请参见CocosBuilder的项目.<br>在创建的时候,勾选<code>Full Sceen</code>, 并且将分辨率的<code>Height</code>都修改为40.<br>这个文件很简单, 根节点下只包含一个<code>CCLayerColor</code>,根节点的<code>Custom class</code>设置为<code>HeaderLayer</code>.<br><code>CCLayerColor</code>下面包含一个<code>CCLabelTTF</code>和<code>CCMenu</code>.<br><code>CCLabelTTF</code>的变量绑定为类型<code>Owner var</code>, 值为<code>mTitleLabelTTF</code>.<br><code>CCMenu</code>包含一个<code>CCMenuItemImage</code>. <code>CCMenuItemImage</code>的<code>Selector</code>属性设置为<code>onBackClicked</code>.<br>这个ccb作为一个公用的元素被其他ccb文件所引用. 是属于模块化的一个例子.<br>然后我们在Xcode中新建一个<code>HeaderLayer</code>类, 并同时声明一个<code>HeaderLayerLoader</code>类.   </p>
@@ -1203,13 +1238,13 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
 <p><hr><br>代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> </p>
 <ul>
 <li>本文是系列文章, 请查看其他文章:</li>
-<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="external">一步一步CocosBuilder(1)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="external">一步一步CocosBuilder(2)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="external">一步一步CocosBuilder(3)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="external">一步一步CocosBuilder(4)完结</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="noopener">一步一步CocosBuilder(1)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="noopener">一步一步CocosBuilder(2)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="noopener">一步一步CocosBuilder(3)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="noopener">一步一步CocosBuilder(4)完结</a></li>
 </ul>
 <p>谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.</p>
-<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="external">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="external">http://weibo.com/young40</a></p>
+<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="noopener">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="noopener">http://weibo.com/young40</a></p>
 ]]></content>
     
     <summary type="html">
@@ -1219,19 +1254,19 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
     
     </summary>
     
-      <category term="Cocos2d-x" scheme="http://www.young40.com/categories/Cocos2d-x/"/>
+      <category term="Cocos2d-x" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/"/>
     
-      <category term="CocosBuilder" scheme="http://www.young40.com/categories/Cocos2d-x/CocosBuilder/"/>
+      <category term="CocosBuilder" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/CocosBuilder/"/>
     
     
   </entry>
   
   <entry>
     <title>一步一步CocosBuilder(2)</title>
-    <link href="http://www.young40.com/2012/12/25/2012-12-25-cocosbuilder-step-by-step-part-two/"/>
-    <id>http://www.young40.com/2012/12/25/2012-12-25-cocosbuilder-step-by-step-part-two/</id>
+    <link href="http://www.young40.com/hexoblog/2012/12/25/2012-12-25-cocosbuilder-step-by-step-part-two/"/>
+    <id>http://www.young40.com/hexoblog/2012/12/25/2012-12-25-cocosbuilder-step-by-step-part-two/</id>
     <published>2012-12-25T13:15:00.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:53:53.686Z</updated>
     
     <content type="html"><![CDATA[<p>上一篇我们建立了基本的工作环境, 这一次我们将基本实现例子中的HelloCocosBuilder.</p>
 <p>###注意<br>这两天纠结了一个问题. 我发现按照上次的配置来实现例子, 图片的大小怎么都和例子中的搭配不上. 后来动用CCB的源代码才看出端倪.<br>CCB v3.0加入了一个<code>resources-auto</code>的目录, 在发布的时候, 会自动缩放图片到对应的分辨率去. 因为图片的分辨率不合适(初步目测), 我们暂时不使用这功能. 请大家将上一篇文章<br>中的<code>resources-auto</code>文件夹下图片移到父目录<code>ccb-source</code>下面. 这个也解释了为什么<code>resources-auto</code>有非图片文件会导致CCB崩溃的原因.</p>
@@ -1265,13 +1300,13 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
 <p><hr><br>代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> </p>
 <ul>
 <li>本文是系列文章, 请查看其他文章:</li>
-<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="external">一步一步CocosBuilder(1)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="external">一步一步CocosBuilder(2)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="external">一步一步CocosBuilder(3)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="external">一步一步CocosBuilder(4)完结</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="noopener">一步一步CocosBuilder(1)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="noopener">一步一步CocosBuilder(2)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="noopener">一步一步CocosBuilder(3)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="noopener">一步一步CocosBuilder(4)完结</a></li>
 </ul>
 <p>谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.</p>
-<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="external">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="external">http://weibo.com/young40</a></p>
+<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="noopener">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="noopener">http://weibo.com/young40</a></p>
 ]]></content>
     
     <summary type="html">
@@ -1281,19 +1316,19 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
     
     </summary>
     
-      <category term="Cocos2d-x" scheme="http://www.young40.com/categories/Cocos2d-x/"/>
+      <category term="Cocos2d-x" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/"/>
     
-      <category term="CocosBuilder" scheme="http://www.young40.com/categories/Cocos2d-x/CocosBuilder/"/>
+      <category term="CocosBuilder" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/CocosBuilder/"/>
     
     
   </entry>
   
   <entry>
     <title>一步一步CocosBuilder(1)</title>
-    <link href="http://www.young40.com/2012/12/21/2012-12-21-cocosbuilder-step-by-step-part-one/"/>
-    <id>http://www.young40.com/2012/12/21/2012-12-21-cocosbuilder-step-by-step-part-one/</id>
+    <link href="http://www.young40.com/hexoblog/2012/12/21/2012-12-21-cocosbuilder-step-by-step-part-one/"/>
+    <id>http://www.young40.com/hexoblog/2012/12/21/2012-12-21-cocosbuilder-step-by-step-part-one/</id>
     <published>2012-12-20T18:46:00.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:53:53.686Z</updated>
     
     <content type="html"><![CDATA[<p>CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.<br>CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.<br>我想这个也是其不够流行的原因吧.</p>
 <p>如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力.<br>我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实.<br>我无论C++,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.</p>
@@ -1310,18 +1345,18 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
 <p>3.修改<code>AppDelegate.cpp</code>中默认的启动scene<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CCScene *pScene = MainScene::scene(); <span class="comment">//HelloWorld::scene();</span></div></pre></td></tr></table></figure></p>
 <p>4.注意CCB中发布选项的设置, 并发布一次.<br><img src="/hexoblog/upload/2012-12/ccb-sbs-1-002.png"></p>
 <p>5.如果没有错误的话, 你应该可以看到运行的效果.<br><img src="/hexoblog/upload/2012-12/ccb-sbs-1-003.png"></p>
-<p>Update:<br>@王哲Walzer 说,CCB大部分是美术在用, 在美术圈讨论, 所以程序圈较少看到人在讨论, 其实用的公司挺多的.<br><a href="http://weibo.com/1702027805/zay18wLT5" target="_blank" rel="external">http://weibo.com/1702027805/zay18wLT5</a></p>
+<p>Update:<br>@王哲Walzer 说,CCB大部分是美术在用, 在美术圈讨论, 所以程序圈较少看到人在讨论, 其实用的公司挺多的.<br><a href="http://weibo.com/1702027805/zay18wLT5" target="_blank" rel="noopener">http://weibo.com/1702027805/zay18wLT5</a></p>
 <figure class="highlight sh"><figcaption><span>目录结构</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">├── samples <span class="comment">#目录结构和2d-x源代码保持一致,相信大家对2d-x源代码很熟悉了.</span></div><div class="line">│   └── CocosBuilderTest <span class="comment">#项目所在目录</span></div><div class="line">│       ├── Classes <span class="comment">#代码所在目录</span></div><div class="line">│       ├── Resources <span class="comment">#资源目录</span></div><div class="line">│       │   ├── ccb <span class="comment">#ccb发布后的目录</span></div><div class="line">│       │   │   ├── HelloCocosBuilder.ccbi</div><div class="line">│       │   │   ├── ...</div><div class="line">│       │   │   └── TestSprites.ccbi</div><div class="line">│       │   ├── ccbResources <span class="comment">#发布后的默认ccb资源</span></div><div class="line">│       │   ├── fonts</div><div class="line">│       │   ├── resources-ipad <span class="comment">#注意这几个目录, 稍后我们会提及</span></div><div class="line">│       │   ├── resources-ipadhd</div><div class="line">│       │   ├── resources-iphone</div><div class="line">│       │   ├── resources-iphonehd</div><div class="line">│       ├── ccb-source <span class="comment">#ccb项目目录</span></div><div class="line">│       │   ├── ccb</div><div class="line">│       │   │   ├── HelloCocosBuilder.ccb <span class="comment">#这几个是原CocosBuilder例子中的ccb, 直接复制过来了.</span></div><div class="line">│       │   │   ├── ...</div><div class="line">│       │   │   └── TestSprites.ccbi</div><div class="line">│       │   ├── ccbResources</div><div class="line">│       │   ├── resources-auto <span class="comment">#CocosBuilderv3.0的资源目录, 似乎只能存放图片</span></div><div class="line">│       │   │   ├── btn<span class="_">-a</span>-0.png <span class="comment">#否则会引起发布是造成CocosBuilder崩溃</span></div><div class="line">│       │   │   ├── ...</div><div class="line">│       │   │   └── scale-9-demo.png</div><div class="line">│       │   ├── MainScene.ccb <span class="comment">#默认生成的ccb, 我们这一次不对其更改</span></div><div class="line">│       │   ├── MainScene.js</div><div class="line">│       │   ├── animated-grossini.plist</div><div class="line">│       │   ├── animated-grossini.png</div><div class="line">│       │   ├── ccb-source.ccbproj</div><div class="line">│       │   ├── comic\ andy.ttf</div><div class="line">│       │   ├── grossini-generic.plist</div><div class="line">│       │   ├── grossini-generic.png</div><div class="line">│       │   ├── markerfelt24shadow.fnt</div><div class="line">│       │   └── markerfelt24shadow.png</div><div class="line">│       └── proj.mac</div><div class="line">│           ├── HelloCpp.xcodeproj <span class="comment">#项目文件, 暂时只支持mac os x</span></div><div class="line">├── cocos2dx <span class="comment">#2d-x文件</span></div><div class="line">├── extensions <span class="comment">#2d-x的扩展</span></div><div class="line">│   ├── CCBReader <span class="comment">#这个是解析CocosBuilder的主要CCBReader</span></div><div class="line">│   │   ├── CCBAnimationManager.cpp</div><div class="line">│   │   ├── CCBAnimationManager.h</div><div class="line">│   │   ├── ...</div><div class="line">│   │   └── CCSpriteLoader.h</div><div class="line">│   ├── GUI</div><div class="line">│   ├── network</div><div class="line">│   ├── physics_nodes</div><div class="line">│   ├── ExtensionMacros.h</div><div class="line">│   └── cocos-ext.h</div></pre></td></tr></table></figure>
 <p><hr><br>代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> </p>
 <ul>
 <li>本文是系列文章, 请查看其他文章:</li>
-<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="external">一步一步CocosBuilder(1)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="external">一步一步CocosBuilder(2)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="external">一步一步CocosBuilder(3)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="external">一步一步CocosBuilder(4)完结</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="noopener">一步一步CocosBuilder(1)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="noopener">一步一步CocosBuilder(2)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="noopener">一步一步CocosBuilder(3)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="noopener">一步一步CocosBuilder(4)完结</a></li>
 </ul>
 <p>谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.</p>
-<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="external">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="external">http://weibo.com/young40</a></p>
+<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="noopener">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="noopener">http://weibo.com/young40</a></p>
 ]]></content>
     
     <summary type="html">
@@ -1332,19 +1367,19 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
     
     </summary>
     
-      <category term="Cocos2d-x" scheme="http://www.young40.com/categories/Cocos2d-x/"/>
+      <category term="Cocos2d-x" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/"/>
     
-      <category term="CocosBuilder" scheme="http://www.young40.com/categories/Cocos2d-x/CocosBuilder/"/>
+      <category term="CocosBuilder" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/CocosBuilder/"/>
     
     
   </entry>
   
   <entry>
     <title>2d-x深读2:CCPlatformMacros.h</title>
-    <link href="http://www.young40.com/2012/12/17/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/"/>
-    <id>http://www.young40.com/2012/12/17/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/</id>
+    <link href="http://www.young40.com/hexoblog/2012/12/17/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/"/>
+    <id>http://www.young40.com/hexoblog/2012/12/17/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/</id>
     <published>2012-12-16T17:49:00.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:53:53.686Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/include/ccConfig.h</code></li>
@@ -1369,19 +1404,19 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
     
     </summary>
     
-      <category term="Cocos2d-x" scheme="http://www.young40.com/categories/Cocos2d-x/"/>
+      <category term="Cocos2d-x" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/"/>
     
-      <category term="Cocos2d-x 源代码研究" scheme="http://www.young40.com/categories/Cocos2d-x/Cocos2d-x-%E6%BA%90%E4%BB%A3%E7%A0%81%E7%A0%94%E7%A9%B6/"/>
+      <category term="Cocos2d-x 源代码研究" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/Cocos2d-x-%E6%BA%90%E4%BB%A3%E7%A0%81%E7%A0%94%E7%A9%B6/"/>
     
     
   </entry>
   
   <entry>
     <title>2d-x深读1:CCPlatformConfig.h</title>
-    <link href="http://www.young40.com/2012/12/17/2012-12-17-cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/"/>
-    <id>http://www.young40.com/2012/12/17/2012-12-17-cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/</id>
+    <link href="http://www.young40.com/hexoblog/2012/12/17/2012-12-17-cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/"/>
+    <id>http://www.young40.com/hexoblog/2012/12/17/2012-12-17-cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/</id>
     <published>2012-12-16T16:43:00.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:53:53.686Z</updated>
     
     <content type="html"><![CDATA[<p>准备好好学习下Cocos2d-x(以下简称2dx), 我正在很努力地学习C++.</p>
 <p>作为新手的我, 只能从最基本的代码读起. 就从<code>CCPlatformConfig.h</code>开始研究起吧, 这个文件没有include其他文件, 是最基本的文件.</p>
@@ -1402,19 +1437,19 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
     
     </summary>
     
-      <category term="Cocos2d-x" scheme="http://www.young40.com/categories/Cocos2d-x/"/>
+      <category term="Cocos2d-x" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/"/>
     
-      <category term="Cocos2d-x 源代码研究" scheme="http://www.young40.com/categories/Cocos2d-x/Cocos2d-x-%E6%BA%90%E4%BB%A3%E7%A0%81%E7%A0%94%E7%A9%B6/"/>
+      <category term="Cocos2d-x 源代码研究" scheme="http://www.young40.com/hexoblog/categories/Cocos2d-x/Cocos2d-x-%E6%BA%90%E4%BB%A3%E7%A0%81%E7%A0%94%E7%A9%B6/"/>
     
     
   </entry>
   
   <entry>
     <title>Cocos2d-x 真是太棒了</title>
-    <link href="http://www.young40.com/2012/12/14/2012-12-14-cocos2d-x-is-awesome/"/>
-    <id>http://www.young40.com/2012/12/14/2012-12-14-cocos2d-x-is-awesome/</id>
+    <link href="http://www.young40.com/hexoblog/2012/12/14/2012-12-14-cocos2d-x-is-awesome/"/>
+    <id>http://www.young40.com/hexoblog/2012/12/14/2012-12-14-cocos2d-x-is-awesome/</id>
     <published>2012-12-13T19:07:00.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
+    <updated>2018-02-07T15:53:53.686Z</updated>
     
     <content type="html"><![CDATA[<p>大概从7月20号左右, 开始决定转向游戏, 首先接触了cocos2d-iphone, 学习了几天. 然后简单了解下就转向了cocos2d-x的学习.</p>
 <p>2d-x最令人开心的就是跨平台特性, 经过这段时间的尝试, 感觉跨平台特性确实很强大. 我一般都是在Xcode写代码, 以os x平台做调试, 然后ios平台就不用提了, 直接编译即可.<br>Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是刚刚开始学习, 所以代码写的不标准, 那么在VS下面会无法通过编译. 主要是体现在一些需要将函数作为参数传入的地方,<br>比较会不容易弄清楚回调函数的参数. Xcode我通通将<code>CCObject *sender</code>作为参数, 而VS要求就非常严格了.</p>
@@ -1433,31 +1468,7 @@ Octopress迁移到Hexo，以及Hexo 2.x迁移到3.x，都是非常简单的. 基
     
     </summary>
     
-      <category term="杂谈" scheme="http://www.young40.com/categories/%E6%9D%82%E8%B0%88/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>C++随机数</title>
-    <link href="http://www.young40.com/2012/12/12/2012-12-12-random-number-in-cpp/"/>
-    <id>http://www.young40.com/2012/12/12/2012-12-12-random-number-in-cpp/</id>
-    <published>2012-12-11T21:52:00.000Z</published>
-    <updated>2017-03-14T07:53:34.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>这两天写一个方块消除游戏, 开局的时候就需要随机颜色方块布局. 在调试的时候, 发现似乎有些关卡总是相同的.<br>终于发现了程序第一次打开的时候, 开局总是相同的.</p>
-<a id="more"></a>
-<p>rand()可以产生0到之间的伪随机数, 可以利用srand()指定一个无符号整数作为种子. 如果种子相同, 那么产生的伪随机数列相同.<br>默认种子为1, 所以如果不改变种子的话, 获得的随机数列总是相同的.</p>
-<figure class="highlight cpp"><figcaption><span>Random</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">srand( time(<span class="number">0</span>) );</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; ++i)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, rand());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这两天写一个方块消除游戏, 开局的时候就需要随机颜色方块布局. 在调试的时候, 发现似乎有些关卡总是相同的.&lt;br&gt;终于发现了程序第一次打开的时候, 开局总是相同的.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="CPP" scheme="http://www.young40.com/categories/CPP/"/>
+      <category term="杂谈" scheme="http://www.young40.com/hexoblog/categories/%E6%9D%82%E8%B0%88/"/>
     
     
   </entry>
