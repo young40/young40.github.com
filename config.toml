@@ -1,8 +1,10 @@
-baseurl = "http://www.young40.com"
+baseurl = "http://www.young40.com/"
 languageCode = "en-us"
 Title = "杨世玲的博客"
 # Copyright notice. This is displayer in the footer.
 copyright = "&copy; 2018 Copyright 杨世玲"
+
+theme = "hugo_theme_pickles"
 
 [params]
   paginate = 10
