@@ -1,0 +1,10 @@
+#+TITLE: 新站点
+#+DATE: 2018-02-08
+#+SETUPFILE: ~/org/setupfile.org
+#+JEKYLL_LAYOUT: post
+#+JEKYLL_CATEGORIES: 
+#+JEKYLL_TAGS: 
+#+JEKYLL_PUBLISHED: true
+
+这是备份站, 请进主站:
+http://www.young40.com
