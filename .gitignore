@@ -1,2 +1,8 @@
 themes
 public
+
+# hexo 的遗留文件
+.deploy_git
+db.json
+hexo-org-cache
+node_modules
