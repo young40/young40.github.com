@@ -50,7 +50,7 @@
 <meta property="og:image" content="http://www.young40.com/hexoblog/upload/2013-01/chat-of-pomelo-cocos2d-x-002.png">
 <meta property="og:image" content="http://www.young40.com/hexoblog/upload/2013-01/chat-of-pomelo-cocos2d-x-003.png">
 <meta property="og:image" content="http://www.young40.com/hexoblog/upload/2013-01/chat-of-pomelo-cocos2d-x-004.png">
-<meta property="og:updated_time" content="2018-02-07T15:53:53.687Z">
+<meta property="og:updated_time" content="2018-02-08T06:16:16.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Pomelo和Cocos2d-x的聊天室">
 <meta name="twitter:description" content="据说聊天室和游戏系统有很多相似之处, 并且很多游戏本身就带着多人聊天系统. 所以Pomelo将聊天室作为了一个例子.     开源是非常棒的思想和运动, 我简单提两点体会,1.发现了问题可以不用等官方响应,自己有能力就可以马上修复. 2.你可以贡献自己的代码,很多人都可以贡献代码,可以让项目快速发展.当然一旦你的代码被接受并被很多人使用, 心中的成就感是不言而喻的.     之所以要提到开源, 是">
@@ -107,6 +107,12 @@
 
   
     <ul id="menu" class="menu ">
+        <li class="menu-item menu-item-home">
+          <a href="https://www.young40.com" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+             新站
+          </a>
+        </li>
       
         
         <li class="menu-item menu-item-home">
@@ -137,7 +143,6 @@
 
   
 </nav>
-
 
         </div>
     </header>
@@ -214,11 +219,11 @@
 <ul>
 <li>平台:OS X(10.8.2) Xcode(4.5.2)    </li>
 <li>Cocos2d-2.1beta3-x-2.1.0    </li>
-<li>Pomelo <a href="https://github.com/NetEase/pomelo" target="_blank" rel="noopener">https://github.com/NetEase/pomelo</a></li>
-<li>socket.io-clientpp <a href="https://github.com/ebshimizu/socket.io-clientpp" target="_blank" rel="noopener">https://github.com/ebshimizu/socket.io-clientpp</a></li>
-<li>websocketpp <a href="https://github.com/zaphoyd/websocketpp" target="_blank" rel="noopener">https://github.com/zaphoyd/websocketpp</a></li>
-<li>Rapidjson <a href="https://code.google.com/p/rapidjson/" target="_blank" rel="noopener">https://code.google.com/p/rapidjson/</a></li>
-<li>chatofpomelo <a href="https://github.com/NetEase/chatofpomelo" target="_blank" rel="noopener">https://github.com/NetEase/chatofpomelo</a></li>
+<li>Pomelo <a href="https://github.com/NetEase/pomelo" target="_blank" rel="external">https://github.com/NetEase/pomelo</a></li>
+<li>socket.io-clientpp <a href="https://github.com/ebshimizu/socket.io-clientpp" target="_blank" rel="external">https://github.com/ebshimizu/socket.io-clientpp</a></li>
+<li>websocketpp <a href="https://github.com/zaphoyd/websocketpp" target="_blank" rel="external">https://github.com/zaphoyd/websocketpp</a></li>
+<li>Rapidjson <a href="https://code.google.com/p/rapidjson/" target="_blank" rel="external">https://code.google.com/p/rapidjson/</a></li>
+<li>chatofpomelo <a href="https://github.com/NetEase/chatofpomelo" target="_blank" rel="external">https://github.com/NetEase/chatofpomelo</a></li>
 </ul>
 <p>查阅本文时请注意版本差异.        </p>
 <h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><p>我们的目标是实现OS X, IOS, Android三个平台下的chatofpomelo的Cocos2d-x版本.<br>所以需要安装各自平台的开发工具如Xcode,Eclipse,NDK等, 不是本文需要关心的内容. 相信大家也已经轻车熟路了.<br>Pomelo的安装 <code>npm install pomelo -g</code>, 如有疑问请查看Pomelo的Wiki.<br>websocketpp需要著名的C++库, boost. 我是使用了HomeBrew来安装.<br>其他安装方式请自省查阅相关文档, 有一点需要指出的是, 必须编译为带有x86(i386)支持lib文件.<br>因为Cocos2d-x在OS X下是32位的.<br><figure class="highlight sh"><figcaption><span>HomeBrew安装boost库</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install boost --universal</div></pre></td></tr></table></figure></p>

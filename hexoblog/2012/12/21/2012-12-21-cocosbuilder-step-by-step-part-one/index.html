@@ -49,7 +49,7 @@
 <meta property="og:image" content="http://www.young40.com/hexoblog/upload/2012-12/ccb-sbs-1-001.png">
 <meta property="og:image" content="http://www.young40.com/hexoblog/upload/2012-12/ccb-sbs-1-002.png">
 <meta property="og:image" content="http://www.young40.com/hexoblog/upload/2012-12/ccb-sbs-1-003.png">
-<meta property="og:updated_time" content="2018-02-07T15:53:53.686Z">
+<meta property="og:updated_time" content="2018-02-08T06:16:16.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一步一步CocosBuilder(1)">
 <meta name="twitter:description" content="CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.我想这个也是其不够流行的原因吧. 如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0">
@@ -106,6 +106,12 @@
 
   
     <ul id="menu" class="menu ">
+        <li class="menu-item menu-item-home">
+          <a href="https://www.young40.com" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+             新站
+          </a>
+        </li>
       
         
         <li class="menu-item menu-item-home">
@@ -136,7 +142,6 @@
 
   
 </nav>
-
 
         </div>
     </header>
@@ -227,18 +232,18 @@
 <p>3.修改<code>AppDelegate.cpp</code>中默认的启动scene<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">CCScene *pScene = MainScene::scene(); <span class="comment">//HelloWorld::scene();</span></div></pre></td></tr></table></figure></p>
 <p>4.注意CCB中发布选项的设置, 并发布一次.<br><img src="/hexoblog/upload/2012-12/ccb-sbs-1-002.png"></p>
 <p>5.如果没有错误的话, 你应该可以看到运行的效果.<br><img src="/hexoblog/upload/2012-12/ccb-sbs-1-003.png"></p>
-<p>Update:<br>@王哲Walzer 说,CCB大部分是美术在用, 在美术圈讨论, 所以程序圈较少看到人在讨论, 其实用的公司挺多的.<br><a href="http://weibo.com/1702027805/zay18wLT5" target="_blank" rel="noopener">http://weibo.com/1702027805/zay18wLT5</a></p>
+<p>Update:<br>@王哲Walzer 说,CCB大部分是美术在用, 在美术圈讨论, 所以程序圈较少看到人在讨论, 其实用的公司挺多的.<br><a href="http://weibo.com/1702027805/zay18wLT5" target="_blank" rel="external">http://weibo.com/1702027805/zay18wLT5</a></p>
 <figure class="highlight sh"><figcaption><span>目录结构</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">├── samples <span class="comment">#目录结构和2d-x源代码保持一致,相信大家对2d-x源代码很熟悉了.</span></div><div class="line">│   └── CocosBuilderTest <span class="comment">#项目所在目录</span></div><div class="line">│       ├── Classes <span class="comment">#代码所在目录</span></div><div class="line">│       ├── Resources <span class="comment">#资源目录</span></div><div class="line">│       │   ├── ccb <span class="comment">#ccb发布后的目录</span></div><div class="line">│       │   │   ├── HelloCocosBuilder.ccbi</div><div class="line">│       │   │   ├── ...</div><div class="line">│       │   │   └── TestSprites.ccbi</div><div class="line">│       │   ├── ccbResources <span class="comment">#发布后的默认ccb资源</span></div><div class="line">│       │   ├── fonts</div><div class="line">│       │   ├── resources-ipad <span class="comment">#注意这几个目录, 稍后我们会提及</span></div><div class="line">│       │   ├── resources-ipadhd</div><div class="line">│       │   ├── resources-iphone</div><div class="line">│       │   ├── resources-iphonehd</div><div class="line">│       ├── ccb-source <span class="comment">#ccb项目目录</span></div><div class="line">│       │   ├── ccb</div><div class="line">│       │   │   ├── HelloCocosBuilder.ccb <span class="comment">#这几个是原CocosBuilder例子中的ccb, 直接复制过来了.</span></div><div class="line">│       │   │   ├── ...</div><div class="line">│       │   │   └── TestSprites.ccbi</div><div class="line">│       │   ├── ccbResources</div><div class="line">│       │   ├── resources-auto <span class="comment">#CocosBuilderv3.0的资源目录, 似乎只能存放图片</span></div><div class="line">│       │   │   ├── btn<span class="_">-a</span>-0.png <span class="comment">#否则会引起发布是造成CocosBuilder崩溃</span></div><div class="line">│       │   │   ├── ...</div><div class="line">│       │   │   └── scale-9-demo.png</div><div class="line">│       │   ├── MainScene.ccb <span class="comment">#默认生成的ccb, 我们这一次不对其更改</span></div><div class="line">│       │   ├── MainScene.js</div><div class="line">│       │   ├── animated-grossini.plist</div><div class="line">│       │   ├── animated-grossini.png</div><div class="line">│       │   ├── ccb-source.ccbproj</div><div class="line">│       │   ├── comic\ andy.ttf</div><div class="line">│       │   ├── grossini-generic.plist</div><div class="line">│       │   ├── grossini-generic.png</div><div class="line">│       │   ├── markerfelt24shadow.fnt</div><div class="line">│       │   └── markerfelt24shadow.png</div><div class="line">│       └── proj.mac</div><div class="line">│           ├── HelloCpp.xcodeproj <span class="comment">#项目文件, 暂时只支持mac os x</span></div><div class="line">├── cocos2dx <span class="comment">#2d-x文件</span></div><div class="line">├── extensions <span class="comment">#2d-x的扩展</span></div><div class="line">│   ├── CCBReader <span class="comment">#这个是解析CocosBuilder的主要CCBReader</span></div><div class="line">│   │   ├── CCBAnimationManager.cpp</div><div class="line">│   │   ├── CCBAnimationManager.h</div><div class="line">│   │   ├── ...</div><div class="line">│   │   └── CCSpriteLoader.h</div><div class="line">│   ├── GUI</div><div class="line">│   ├── network</div><div class="line">│   ├── physics_nodes</div><div class="line">│   ├── ExtensionMacros.h</div><div class="line">│   └── cocos-ext.h</div></pre></td></tr></table></figure>
 <p><hr><br>代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> </p>
 <ul>
 <li>本文是系列文章, 请查看其他文章:</li>
-<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="noopener">一步一步CocosBuilder(1)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="noopener">一步一步CocosBuilder(2)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="noopener">一步一步CocosBuilder(3)</a></li>
-<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="noopener">一步一步CocosBuilder(4)完结</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/" target="_blank" rel="external">一步一步CocosBuilder(1)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/" target="_blank" rel="external">一步一步CocosBuilder(2)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/" target="_blank" rel="external">一步一步CocosBuilder(3)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/" target="_blank" rel="external">一步一步CocosBuilder(4)完结</a></li>
 </ul>
 <p>谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.</p>
-<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="noopener">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="noopener">http://weibo.com/young40</a></p>
+<p>新浪微博: <a href="http://weibo.com/young40" target="_blank" rel="external">@杨世玲</a> <a href="http://weibo.com/young40" target="_blank" rel="external">http://weibo.com/young40</a></p>
 </span>
       
     </div>

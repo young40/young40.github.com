@@ -46,7 +46,7 @@
 <meta property="og:site_name" content="杨世玲的游戏开发修行笔记">
 <meta property="og:description" content="目标 &amp;#x2013; 构建 OpenGL 上下文   在开始学习 OpenGL 时, 创建 OpenGL 上下文是比较困难的一件事情. 幸好又了 GLFW 这个开源的 OpenGL 库, 可以让我们轻松地创建 OpenGL 上下文, 并且也可以处理键盘和鼠标等输入事件. 我们在 本节内将通过 GLFW 来创建一个 OpenGL(4.1)的窗口.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-07T15:54:22.414Z">
+<meta property="og:updated_time" content="2018-02-08T06:16:16.175Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简简单单 OpenGL 01">
 <meta name="twitter:description" content="目标 &amp;#x2013; 构建 OpenGL 上下文   在开始学习 OpenGL 时, 创建 OpenGL 上下文是比较困难的一件事情. 幸好又了 GLFW 这个开源的 OpenGL 库, 可以让我们轻松地创建 OpenGL 上下文, 并且也可以处理键盘和鼠标等输入事件. 我们在 本节内将通过 GLFW 来创建一个 OpenGL(4.1)的窗口.">
@@ -108,6 +108,12 @@
 
   
     <ul id="menu" class="menu ">
+        <li class="menu-item menu-item-home">
+          <a href="https://www.young40.com" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+             新站
+          </a>
+        </li>
       
         
         <li class="menu-item menu-item-home">
@@ -138,7 +144,6 @@
 
   
 </nav>
-
 
         </div>
     </header>
@@ -172,18 +177,18 @@ OpenGL 库, 可以让我们轻松地创建 OpenGL 上下文, 并且也可以处�
 <h2 id="sec-2">编译 GLFW</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-我们可以在<a href="http://www.glfw.org" target="_blank" rel="noopener"> GLFW 网站</a> 找到<a href="https://github.com/glfw/glfw/releases/download/3.1.1/glfw-3.1.1.zip" target="_blank" rel="noopener">下载链接</a>, 注意我们选用的为当前最新版本 3.1.1. 下载并解压. 这
+我们可以在<a href="http://www.glfw.org" target="_blank" rel="external"> GLFW 网站</a> 找到<a href="https://github.com/glfw/glfw/releases/download/3.1.1/glfw-3.1.1.zip" target="_blank" rel="external">下载链接</a>, 注意我们选用的为当前最新版本 3.1.1. 下载并解压. 这
 里需要指出的是, 建议大家可以浏览下 GLFW 的文档, 这对我们后续使用 GLFW 非常有帮助, 当然, 我在本
 文内也会解释重要的知识.
 </p>
 
 <p>
 编译 GLFW 是需要 Xcode 的, 我这里使用的是 Xcode7. 同时我们需要使用 cmake, 如果你没有, 可以使用
-强大的 OS X 包管理系统<a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="noopener">Homebrew</a> 来安装.
+强大的 OS X 包管理系统<a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="external">Homebrew</a> 来安装.
 </p>
 
 <p>
-<a href="http://www.glfw.org/docs/latest/compile.html#compile_generate" target="_blank" rel="noopener">这里</a> 可以找到 GLFW 的编译指南, 也很简单：
+<a href="http://www.glfw.org/docs/latest/compile.html#compile_generate" target="_blank" rel="external">这里</a> 可以找到 GLFW 的编译指南, 也很简单：
 </p>
 <div class="org-src-container">
 
@@ -213,7 +218,7 @@ OpenGL 库, 可以让我们轻松地创建 OpenGL 上下文, 并且也可以处�
 <h2 id="sec-4">黑色的 OpenGL 窗口</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-根据 GLFW 官网给出<a href="http://www.glfw.org/documentation.html" target="_blank" rel="noopener">简单的示例代码</a>, 很容易创建出我们的第一个 OpenGL 窗口.
+根据 GLFW 官网给出<a href="http://www.glfw.org/documentation.html" target="_blank" rel="external">简单的示例代码</a>, 很容易创建出我们的第一个 OpenGL 窗口.
 </p>
 
 <div class="org-src-container">
@@ -326,7 +331,7 @@ OpenGL, 比如, 我电脑上支持的最高版本 OpenGL 4.1.
 <h2 id="sec-7"><span class="todo TODO">TODO</span> 代码</h2>
 <div class="outline-text-2" id="text-7">
 <p>
-[<a href="http://localhost:4000/2015/09/12/2015-09-12-masteringopengl01/" target="_blank" rel="noopener">http://localhost:4000/2015/09/12/2015-09-12-masteringopengl01/</a>]
+[<a href="http://localhost:4000/2015/09/12/2015-09-12-masteringopengl01/" target="_blank" rel="external">http://localhost:4000/2015/09/12/2015-09-12-masteringopengl01/</a>]
 </p>
 </div>
 </div>
@@ -345,7 +350,7 @@ OpenGL, 比如, 我电脑上支持的最高版本 OpenGL 4.1.
 <div class="outline-text-2" id="text-9">
 <p>
 本文是系列文章的一部分, 您可以在下面链接找到本系列索引.
-[<a href="http://young40.com" target="_blank" rel="noopener">http://young40.com</a>]
+[<a href="http://young40.com" target="_blank" rel="external">http://young40.com</a>]
 </p>
 
 
@@ -357,7 +362,7 @@ ssssss
 </div>
 
 <p class="date">Date: 2015-09-12</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="noopener">Validate</a></p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
 
     
   </div>
