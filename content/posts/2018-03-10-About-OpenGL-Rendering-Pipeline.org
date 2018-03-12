@@ -4,6 +4,7 @@
 #+CATEGORIES: OpenGL
 #+LAYOUT: post
 #+OPTIONS: toc:nil
+#+DRAFT: true
 
 前几日, 和人闲聊, 谈及OpenGL, 突然被问OpenGL渲染管线, 一时语塞.
 渲染管线是OpenGL的基础, 谈到基础的东西, 一般都会呈现两种状态.
