@@ -14,6 +14,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+
+ <entry>
+    <title>RSS迁移了</title>
+    <link href="https://www.young40.com/hexoblog/2018/02/08/2018-02-08-new-site/"/>
+    <id>https://www.young40.com/hexoblog/2018/02/08/2018-02-08-new-site/</id>
+    <published>2018-03-19T00:00:00.000Z</published>
+    <updated>2018-03-19T10:14:37.000Z</updated>
+    
+    <content type="html"><![CDATA[
+             麻烦RSS换成  https://www.young40.com/index.xml
+             ]]></content>
+    
+    <summary type="html">
+    
+        麻烦RSS换成  https://www.young40.com/index.xml
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
   
   <entry>
     <title>CocoStudio 节点自动绑定</title>
