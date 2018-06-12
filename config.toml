@@ -69,6 +69,11 @@ theme = "hugo_theme_pickles"
 #     weight = 2
 
 [[menu.main]]
+    name = "RSS"
+    url = "/index.xml"
+    weight = 3
+
+[[menu.main]]
     name = "Tags"
     url = "/tags"
     weight = 4
@@ -80,7 +85,7 @@ theme = "hugo_theme_pickles"
 
 [[menu.main]]
     name = "历史文章"
-    url = "http://www.young40.com/hexoblog/"
+    url = "/hexoblog/"
     weight = 4
 
 [related]
