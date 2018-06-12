@@ -1,0 +1,74 @@
+#+TITLE: Google Cloud安装Shadowsocks
+#+DATE: 2018-03-10T23:25:30+08:00
+#+TAGS: Shadowsocks
+#+CATEGORIES: Shadowsocks
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: false
+
+Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记录一下重点过程.
+
+# more
+**** 防火墙配置
+找到防火墙配置, 创建一条新的防火墙规则. 重点配置如下:
+
+- 目标: 网络中的所有实例
+- 来源IP地址范围: 0.0.0.0/0
+- 协议和端口: 指定协议和端口 tcp:8888
+
+解释一下:
+
+- 目标, 可以应用到所有的实例, 这样再开其他地区实例可以直接应用当前的防火墙配置
+- 来源IP地址范围, 允许所有的IP连接
+- 协议端口, 开启了Shadowsocks的端口, 需要和自己的配置对上. 我看网络上好多人的配置基本是都是允许了所有的端口连接, 这样非常不安全, 还是需要按需开放才够安全.
+
+**** 地区选择
+我开启了两个实例, 分别选择的是台湾省(asia-east1-c)和新加坡(asia-southeast1-c). 
+
+**** 创建实例
+创建实例, 选择乞丐版, 镜像选Ubuntu 18.04 LTS, 输入本机的SSH密钥. 启动之后会分配一个临时IP, 在网络中将这个IP改成静态IP.
+
+**** 初步配置
+- 修改当前账户密码
+{{< highlight sh >}}
+sudo passwd
+{{< /highlight >}}
+
+- 安装zsh和oh my zsh
+{{< highlight sh >}}
+sudo apt-get install zsh
+{{< /highlight >}}
+
+**** 开启BBR支持
+{{< highlight sh >}}
+sudo echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+sudo echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+# 让设置生效
+sysctl -p
+# 检查设置是否生效
+lsmod | grep bbr
+{{< /highlight >}}
+
+**** 软件升级
+{{< highlight sh >}}
+sudo apt-get update && sudo apt-get upgrade
+{{< /highlight >}}
+
+**** 安装Shadowsocks
+- 安装
+{{< highlight sh >}}
+sudo apt-get install shadowsocks-libev
+{{< /highlight >}}
+
+- 配置
+{{< highlight sh >}}
+sudo vim /etc/shadowsocks-libev/config.json
+{{< /highlight >}}
+
+**** 检查状态
+{{< highlight sh >}}
+systemctl status shadowsocks-libev.service
+{{< /highlight >}}
+
+**** 收工
+愉快地F*** GFW吧!
