@@ -1,5 +1,5 @@
 #+TITLE: Google Cloud安装Shadowsocks
-#+DATE: 2018-03-10T23:25:30+08:00
+#+DATE: 2018-06-12T23:25:30+08:00
 #+TAGS: Shadowsocks
 #+CATEGORIES: Shadowsocks
 #+LAYOUT: post
