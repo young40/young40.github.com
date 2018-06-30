@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Copyright 杨世玲</copyright>
-    <lastBuildDate>Sat, 30 Jun 2018 11:25:49 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 01 Jul 2018 00:44:44 +0800</lastBuildDate>
     
 	<atom:link href="https://www.young40.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git全局忽略挖了一个坑</title>
+      <link>https://www.young40.com/posts/2018-07-01-git-global-ignore/</link>
+      <pubDate>Sun, 01 Jul 2018 00:44:44 +0800</pubDate>
+      
+      <guid>https://www.young40.com/posts/2018-07-01-git-global-ignore/</guid>
+      <description>&lt;p&gt;自从上次博客迁移完之后, 一直在长草. 刚才偶然间发现, &lt;a href=&#34;https://www.young40.com/tags/&#34; title=&#34;Tags&#34;&gt;Tags&lt;/a&gt; 的链接报404找不到. 这是怎么回事呢? 太奇怪了.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>学习Swift: guard</title>

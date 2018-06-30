@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.young40.com/posts/2018-07-01-git-global-ignore/</loc>
+    <lastmod>2018-07-01T00:44:44+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.young40.com/posts/2018-06-30-learn-swift-01-guard/</loc>
     <lastmod>2018-06-30T11:25:49+08:00</lastmod>
   </url>
@@ -18,13 +23,31 @@
   </url>
   
   <url>
+    <loc>https://www.young40.com/tags/blog/</loc>
+    <lastmod>2018-07-01T00:44:44+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.young40.com/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://www.young40.com/categories/git/</loc>
+    <lastmod>2018-07-01T00:44:44+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/tags/git/</loc>
+    <lastmod>2018-07-01T00:44:44+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.young40.com/posts/</loc>
-    <lastmod>2018-06-30T11:25:49+08:00</lastmod>
+    <lastmod>2018-07-01T00:44:44+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -54,7 +77,7 @@
   
   <url>
     <loc>https://www.young40.com/tags/</loc>
-    <lastmod>2018-06-12T23:25:30+08:00</lastmod>
+    <lastmod>2018-07-01T00:44:44+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -72,7 +95,7 @@
   
   <url>
     <loc>https://www.young40.com/</loc>
-    <lastmod>2018-06-30T11:25:49+08:00</lastmod>
+    <lastmod>2018-07-01T00:44:44+08:00</lastmod>
     <priority>0</priority>
   </url>
   
