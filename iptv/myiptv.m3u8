@@ -1,0 +1,215 @@
+﻿#EXTM3U
+#EXTINF:-1,CCTV-1 综合
+http://223.110.243.138/PLTV/2510088/224/3221227177/1.m3u8
+#EXTINF:-1,CCTV-10 科教
+http://223.110.243.140/PLTV/2510088/224/3221227161/1.m3u8
+#EXTINF:-1,CCTV-12 社会与法
+http://223.110.243.140/PLTV/2510088/224/3221227171/1.m3u8
+#EXTINF:-1,CCTV-13 新闻
+http://39.134.52.162/wh7f454c46tw3730304110_1867932700/hwottcdn.ln.chinamobile.com/PLTV/88888890/224/3221226031/index.m3u8
+#EXTINF:-1,CCTV-14 少儿
+http://223.110.243.140/PLTV/2510088/224/3221227247/1.m3u8
+#EXTINF:-1,CCTV-15 音乐
+http://183.207.249.7/PLTV/3/224/3221225568/index.m3u8
+#EXTINF:-1,CCTV-2 财经
+http://223.110.243.136/PLTV/2510088/224/3221227199/1.m3u8
+#EXTINF:-1,CCTV-3 综艺
+http://223.110.243.140/PLTV/2510088/224/3221227165/1.m3u8
+#EXTINF:-1,CCTV-4 中文国际
+http://223.110.243.138/PLTV/2510088/224/3221227162/1.m3u8
+#EXTINF:-1,CCTV-5 体育
+http://223.110.243.140/PLTV/2510088/224/3221227202/1.m3u8
+#EXTINF:-1,CCTV-5+ 体育赛事
+http://183.252.176.41//PLTV/88888888/224/3221225939/index.m3u8
+#EXTINF:-1,CCTV-6 电影
+http://223.110.243.140/PLTV/2510088/224/3221227145/1.m3u8
+#EXTINF:-1,CCTV-7 军事 农业
+http://223.110.243.136/PLTV/2510088/224/3221227142/1.m3u8
+#EXTINF:-1,CCTV-8 电视剧
+http://223.110.245.167/ott.js.chinamobile.com/PLTV/3/224/3221227204/index.m3u8
+#EXTINF:-1,CCTV-9 纪录
+http://223.110.243.140/PLTV/2510088/224/3221227156/1.m3u8
+#EXTINF:-1,CHC高清电影
+http://ivi.bupt.edu.cn/hls/chchd.m3u8
+#EXTINF:-1,电影-HD电影轮播
+http://rotation.vod.zlive.cc/channel/1260.m3u8
+#EXTINF:-1,电影-动作电影
+http://rotation.vod.zlive.cc/channel/1258.m3u8
+#EXTINF:-1,电影-经典电影
+http://rotation.vod.zlive.cc/channel/1200.m3u8
+#EXTINF:-1,电影-芒果电影2
+http://rotation.vod.zlive.cc/channel/1218.m3u8
+#EXTINF:-1,港台-翡翠 HD
+http://acm.gg/jade.m3u8
+#EXTINF:-1,港台-凤凰香港 HD
+http://223.82.250.72/live/fhhongkong/1.m3u8
+#EXTINF:-1,港台-凤凰中文 HD
+http://223.82.250.72/live/fhchinese/1.m3u8
+#EXTINF:-1,港台-凤凰资讯 HD
+http://223.82.250.72/live/fhzixun/1.m3u8
+#EXTINF:-1,港台-华视
+http://live.italkdd.com/ts142/channel_064.m3u8
+#EXTINF:-1,港台-香港卫视
+http://zhibo.hkstv.tv/livestream/mutfysrq/playlist.m3u8
+#EXTINF:-1,广东-TVS2
+http://stream1.grtn.cn/tvs2/sd/live.m3u8?_upt=38c033aa1511535258
+#EXTINF:-1,广东-珠海1台
+http://hlslive.n21.cc/uHiS6o7/1500/live.m3u8
+#EXTINF:-1,卡通-湖南金鹰卡通
+http://183.252.176.36/PLTV/88888888/224/3221225870/index.m3u8
+#EXTINF:-1,卡通-江苏优漫卡通
+http://183.252.176.36/PLTV/88888888/224/3221225874/index.m3u8
+#EXTINF:-1,卡通-上海炫动卡通
+http://183.252.176.36/PLTV/88888888/224/3221225872/index.m3u8
+#EXTINF:-1,其他-北京纪实
+http://ivi.bupt.edu.cn/hls/btv11hd.m3u8
+#EXTINF:-1,其他-国家地理
+http://adtv.ercdn.net/adnatgeo/adnatgeo_720p.m3u8
+#EXTINF:-1,其他-金鹰纪实
+http://175.6.15.36:8080/nn_live.m3u8?id=JYJSMPP360
+#EXTINF:-1,其他-芒果小品
+http://rotation.vod.zlive.cc/channel/1611.m3u8
+#EXTINF:-1,体育-NEW TV 超级体育
+http://183.252.176.40//PLTV/88888888/224/3221225803/index.m3u8
+#EXTINF:-1,体育-北京体育
+http://ivi.bupt.edu.cn/hls/btv6hd.m3u8
+#EXTINF:-1,体育-超级体育 BEST TV
+http://39.134.52.171/wh7f454c46tw3773685428_-1812949401/hwottcdn.ln.chinamobile.com/PLTV/88888890/224/3221226035/index.m3u8
+#EXTINF:-1,体育-超级体育1 HD
+http://39.134.52.162/wh7f454c46tw3498689980_663871177/hwottcdn.ln.chinamobile.com/PLTV/88888890/224/3221226019/index.m3u8
+#EXTINF:-1,体育-五星体育
+http://hls.mv.wa5.com/live/gssports1_900/playlist.m3u8
+#EXTINF:-1,卫视-安徽卫视
+http://223.110.243.140/PLTV/3/224/3221225634/index.m3u8
+#EXTINF:-1,卫视-北京卫视
+http://223.110.243.173/PLTV/3/224/3221227246/index.m3u8
+#EXTINF:-1,卫视-兵团卫视
+http://v.btzx.com.cn:1935/live/weishi.stream/playlist.m3u8
+#EXTINF:-1,卫视-东方卫视
+http://223.110.243.138/PLTV/3/224/3221227208/index.m3u8
+#EXTINF:-1,卫视-东南卫视
+http://223.110.243.158/PLTV/3/224/3221225598/index.m3u8
+#EXTINF:-1,卫视-甘肃卫视
+http://223.110.243.158/PLTV/3/224/3221225590/index.m3u8
+#EXTINF:-1,卫视-广东卫视
+http://223.110.243.136/PLTV/3/224/3221227249/index.m3u8
+#EXTINF:-1,卫视-贵州卫视
+http://223.110.243.152/PLTV/3/224/3221225540/index.m3u8
+#EXTINF:-1,卫视-河北卫视
+http://weblive.hebtv.com/live/hbws_bq/index.m3u8
+#EXTINF:-1,卫视-河南卫视
+http://223.110.243.147/PLTV/3/224/3221225632/index.m3u8
+#EXTINF:-1,卫视-黑龙江卫视
+http://223.110.243.169/PLTV/3/224/3221227252/index.m3u8
+#EXTINF:-1,卫视-湖北卫视
+http://223.110.243.171/PLTV/3/224/3221227211/index.m3u8
+#EXTINF:-1,卫视-湖南卫视
+http://223.110.243.173/PLTV/3/224/3221227220/index.m3u8
+#EXTINF:-1,卫视-吉林卫视
+http://218.207.213.133/PLTV/88888888/224/3221225851/index.m3u8
+#EXTINF:-1,卫视-健康卫视
+http://live.jkwshk.tv/AppName/StreamName.m3u8
+#EXTINF:-1,卫视-江苏卫视
+http://223.110.243.160/PLTV/3/224/3221227255/index.m3u8
+#EXTINF:-1,卫视-江西卫视
+http://223.110.243.173/PLTV/3/224/3221227214/index.m3u8
+#EXTINF:-1,卫视-旅游卫视
+http://stream1.hnntv.cn/lywsgq/sd/live.m3u8
+#EXTINF:-1,卫视-内蒙古卫视
+http://223.110.243.142/PLTV/3/224/3221225624/index.m3u8
+#EXTINF:-1,卫视-宁夏卫视
+http://223.110.243.147/PLTV/3/224/3221225628/index.m3u8
+#EXTINF:-1,卫视-农林卫视
+http://202.107.188.9:5000/nn_live.ts?id=nonglintvh
+#EXTINF:-1,卫视-青海卫视
+http://223.110.243.158/PLTV/3/224/3221225580/index.m3u8
+#EXTINF:-1,卫视-山东卫视
+http://223.110.243.171/PLTV/3/224/3221227258/index.m3u8
+#EXTINF:-1,卫视-山西卫视
+http://223.110.243.159/PLTV/3/224/3221225576/index.m3u8
+#EXTINF:-1,卫视-陕西卫视
+http://223.110.243.152/PLTV/3/224/3221225626/index.m3u8
+#EXTINF:-1,卫视-深圳卫视
+http://223.110.243.171/PLTV/3/224/3221227217/index.m3u8
+#EXTINF:-1,卫视-四川卫视
+http://223.110.243.159/PLTV/3/224/3221225570/index.m3u8
+#EXTINF:-1,卫视-天津卫视
+http://223.110.243.170/PLTV/3/224/3221227212/index.m3u8
+#EXTINF:-1,卫视-西藏卫视
+http://223.110.243.145/PLTV/3/224/3221225579/index.m3u8
+#EXTINF:-1,卫视-厦门卫视
+http://cstv.live.wscdns.com/live/xiamen/playlist.m3u8
+#EXTINF:-1,卫视-新疆卫视
+http://223.110.243.140/PLTV/3/224/3221225523/index.m3u8
+#EXTINF:-1,卫视-延边卫视
+http://live.ybtvyun.com/video/s10006-cys/index.m3u8
+#EXTINF:-1,卫视-云南卫视
+http://223.110.243.140/PLTV/3/224/3221225591/index.m3u8
+#EXTINF:-1,卫视-浙江卫视
+http://223.110.243.173/PLTV/3/224/3221227215/index.m3u8
+#EXTINF:-1,卫视-重庆卫视
+http://223.110.243.146/PLTV/3/224/3221225594/index.m3u8
+#EXTINF:-1,熊猫1
+http://rotation.vod.zlive.cc/channel/1838.m3u8
+#EXTINF:-1,熊猫10
+http://rotation.vod.zlive.cc/channel/1936.m3u8
+#EXTINF:-1,熊猫11
+http://rotation.vod.zlive.cc/channel/1951.m3u8
+#EXTINF:-1,熊猫12
+http://rotation.vod.zlive.cc/channel/1952.m3u8
+#EXTINF:-1,熊猫14
+http://rotation.vod.zlive.cc/channel/1970.m3u8
+#EXTINF:-1,熊猫17
+http://rotation.vod.zlive.cc/channel/2008.m3u8
+#EXTINF:-1,熊猫19
+http://rotation.vod.zlive.cc/channel/2020.m3u8
+#EXTINF:-1,熊猫2
+http://rotation.vod.zlive.cc/channel/1846.m3u8
+#EXTINF:-1,熊猫20
+http://rotation.vod.zlive.cc/channel/2023.m3u8
+#EXTINF:-1,熊猫21
+http://rotation.vod.zlive.cc/channel/2057.m3u8
+#EXTINF:-1,熊猫22
+http://rotation.vod.zlive.cc/channel/2063.m3u8
+#EXTINF:-1,熊猫23
+http://rotation.vod.zlive.cc/channel/2085.m3u8
+#EXTINF:-1,熊猫24
+http://rotation.vod.zlive.cc/channel/1546.m3u8
+#EXTINF:-1,熊猫25
+http://rotation.vod.zlive.cc/channel/1552.m3u8
+#EXTINF:-1,熊猫26
+http://rotation.vod.zlive.cc/channel/1565.m3u8
+#EXTINF:-1,熊猫27
+http://rotation.vod.zlive.cc/channel/1569.m3u8
+#EXTINF:-1,熊猫28
+http://rotation.vod.zlive.cc/channel/1578.m3u8
+#EXTINF:-1,熊猫3
+http://rotation.vod.zlive.cc/channel/1860.m3u8
+#EXTINF:-1,熊猫30
+http://rotation.vod.zlive.cc/channel/2118.m3u8
+#EXTINF:-1,熊猫31
+http://rotation.vod.zlive.cc/channel/2125.m3u8
+#EXTINF:-1,熊猫34
+http://rotation.vod.zlive.cc/channel/2141.m3u8
+#EXTINF:-1,熊猫36
+http://rotation.vod.zlive.cc/channel/2154.m3u8
+#EXTINF:-1,熊猫37
+http://rotation.vod.zlive.cc/channel/2158.m3u8
+#EXTINF:-1,熊猫38
+http://rotation.vod.zlive.cc/channel/2160.m3u8
+#EXTINF:-1,熊猫4
+http://rotation.vod.zlive.cc/channel/1869.m3u8
+#EXTINF:-1,熊猫40
+http://rotation.vod.zlive.cc/channel/2181.m3u8
+#EXTINF:-1,熊猫40
+http://rotation.vod.zlive.cc/channel/2180.m3u8
+#EXTINF:-1,熊猫5
+http://rotation.vod.zlive.cc/channel/1901.m3u8
+#EXTINF:-1,熊猫6
+http://rotation.vod.zlive.cc/channel/1918.m3u8
+#EXTINF:-1,熊猫7
+http://rotation.vod.zlive.cc/channel/1925.m3u8
+#EXTINF:-1,熊猫8
+http://rotation.vod.zlive.cc/channel/1926.m3u8
+#EXTINF:-1,熊猫9
+http://rotation.vod.zlive.cc/channel/1935.m3u8
