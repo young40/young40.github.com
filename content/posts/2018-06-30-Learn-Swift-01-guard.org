@@ -31,5 +31,6 @@ guard hello else {
 =guard= 不能滥用, =else= 里面的语句不宜太复杂. 应当条件不满足后, 马上退出或者抛出异常.
 
 可以继续参看 =Swift= 官方语言手册上, 关于 =Guard Statement= 一节.
-https://docs.swift.org/swift-book/ReferenceManual/Statements.html
+
+[[https://docs.swift.org/swift-book/ReferenceManual/Statements.html]]
 
