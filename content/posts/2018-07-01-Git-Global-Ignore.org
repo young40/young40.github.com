@@ -1,0 +1,42 @@
+#+TITLE: Git全局忽略挖了一个坑
+#+DATE: 2018-07-01T00:44:44+08:00
+#+TAGS: git blog
+#+CATEGORIES: git
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: false
+
+自从上次博客迁移完之后, 一直在长草. 刚才偶然间发现, [[https://www.young40.com/tags/][Tags]] 的链接报404找不到. 这是怎么回事呢? 太奇怪了.
+
+# more
+
+而 =hugo= 本地的调试网站, =Tags= 的链接又是好的. 一度怀疑了一下 =netlify= 的服务有问题.
+马上把 =tags= 目录复制了一份并提交 =github= , 稍等了一下 =netlify= 做同步, 访问却没有问题.
+
+这时又猜着是不是需要把 =tags= 目录给重新上传一下? 删除了 =tags= 目录, 意外发现 =git= 检查状态无任何变化.
+重新生成了一下博客, 查看 =git= 状态确实是没有任何变化. 又检查了一下, 目录下并无定义 =.gitignore= 文件.
+
+* 太奇怪了, 见鬼了!!!
+  
+还是检查下 =git= 的全局忽略文件吧.
+
+{{< highlight sh >}}
+git config --global --list
+{{< /highlight >}}
+
+发现有一行, 定义了全局忽略
+
+#+BEGIN_QUOTE
+core.excludesfile=/Users/young40/dot/.gitignore_global
+#+END_QUOTE
+
+打开赫然发现
+#+BEGIN_QUOTE
+# Tag files #
+#############
+TAGS
+#+END_QUOTE
+
+这个应该是为了忽略 =ctags= 生成的 =TAGS= 而写的全局忽略. =git= 默认不区分文件名大小写的特性, 导致了 =tags= 目录被忽略掉了.
+
+删除了这个配置, 还是加到各个项目里面吧. 
