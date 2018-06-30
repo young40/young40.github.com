@@ -4,7 +4,7 @@
 #+CATEGORIES: swift
 #+LAYOUT: post
 #+OPTIONS: toc:nil
-#+DRAFT: true
+#+DRAFT: false
 
 =guard= 是Swift 2.0引入的新关键字, 用于当条件不满足时, 不再执行后续的代码. 当然, 官方文档上说是交出当前作用域的程序控制权.
 
