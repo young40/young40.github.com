@@ -1,0 +1,35 @@
+#+TITLE: 学习Swift: guard
+#+DATE: 2018-06-30T11:25:49+08:00
+#+TAGS: swift
+#+CATEGORIES: swift
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: true
+
+=guard= 是Swift 2.0引入的新关键字, 用于当条件不满足时, 不再执行后续的代码. 当然, 官方文档上说是交出当前作用域的程序控制权.
+
+# more
+
+=guard= 的格式是这样的:
+
+{{< highlight swift >}}
+guard =condition= else {
+    =statements=
+}
+{{< /highlight >}}
+
+一个例子🌰:
+
+{{< highlight swift >}}
+let hello = false
+
+guard hello else {
+    fatalError("got error.")
+}
+{{< /highlight >}}
+
+=guard= 不能滥用, =else= 里面的语句不宜太复杂. 应当条件不满足后, 马上退出或者抛出异常.
+
+可以继续参看 =Swift= 官方语言手册上, 关于 =Guard Statement= 一节.
+https://docs.swift.org/swift-book/ReferenceManual/Statements.html
+
