@@ -7,10 +7,30 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Copyright 杨世玲</copyright>
-    <lastBuildDate>Tue, 12 Jun 2018 23:25:30 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Jun 2018 11:25:49 +0800</lastBuildDate>
     
 	<atom:link href="https://www.young40.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>学习Swift: guard</title>
+      <link>https://www.young40.com/posts/2018-06-30-learn-swift-01-guard/</link>
+      <pubDate>Sat, 30 Jun 2018 11:25:49 +0800</pubDate>
+      
+      <guid>https://www.young40.com/posts/2018-06-30-learn-swift-01-guard/</guid>
+      <description>&lt;p&gt;&lt;code&gt;guard&lt;/code&gt; 是Swift 2.0引入的新关键字, 用于当条件不满足时, 不再执行后续的代码. 当然, 官方文档上说是交出当前作用域的程序控制权.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>guard in swift</title>
+      <link>https://www.young40.com/posts/2018-06-19-swift-with-metal/</link>
+      <pubDate>Tue, 19 Jun 2018 09:08:33 +0800</pubDate>
+      
+      <guid>https://www.young40.com/posts/2018-06-19-swift-with-metal/</guid>
+      <description>dsfa </description>
+    </item>
     
     <item>
       <title>Google Cloud安装Shadowsocks</title>

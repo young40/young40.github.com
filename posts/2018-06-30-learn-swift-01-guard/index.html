@@ -4,16 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
   
-  <title>Google Cloud安装Shadowsocks</title>
-  <meta property="og:title" content="Google Cloud安装Shadowsocks" />
-  <meta name="twitter:title" content="Google Cloud安装Shadowsocks" />
+  <title>学习Swift: guard</title>
+  <meta property="og:title" content="学习Swift: guard" />
+  <meta name="twitter:title" content="学习Swift: guard" />
   
 
   
 
   <meta name="author" content="杨世玲"/>
   <meta property="og:site_name" content="杨世玲的博客" />
-  <meta property="og:url" content="https://www.young40.com/posts/2018-06-12-google-cloud-f-gfw/" />
+  <meta property="og:url" content="https://www.young40.com/posts/2018-06-30-learn-swift-01-guard/" />
 
   
   <meta name="twitter:card" content="summary" />
@@ -46,94 +46,43 @@
 
 <article class="p-article">
   <header>
-    <h1>Google Cloud安装Shadowsocks</h1>
+    <h1>学习Swift: guard</h1>
     <div>
       <div class="c-time">
         Posted on
-        <time datetime="2018-06-12T23:25:30&#43;08:00">
-          Jun 12, 2018
+        <time datetime="2018-06-30T11:25:49&#43;08:00">
+          Jun 30, 2018
         </time>
       </div>
       
-      <a href="https://www.young40.com/tags/shadowsocks" class="c-tag">Shadowsocks</a>
+      <a href="https://www.young40.com/tags/swift" class="c-tag">swift</a>
       
     </div>
   </header>
   
   <section id="js-article" class="p-article__body">
-    <p>Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记录一下重点过程.</p>
+    <p><code>guard</code> 是Swift 2.0引入的新关键字, 用于当条件不满足时, 不再执行后续的代码. 当然, 官方文档上说是交出当前作用域的程序控制权.</p>
 
-<h4 id="防火墙配置">防火墙配置</h4>
+<p></p>
 
-<p>
-找到防火墙配置, 创建一条新的防火墙规则. 重点配置如下:</p>
+<p><code>guard</code> 的格式是这样的:</p>
 
-<ul>
-<li>目标: 网络中的所有实例</li>
-<li>来源IP地址范围: 0.0.0.0/0</li>
-<li>协议和端口: 指定协议和端口 tcp:8888</li>
-</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">guard</span> =condition= <span style="color:#66d9ef">else</span> {
+    =statements=
+}</code></pre></div>
 
-<p>解释一下:</p>
+<p>一个例子🌰:</p>
 
-<ul>
-<li>目标, 可以应用到所有的实例, 这样再开其他地区实例可以直接应用当前的防火墙配置</li>
-<li>来源IP地址范围, 允许所有的IP连接</li>
-<li>协议端口, 开启了Shadowsocks的端口, 需要和自己的配置对上. 我看网络上好多人的配置基本是都是允许了所有的端口连接, 这样非常不安全, 还是需要按需开放才够安全.</li>
-</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> hello = <span style="color:#66d9ef">false</span>
 
-<h4 id="地区选择">地区选择</h4>
+<span style="color:#66d9ef">guard</span> hello <span style="color:#66d9ef">else</span> {
+    fatalError(<span style="color:#e6db74">&#34;got error.&#34;</span>)
+}</code></pre></div>
 
-<p>我开启了两个实例, 分别选择的是台湾省(asia-east1-c)和新加坡(asia-southeast1-c).</p>
+<p><code>guard</code> 不能滥用, <code>else</code> 里面的语句不宜太复杂. 应当条件不满足后, 马上退出或者抛出异常.</p>
 
-<h4 id="创建实例">创建实例</h4>
-
-<p>创建实例, 选择乞丐版, 镜像选Ubuntu 18.04 LTS, 输入本机的SSH密钥. 启动之后会分配一个临时IP, 在网络中将这个IP改成静态IP.</p>
-
-<h4 id="初步配置">初步配置</h4>
-
-<ul>
-<li>修改当前账户密码</li>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo passwd</code></pre></div>
-</ul>
-
-<ul>
-<li>安装zsh和oh my zsh</li>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo apt-get install zsh</code></pre></div>
-</ul>
-
-<h4 id="开启bbr支持">开启BBR支持</h4>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo echo <span style="color:#e6db74">&#34;net.core.default_qdisc=fq&#34;</span> &gt;&gt; /etc/sysctl.conf
-sudo echo <span style="color:#e6db74">&#34;net.ipv4.tcp_congestion_control=bbr&#34;</span> &gt;&gt; /etc/sysctl.conf
-<span style="color:#75715e"># 让设置生效
-</span><span style="color:#75715e"></span>sysctl -p
-<span style="color:#75715e"># 检查设置是否生效
-</span><span style="color:#75715e"></span>lsmod | grep bbr</code></pre></div>
-
-<h4 id="软件升级">软件升级</h4>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo apt-get update <span style="color:#f92672">&amp;&amp;</span> sudo apt-get upgrade</code></pre></div>
-
-<h4 id="安装shadowsocks">安装Shadowsocks</h4>
-
-<ul>
-<li>安装</li>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo apt-get install shadowsocks-libev</code></pre></div>
-</ul>
-
-<ul>
-<li>配置</li>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo vim /etc/shadowsocks-libev/config.json</code></pre></div>
-</ul>
-
-<h4 id="检查状态">检查状态</h4>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">systemctl status shadowsocks-libev.service</code></pre></div>
-
-<h4 id="收工">收工</h4>
-
-<p>愉快地F*** GFW吧!</p>
+<p>可以继续参看 <code>Swift</code> 官方语言手册上, 关于 <code>Guard Statement</code> 一节.
+https://docs.swift.org/swift-book/ReferenceManual/Statements.html</p>
   </section>
   <footer>
     
@@ -153,17 +102,30 @@ sudo echo <span style="color:#e6db74">&#34;net.ipv4.tcp_congestion_control=bbr&#
       <div class="c-pagination__ctrl">
         <div class="c-pagination__newer">
           
-          <a href="https://www.young40.com/posts/2018-06-19-swift-with-metal/">Newer</a>
           
         </div>
         <div class="c-pagination__older">
           
-          <a href="https://www.young40.com/posts/2018-02-09-move-to-hugo/">Older</a>
+          <a href="https://www.young40.com/posts/2018-06-19-swift-with-metal/">Older</a>
           
         </div>
       </div>
     </nav>
     
+
+<section class="p-related">
+  <h3>See Also</h3>
+  <ul id="slider" class="p-related__list">
+    
+    <li class="p-related__item js-related__item">
+      <a href="/posts/2018-06-19-swift-with-metal/"
+        >
+        <span>guard in swift</span>
+      </a>
+    </li>
+    
+  </ul>
+</section>
 
 
     
