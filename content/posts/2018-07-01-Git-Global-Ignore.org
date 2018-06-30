@@ -1,7 +1,7 @@
 #+TITLE: Git全局忽略挖了一个坑
 #+DATE: 2018-07-01T00:44:44+08:00
-#+TAGS: git blog
-#+CATEGORIES: git
+#+TAGS: git 博客
+#+CATEGORIES: 杂记
 #+LAYOUT: post
 #+OPTIONS: toc:nil
 #+DRAFT: false
