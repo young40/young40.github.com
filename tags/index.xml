@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Copyright 杨世玲</copyright>
-    <lastBuildDate>Sun, 01 Jul 2018 00:44:44 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 02 Jul 2018 19:13:01 +0800</lastBuildDate>
     
 	<atom:link href="https://www.young40.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title></title>
+      <link>https://www.young40.com/tags/</link>
+      <pubDate>Mon, 02 Jul 2018 19:13:01 +0800</pubDate>
+      
+      <guid>https://www.young40.com/tags/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Git</title>
@@ -18,6 +27,15 @@
       <pubDate>Sun, 01 Jul 2018 00:44:44 +0800</pubDate>
       
       <guid>https://www.young40.com/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Metal</title>
+      <link>https://www.young40.com/tags/metal/</link>
+      <pubDate>Mon, 02 Jul 2018 19:13:01 +0800</pubDate>
+      
+      <guid>https://www.young40.com/tags/metal/</guid>
       <description></description>
     </item>
     
