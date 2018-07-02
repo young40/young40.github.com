@@ -20,5 +20,18 @@ Metal 有以下优点:
 
 1. 低消耗的GPU访问, 减轻CPU和GPU数据交互的瓶颈
 2. 可以使用Xcode预编译Shader, 运行时会更快
-3. 可用于并行计算, 类似于OpenCL 和 Nvidia 的CUDA,
-4. 更多优点....
+3. 多线程支持
+4. 统一的内容管理模型, CPU直接访问Metal Resource(Buffer Data/Texture)
+5. 可用于并行计算, 类似于OpenCL 和 Nvidia 的CUDA,
+6. 更多优点....
+
+Metal 包含以下几个Framework:
+
+1. Metal
+   Metal基础框架, 提供了GPU访问支持
+3. MetalKit
+   提供了一系列Metal的工具类
+4. Metal Perfromance Shader
+   高性能计算
+5. Model I/O
+   访问3D模型
