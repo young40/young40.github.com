@@ -1,0 +1,24 @@
+#+TITLE: 学习Metal: Metal简介
+#+DATE: 2018-07-02T19:13:01+08:00
+#+TAGS: metal 
+#+CATEGORIES: 学习Metal
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: true
+
+进入到2018年, Metal已经发布了4年了. 随着WWDC 2018上Apple宣布将在iOS, OS X等平台废弃OpenGL, OpenGL ES等API, 摆在开发者面前一个不得不面对的事实就是, 需要去掌握Metal了.
+
+| 年份 | iOS | tvOS |  OS X | CPU    | iPhone             | iPad                           | iPad Mini      | Apple TV          | Other  |
+| 2013 | -   | -    |     - | A7     | iPhone 5s          | iPad Air                       | iPad Mini2     | -                 |        |
+| 2014 | v8  | -    |     - | A8     | iPhone 6, 6Plus    | iPad Air2(A8X),                | iPad mini3(A7) |                   |        |
+| 2015 | v9  | v9   | 10.10 | A9     | iPhone 6s, 6sPlus  | iPad Pro(9.7吋, 12.9吋)(A9X)   | iPad mini4(A8) | Apple TV 4(A8)    |        |
+| 2016 | v10 | v10  | 10.12 | A10    | iPhone 7, 7Plus    | iPad Pro(10.5吋, 12.9吋)(A10X) | -              | -                 |        |
+| 2017 | v11 | v11  | 10.13 | A11    | iPhone X, 8, 8Plus | iPad(A9)                       | -              | Apple TV 4K(A10X) | Metal2 |
+| 2018 | v12 | v12  | 10.14 | A12(?) | ?                  | iPad(A10) More ?               | ?              | ?                 |        |
+
+Metal 有以下优点:
+
+1. 低消耗的GPU访问, 减轻CPU和GPU数据交互的瓶颈
+2. 可以使用Xcode预编译Shader, 运行时会更快
+3. 可用于并行计算, 类似于OpenCL 和 Nvidia 的CUDA,
+4. 更多优点....
