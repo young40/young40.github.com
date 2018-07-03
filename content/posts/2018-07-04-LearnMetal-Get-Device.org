@@ -1,0 +1,80 @@
+#+TITLE: 学习Metal: 获取设备
+#+DATE: 2018-07-04T00:00:49+08:00
+#+TAGS: metal swift playground
+#+CATEGORIES: 学习Metal
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: false
+
+使用Metal的第一件事, 就是要获取Metal的设备. 正如在OpenGL中, 需要首先获取到OpenGL的context.
+
+# more
+
+为了便于调试, 我这里使用了Xcode的Playground,  操作系统是 OS X 10.13, Xcode版本是 10.0 Beta2.
+
+最先需要引入Metal的Framework.
+{{< highlight swift >}}
+import Metal
+{{< /highlight >}}
+
+{{< highlight swift >}}
+var defaultDevice = MTLCreateSystemDefaultDevice()
+{{< /highlight >}}
+
+如果系统上有多个GPU, 默认会获取到高性能的GPU.
+
+我们定义一个函数来查看下设备的几个属性.
+{{< highlight swift >}}
+func showDevice(device: MTLDevice) {
+    print("----------我们要展示一个Metal了-----------")
+    print("设备名称:      \t\(device.name)")
+    print("是否是低性能:   \t\(device.isLowPower  ? "是" : "否" )")
+    print("是否接显示器:   \t\(device.isHeadless  ? "否" : "是" )")
+    print("设置是否可移除: \t\(device.isRemovable ? "是" : "否" )")
+    print("设备注册ID:    \t\(device.registryID)")
+}
+
+showDevice(device: device)
+{{< /highlight >}}
+
+调用完之后, 我的输出是:
+
+#+BEGIN_QUOTE
+----------我们要展示一个Metal了-----------
+设备名称:      	NVIDIA GeForce GT 750M
+是否是低性能:   	否
+是否接显示器:   	是
+设置是否可移除: 	否
+设备注册ID:    	4294968289
+#+END_QUOTE
+
+当然, 我们也可以获取到系统上所有的设备, 只需要调用 =MTLCopyAllDevices= .
+{{< highlight swift >}}
+// 当然我们也可以获取到所有的设备
+let devices = MTLCopyAllDevices()
+
+// 遍历所有设备
+for device in devices {
+    showDevice(device: device)
+}
+{{< /highlight >}}
+
+这次的输出是:
+
+#+BEGIN_QUOTE
+----------我们要展示一个Metal了-----------
+设备名称:      	Intel Iris Pro Graphics
+是否是低性能:   	是
+是否接显示器:   	是
+设置是否可移除: 	否
+设备注册ID:    	4294968295
+----------我们要展示一个Metal了-----------
+设备名称:      	NVIDIA GeForce GT 750M
+是否是低性能:   	否
+是否接显示器:   	是
+设置是否可移除: 	否
+设备注册ID:    	4294968289
+#+END_QUOTE
+
+源码托管在github:
+[[https://github.com/young40/LearnMetal]]
