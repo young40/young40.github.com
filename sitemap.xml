@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.young40.com/posts/2018-07-04-learnmetal-get-device/</loc>
+    <lastmod>2018-07-04T00:00:49+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.young40.com/posts/2018-07-02-learnmetal-introducing-metal/</loc>
     <lastmod>2018-07-02T19:13:01+08:00</lastmod>
   </url>
@@ -40,13 +45,19 @@
   
   <url>
     <loc>https://www.young40.com/tags/metal/</loc>
-    <lastmod>2018-07-02T19:13:01+08:00</lastmod>
+    <lastmod>2018-07-04T00:00:49+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/tags/playground/</loc>
+    <lastmod>2018-07-04T00:00:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/posts/</loc>
-    <lastmod>2018-07-02T19:13:01+08:00</lastmod>
+    <lastmod>2018-07-04T00:00:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -64,7 +75,7 @@
   
   <url>
     <loc>https://www.young40.com/tags/swift/</loc>
-    <lastmod>2018-06-30T11:25:49+08:00</lastmod>
+    <lastmod>2018-07-04T00:00:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -88,7 +99,7 @@
   
   <url>
     <loc>https://www.young40.com/categories/%E5%AD%A6%E4%B9%A0metal/</loc>
-    <lastmod>2018-07-02T19:13:01+08:00</lastmod>
+    <lastmod>2018-07-04T00:00:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -100,7 +111,7 @@
   
   <url>
     <loc>https://www.young40.com/</loc>
-    <lastmod>2018-07-02T19:13:01+08:00</lastmod>
+    <lastmod>2018-07-04T00:00:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
