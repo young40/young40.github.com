@@ -65,6 +65,6 @@ PlaygroundPage.current.liveView = view
 
 [[/upload/2018-07/001.MyMetalKit.png]]
 
-[[file:upload/2018-07/001.MyMetalKit.png]]
+[[file:/upload/2018-07/001.MyMetalKit.png]]
 
 同样源码托管在github: https://github.com/young40/LearnMetal . 欢迎star, 感谢!
