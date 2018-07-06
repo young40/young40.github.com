@@ -7,10 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Copyright 杨世玲</copyright>
-    <lastBuildDate>Wed, 04 Jul 2018 00:00:49 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 06 Jul 2018 23:30:16 +0800</lastBuildDate>
     
 	<atom:link href="https://www.young40.com/tags/metal/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title> 学习Metal: MetalKit</title>
+      <link>https://www.young40.com/posts/2018-07-06-learnmetal-metalkit/</link>
+      <pubDate>Fri, 06 Jul 2018 23:30:16 +0800</pubDate>
+      
+      <guid>https://www.young40.com/posts/2018-07-06-learnmetal-metalkit/</guid>
+      <description>&lt;p&gt;当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果.&lt;/p&gt;
+
+&lt;p&gt;MetalKit提供的MTKView更为方便快捷.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>学习Metal: 获取设备</title>
