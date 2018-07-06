@@ -67,26 +67,26 @@
   </url>
   
   <url>
-    <loc>https://www.young40.com/tags/shadowsocks/</loc>
-    <lastmod>2018-06-12T23:25:30+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://www.young40.com/categories/shadowsocks/</loc>
     <lastmod>2018-06-12T23:25:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/tags/swift/</loc>
-    <lastmod>2018-07-06T23:30:16+08:00</lastmod>
+    <loc>https://www.young40.com/tags/shadowsocks/</loc>
+    <lastmod>2018-06-12T23:25:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/categories/swift/</loc>
     <lastmod>2018-06-30T11:25:49+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/tags/swift/</loc>
+    <lastmod>2018-07-06T23:30:16+08:00</lastmod>
     <priority>0</priority>
   </url>
   
