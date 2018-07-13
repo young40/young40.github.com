@@ -1,0 +1,131 @@
+#+TITLE: 学习Metal: Hello, Triangle
+#+DATE: 2018-07-14T00:21:53+08:00
+#+TAGS: metal swift playground
+#+CATEGORIES: 学习Metal
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: false
+
+学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.
+
+# more
+
+* 扩展MyMetalView
+  我们给上次帖子中的MyMetalView增加几个成员函数待用.
+
+{{< highlight swift >}}
+class MyMetalView: MTKView {
+    var vertexData: [Float]!
+    var vertexBuffer: MTLBuffer!
+
+    var renderPipelineState: MTLRenderPipelineState!
+
+    var cmdQueue: MTLCommandQueue!
+}
+{{< /highlight >}}
+
+* 准备顶点
+  我们在屏幕中间画一个三角形, 三个顶点的数据放在vertexData里面.
+  
+  并且生成了一个MTLBuffer, vertexBuffer.
+
+{{< highlight swift >}}
+public func initVertex() {
+    vertexData = [-0.7, -0.7, 0.0, 1.0,
+    0.7, -0.7, 0.0, 1.0,
+    0.0, 0.7, 0.0, 1.0]
+
+    let vertexDataSize = vertexData.count * MemoryLayout<Float>.size
+
+    vertexBuffer = (self.device?.makeBuffer(bytes: vertexData, length: vertexDataSize, options: []))!
+}
+{{< /highlight >}}
+
+* Metal Shader
+  我们需要写一个最基本的shader来渲染.
+  
+{{< highlight cpp >}}
+#include <metal_stdlib>
+
+using namespace metal;
+
+struct Vertex {
+    float4 postion [[position]];
+};
+
+vertex Vertex vertex_func(constant Vertex *vertices [[buffer(0)]],
+                          uint vid [[vertex_id]] ){
+    return vertices[vid];
+}
+
+fragment float4 fragment_func(Vertex vert [[stage_in]]) {
+    return float4(0.7, 1, 1, 1);
+}
+{{< /highlight >}}
+
+  我们在后面再详细讨论Metal Shader.
+
+{{< highlight swift >}}
+public func initShader() {
+    let shaderStr = """ ... """
+    do {
+        let library = try self.device?.makeLibrary(source: shaderStr, options: nil)
+
+        let vertex_func = library?.makeFunction(name: "vertex_func")
+        let fragment_func = library?.makeFunction(name: "fragment_func")
+
+        let renderPipelineDescriptor = MTLRenderPipelineDescriptor()
+
+        renderPipelineDescriptor.vertexFunction = vertex_func
+        renderPipelineDescriptor.fragmentFunction = fragment_func
+
+        renderPipelineDescriptor.colorAttachments[0].pixelFormat = MTLPixelFormat.bgra8Unorm
+
+        renderPipelineState = try self.device?.makeRenderPipelineState(descriptor: renderPipelineDescriptor)
+    }
+    catch let e {
+        print("\(e)")
+        fatalError()
+    }
+}
+{{< /highlight >}}
+
+ 为了便于编辑shader内容, 我们将shader放入变量shaderStr中. 
+ 通过上面代码就获得了一个带有我们自定义的MTLRenderPipelineState.
+
+* 渲染
+  接下来渲染.
+
+{{< highlight swift >}}
+public override func draw(_ dirtyRect: NSRect) {
+    let renderPassDescriptor = self.currentRenderPassDescriptor!
+    let drawable = self.currentDrawable
+        
+    let bgColor = MTLClearColor(red: 0.3, green: 0.4, blue: 0.5, alpha: 1)
+
+    renderPassDescriptor.colorAttachments[0].clearColor = bgColor
+
+    let cmdBuffer = cmdQueue.makeCommandBuffer()!
+        
+    let cmdEncoder = cmdBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)!
+
+    cmdEncoder.setRenderPipelineState(self.renderPipelineState!)
+    cmdEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+    cmdEncoder.drawPrimitives(type: MTLPrimitiveType.triangle, vertexStart: 0, vertexCount: 3)
+    cmdEncoder.endEncoding()
+        
+    cmdBuffer.present(drawable!)
+    cmdBuffer.commit()
+}
+{{< /highlight >}}
+
+* 一点感慨
+  在写这个三角形的demo的时候, 走了一点弯路, 感觉写对了, 三角形却怎么都渲染不出来. 翻来覆去的比较代码, 没有一点头绪.
+  
+  这时我把MyMetalView搬到一个空白的Xcode工程中进行调试, 点了一下"Capture GPU frame", 马上打开了一片新天地. 
+  在GPU运行堆栈, 看到Geometry的顶点数据异常. 然后反过来看顶点数据初始化的时候, vertexData 声明成了 initVertex的局部变量.
+  这样导致渲染的时候, vertexData就变成了未定义的值了. 顺利解决问题.
+
+  想到学习OpenGL的时候, 一旦渲染出错, 真是一筹莫展. Metal借助Xcode这种一点即用的GPU调试功能, 一定会对我们掌握3D渲染大有裨益.
+
+  同样代码也都托管在github上. [[https://github.com/young40/LearnMetal]] . 欢迎star, 感谢!

@@ -63,8 +63,7 @@ PlaygroundPage.current.liveView = view
 
 打开Live View, 就可以看到我们本地的渲染结果.
 
-[[/upload/2018-07/001.MyMetalKit.png]]
 
 [[file:/upload/2018-07/001.MyMetalKit.png]]
 
-同样源码托管在github: https://github.com/young40/LearnMetal . 欢迎star, 感谢!
+同样源码托管在github: [[https://github.com/young40/LearnMetal]] . 欢迎star, 感谢!
