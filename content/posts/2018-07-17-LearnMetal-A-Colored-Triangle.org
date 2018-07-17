@@ -1,0 +1,72 @@
+#+TITLE: 学习Metal: 带色的三角形
+#+DATE: 2018-07-17T23:15:13+08:00
+#+TAGS: metal swift playground
+#+CATEGORIES: 学习Metal
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: true
+
+上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.
+
+# more
+
+* 定义数据结构
+我们来定义一个数据结构 Vertex, 用于向shader传递顶点数据. 
+
+{{< highlight swift >}}
+struct Vertex {
+    var position: vector_float4
+    var color: vector_float4
+}
+{{< /highlight >}}
+
+Vertex的数据结构中包含了顶点的位置和对应的颜色.
+
+* 生成顶点数据
+我们需要改写vertexData的数据类型为 Vertex数组,  并且为其赋值.
+
+{{< highlight swift >}}
+vertexData = [Vertex(position: [   0,  0.7, 0, 1] , color: [1, 0, 0, 1]),
+              Vertex(position: [-0.7, -0.7, 0, 1] , color: [0, 1, 0, 1]),
+              Vertex(position: [ 0.7, -0.7, 0, 1] , color: [0, 0, 1, 1])]
+{{< /highlight >}}
+
+同样在计算vertexData占用内存大小的时候, 注意需要计算Vertex的大小.
+
+* 改变shader
+shader中我们需要改变Vertex的定义, 增加一个color.
+
+{{< highlight cpp >}}
+struct Vertex {
+    float4 position [[position]];
+    float4 color;
+};
+{{< /highlight >}}
+
+fragment function 我们需要返回Vertex对应的color.
+
+{{< highlight cpp >}}
+fragment float4 fragment_func(Vertex vert [[stage_in]]) {
+    return vert.color;
+}
+{{< /highlight >}}
+
+* 看看结果吧!
+我们不需要再改变什么就能看到结果了.
+
+[[file:/upload/2018-07/LearnMetal-04-A-Colored-Triangle.png]]
+
+
+* 一点发现
+我看metalkit.org的教程, 上面提到传递数据给shader的时候, 定义一个Vertex.
+如果我们不定义又会怎样呢? 结果是没有区别.
+
+{{< highlight swift >}}
+vertexData = [   0,  0.7, 0, 1,  1, 0, 0, 1,
+              -0.7, -0.7, 0, 1,  0, 1, 0, 1,
+               0.7, -0.7, 0, 1,  0, 0, 1, 1]
+{{< /highlight >}}
+
+vertexData依然保持Float类型, 依然是可以正确渲染的.
+
+希望这点发现能帮助你理解顶点数据传输的本质. 
