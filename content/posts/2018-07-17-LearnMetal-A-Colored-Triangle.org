@@ -4,7 +4,7 @@
 #+CATEGORIES: 学习Metal
 #+LAYOUT: post
 #+OPTIONS: toc:nil
-#+DRAFT: true
+#+DRAFT: false
 
 上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.
 
