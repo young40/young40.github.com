@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Copyright 杨世玲</copyright>
-    <lastBuildDate>Sat, 14 Jul 2018 00:21:53 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 Jul 2018 23:15:13 +0800</lastBuildDate>
     
 	<atom:link href="https://www.young40.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>学习Metal: 带色的三角形</title>
+      <link>https://www.young40.com/posts/2018-07-17-learnmetal-a-colored-triangle/</link>
+      <pubDate>Tue, 17 Jul 2018 23:15:13 +0800</pubDate>
+      
+      <guid>https://www.young40.com/posts/2018-07-17-learnmetal-a-colored-triangle/</guid>
+      <description>&lt;p&gt;上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>学习Metal: Hello, Triangle</title>
