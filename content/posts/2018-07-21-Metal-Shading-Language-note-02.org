@@ -1,0 +1,47 @@
+#+TITLE: MTSL笔记02: 数据类型 - 标量
+#+DATE: 2018-07-21T00:28:04+08:00
+#+TAGS: metal shader
+#+CATEGORIES: MetalShadingLanguage笔记
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: false
+
+第二章是关于数据类型, 向量, 矩阵, 原子数据类型, buffer, 纹理(texture), 采样器(sampler), 结构体. 
+还设计数据对齐和类型转换. 
+
+我们先来看看标量(Scalar).
+
+* 2.1 标量(Scalar)
+
+Metal支持 表1 中的数据类型. Metal不支持各种dobule, long类型. 包括: double, long, unsigned long, long long, unsigned long long, long double.
+
+- 表1 标量(Scalar)
+
+| 类型                             | 描述                                                                                                                                |
+| bool                             | 布尔类型, 值为true或false. The value true expands to the integer constant 1, and the value false expands to the integer constant 0. |
+| char, int8_t                     | A signed two’s complement 8-bit integer.                                                                                            |
+| unsigned char, uchar, uint8_t    | 8-bit 整数                                                                                                                          |
+| short, int16_t                   | A signed two’s complement 16-bit integer.                                                                                           |
+| unsigned short, ushort, uint16_t | 16-bit无符号整数                                                                                                                    |
+| int, int32_t                     | A signed two’s complement 32-bit integer.                                                                                           |
+| unsigned int, uint, uint32_t     | 32-bit 无符号整数                                                                                                                   |
+| half                             | 16-bit 浮点数. The half data type must conform to the IEEE 754 binary16 storage format.                                             |
+| float                            | 32-bit 浮点数. The float data type must conform to the IEEE 754 single precision storage format.                                    |
+| size_t                           | 64-bit 无符号整数. sizeof的返回值.                                                                                                  |
+| ptrdiff_t                        | A signed integer type that is the result of subtracting two pointers. This is a 64-bit signed integer.                                                                                                                                   |
+| void                             | 空                                                                                                                                   |
+
+注意: Metal支持用f/F作为后缀来声明一个单精度浮点数, 用h/H声明一个半精度浮点数, 用u/U声明无符号整数字面量.
+例如: 0.5f 0.5F 0.5h 0.5H
+
+表2 大小和数据对齐大小
+
+| 类型                                             | 大小(bytes, 字节) | 对齐大小(bytes, 字节) |
+| bool                                             |                 1 |                     1 |
+| char, int8_t, unsigned char, uchar, uint8_t      |                 1 |                     1 |
+| short, int16_t, unsigned short, ushort, uint16_t |                 2 |                     2 |
+| int, int32_t, unsigned int, uint, uint32_t       |                 4 |                     4 |
+| half                                             |                 2 |                     2 |
+| float                                            |                 4 |                     4 |
+
+
