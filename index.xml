@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Copyright 杨世玲</copyright>
-    <lastBuildDate>Thu, 19 Jul 2018 22:23:05 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Jul 2018 00:28:04 +0800</lastBuildDate>
     
 	<atom:link href="https://www.young40.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MTSL笔记02: 数据类型 - 标量</title>
+      <link>https://www.young40.com/posts/2018-07-21-metal-shading-language-note-02/</link>
+      <pubDate>Sat, 21 Jul 2018 00:28:04 +0800</pubDate>
+      
+      <guid>https://www.young40.com/posts/2018-07-21-metal-shading-language-note-02/</guid>
+      <description>第二章是关于数据类型, 向量, 矩阵, 原子数据类型, buffer, 纹理(texture), 采样器(sampler), 结构体. 还设计数据对齐和类型转换.
+我们先来看看标量(Scalar).
+2.1 标量(Scalar) Metal支持 表1 中的数据类型. Metal不支持各种dobule, long类型. 包括: double, long, unsigned long, long long, unsigned long long, long double.
+ 表1 标量(Scalar)     类型 描述   bool 布尔类型, 值为true或false. The value true expands to the integer constant 1, and the value false expands to the integer constant 0.   char, int8_t A signed two’s complement 8-bit integer.</description>
+    </item>
     
     <item>
       <title>MTSL笔记01: 简介</title>
