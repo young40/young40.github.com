@@ -1,0 +1,142 @@
+#+TITLE: MTSL笔记03: 数据类型 - 向量
+#+DATE: 2018-07-22T00:00:06+08:00
+#+TAGS: metal shader
+#+CATEGORIES: MetalShadingLanguage笔记
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: false
+
+Metal支持一系列向量数据类型, 由系统的向量数学库提供.
+
+PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
+
+# more
+
+* 2.2 向量数据类型
+
+向量类型包括:
+
+booln, charn, shortn, intn, ucharn, ushortn, uintn, halfn, floatn
+
+上面这些类型名字中结尾的n可以是2, 3, 4, 分别代表了2维, 3维, 4维的向量类型. 表3中列举了这些数据类型的大小和对齐大小.
+
+表3
+
+| 类型            | 大小(byte字节) | 对齐大小(byte字节) |
+| bool2           |              2 |                  2 |
+| bool3           |              4 |                  4 |
+| bool4           |              4 |                  4 |
+| char2, uchar2   |              2 |                  2 |
+| char3, uchar3   |              4 |                  4 |
+| char4, uchar4   |              4 |                  4 |
+| short2, ushort2 |              4 |                  4 |
+| short3, ushort3 |              8 |                  8 |
+| short4, ushort4 |              8 |                  8 |
+| int2, uint2     |              8 |                  8 |
+| int3, uint3     |             16 |                 16 |
+| int4, uint4     |             16 |                 16 |
+| half2           |              4 |                  4 |
+| half3           |              8 |                  8 |
+| half4           |              8 |                  8 |
+| float2          |              8 |                  8 |
+| float3          |             16 |                 16 |
+| float4          |             16 |                 16 |
+
+** 访问向量中的元素
+可以使用数组下标来访问向量中的元素. 从0开始. 
+
+{{< highlight cpp >}}
+pos = float4(1.0f, 2.0f, 3.0f, 4.0f);
+
+float x = pos[0]; // x = 1.0
+float z = pos[2]; // z = 3.0
+
+float4 vA = float4(1.0f, 2.0f, 3.0f, 4.0f);
+float4 vB;
+
+for (int i=0; i<4; i++) {
+    vB[i] = vA[i] * 2.0f; // vB = (2.0, 4.0, 6.0, 8.0);
+}
+{{< /highlight >}}
+
+Metal也支持使用 =.= (选择语法), 来访问向量的元素, xyzw来代表坐标, rgba来代表颜色.
+
+#+BEGIN_QUOTE
+vector_data_type.xyzw
+vector_data_type.rgba
+#+END_QUOTE
+
+可以单一地选择某一个元素. 
+{{< highlight cpp >}}
+int4 test = int4(0, 1, 2, 3);
+
+int a = test.x; // a = 0
+int b = text.y; // b = 1
+// ...
+int f = test.g; // f = 1
+int g = test.a; // g = 2
+{{< /highlight >}}
+
+
+不能用下来这些方式来访问向量, 否则会导致编译错误.
+
+- 超出向量的声明范围,
+#+BEGIN_QUOTE
+
+   2维向量只能用.xy或者.rg来访问, 
+   
+   3维向量只能用.xyz或者.rgb来访问
+#+END_QUOTE
+   
+   {{< highlight cpp >}}
+       float2 pos;
+       pos.x = 1.0f; // 对的
+       pos.z = 1.0f; // 错的
+   {{< /highlight >}}
+   
+- 在赋值的时候, 在等号左边同时使用两个一样的元素, 会引起歧义导致错误
+{{< highlight cpp >}}
+pos.xx = float2(1.0f, 2.0f); // 使用了x两次, 错误
+{{< /highlight >}}
+- 等式两边的元素数量不同会导致错误.
+{{< highlight cpp >}}
+pos.xy = float4(1f, 2f, 3f, 4f);// float2 和 float4不匹配, 错误
+{{< /highlight >}}
+- 混合访问.xyzw和.rgba
+{{< highlight cpp >}}
+pos.xg = float2(1.0f, 2.0f); // 混合使用, 错误 
+float3 coord = pos.ryz;      // 错误
+{{< /highlight >}} 
+- A pointer or reference to a vector with swizzles is an error.
+{{< highlight cpp >}}
+float4 pos = float4(1.0f, 2.0f, 3.0f, 4.0f);
+my_func(&pos.xy); // 错误
+{{< /highlight >}}
+
+使用 =sizeof= 可以获得向量数据类型的大小, 等于 元素数量乘以每个元素的大小. sizeof(float4) = 16字节, sizeof(half4) = 8字节.
+
+** 2.2.2 向量构造函数
+向量的构造函数可以被用来从一系列的标量或者向量来创建新的向量. 当向量被初始化时, 他的参数签名决定了构造函数如何被调用. 
+例如, 当向量初始化时, 只使用了一个标量参数, 那么向量的所有元素都被设置为这个标量的值.
+
+如果一个向量从多个标量或者向量, 甚至混合初始化时, 向量的元素被依次设置为参数的元素. The arguments are consumed from left to right. Each argument has all its components consumed, in order, before any components from the next argument are consumed.
+
+float4的所有构造函数:
+
+{{< highlight cpp >}}
+float4(float x);
+float4(float x, float y, float z, float w); float4(float2 a, float2 b);
+float4(float2 a, float b, float c);
+float4(float a, float b, float2 c);
+float4(float a, float2 b, float c);
+float4(float3 a, float b);
+float4(float a, float3 b);
+float4(float4 x);
+{{< /highlight >}}
+
+** 2.2.3 Packed Vector Types
+.....
+
+WWDC 2014 Session 604有探讨.
+
+
