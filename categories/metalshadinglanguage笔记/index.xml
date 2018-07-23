@@ -7,10 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Copyright 杨世玲</copyright>
-    <lastBuildDate>Sat, 21 Jul 2018 00:28:04 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 22 Jul 2018 00:00:06 +0800</lastBuildDate>
     
 	<atom:link href="https://www.young40.com/categories/metalshadinglanguage%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MTSL笔记03: 数据类型 - 向量</title>
+      <link>https://www.young40.com/posts/2018-07-22-metal-shading-languae-note-03/</link>
+      <pubDate>Sun, 22 Jul 2018 00:00:06 +0800</pubDate>
+      
+      <guid>https://www.young40.com/posts/2018-07-22-metal-shading-languae-note-03/</guid>
+      <description>&lt;p&gt;Metal支持一系列向量数据类型, 由系统的向量数学库提供.&lt;/p&gt;
+
+&lt;p&gt;PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>MTSL笔记02: 数据类型 - 标量</title>
