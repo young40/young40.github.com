@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Swift on 杨世玲的博客</title>
+    <title>swift on 杨世玲的博客</title>
     <link>https://www.young40.com/categories/swift/</link>
-    <description>Recent content in Swift on 杨世玲的博客</description>
+    <description>Recent content in swift on 杨世玲的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Copyright 杨世玲</copyright>
@@ -18,9 +18,9 @@
       <pubDate>Sat, 30 Jun 2018 11:25:49 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-06-30-learn-swift-01-guard/</guid>
-      <description>&lt;p&gt;&lt;code&gt;guard&lt;/code&gt; 是Swift 2.0引入的新关键字, 用于当条件不满足时, 不再执行后续的代码. 当然, 官方文档上说是交出当前作用域的程序控制权.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+&lt;code class=&#34;verbatim&#34;&gt;guard&lt;/code&gt; 是Swift 2.0引入的新关键字, 用于当条件不满足时, 不再执行后续的代码. 当然, 官方文档上说是交出当前作用域的程序控制权.
+&lt;/p&gt;</description>
     </item>
     
   </channel>

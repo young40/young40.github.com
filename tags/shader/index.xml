@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Shader on 杨世玲的博客</title>
+    <title>shader on 杨世玲的博客</title>
     <link>https://www.young40.com/tags/shader/</link>
-    <description>Recent content in Shader on 杨世玲的博客</description>
+    <description>Recent content in shader on 杨世玲的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Copyright 杨世玲</copyright>
@@ -18,11 +18,12 @@
       <pubDate>Sun, 22 Jul 2018 00:00:06 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-22-metal-shading-languae-note-03/</guid>
-      <description>&lt;p&gt;Metal支持一系列向量数据类型, 由系统的向量数学库提供.&lt;/p&gt;
-
-&lt;p&gt;PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+Metal支持一系列向量数据类型, 由系统的向量数学库提供.
+&lt;/p&gt;
+&lt;p&gt;
+PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -31,12 +32,13 @@
       <pubDate>Sat, 21 Jul 2018 00:28:04 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-21-metal-shading-language-note-02/</guid>
-      <description>&lt;p&gt;第二章是关于数据类型, 向量, 矩阵, 原子数据类型, buffer, 纹理(texture), 采样器(sampler), 结构体. 
-还设计数据对齐和类型转换.&lt;/p&gt;
-
-&lt;p&gt;我们先来看看标量(Scalar).&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+第二章是关于数据类型, 向量, 矩阵, 原子数据类型, buffer, 纹理(texture), 采样器(sampler), 结构体. 
+还设计数据对齐和类型转换. 
+&lt;/p&gt;
+&lt;p&gt;
+我们先来看看标量(Scalar).
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -45,9 +47,9 @@
       <pubDate>Thu, 19 Jul 2018 22:23:05 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-19-metal-shading-language-note-01/</guid>
-      <description>&lt;p&gt;最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完.
+&lt;/p&gt;</description>
     </item>
     
   </channel>

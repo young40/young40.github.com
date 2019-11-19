@@ -1,9 +1,44 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.young40.com/categories/</loc>
+    <lastmod>2018-07-22T00:00:06+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/tags/metal/</loc>
+    <lastmod>2018-07-22T00:00:06+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/categories/metalshadinglanguage%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2018-07-22T00:00:06+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.young40.com/posts/2018-07-22-metal-shading-languae-note-03/</loc>
+    <lastmod>2018-07-22T00:00:06+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/posts/</loc>
+    <lastmod>2018-07-22T00:00:06+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/tags/shader/</loc>
+    <lastmod>2018-07-22T00:00:06+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/tags/</loc>
+    <lastmod>2018-07-22T00:00:06+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/</loc>
     <lastmod>2018-07-22T00:00:06+08:00</lastmod>
   </url>
   
@@ -15,6 +50,21 @@
   <url>
     <loc>https://www.young40.com/posts/2018-07-19-metal-shading-language-note-01/</loc>
     <lastmod>2018-07-19T22:23:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/tags/playground/</loc>
+    <lastmod>2018-07-17T23:15:13+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/tags/swift/</loc>
+    <lastmod>2018-07-17T23:15:13+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/categories/%E5%AD%A6%E4%B9%A0metal/</loc>
+    <lastmod>2018-07-17T23:15:13+08:00</lastmod>
   </url>
   
   <url>
@@ -43,8 +93,28 @@
   </url>
   
   <url>
+    <loc>https://www.young40.com/tags/git/</loc>
+    <lastmod>2018-07-01T00:44:44+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.young40.com/posts/2018-07-01-git-global-ignore/</loc>
     <lastmod>2018-07-01T00:44:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/tags/%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2018-07-01T00:44:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/categories/%E6%9D%82%E8%AE%B0/</loc>
+    <lastmod>2018-07-01T00:44:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.young40.com/categories/swift/</loc>
+    <lastmod>2018-06-30T11:25:49+08:00</lastmod>
   </url>
   
   <url>
@@ -58,103 +128,18 @@
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/2018-02-09-move-to-hugo/</loc>
-    <lastmod>2018-02-09T15:58:36+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.young40.com/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.young40.com/tags/git/</loc>
-    <lastmod>2018-07-01T00:44:44+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.young40.com/tags/metal/</loc>
-    <lastmod>2018-07-22T00:00:06+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.young40.com/categories/metalshadinglanguage%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2018-07-22T00:00:06+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.young40.com/tags/playground/</loc>
-    <lastmod>2018-07-17T23:15:13+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.young40.com/posts/</loc>
-    <lastmod>2018-07-22T00:00:06+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.young40.com/tags/shader/</loc>
-    <lastmod>2018-07-22T00:00:06+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://www.young40.com/categories/shadowsocks/</loc>
     <lastmod>2018-06-12T23:25:30+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/tags/shadowsocks/</loc>
     <lastmod>2018-06-12T23:25:30+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/categories/swift/</loc>
-    <lastmod>2018-06-30T11:25:49+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.young40.com/tags/swift/</loc>
-    <lastmod>2018-07-17T23:15:13+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.young40.com/tags/</loc>
-    <lastmod>2018-07-01T00:44:44+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.young40.com/tags/%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2018-07-01T00:44:44+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.young40.com/categories/%E5%AD%A6%E4%B9%A0metal/</loc>
-    <lastmod>2018-07-17T23:15:13+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.young40.com/categories/%E6%9D%82%E8%AE%B0/</loc>
-    <lastmod>2018-07-01T00:44:44+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.young40.com/</loc>
-    <lastmod>2018-07-22T00:00:06+08:00</lastmod>
-    <priority>0</priority>
+    <loc>https://www.young40.com/posts/2018-02-09-move-to-hugo/</loc>
+    <lastmod>2018-02-09T15:58:36+08:00</lastmod>
   </url>
   
 </urlset>

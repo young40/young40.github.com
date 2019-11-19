@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on 杨世玲的博客</title>
@@ -7,12 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Copyright 杨世玲</copyright>
+    <lastBuildDate>Sun, 22 Jul 2018 00:00:06 +0800</lastBuildDate>
     
 	<atom:link href="https://www.young40.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Metalshadinglanguage笔记</title>
+      <title>MetalShadingLanguage笔记</title>
       <link>https://www.young40.com/categories/metalshadinglanguage%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Sun, 22 Jul 2018 00:00:06 +0800</pubDate>
       
@@ -21,25 +22,7 @@
     </item>
     
     <item>
-      <title>Shadowsocks</title>
-      <link>https://www.young40.com/categories/shadowsocks/</link>
-      <pubDate>Tue, 12 Jun 2018 23:25:30 +0800</pubDate>
-      
-      <guid>https://www.young40.com/categories/shadowsocks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Swift</title>
-      <link>https://www.young40.com/categories/swift/</link>
-      <pubDate>Sat, 30 Jun 2018 11:25:49 +0800</pubDate>
-      
-      <guid>https://www.young40.com/categories/swift/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>学习metal</title>
+      <title>学习Metal</title>
       <link>https://www.young40.com/categories/%E5%AD%A6%E4%B9%A0metal/</link>
       <pubDate>Tue, 17 Jul 2018 23:15:13 +0800</pubDate>
       
@@ -53,6 +36,24 @@
       <pubDate>Sun, 01 Jul 2018 00:44:44 +0800</pubDate>
       
       <guid>https://www.young40.com/categories/%E6%9D%82%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>swift</title>
+      <link>https://www.young40.com/categories/swift/</link>
+      <pubDate>Sat, 30 Jun 2018 11:25:49 +0800</pubDate>
+      
+      <guid>https://www.young40.com/categories/swift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shadowsocks</title>
+      <link>https://www.young40.com/categories/shadowsocks/</link>
+      <pubDate>Tue, 12 Jun 2018 23:25:30 +0800</pubDate>
+      
+      <guid>https://www.young40.com/categories/shadowsocks/</guid>
       <description></description>
     </item>
     

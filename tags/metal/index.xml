@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Metal on 杨世玲的博客</title>
+    <title>metal on 杨世玲的博客</title>
     <link>https://www.young40.com/tags/metal/</link>
-    <description>Recent content in Metal on 杨世玲的博客</description>
+    <description>Recent content in metal on 杨世玲的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Copyright 杨世玲</copyright>
@@ -18,11 +18,12 @@
       <pubDate>Sun, 22 Jul 2018 00:00:06 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-22-metal-shading-languae-note-03/</guid>
-      <description>&lt;p&gt;Metal支持一系列向量数据类型, 由系统的向量数学库提供.&lt;/p&gt;
-
-&lt;p&gt;PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+Metal支持一系列向量数据类型, 由系统的向量数学库提供.
+&lt;/p&gt;
+&lt;p&gt;
+PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -31,12 +32,13 @@
       <pubDate>Sat, 21 Jul 2018 00:28:04 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-21-metal-shading-language-note-02/</guid>
-      <description>&lt;p&gt;第二章是关于数据类型, 向量, 矩阵, 原子数据类型, buffer, 纹理(texture), 采样器(sampler), 结构体. 
-还设计数据对齐和类型转换.&lt;/p&gt;
-
-&lt;p&gt;我们先来看看标量(Scalar).&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+第二章是关于数据类型, 向量, 矩阵, 原子数据类型, buffer, 纹理(texture), 采样器(sampler), 结构体. 
+还设计数据对齐和类型转换. 
+&lt;/p&gt;
+&lt;p&gt;
+我们先来看看标量(Scalar).
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -45,9 +47,9 @@
       <pubDate>Thu, 19 Jul 2018 22:23:05 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-19-metal-shading-language-note-01/</guid>
-      <description>&lt;p&gt;最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完.
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -56,9 +58,9 @@
       <pubDate>Tue, 17 Jul 2018 23:15:13 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-17-learnmetal-a-colored-triangle/</guid>
-      <description>&lt;p&gt;上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -67,22 +69,23 @@
       <pubDate>Sat, 14 Jul 2018 00:21:53 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-14-learnmetal-a-triangle/</guid>
-      <description>&lt;p&gt;学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.
+&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title> 学习Metal: MetalKit</title>
+      <title>学习Metal: MetalKit</title>
       <link>https://www.young40.com/posts/2018-07-06-learnmetal-metalkit/</link>
       <pubDate>Fri, 06 Jul 2018 23:30:16 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-06-learnmetal-metalkit/</guid>
-      <description>&lt;p&gt;当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果.&lt;/p&gt;
-
-&lt;p&gt;MetalKit提供的MTKView更为方便快捷.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. 
+&lt;/p&gt;
+&lt;p&gt;
+MetalKit提供的MTKView更为方便快捷. 
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -91,9 +94,9 @@
       <pubDate>Wed, 04 Jul 2018 00:00:49 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-04-learnmetal-get-device/</guid>
-      <description>&lt;p&gt;使用Metal的第一件事, 就是要获取Metal的设备. 正如在OpenGL中, 需要首先获取到OpenGL的context.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+使用Metal的第一件事, 就是要获取Metal的设备. 正如在OpenGL中, 需要首先获取到OpenGL的context.
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -102,9 +105,9 @@
       <pubDate>Mon, 02 Jul 2018 19:13:01 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-02-learnmetal-introducing-metal/</guid>
-      <description>&lt;p&gt;进入到2018年, Metal已经发布了4年了. 随着WWDC 2018上Apple宣布将在iOS, OS X等平台废弃OpenGL, OpenGL ES等API, 摆在开发者面前一个不得不面对的事实就是, 需要去掌握Metal了.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+进入到2018年, Metal已经发布了4年了. 随着WWDC 2018上Apple宣布将在iOS, OS X等平台废弃OpenGL, OpenGL ES等API, 摆在开发者面前一个不得不面对的事实就是, 需要去掌握Metal了.
+&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>学习metal on 杨世玲的博客</title>
+    <title>学习Metal on 杨世玲的博客</title>
     <link>https://www.young40.com/categories/%E5%AD%A6%E4%B9%A0metal/</link>
-    <description>Recent content in 学习metal on 杨世玲的博客</description>
+    <description>Recent content in 学习Metal on 杨世玲的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Copyright 杨世玲</copyright>
@@ -18,9 +18,9 @@
       <pubDate>Tue, 17 Jul 2018 23:15:13 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-17-learnmetal-a-colored-triangle/</guid>
-      <description>&lt;p&gt;上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -29,22 +29,23 @@
       <pubDate>Sat, 14 Jul 2018 00:21:53 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-14-learnmetal-a-triangle/</guid>
-      <description>&lt;p&gt;学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.
+&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title> 学习Metal: MetalKit</title>
+      <title>学习Metal: MetalKit</title>
       <link>https://www.young40.com/posts/2018-07-06-learnmetal-metalkit/</link>
       <pubDate>Fri, 06 Jul 2018 23:30:16 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-06-learnmetal-metalkit/</guid>
-      <description>&lt;p&gt;当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果.&lt;/p&gt;
-
-&lt;p&gt;MetalKit提供的MTKView更为方便快捷.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. 
+&lt;/p&gt;
+&lt;p&gt;
+MetalKit提供的MTKView更为方便快捷. 
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -53,9 +54,9 @@
       <pubDate>Wed, 04 Jul 2018 00:00:49 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-04-learnmetal-get-device/</guid>
-      <description>&lt;p&gt;使用Metal的第一件事, 就是要获取Metal的设备. 正如在OpenGL中, 需要首先获取到OpenGL的context.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+使用Metal的第一件事, 就是要获取Metal的设备. 正如在OpenGL中, 需要首先获取到OpenGL的context.
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -64,9 +65,9 @@
       <pubDate>Mon, 02 Jul 2018 19:13:01 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-07-02-learnmetal-introducing-metal/</guid>
-      <description>&lt;p&gt;进入到2018年, Metal已经发布了4年了. 随着WWDC 2018上Apple宣布将在iOS, OS X等平台废弃OpenGL, OpenGL ES等API, 摆在开发者面前一个不得不面对的事实就是, 需要去掌握Metal了.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;
+进入到2018年, Metal已经发布了4年了. 随着WWDC 2018上Apple宣布将在iOS, OS X等平台废弃OpenGL, OpenGL ES等API, 摆在开发者面前一个不得不面对的事实就是, 需要去掌握Metal了.
+&lt;/p&gt;</description>
     </item>
     
   </channel>
