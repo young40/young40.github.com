@@ -1,6 +1,6 @@
 #+TITLE: CocoStudio 节点自动绑定
 #+DATE: 2017-03-19T12:00:00+08:00
-#+SETUPFILE: ~/org/setupfile.org
+#+SETUPFILE: /Users/young40/Work/Org/setupfile.org
 #+JEKYLL_LAYOUT: post
 #+JEKYLL_CATEGORIES: 
 #+JEKYLL_TAGS: 

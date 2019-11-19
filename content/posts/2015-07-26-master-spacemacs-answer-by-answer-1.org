@@ -1,6 +1,6 @@
 #+TITLE: Spacemacs 一问一答(一)
 #+DATE: 2015-07-26T12:00:00+08:00
-#+SETUPFILE: ~/org/setupfile.org
+#+SETUPFILE: /Users/young40/Work/Org/setupfile.org
 #+JEKYLL_LAYOUT: post
 #+JEKYLL_CATEGORIES: 
 #+JEKYLL_PUBLISHED: true

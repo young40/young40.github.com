@@ -1,6 +1,6 @@
 #+TITLE: 博客记
 #+DATE: 2015-07-25T12:00:00+08:00
-#+SETUPFILE: ~/org/setupfile.org
+#+SETUPFILE: /Users/young40/Work/Org/setupfile.org
 #+JEKYLL_LAYOUT: post
 #+JEKYLL_CATEGORIES: [杂谈]
 #+JEKYLL_PUBLISHED: true

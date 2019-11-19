@@ -1,6 +1,6 @@
 #+TITLE: 一次 git 花样实战
 #+DATE: 2015-12-22T12:00:00+08:00
-#+SETUPFILE: ~/org/setupfile.org
+#+SETUPFILE: /Users/young40/Work/Org/setupfile.org
 #+JEKYLL_LAYOUT: post
 #+JEKYLL_CATEGORIES: 
 #+JEKYLL_TAGS: 
