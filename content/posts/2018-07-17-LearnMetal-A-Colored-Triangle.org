@@ -1,7 +1,7 @@
 #+TITLE: 学习Metal: 带色的三角形
 #+DATE: 2018-07-17T23:15:13+08:00
-#+TAGS: metal swift playground
-#+CATEGORIES: 学习Metal
+#+TAGS[]: metal swift playground
+#+CATEGORIES[]: 学习Metal
 #+LAYOUT: post
 #+OPTIONS: toc:nil
 #+DRAFT: false

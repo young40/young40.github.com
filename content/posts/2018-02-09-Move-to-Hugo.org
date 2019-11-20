@@ -1,7 +1,7 @@
 #+TITLE: 迁移到了Hugo, 又双叒叕迁移了??!!!
 #+DATE: 2018-02-09T15:58:36+08:00
-#+CATEGORIES: 杂记
-#+TAGS: 博客
+#+CATEGORIES[]: 杂记
+#+TAGS[]: 博客
 #+DRAFT: false
 
 **** 又双叒叕迁移了

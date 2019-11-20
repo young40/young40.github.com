@@ -1,7 +1,7 @@
 #+TITLE:  学习Metal: MetalKit
 #+DATE: 2018-07-06T23:30:16+08:00
-#+TAGS: metal swift playground
-#+CATEGORIES: 学习Metal
+#+TAGS[]: metal swift playground
+#+CATEGORIES[]: 学习Metal
 #+LAYOUT: post
 #+OPTIONS: toc:nil
 #+DRAFT: false

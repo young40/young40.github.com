@@ -1,7 +1,7 @@
 #+TITLE: MTSL笔记01: 简介
 #+DATE: 2018-07-19T22:23:05+08:00
-#+TAGS: metal shader
-#+CATEGORIES: MetalShadingLanguage笔记
+#+TAGS[]: metal shader
+#+CATEGORIES[]: MetalShadingLanguage笔记
 #+LAYOUT: post
 #+OPTIONS: toc:nil
 #+DRAFT: false

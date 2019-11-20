@@ -1,7 +1,7 @@
 #+TITLE: 学习Metal: Hello, Triangle
 #+DATE: 2018-07-14T00:21:53+08:00
-#+TAGS: metal swift playground
-#+CATEGORIES: 学习Metal
+#+TAGS[]: metal swift playground
+#+CATEGORIES[]: 学习Metal
 #+LAYOUT: post
 #+OPTIONS: toc:nil
 #+DRAFT: false

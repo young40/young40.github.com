@@ -1,7 +1,7 @@
 #+TITLE: 学习Swift: guard
 #+DATE: 2018-06-30T11:25:49+08:00
-#+TAGS: swift
-#+CATEGORIES: swift
+#+TAGS[]: swift
+#+CATEGORIES[]: swift
 #+LAYOUT: post
 #+OPTIONS: toc:nil
 #+DRAFT: false

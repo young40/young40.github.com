@@ -1,7 +1,7 @@
 #+TITLE: 学习Metal: Metal简介
 #+DATE: 2018-07-02T19:13:01+08:00
-#+TAGS: metal
-#+CATEGORIES: 学习Metal
+#+TAGS[]: metal
+#+CATEGORIES[]: 学习Metal
 #+LAYOUT: post
 #+OPTIONS: toc:nil
 #+DRAFT: false

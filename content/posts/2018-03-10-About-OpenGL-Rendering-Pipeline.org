@@ -1,7 +1,7 @@
 #+TITLE: 关于OpenGL渲染管线(1)
 #+DATE: 2018-03-10T23:25:30+08:00
-#+TAGS: OpenGL
-#+CATEGORIES: OpenGL
+#+TAGS[]: OpenGL
+#+CATEGORIES[]: OpenGL
 #+LAYOUT: post
 #+OPTIONS: toc:nil
 #+DRAFT: true

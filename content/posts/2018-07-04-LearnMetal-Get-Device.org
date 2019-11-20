@@ -1,7 +1,7 @@
 #+TITLE: 学习Metal: 获取设备
 #+DATE: 2018-07-04T00:00:49+08:00
-#+TAGS: metal swift playground
-#+CATEGORIES: 学习Metal
+#+TAGS[]: metal swift playground
+#+CATEGORIES[]: 学习Metal
 #+LAYOUT: post
 #+OPTIONS: toc:nil
 #+DRAFT: false
