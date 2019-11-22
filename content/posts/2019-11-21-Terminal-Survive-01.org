@@ -1,0 +1,9 @@
+#+TITLE: 终端生存指南01-shebang!
+#+DATE: 2019-11-21T21:48:14+08:00
+#+TAGS[]: 
+#+CATEGORIES[]: 
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: true
+
+oooo
