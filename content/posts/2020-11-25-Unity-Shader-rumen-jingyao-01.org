@@ -1,0 +1,11 @@
+#+TITLE: Unity Shader入门精要笔记一
+#+DATE: 2020-11-25T10:33:19+08:00
+#+TAGS[]: Unity Shader
+#+CATEGORIES[]: UnityShader入门精要
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: true
+
+<<Unity Shader 入门精要>> 是国内关于Unity Shader的稀有的一本书, 是每一位有志于学习Unity Shader的开发者必读之书.
+
+瑕不掩瑜
