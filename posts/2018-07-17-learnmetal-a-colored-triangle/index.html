@@ -8,7 +8,7 @@
 		<title>学习Metal: 带色的三角形</title>
 
 		
-		<link rel="stylesheet" href="https://www.young40.com/css/colors-dark.min.217a2547e8e6c808986d22ef70b50263c2d6a4bbc80ed42e97e280a41103f9b5.css">
+		<link rel="stylesheet" href="https://www.young40.com/css/colors-dark.min.14df29dc468d31c46cb59a9b259c6e5c1623b01cee7d55d63f81e588d3496fc6.css">
 
 		<script data-ad-client="ca-pub-7615633322343749" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -47,86 +47,84 @@
 		<h1><a href="https://www.young40.com/posts/2018-07-17-learnmetal-a-colored-triangle/">学习Metal: 带色的三角形</a> </h1>
 
 		<div class="post-content"><p>
-上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.
-</p>
-<h1 id="headline-1">
+上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
 定义数据结构
-</h1>
-<p>
-我们来定义一个数据结构 Vertex, 用于向shader传递顶点数据. 
-</p>
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>我们来定义一个数据结构 Vertex, 用于向shader传递顶点数据. </p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Vertex</span> {
     <span style="color:#66d9ef">var</span> position: vector_float4
     <span style="color:#66d9ef">var</span> color: vector_float4
-}</code></pre></div>
-</p>
+}</code></pre></div></p>
 <p>
-Vertex的数据结构中包含了顶点的位置和对应的颜色.
-</p>
-<h1 id="headline-2">
+Vertex的数据结构中包含了顶点的位置和对应的颜色.</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
 生成顶点数据
-</h1>
-<p>
-我们需要改写vertexData的数据类型为 Vertex数组,  并且为其赋值.
-</p>
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<p>我们需要改写vertexData的数据类型为 Vertex数组,  并且为其赋值.</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">vertexData = [Vertex(position: [   <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">0.7</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>] , color: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]),
               Vertex(position: [<span style="color:#f92672">-</span><span style="color:#ae81ff">0.7</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.7</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>] , color: [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]),
-              Vertex(position: [ <span style="color:#ae81ff">0.7</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.7</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>] , color: [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>])]</code></pre></div>
-</p>
+              Vertex(position: [ <span style="color:#ae81ff">0.7</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.7</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>] , color: [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>])]</code></pre></div></p>
 <p>
-同样在计算vertexData占用内存大小的时候, 注意需要计算Vertex的大小.
-</p>
-<h1 id="headline-3">
+同样在计算vertexData占用内存大小的时候, 注意需要计算Vertex的大小.</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
 改变shader
-</h1>
-<p>
-shader中我们需要改变Vertex的定义, 增加一个color.
-</p>
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
+<p>shader中我们需要改变Vertex的定义, 增加一个color.</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Vertex</span> {
     float4 position <span style="color:#a6e22e">[[position]]</span>;
     float4 color;
 };
-</code></pre></div>
-</p>
+</code></pre></div></p>
 <p>
-fragment function 我们需要返回Vertex对应的color.
-</p>
+fragment function 我们需要返回Vertex对应的color.</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">fragment float4 <span style="color:#a6e22e">fragment_func</span>(Vertex vert <span style="color:#a6e22e">[[stage_in]]</span>) {
     <span style="color:#66d9ef">return</span> vert.color;
 }
-</code></pre></div>
-</p>
-<h1 id="headline-4">
+</code></pre></div></p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
+<h2 id="headline-4">
 看看结果吧!
-</h1>
+</h2>
+<div id="outline-text-headline-4" class="outline-text-2">
+<p>我们不需要再改变什么就能看到结果了.</p>
 <p>
-我们不需要再改变什么就能看到结果了.
-</p>
-<p>
-<img src="/upload/2018-07/LearnMetal-04-A-Colored-Triangle.png" alt="/upload/2018-07/LearnMetal-04-A-Colored-Triangle.png" title="/upload/2018-07/LearnMetal-04-A-Colored-Triangle.png" />
-</p>
-<h1 id="headline-5">
+<img src="/upload/2018-07/LearnMetal-04-A-Colored-Triangle.png" alt="/upload/2018-07/LearnMetal-04-A-Colored-Triangle.png" title="/upload/2018-07/LearnMetal-04-A-Colored-Triangle.png" /></p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
 一点发现
-</h1>
-<p>
-我看metalkit.org的教程, 上面提到传递数据给shader的时候, 定义一个Vertex.
-如果我们不定义又会怎样呢? 结果是没有区别.
-</p>
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
+<p>我看metalkit.org的教程, 上面提到传递数据给shader的时候, 定义一个Vertex.
+如果我们不定义又会怎样呢? 结果是没有区别.</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">vertexData = [   <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">0.7</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>,
               <span style="color:#f92672">-</span><span style="color:#ae81ff">0.7</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.7</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>,
-               <span style="color:#ae81ff">0.7</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.7</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>]</code></pre></div>
-</p>
+               <span style="color:#ae81ff">0.7</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.7</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>,  <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>]</code></pre></div></p>
 <p>
-vertexData依然保持Float类型, 依然是可以正确渲染的.
-</p>
+vertexData依然保持Float类型, 依然是可以正确渲染的.</p>
 <p>
-希望这点发现能帮助你理解顶点数据传输的本质. 
-</p></div>
+希望这点发现能帮助你理解顶点数据传输的本质. </p>
+</div>
+</div></div>
 
 		<p class="meta">Posted on <span class="postdate">17. July 2018</span></p>
 	</article>

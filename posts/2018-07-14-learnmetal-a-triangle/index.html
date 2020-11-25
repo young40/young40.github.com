@@ -8,7 +8,7 @@
 		<title>学习Metal: Hello, Triangle</title>
 
 		
-		<link rel="stylesheet" href="https://www.young40.com/css/colors-dark.min.217a2547e8e6c808986d22ef70b50263c2d6a4bbc80ed42e97e280a41103f9b5.css">
+		<link rel="stylesheet" href="https://www.young40.com/css/colors-dark.min.14df29dc468d31c46cb59a9b259c6e5c1623b01cee7d55d63f81e588d3496fc6.css">
 
 		<script data-ad-client="ca-pub-7615633322343749" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -47,14 +47,13 @@
 		<h1><a href="https://www.young40.com/posts/2018-07-14-learnmetal-a-triangle/">学习Metal: Hello, Triangle</a> </h1>
 
 		<div class="post-content"><p>
-学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.
-</p>
-<h1 id="headline-1">
+学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
 扩展MyMetalView
-</h1>
-<p>
-我们给上次帖子中的MyMetalView增加几个成员函数待用.
-</p>
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>我们给上次帖子中的MyMetalView增加几个成员函数待用.</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyMetalView</span>: MTKView {
     <span style="color:#66d9ef">var</span> vertexData: [Float]<span style="color:#f92672">!</span>
@@ -63,17 +62,17 @@
     <span style="color:#66d9ef">var</span> renderPipelineState: MTLRenderPipelineState!
 
     <span style="color:#66d9ef">var</span> cmdQueue: MTLCommandQueue!
-}</code></pre></div>
-</p>
-<h1 id="headline-2">
+}</code></pre></div></p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
 准备顶点
-</h1>
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<p>我们在屏幕中间画一个三角形, 三个顶点的数据放在vertexData里面.</p>
 <p>
-我们在屏幕中间画一个三角形, 三个顶点的数据放在vertexData里面.
-</p>
-<p>
-并且生成了一个MTLBuffer, vertexBuffer.
-</p>
+  并且生成了一个MTLBuffer, vertexBuffer.</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">initVertex</span>() {
     vertexData = [<span style="color:#f92672">-</span><span style="color:#ae81ff">0.7</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">0.7</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">1.0</span>,
@@ -83,14 +82,15 @@
     <span style="color:#66d9ef">let</span> vertexDataSize = vertexData.count <span style="color:#f92672">*</span> MemoryLayout&lt;Float&gt;.size
 
     vertexBuffer = (<span style="color:#66d9ef">self</span>.device?.makeBuffer(bytes: vertexData, length: vertexDataSize, options: []))<span style="color:#f92672">!</span>
-}</code></pre></div>
-</p>
-<h1 id="headline-3">
+}</code></pre></div></p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
 Metal Shader
-</h1>
-<p>
-我们需要写一个最基本的shader来渲染.
-</p>
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
+<p>我们需要写一个最基本的shader来渲染.</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;metal_stdlib&gt;</span><span style="color:#75715e">
 </span><span style="color:#75715e"></span>
@@ -108,11 +108,9 @@ vertex Vertex <span style="color:#a6e22e">vertex_func</span>(constant Vertex <sp
 fragment float4 <span style="color:#a6e22e">fragment_func</span>(Vertex vert <span style="color:#a6e22e">[[stage_in]]</span>) {
     <span style="color:#66d9ef">return</span> float4(<span style="color:#ae81ff">0.7</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
 }
-</code></pre></div>
-</p>
+</code></pre></div></p>
 <p>
-我们在后面再详细讨论Metal Shader.
-</p>
+  我们在后面再详细讨论Metal Shader.</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">initShader</span>() {
     <span style="color:#66d9ef">let</span> shaderStr = <span style="color:#e6db74">&#34;&#34;&#34; ... &#34;&#34;&#34;</span>
@@ -135,18 +133,18 @@ fragment float4 <span style="color:#a6e22e">fragment_func</span>(Vertex vert <sp
         print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span>e<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
         fatalError()
     }
-}</code></pre></div>
-</p>
+}</code></pre></div></p>
 <p>
-为了便于编辑shader内容, 我们将shader放入变量shaderStr中. 
-通过上面代码就获得了一个带有我们自定义的MTLRenderPipelineState.
-</p>
-<h1 id="headline-4">
+ 为了便于编辑shader内容, 我们将shader放入变量shaderStr中. 
+ 通过上面代码就获得了一个带有我们自定义的MTLRenderPipelineState.</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
+<h2 id="headline-4">
 渲染
-</h1>
-<p>
-接下来渲染.
-</p>
+</h2>
+<div id="outline-text-headline-4" class="outline-text-2">
+<p>接下来渲染.</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">draw</span>(<span style="color:#66d9ef">_</span> dirtyRect: NSRect) {
     <span style="color:#66d9ef">let</span> renderPassDescriptor = <span style="color:#66d9ef">self</span>.currentRenderPassDescriptor!
@@ -167,25 +165,25 @@ fragment float4 <span style="color:#a6e22e">fragment_func</span>(Vertex vert <sp
         
     cmdBuffer.present(drawable!)
     cmdBuffer.commit()
-}</code></pre></div>
-</p>
-<h1 id="headline-5">
+}</code></pre></div></p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
 一点感慨
-</h1>
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
+<p>在写这个三角形的demo的时候, 走了一点弯路, 感觉写对了, 三角形却怎么都渲染不出来. 翻来覆去的比较代码, 没有一点头绪.</p>
 <p>
-在写这个三角形的demo的时候, 走了一点弯路, 感觉写对了, 三角形却怎么都渲染不出来. 翻来覆去的比较代码, 没有一点头绪.
-</p>
+  这时我把MyMetalView搬到一个空白的Xcode工程中进行调试, 点了一下&#34;Capture GPU frame&#34;, 马上打开了一片新天地. 
+  在GPU运行堆栈, 看到Geometry的顶点数据异常. 然后反过来看顶点数据初始化的时候, vertexData 声明成了 initVertex的局部变量.
+  这样导致渲染的时候, vertexData就变成了未定义的值了. 顺利解决问题.</p>
 <p>
-这时我把MyMetalView搬到一个空白的Xcode工程中进行调试, 点了一下&#34;Capture GPU frame&#34;, 马上打开了一片新天地. 
-在GPU运行堆栈, 看到Geometry的顶点数据异常. 然后反过来看顶点数据初始化的时候, vertexData 声明成了 initVertex的局部变量.
-这样导致渲染的时候, vertexData就变成了未定义的值了. 顺利解决问题.
-</p>
+  想到学习OpenGL的时候, 一旦渲染出错, 真是一筹莫展. Metal借助Xcode这种一点即用的GPU调试功能, 一定会对我们掌握3D渲染大有裨益.</p>
 <p>
-想到学习OpenGL的时候, 一旦渲染出错, 真是一筹莫展. Metal借助Xcode这种一点即用的GPU调试功能, 一定会对我们掌握3D渲染大有裨益.
-</p>
-<p>
-同样代码也都托管在github上. <a href="https://github.com/young40/LearnMetal">https://github.com/young40/LearnMetal</a> . 欢迎star, 感谢!
-</p></div>
+  同样代码也都托管在github上. <a href="https://github.com/young40/LearnMetal">https://github.com/young40/LearnMetal</a> . 欢迎star, 感谢!</p>
+</div>
+</div></div>
 
 		<p class="meta">Posted on <span class="postdate">14. July 2018</span></p>
 	</article>

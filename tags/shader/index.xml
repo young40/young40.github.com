@@ -7,10 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2019 Copyright 杨世玲</copyright>
-    <lastBuildDate>Sun, 22 Jul 2018 00:00:06 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.young40.com/tags/shader/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Wed, 25 Nov 2020 10:33:19 +0800</lastBuildDate><atom:link href="https://www.young40.com/tags/shader/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unity Shader入门精要笔记 零</title>
+      <link>https://www.young40.com/posts/2020-11-25-unity-shader-rumen-jingyao-00/</link>
+      <pubDate>Wed, 25 Nov 2020 10:33:19 +0800</pubDate>
+      
+      <guid>https://www.young40.com/posts/2020-11-25-unity-shader-rumen-jingyao-00/</guid>
+      <description>&lt;p&gt;
+&amp;lt;&amp;lt;Unity Shader 入门精要&amp;gt;&amp;gt; 是国内关于Unity Shader的稀有的一本书, 也几乎是每一位有志于学习Unity Shader的开发者必读之书.
+最近我开始学习Unity Shader, 计划详读此书并记录笔记和感悟.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>MTSL笔记03: 数据类型 - 向量</title>
@@ -19,11 +26,9 @@
       
       <guid>https://www.young40.com/posts/2018-07-22-metal-shading-languae-note-03/</guid>
       <description>&lt;p&gt;
-Metal支持一系列向量数据类型, 由系统的向量数学库提供.
-&lt;/p&gt;
+Metal支持一系列向量数据类型, 由系统的向量数学库提供.&lt;/p&gt;
 &lt;p&gt;
-PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
-&lt;/p&gt;</description>
+PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -34,11 +39,9 @@ PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
       <guid>https://www.young40.com/posts/2018-07-21-metal-shading-language-note-02/</guid>
       <description>&lt;p&gt;
 第二章是关于数据类型, 向量, 矩阵, 原子数据类型, buffer, 纹理(texture), 采样器(sampler), 结构体. 
-还设计数据对齐和类型转换. 
-&lt;/p&gt;
+还设计数据对齐和类型转换. &lt;/p&gt;
 &lt;p&gt;
-我们先来看看标量(Scalar).
-&lt;/p&gt;</description>
+我们先来看看标量(Scalar).&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -48,8 +51,7 @@ PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
       
       <guid>https://www.young40.com/posts/2018-07-19-metal-shading-language-note-01/</guid>
       <description>&lt;p&gt;
-最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完.
-&lt;/p&gt;</description>
+最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完.&lt;/p&gt;</description>
     </item>
     
   </channel>

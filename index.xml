@@ -7,10 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2019 Copyright 杨世玲</copyright>
-    <lastBuildDate>Sun, 22 Jul 2018 00:00:06 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.young40.com/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Wed, 25 Nov 2020 10:33:19 +0800</lastBuildDate><atom:link href="https://www.young40.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unity Shader入门精要笔记 零</title>
+      <link>https://www.young40.com/posts/2020-11-25-unity-shader-rumen-jingyao-00/</link>
+      <pubDate>Wed, 25 Nov 2020 10:33:19 +0800</pubDate>
+      
+      <guid>https://www.young40.com/posts/2020-11-25-unity-shader-rumen-jingyao-00/</guid>
+      <description>&lt;p&gt;
+&amp;lt;&amp;lt;Unity Shader 入门精要&amp;gt;&amp;gt; 是国内关于Unity Shader的稀有的一本书, 也几乎是每一位有志于学习Unity Shader的开发者必读之书.
+最近我开始学习Unity Shader, 计划详读此书并记录笔记和感悟.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>MTSL笔记03: 数据类型 - 向量</title>
@@ -19,11 +26,9 @@
       
       <guid>https://www.young40.com/posts/2018-07-22-metal-shading-languae-note-03/</guid>
       <description>&lt;p&gt;
-Metal支持一系列向量数据类型, 由系统的向量数学库提供.
-&lt;/p&gt;
+Metal支持一系列向量数据类型, 由系统的向量数学库提供.&lt;/p&gt;
 &lt;p&gt;
-PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
-&lt;/p&gt;</description>
+PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -34,11 +39,9 @@ PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
       <guid>https://www.young40.com/posts/2018-07-21-metal-shading-language-note-02/</guid>
       <description>&lt;p&gt;
 第二章是关于数据类型, 向量, 矩阵, 原子数据类型, buffer, 纹理(texture), 采样器(sampler), 结构体. 
-还设计数据对齐和类型转换. 
-&lt;/p&gt;
+还设计数据对齐和类型转换. &lt;/p&gt;
 &lt;p&gt;
-我们先来看看标量(Scalar).
-&lt;/p&gt;</description>
+我们先来看看标量(Scalar).&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -48,8 +51,7 @@ PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
       
       <guid>https://www.young40.com/posts/2018-07-19-metal-shading-language-note-01/</guid>
       <description>&lt;p&gt;
-最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完.
-&lt;/p&gt;</description>
+最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -59,8 +61,7 @@ PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
       
       <guid>https://www.young40.com/posts/2018-07-17-learnmetal-a-colored-triangle/</guid>
       <description>&lt;p&gt;
-上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.
-&lt;/p&gt;</description>
+上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -70,8 +71,7 @@ PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
       
       <guid>https://www.young40.com/posts/2018-07-14-learnmetal-a-triangle/</guid>
       <description>&lt;p&gt;
-学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.
-&lt;/p&gt;</description>
+学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -81,11 +81,9 @@ PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
       
       <guid>https://www.young40.com/posts/2018-07-06-learnmetal-metalkit/</guid>
       <description>&lt;p&gt;
-当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. 
-&lt;/p&gt;
+当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. &lt;/p&gt;
 &lt;p&gt;
-MetalKit提供的MTKView更为方便快捷. 
-&lt;/p&gt;</description>
+MetalKit提供的MTKView更为方便快捷. &lt;/p&gt;</description>
     </item>
     
     <item>
@@ -95,8 +93,7 @@ MetalKit提供的MTKView更为方便快捷.
       
       <guid>https://www.young40.com/posts/2018-07-04-learnmetal-get-device/</guid>
       <description>&lt;p&gt;
-使用Metal的第一件事, 就是要获取Metal的设备. 正如在OpenGL中, 需要首先获取到OpenGL的context.
-&lt;/p&gt;</description>
+使用Metal的第一件事, 就是要获取Metal的设备. 正如在OpenGL中, 需要首先获取到OpenGL的context.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -106,8 +103,7 @@ MetalKit提供的MTKView更为方便快捷.
       
       <guid>https://www.young40.com/posts/2018-07-02-learnmetal-introducing-metal/</guid>
       <description>&lt;p&gt;
-进入到2018年, Metal已经发布了4年了. 随着WWDC 2018上Apple宣布将在iOS, OS X等平台废弃OpenGL, OpenGL ES等API, 摆在开发者面前一个不得不面对的事实就是, 需要去掌握Metal了.
-&lt;/p&gt;</description>
+进入到2018年, Metal已经发布了4年了. 随着WWDC 2018上Apple宣布将在iOS, OS X等平台废弃OpenGL, OpenGL ES等API, 摆在开发者面前一个不得不面对的事实就是, 需要去掌握Metal了.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -117,8 +113,7 @@ MetalKit提供的MTKView更为方便快捷.
       
       <guid>https://www.young40.com/posts/2018-07-01-git-global-ignore/</guid>
       <description>&lt;p&gt;
-自从上次博客迁移完之后, 一直在长草. 刚才偶然间发现, &lt;a href=&#34;https://www.young40.com/tags/&#34;&gt;Tags&lt;/a&gt; 的链接报404找不到. 这是怎么回事呢? 太奇怪了.
-&lt;/p&gt;</description>
+自从上次博客迁移完之后, 一直在长草. 刚才偶然间发现, &lt;a href=&#34;https://www.young40.com/tags/&#34;&gt;Tags&lt;/a&gt; 的链接报404找不到. 这是怎么回事呢? 太奇怪了.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -128,8 +123,7 @@ MetalKit提供的MTKView更为方便快捷.
       
       <guid>https://www.young40.com/posts/2018-06-30-learn-swift-01-guard/</guid>
       <description>&lt;p&gt;
-&lt;code class=&#34;verbatim&#34;&gt;guard&lt;/code&gt; 是Swift 2.0引入的新关键字, 用于当条件不满足时, 不再执行后续的代码. 当然, 官方文档上说是交出当前作用域的程序控制权.
-&lt;/p&gt;</description>
+&lt;code class=&#34;verbatim&#34;&gt;guard&lt;/code&gt; 是Swift 2.0引入的新关键字, 用于当条件不满足时, 不再执行后续的代码. 当然, 官方文档上说是交出当前作用域的程序控制权.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -139,8 +133,7 @@ MetalKit提供的MTKView更为方便快捷.
       
       <guid>https://www.young40.com/posts/2018-06-12-google-cloud-f-gfw/</guid>
       <description>&lt;p&gt;
-Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记录一下重点过程.
-&lt;/p&gt;</description>
+Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记录一下重点过程.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -149,13 +142,13 @@ Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记�
       <pubDate>Fri, 09 Feb 2018 15:58:36 +0800</pubDate>
       
       <guid>https://www.young40.com/posts/2018-02-09-move-to-hugo/</guid>
-      <description>&lt;h4 id=&#34;headline-1&#34;&gt;
+      <description>&lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-5&#34;&gt;
+&lt;h5 id=&#34;headline-1&#34;&gt;
 又双叒叕迁移了
-&lt;/h4&gt;
-&lt;p&gt;
-继上次迁移之后, 我的博客又一次&lt;sup class=&#34;footnote-reference&#34;&gt;&lt;a id=&#34;footnote-reference-1&#34; href=&#34;#footnote-1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;迁移了. 基于Node.js的Hexo&lt;sup class=&#34;footnote-reference&#34;&gt;&lt;a id=&#34;footnote-reference-2&#34; href=&#34;#footnote-2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;用起来还不错, 但现在每次执行hexo命令的时候, 都是一大堆Warning. 
-偶然间发现了基于Go的Hugo&lt;sup class=&#34;footnote-reference&#34;&gt;&lt;a id=&#34;footnote-reference-3&#34; href=&#34;#footnote-3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;, 所以又萌生了迁移的念头.
-&lt;/p&gt;</description>
+&lt;/h5&gt;
+&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-5&#34;&gt;
+&lt;p&gt;继上次迁移之后, 我的博客又一次&lt;sup class=&#34;footnote-reference&#34;&gt;&lt;a id=&#34;footnote-reference-1&#34; href=&#34;#footnote-1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;迁移了. 基于Node.js的Hexo&lt;sup class=&#34;footnote-reference&#34;&gt;&lt;a id=&#34;footnote-reference-2&#34; href=&#34;#footnote-2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;用起来还不错, 但现在每次执行hexo命令的时候, 都是一大堆Warning. 
+偶然间发现了基于Go的Hugo&lt;sup class=&#34;footnote-reference&#34;&gt;&lt;a id=&#34;footnote-reference-3&#34; href=&#34;#footnote-3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;, 所以又萌生了迁移的念头.&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unity on 杨世玲的博客</title>
+    <link>https://www.young40.com/tags/unity/</link>
+    <description>Recent content in Unity on 杨世玲的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© 2019 Copyright 杨世玲</copyright>
+    <lastBuildDate>Wed, 25 Nov 2020 10:33:19 +0800</lastBuildDate><atom:link href="https://www.young40.com/tags/unity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unity Shader入门精要笔记 零</title>
+      <link>https://www.young40.com/posts/2020-11-25-unity-shader-rumen-jingyao-00/</link>
+      <pubDate>Wed, 25 Nov 2020 10:33:19 +0800</pubDate>
+      
+      <guid>https://www.young40.com/posts/2020-11-25-unity-shader-rumen-jingyao-00/</guid>
+      <description>&lt;p&gt;
+&amp;lt;&amp;lt;Unity Shader 入门精要&amp;gt;&amp;gt; 是国内关于Unity Shader的稀有的一本书, 也几乎是每一位有志于学习Unity Shader的开发者必读之书.
+最近我开始学习Unity Shader, 计划详读此书并记录笔记和感悟.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -8,7 +8,7 @@
 		<title>学习Swift: guard</title>
 
 		
-		<link rel="stylesheet" href="https://www.young40.com/css/colors-dark.min.217a2547e8e6c808986d22ef70b50263c2d6a4bbc80ed42e97e280a41103f9b5.css">
+		<link rel="stylesheet" href="https://www.young40.com/css/colors-dark.min.14df29dc468d31c46cb59a9b259c6e5c1623b01cee7d55d63f81e588d3496fc6.css">
 
 		<script data-ad-client="ca-pub-7615633322343749" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -47,35 +47,27 @@
 		<h1><a href="https://www.young40.com/posts/2018-06-30-learn-swift-01-guard/">学习Swift: guard</a> </h1>
 
 		<div class="post-content"><p>
-<code class="verbatim">guard</code> 是Swift 2.0引入的新关键字, 用于当条件不满足时, 不再执行后续的代码. 当然, 官方文档上说是交出当前作用域的程序控制权.
-</p>
+<code class="verbatim">guard</code> 是Swift 2.0引入的新关键字, 用于当条件不满足时, 不再执行后续的代码. 当然, 官方文档上说是交出当前作用域的程序控制权.</p>
 <p>
-<code class="verbatim">guard</code> 的格式是这样的:
-</p>
+<code class="verbatim">guard</code> 的格式是这样的:</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">guard</span> =condition= <span style="color:#66d9ef">else</span> {
     =statements=
-}</code></pre></div>
-</p>
+}</code></pre></div></p>
 <p>
-一个例子🌰:
-</p>
+一个例子🌰:</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> hello = <span style="color:#66d9ef">false</span>
 
 <span style="color:#66d9ef">guard</span> hello <span style="color:#66d9ef">else</span> {
     fatalError(<span style="color:#e6db74">&#34;got error.&#34;</span>)
-}</code></pre></div>
-</p>
+}</code></pre></div></p>
 <p>
-<code class="verbatim">guard</code> 不能滥用, <code class="verbatim">else</code> 里面的语句不宜太复杂. 应当条件不满足后, 马上退出或者抛出异常.
-</p>
+<code class="verbatim">guard</code> 不能滥用, <code class="verbatim">else</code> 里面的语句不宜太复杂. 应当条件不满足后, 马上退出或者抛出异常.</p>
 <p>
-可以继续参看 <code class="verbatim">Swift</code> 官方语言手册上, 关于 <code class="verbatim">Guard Statement</code> 一节.
-</p>
+可以继续参看 <code class="verbatim">Swift</code> 官方语言手册上, 关于 <code class="verbatim">Guard Statement</code> 一节.</p>
 <p>
-<a href="https://docs.swift.org/swift-book/ReferenceManual/Statements.html">https://docs.swift.org/swift-book/ReferenceManual/Statements.html</a>
-</p></div>
+<a href="https://docs.swift.org/swift-book/ReferenceManual/Statements.html">https://docs.swift.org/swift-book/ReferenceManual/Statements.html</a></p></div>
 
 		<p class="meta">Posted on <span class="postdate">30. June 2018</span></p>
 	</article>

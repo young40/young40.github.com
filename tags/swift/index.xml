@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2019 Copyright 杨世玲</copyright>
-    <lastBuildDate>Tue, 17 Jul 2018 23:15:13 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.young40.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 17 Jul 2018 23:15:13 +0800</lastBuildDate><atom:link href="https://www.young40.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>学习Metal: 带色的三角形</title>
       <link>https://www.young40.com/posts/2018-07-17-learnmetal-a-colored-triangle/</link>
@@ -19,8 +15,7 @@
       
       <guid>https://www.young40.com/posts/2018-07-17-learnmetal-a-colored-triangle/</guid>
       <description>&lt;p&gt;
-上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.
-&lt;/p&gt;</description>
+上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -30,8 +25,7 @@
       
       <guid>https://www.young40.com/posts/2018-07-14-learnmetal-a-triangle/</guid>
       <description>&lt;p&gt;
-学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.
-&lt;/p&gt;</description>
+学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -41,11 +35,9 @@
       
       <guid>https://www.young40.com/posts/2018-07-06-learnmetal-metalkit/</guid>
       <description>&lt;p&gt;
-当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. 
-&lt;/p&gt;
+当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. &lt;/p&gt;
 &lt;p&gt;
-MetalKit提供的MTKView更为方便快捷. 
-&lt;/p&gt;</description>
+MetalKit提供的MTKView更为方便快捷. &lt;/p&gt;</description>
     </item>
     
     <item>
@@ -55,8 +47,7 @@ MetalKit提供的MTKView更为方便快捷.
       
       <guid>https://www.young40.com/posts/2018-07-04-learnmetal-get-device/</guid>
       <description>&lt;p&gt;
-使用Metal的第一件事, 就是要获取Metal的设备. 正如在OpenGL中, 需要首先获取到OpenGL的context.
-&lt;/p&gt;</description>
+使用Metal的第一件事, 就是要获取Metal的设备. 正如在OpenGL中, 需要首先获取到OpenGL的context.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -66,8 +57,7 @@ MetalKit提供的MTKView更为方便快捷.
       
       <guid>https://www.young40.com/posts/2018-06-30-learn-swift-01-guard/</guid>
       <description>&lt;p&gt;
-&lt;code class=&#34;verbatim&#34;&gt;guard&lt;/code&gt; 是Swift 2.0引入的新关键字, 用于当条件不满足时, 不再执行后续的代码. 当然, 官方文档上说是交出当前作用域的程序控制权.
-&lt;/p&gt;</description>
+&lt;code class=&#34;verbatim&#34;&gt;guard&lt;/code&gt; 是Swift 2.0引入的新关键字, 用于当条件不满足时, 不再执行后续的代码. 当然, 官方文档上说是交出当前作用域的程序控制权.&lt;/p&gt;</description>
     </item>
     
   </channel>

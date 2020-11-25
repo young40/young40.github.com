@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2019 Copyright 杨世玲</copyright>
-    <lastBuildDate>Sun, 01 Jul 2018 00:44:44 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.young40.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 01 Jul 2018 00:44:44 +0800</lastBuildDate><atom:link href="https://www.young40.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Git全局忽略挖了一个坑</title>
       <link>https://www.young40.com/posts/2018-07-01-git-global-ignore/</link>
@@ -19,8 +15,7 @@
       
       <guid>https://www.young40.com/posts/2018-07-01-git-global-ignore/</guid>
       <description>&lt;p&gt;
-自从上次博客迁移完之后, 一直在长草. 刚才偶然间发现, &lt;a href=&#34;https://www.young40.com/tags/&#34;&gt;Tags&lt;/a&gt; 的链接报404找不到. 这是怎么回事呢? 太奇怪了.
-&lt;/p&gt;</description>
+自从上次博客迁移完之后, 一直在长草. 刚才偶然间发现, &lt;a href=&#34;https://www.young40.com/tags/&#34;&gt;Tags&lt;/a&gt; 的链接报404找不到. 这是怎么回事呢? 太奇怪了.&lt;/p&gt;</description>
     </item>
     
   </channel>

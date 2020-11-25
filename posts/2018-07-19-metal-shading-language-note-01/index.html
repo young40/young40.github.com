@@ -8,7 +8,7 @@
 		<title>MTSL笔记01: 简介</title>
 
 		
-		<link rel="stylesheet" href="https://www.young40.com/css/colors-dark.min.217a2547e8e6c808986d22ef70b50263c2d6a4bbc80ed42e97e280a41103f9b5.css">
+		<link rel="stylesheet" href="https://www.young40.com/css/colors-dark.min.14df29dc468d31c46cb59a9b259c6e5c1623b01cee7d55d63f81e588d3496fc6.css">
 
 		<script data-ad-client="ca-pub-7615633322343749" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -47,203 +47,173 @@
 		<h1><a href="https://www.young40.com/posts/2018-07-19-metal-shading-language-note-01/">MTSL笔记01: 简介</a> </h1>
 
 		<div class="post-content"><p>
-最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完.
-</p>
+最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完.</p>
 <p>
-下载: <a href="https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf">Metal Shading Language Specification</a>
-</p>
-<h1 id="headline-1">
+下载: <a href="https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf">Metal Shading Language Specification</a></p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
 前言
-</h1>
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>本文档是关于Metal 通用图形和计算的语言. Metal Shader是一门基于C++的编程语言, 开发者可以使用它来写出可以运行在GPU上的图形或者通用并行计算的程序.
+图形和通用计算程序可以紧密地集成在一起, 因为他们都是由Metal Shader这个统一的语言写成的.</p>
 <p>
-本文档是关于Metal 通用图形和计算的语言. Metal Shader是一门基于C++的编程语言, 开发者可以使用它来写出可以运行在GPU上的图形或者通用并行计算的程序.
-图形和通用计算程序可以紧密地集成在一起, 因为他们都是由Metal Shader这个统一的语言写成的.
-</p>
-<p>
-PS: 原文似乎不再区分Metal和Metal Shader. 所以, 我也不再区分. 
-</p>
-<h2 id="headline-2">
+PS: 原文似乎不再区分Metal和Metal Shader. 所以, 我也不再区分. </p>
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
 1.1 适用读者
-</h2>
-<p>
-使用Metal framework的开发者应该阅读本文档.
-</p>
-<h2 id="headline-3">
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>使用Metal framework的开发者应该阅读本文档.</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
 1.2 文档结构
-</h2>
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
 <ul>
 <li>
-<p>
-简介,         本文档简介, 覆盖了Metal Shader和C++ 14之间的相同和不同之处.
-</p>
+<p>简介,         本文档简介, 覆盖了Metal Shader和C++ 14之间的相同和不同之处.</p>
 </li>
 <li>
-<p>
-数据结构,     列举了Metal的数据类型. 向量(vector), 矩阵(matrices), buffer, 纹理(texture), 采样器(sampler). 还讨论了数据对齐(type alignment), 类型转换.
-</p>
+<p>数据结构,     列举了Metal的数据类型. 向量(vector), 矩阵(matrices), buffer, 纹理(texture), 采样器(sampler). 还讨论了数据对齐(type alignment), 类型转换.</p>
 </li>
 <li>
-<p>
-运算操作,     Metal 运算. 
-</p>
+<p>运算操作,     Metal 运算. </p>
 </li>
 <li>
-<p>
-函数和变量,   函数和变量的声明细节, 属性(attribute)
-</p>
+<p>函数和变量,   函数和变量的声明细节, 属性(attribute)</p>
 </li>
 <li>
-<p>
-Metal 标准库, 一系列内置函数
-</p>
+<p>Metal 标准库, 一系列内置函数</p>
 </li>
 <li>
-<p>
-编译,         Metal 编译器(complier)的可选项, 包括, 预编译指令, (options for math intrinsics), 流程(control) 优化.
-</p>
+<p>编译,         Metal 编译器(complier)的可选项, 包括, 预编译指令, (options for math intrinsics), 流程(control) 优化.</p>
 </li>
 <li>
-<p>
-Numerical Compliance, describes requirements for representing floating-point numbers, including accuracy in mathematical operations.
-</p>
+<p>Numerical Compliance, describes requirements for representing floating-point numbers, including accuracy in mathematical operations.</p>
 </li>
 </ul>
-<p>
-如果没有特殊说明, 本文档提及的特性都在Metal 1.0后都适用.
-</p>
-<h2 id="headline-4">
+<p>如果没有特殊说明, 本文档提及的特性都在Metal 1.0后都适用.</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
 1.3 参考
-</h2>
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
 <p>
-C++: 
-</p>
+C++: </p>
 <p>
-C++程序设计语言(第四版) 有中文版
-</p>
+C++程序设计语言(第四版) 有中文版</p>
 <p>
-Metal:
-</p>
+Metal:</p>
 <p>
-官方文档, <a href="https://developer.apple.com/documentation/metal">https://developer.apple.com/documentation/metal</a>
-</p>
-<h2 id="headline-5">
+官方文档, <a href="https://developer.apple.com/documentation/metal">https://developer.apple.com/documentation/metal</a></p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-3">
+<h3 id="headline-5">
 1.4 Metal和C++14
-</h2>
+</h3>
+<div id="outline-text-headline-5" class="outline-text-3">
 <p>
-Metal基于C++ 14的标准, 进行了一些扩展, 也有一些限制. 
-</p>
+Metal基于C++ 14的标准, 进行了一些扩展, 也有一些限制. </p>
 <p>
-PS: C++ 14 Specification, <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf">http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf</a>
-</p>
-<h3 id="headline-6">
+PS: C++ 14 Specification, <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf">http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf</a></p>
+<div id="outline-container-headline-6" class="outline-4">
+<h4 id="headline-6">
 1.4.1 重载(overloading)
-</h3>
-<p>
-Metal支持重载. The function overloading rules are extended to include the address space attribute of an argument. 
-Metal的图形和计算(kernel)函数不能被重载. (C++ 14 Spec, Section 13)
-</p>
-<h3 id="headline-7">
+</h4>
+<div id="outline-text-headline-6" class="outline-text-4">
+<p>Metal支持重载. The function overloading rules are extended to include the address space attribute of an argument. 
+Metal的图形和计算(kernel)函数不能被重载. (C++ 14 Spec, Section 13)</p>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-4">
+<h4 id="headline-7">
 1.4.2 模版(Templates)
-</h3>
-<p>
-Metal 支持模版. 
-</p>
-<h3 id="headline-8">
+</h4>
+<div id="outline-text-headline-7" class="outline-text-4">
+<p>Metal 支持模版. </p>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-4">
+<h4 id="headline-8">
 1.4.3 预编译指令
-</h3>
-<p>
-Meal 支持.  (C++ 14 Spec, Section 16)
-</p>
-<h3 id="headline-9">
+</h4>
+<div id="outline-text-headline-8" class="outline-text-4">
+<p>Meal 支持.  (C++ 14 Spec, Section 16)</p>
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-4">
+<h4 id="headline-9">
 1.4.4 限制
-</h3>
-<p>
-下列C++ 14的特性, Metal不支持.
-</p>
+</h4>
+<div id="outline-text-headline-9" class="outline-text-4">
+<p>下列C++ 14的特性, Metal不支持.</p>
 <ul>
 <li>
-<p>
-lambda 表达式                              (C++ 14 Spec, Section 5.1.2)
-</p>
+<p>lambda 表达式                              (C++ 14 Spec, Section 5.1.2)</p>
 </li>
 <li>
-<p>
-dynamic_cast 动态类型转换                  (C++ 14 Spec, Section 5.2.7)
-</p>
+<p>dynamic_cast 动态类型转换                  (C++ 14 Spec, Section 5.2.7)</p>
 </li>
 <li>
-<p>
-类型识别                                   (C++ 14 Spec, Section 5.2.8)
-</p>
+<p>类型识别                                   (C++ 14 Spec, Section 5.2.8)</p>
 </li>
 <li>
-<p>
-递归调用                                   (C++ 14 Spec, Section 5.2.2)
-</p>
+<p>递归调用                                   (C++ 14 Spec, Section 5.2.2)</p>
 </li>
 <li>
-<p>
-new 和 delete 操作                         (C++ 14 Spec, Section 5.3.4, 5.3.5)
-</p>
+<p>new 和 delete 操作                         (C++ 14 Spec, Section 5.3.4, 5.3.5)</p>
 </li>
 <li>
-<p>
-noexcept 操作                              (C++ 14 Spec, Section 5.3.7)
-</p>
+<p>noexcept 操作                              (C++ 14 Spec, Section 5.3.7)</p>
 </li>
 <li>
-<p>
-goto 语句                                  (C++ 14 Spec, Section 6.6)
-</p>
+<p>goto 语句                                  (C++ 14 Spec, Section 6.6)</p>
 </li>
 <li>
-<p>
-register, thread_local storage attribute   (C++ 14 Spec, Section 7.1.1)
-</p>
+<p>register, thread_local storage attribute   (C++ 14 Spec, Section 7.1.1)</p>
 </li>
 <li>
-<p>
-virtual function attribute                 (C++ 14 Spec, Section 7.1.2)
-</p>
+<p>virtual function attribute                 (C++ 14 Spec, Section 7.1.2)</p>
 </li>
 <li>
-<p>
-类的继承                                   (C++ 14 Spec, Section 10, Section 11)
-</p>
+<p>类的继承                                   (C++ 14 Spec, Section 10, Section 11)</p>
 </li>
 <li>
-<p>
-异常处理                                   (C++ 14 Spec, Section 15)
-</p>
+<p>异常处理                                   (C++ 14 Spec, Section 15)</p>
 </li>
 </ul>
+<p>不能在Metal中使用C++ 标准库, Metal拥有自己的标准库.</p>
 <p>
-不能在Metal中使用C++ 标准库, Metal拥有自己的标准库.
-</p>
-<p>
-Metal 限制了指针的使用:
-</p>
+Metal 限制了指针的使用:</p>
 <ul>
 <li>
-<p>
-Arguments to Metal graphics and kernel functions declared in a program that are pointers must be declared with the Metal device, threadgroup, threadgroup_imageblock, or constant address space attribute.
-</p>
+<p>Arguments to Metal graphics and kernel functions declared in a program that are pointers must be declared with the Metal device, threadgroup, threadgroup_imageblock, or constant address space attribute.</p>
 </li>
 <li>
-<p>
-函数指针不支持.
-</p>
+<p>函数指针不支持.</p>
 </li>
 </ul>
-<p>
-Metal函数不能命名为 <code class="verbatim">main</code>.
-</p>
-<h2 id="headline-10">
+<p>Metal函数不能命名为 <code class="verbatim">main</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-10" class="outline-3">
+<h3 id="headline-10">
 1.5 Metal 像素坐标系统
-</h2>
-<p>
-Pixel coordinate, framebuffer attachment, 左上角为坐标原点.
-</p></div>
+</h3>
+<div id="outline-text-headline-10" class="outline-text-3">
+<p>Pixel coordinate, framebuffer attachment, 左上角为坐标原点.</p>
+</div>
+</div>
+</div>
+</div></div>
 
 		<p class="meta">Posted on <span class="postdate">19. July 2018</span></p>
 	</article>

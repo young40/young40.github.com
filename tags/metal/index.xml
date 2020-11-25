@@ -7,11 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2019 Copyright 杨世玲</copyright>
-    <lastBuildDate>Sun, 22 Jul 2018 00:00:06 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.young40.com/tags/metal/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 22 Jul 2018 00:00:06 +0800</lastBuildDate><atom:link href="https://www.young40.com/tags/metal/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MTSL笔记03: 数据类型 - 向量</title>
       <link>https://www.young40.com/posts/2018-07-22-metal-shading-languae-note-03/</link>
@@ -19,11 +15,9 @@
       
       <guid>https://www.young40.com/posts/2018-07-22-metal-shading-languae-note-03/</guid>
       <description>&lt;p&gt;
-Metal支持一系列向量数据类型, 由系统的向量数学库提供.
-&lt;/p&gt;
+Metal支持一系列向量数据类型, 由系统的向量数学库提供.&lt;/p&gt;
 &lt;p&gt;
-PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
-&lt;/p&gt;</description>
+PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -34,11 +28,9 @@ PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
       <guid>https://www.young40.com/posts/2018-07-21-metal-shading-language-note-02/</guid>
       <description>&lt;p&gt;
 第二章是关于数据类型, 向量, 矩阵, 原子数据类型, buffer, 纹理(texture), 采样器(sampler), 结构体. 
-还设计数据对齐和类型转换. 
-&lt;/p&gt;
+还设计数据对齐和类型转换. &lt;/p&gt;
 &lt;p&gt;
-我们先来看看标量(Scalar).
-&lt;/p&gt;</description>
+我们先来看看标量(Scalar).&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -48,8 +40,7 @@ PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
       
       <guid>https://www.young40.com/posts/2018-07-19-metal-shading-language-note-01/</guid>
       <description>&lt;p&gt;
-最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完.
-&lt;/p&gt;</description>
+最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -59,8 +50,7 @@ PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
       
       <guid>https://www.young40.com/posts/2018-07-17-learnmetal-a-colored-triangle/</guid>
       <description>&lt;p&gt;
-上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.
-&lt;/p&gt;</description>
+上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -70,8 +60,7 @@ PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
       
       <guid>https://www.young40.com/posts/2018-07-14-learnmetal-a-triangle/</guid>
       <description>&lt;p&gt;
-学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.
-&lt;/p&gt;</description>
+学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -81,11 +70,9 @@ PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
       
       <guid>https://www.young40.com/posts/2018-07-06-learnmetal-metalkit/</guid>
       <description>&lt;p&gt;
-当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. 
-&lt;/p&gt;
+当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. &lt;/p&gt;
 &lt;p&gt;
-MetalKit提供的MTKView更为方便快捷. 
-&lt;/p&gt;</description>
+MetalKit提供的MTKView更为方便快捷. &lt;/p&gt;</description>
     </item>
     
     <item>
@@ -95,8 +82,7 @@ MetalKit提供的MTKView更为方便快捷.
       
       <guid>https://www.young40.com/posts/2018-07-04-learnmetal-get-device/</guid>
       <description>&lt;p&gt;
-使用Metal的第一件事, 就是要获取Metal的设备. 正如在OpenGL中, 需要首先获取到OpenGL的context.
-&lt;/p&gt;</description>
+使用Metal的第一件事, 就是要获取Metal的设备. 正如在OpenGL中, 需要首先获取到OpenGL的context.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -106,8 +92,7 @@ MetalKit提供的MTKView更为方便快捷.
       
       <guid>https://www.young40.com/posts/2018-07-02-learnmetal-introducing-metal/</guid>
       <description>&lt;p&gt;
-进入到2018年, Metal已经发布了4年了. 随着WWDC 2018上Apple宣布将在iOS, OS X等平台废弃OpenGL, OpenGL ES等API, 摆在开发者面前一个不得不面对的事实就是, 需要去掌握Metal了.
-&lt;/p&gt;</description>
+进入到2018年, Metal已经发布了4年了. 随着WWDC 2018上Apple宣布将在iOS, OS X等平台废弃OpenGL, OpenGL ES等API, 摆在开发者面前一个不得不面对的事实就是, 需要去掌握Metal了.&lt;/p&gt;</description>
     </item>
     
   </channel>

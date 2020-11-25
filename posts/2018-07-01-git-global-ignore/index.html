@@ -8,7 +8,7 @@
 		<title>Git全局忽略挖了一个坑</title>
 
 		
-		<link rel="stylesheet" href="https://www.young40.com/css/colors-dark.min.217a2547e8e6c808986d22ef70b50263c2d6a4bbc80ed42e97e280a41103f9b5.css">
+		<link rel="stylesheet" href="https://www.young40.com/css/colors-dark.min.14df29dc468d31c46cb59a9b259c6e5c1623b01cee7d55d63f81e588d3496fc6.css">
 
 		<script data-ad-client="ca-pub-7615633322343749" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -47,47 +47,39 @@
 		<h1><a href="https://www.young40.com/posts/2018-07-01-git-global-ignore/">Git全局忽略挖了一个坑</a> </h1>
 
 		<div class="post-content"><p>
-自从上次博客迁移完之后, 一直在长草. 刚才偶然间发现, <a href="https://www.young40.com/tags/">Tags</a> 的链接报404找不到. 这是怎么回事呢? 太奇怪了.
-</p>
+自从上次博客迁移完之后, 一直在长草. 刚才偶然间发现, <a href="https://www.young40.com/tags/">Tags</a> 的链接报404找不到. 这是怎么回事呢? 太奇怪了.</p>
 <p>
 而 <code class="verbatim">hugo</code> 本地的调试网站, <code class="verbatim">Tags</code> 的链接又是好的. 一度怀疑了一下 <code class="verbatim">netlify</code> 的服务有问题.
-马上把 <code class="verbatim">tags</code> 目录复制了一份并提交 <code class="verbatim">github</code> , 稍等了一下 <code class="verbatim">netlify</code> 做同步, 访问却没有问题.
-</p>
+马上把 <code class="verbatim">tags</code> 目录复制了一份并提交 <code class="verbatim">github</code> , 稍等了一下 <code class="verbatim">netlify</code> 做同步, 访问却没有问题.</p>
 <p>
 这时又猜着是不是需要把 <code class="verbatim">tags</code> 目录给重新上传一下? 删除了 <code class="verbatim">tags</code> 目录, 意外发现 <code class="verbatim">git</code> 检查状态无任何变化.
-重新生成了一下博客, 查看 <code class="verbatim">git</code> 状态确实是没有任何变化. 又检查了一下, 目录下并无定义 <code class="verbatim">.gitignore</code> 文件.
-</p>
-<h1 id="headline-1">
+重新生成了一下博客, 查看 <code class="verbatim">git</code> 状态确实是没有任何变化. 又检查了一下, 目录下并无定义 <code class="verbatim">.gitignore</code> 文件.</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
 太奇怪了, 见鬼了!!!
-</h1>
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
 <p>
-还是检查下 <code class="verbatim">git</code> 的全局忽略文件吧.
-</p>
+还是检查下 <code class="verbatim">git</code> 的全局忽略文件吧.</p>
 <p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git config --global --list</code></pre></div>
-</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git config --global --list</code></pre></div></p>
 <p>
-发现有一行, 定义了全局忽略
-</p>
+发现有一行, 定义了全局忽略</p>
 <blockquote>
-<p>
-core.excludesfile=/Users/young40/dot/.gitignore_global
-</p>
+<p>core.excludesfile=/Users/young40/dot/.gitignore_global</p>
 </blockquote>
 <p>
-打开赫然发现
-</p>
+打开赫然发现</p>
 <blockquote>
-<p>
-TAGS
-</p>
+<p>#############
+TAGS</p>
 </blockquote>
 <p>
-这个应该是为了忽略 <code class="verbatim">ctags</code> 生成的 <code class="verbatim">TAGS</code> 而写的全局忽略. <code class="verbatim">git</code> 默认不区分文件名大小写的特性, 导致了 <code class="verbatim">tags</code> 目录被忽略掉了.
-</p>
+这个应该是为了忽略 <code class="verbatim">ctags</code> 生成的 <code class="verbatim">TAGS</code> 而写的全局忽略. <code class="verbatim">git</code> 默认不区分文件名大小写的特性, 导致了 <code class="verbatim">tags</code> 目录被忽略掉了.</p>
 <p>
-删除了这个配置, 还是加到各个项目里面吧. 
-</p></div>
+删除了这个配置, 还是加到各个项目里面吧. </p>
+</div>
+</div></div>
 
 		<p class="meta">Posted on <span class="postdate">01. July 2018</span></p>
 	</article>

@@ -8,7 +8,7 @@
 		<title>学习Metal: MetalKit</title>
 
 		
-		<link rel="stylesheet" href="https://www.young40.com/css/colors-dark.min.217a2547e8e6c808986d22ef70b50263c2d6a4bbc80ed42e97e280a41103f9b5.css">
+		<link rel="stylesheet" href="https://www.young40.com/css/colors-dark.min.14df29dc468d31c46cb59a9b259c6e5c1623b01cee7d55d63f81e588d3496fc6.css">
 
 		<script data-ad-client="ca-pub-7615633322343749" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -47,24 +47,18 @@
 		<h1><a href="https://www.young40.com/posts/2018-07-06-learnmetal-metalkit/">学习Metal: MetalKit</a> </h1>
 
 		<div class="post-content"><p>
-当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. 
-</p>
+当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. </p>
 <p>
-MetalKit提供的MTKView更为方便快捷. 
-</p>
+MetalKit提供的MTKView更为方便快捷. </p>
 <p>
-我们新建一个Xcode Playground, <code class="verbatim">02.MTKView.playground</code>.
-</p>
+我们新建一个Xcode Playground, <code class="verbatim">02.MTKView.playground</code>.</p>
 <p>
-我们首先需要引入需要引用的库:
-</p>
+我们首先需要引入需要引用的库:</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">MetalKit</span>
-<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">PlaygroundSupport</span></code></pre></div>
-</p>
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">PlaygroundSupport</span></code></pre></div></p>
 <p>
-我们再从MTKView派生一个MyMetalView, 并重写draw方法.
-</p>
+我们再从MTKView派生一个MyMetalView, 并重写draw方法.</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyMetalView</span>: MTKView {
     <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">draw</span>(<span style="color:#66d9ef">_</span> dirtyRect: NSRect) {
@@ -86,32 +80,25 @@ MetalKit提供的MTKView更为方便快捷.
         command_buffer?.present(drawable!)
         command_buffer?.commit()
     }
-}</code></pre></div>
-</p>
+}</code></pre></div></p>
 <p>
 可以从上面的代码看到, 我们使用了MTLRenderPassDescriptor, CAMetalDrawable, MTLCommandQueue, MTLCommandBuffer, MTLCommandEncoder等类,
-做了一次最基本的渲染.
-</p>
+做了一次最基本的渲染.</p>
 <p>
-接着我们调用MyMetalView, 并显示到Playground的Live View中.
-</p>
+接着我们调用MyMetalView, 并显示到Playground的Live View中.</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> rect = CGRect(x: <span style="color:#ae81ff">0</span>, y: <span style="color:#ae81ff">0</span>, width: <span style="color:#ae81ff">320</span>, height: <span style="color:#ae81ff">480</span>)
 <span style="color:#66d9ef">let</span> device = MTLCreateSystemDefaultDevice()<span style="color:#f92672">!</span>
 
 <span style="color:#66d9ef">let</span> view = MyMetalView(frame: rect, device: device)
 
-PlaygroundPage.current.liveView = view</code></pre></div>
-</p>
+PlaygroundPage.current.liveView = view</code></pre></div></p>
 <p>
-打开Live View, 就可以看到我们本地的渲染结果.
-</p>
+打开Live View, 就可以看到我们本地的渲染结果.</p>
 <p>
-<img src="/upload/2018-07/001.MyMetalKit.png" alt="/upload/2018-07/001.MyMetalKit.png" title="/upload/2018-07/001.MyMetalKit.png" />
-</p>
+<img src="/upload/2018-07/001.MyMetalKit.png" alt="/upload/2018-07/001.MyMetalKit.png" title="/upload/2018-07/001.MyMetalKit.png" /></p>
 <p>
-同样源码托管在github: <a href="https://github.com/young40/LearnMetal">https://github.com/young40/LearnMetal</a> . 欢迎star, 感谢!
-</p></div>
+同样源码托管在github: <a href="https://github.com/young40/LearnMetal">https://github.com/young40/LearnMetal</a> . 欢迎star, 感谢!</p></div>
 
 		<p class="meta">Posted on <span class="postdate">06. July 2018</span></p>
 	</article>

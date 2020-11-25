@@ -8,7 +8,7 @@
 		<title>MTSL笔记03: 数据类型 - 向量</title>
 
 		
-		<link rel="stylesheet" href="https://www.young40.com/css/colors-dark.min.217a2547e8e6c808986d22ef70b50263c2d6a4bbc80ed42e97e280a41103f9b5.css">
+		<link rel="stylesheet" href="https://www.young40.com/css/colors-dark.min.14df29dc468d31c46cb59a9b259c6e5c1623b01cee7d55d63f81e588d3496fc6.css">
 
 		<script data-ad-client="ca-pub-7615633322343749" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -47,26 +47,22 @@
 		<h1><a href="https://www.young40.com/posts/2018-07-22-metal-shading-languae-note-03/">MTSL笔记03: 数据类型 - 向量</a> </h1>
 
 		<div class="post-content"><p>
-Metal支持一系列向量数据类型, 由系统的向量数学库提供.
-</p>
+Metal支持一系列向量数据类型, 由系统的向量数学库提供.</p>
 <p>
-PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
-</p>
-<h1 id="headline-1">
+PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
 2.2 向量数据类型
-</h1>
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
 <p>
-向量类型包括:
-</p>
+向量类型包括:</p>
 <p>
-booln, charn, shortn, intn, ucharn, ushortn, uintn, halfn, floatn
-</p>
+booln, charn, shortn, intn, ucharn, ushortn, uintn, halfn, floatn</p>
 <p>
-上面这些类型名字中结尾的n可以是2, 3, 4, 分别代表了2维, 3维, 4维的向量类型. 表3中列举了这些数据类型的大小和对齐大小.
-</p>
+上面这些类型名字中结尾的n可以是2, 3, 4, 分别代表了2维, 3维, 4维的向量类型. 表3中列举了这些数据类型的大小和对齐大小.</p>
 <p>
-表3
-</p>
+表3</p>
 <table>
 <tbody>
 <tr>
@@ -166,12 +162,12 @@ booln, charn, shortn, intn, ucharn, ushortn, uintn, halfn, floatn
 </tr>
 </tbody>
 </table>
-<h2 id="headline-2">
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
 访问向量中的元素
-</h2>
-<p>
-可以使用数组下标来访问向量中的元素. 从0开始. 
-</p>
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>可以使用数组下标来访问向量中的元素. 从0开始. </p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">pos <span style="color:#f92672">=</span> float4(<span style="color:#ae81ff">1.0f</span>, <span style="color:#ae81ff">2.0f</span>, <span style="color:#ae81ff">3.0f</span>, <span style="color:#ae81ff">4.0f</span>);
 
@@ -184,16 +180,12 @@ float4 vB;
 <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">4</span>; i<span style="color:#f92672">++</span>) {
     vB[i] <span style="color:#f92672">=</span> vA[i] <span style="color:#f92672">*</span> <span style="color:#ae81ff">2.0f</span>; <span style="color:#75715e">// vB = (2.0, 4.0, 6.0, 8.0);
 </span><span style="color:#75715e"></span>}
-</code></pre></div>
-</p>
+</code></pre></div></p>
 <p>
-Metal也支持使用 <code class="verbatim">.</code> (选择语法), 来访问向量的元素, xyzw来代表坐标, rgba来代表颜色.
-</p>
+Metal也支持使用 <code class="verbatim">.</code> (选择语法), 来访问向量的元素, xyzw来代表坐标, rgba来代表颜色.</p>
 <blockquote>
-<p>
-vector_data_type.xyzw
-vector_data_type.rgba
-</p>
+<p>vector_data_type.xyzw
+vector_data_type.rgba</p>
 </blockquote>
 <p>
 可以单一地选择某一个元素. 
@@ -204,95 +196,71 @@ vector_data_type.rgba
 </span><span style="color:#75715e">// ...
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> f <span style="color:#f92672">=</span> test.g; <span style="color:#75715e">// f = 1
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> g <span style="color:#f92672">=</span> test.a; <span style="color:#75715e">// g = 2
-</span></code></pre></div>
-</p>
+</span></code></pre></div></p>
 <p>
-不能用下来这些方式来访问向量, 否则会导致编译错误.
-</p>
+不能用下来这些方式来访问向量, 否则会导致编译错误.</p>
 <ul>
 <li>
-<p>
-超出向量的声明范围,
-</p>
+<p>超出向量的声明范围,</p>
 </li>
 </ul>
 <blockquote>
 <p>
-2维向量只能用.xy或者.rg来访问, 
-</p>
+   2维向量只能用.xy或者.rg来访问, </p>
 <p>
-3维向量只能用.xyz或者.rgb来访问
-</p>
+   3维向量只能用.xyz或者.rgb来访问</p>
 </blockquote>
 <p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">       float2 pos;
+   <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">       float2 pos;
        pos.x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0f</span>; <span style="color:#75715e">// 对的
 </span><span style="color:#75715e"></span>       pos.z <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0f</span>; <span style="color:#75715e">// 错的
 </span><span style="color:#75715e"></span>   
-</code></pre></div>
-</p>
+</code></pre></div></p>
 <ul>
 <li>
-<p>
-在赋值的时候, 在等号左边同时使用两个一样的元素, 会引起歧义导致错误
-</p>
+<p>在赋值的时候, 在等号左边同时使用两个一样的元素, 会引起歧义导致错误</p>
 </li>
 </ul>
-<p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">pos.xx <span style="color:#f92672">=</span> float2(<span style="color:#ae81ff">1.0f</span>, <span style="color:#ae81ff">2.0f</span>); <span style="color:#75715e">// 使用了x两次, 错误
 </span></code></pre></div>
-</p>
 <ul>
 <li>
-<p>
-等式两边的元素数量不同会导致错误.
-</p>
+<p>等式两边的元素数量不同会导致错误.</p>
 </li>
 </ul>
-<p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">pos.xy <span style="color:#f92672">=</span> float4(<span style="color:#ae81ff">1f</span>, <span style="color:#ae81ff">2f</span>, <span style="color:#ae81ff">3f</span>, <span style="color:#ae81ff">4f</span>);<span style="color:#75715e">// float2 和 float4不匹配, 错误
 </span></code></pre></div>
-</p>
 <ul>
 <li>
-<p>
-混合访问.xyzw和.rgba
-</p>
+<p>混合访问.xyzw和.rgba</p>
 </li>
 </ul>
-<p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">pos.xg <span style="color:#f92672">=</span> float2(<span style="color:#ae81ff">1.0f</span>, <span style="color:#ae81ff">2.0f</span>); <span style="color:#75715e">// 混合使用, 错误 
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">pos.xg <span style="color:#f92672">=</span> float2(<span style="color:#ae81ff">1.0f</span>, <span style="color:#ae81ff">2.0f</span>); <span style="color:#75715e">// 混合使用, 错误 
 </span><span style="color:#75715e"></span>float3 coord <span style="color:#f92672">=</span> pos.ryz;      <span style="color:#75715e">// 错误
-</span></code></pre></div> 
-</p>
+</span></code></pre></div> </p>
 <ul>
 <li>
-<p>
-A pointer or reference to a vector with swizzles is an error.
-</p>
+<p>A pointer or reference to a vector with swizzles is an error.</p>
 </li>
 </ul>
-<p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">float4 pos <span style="color:#f92672">=</span> float4(<span style="color:#ae81ff">1.0f</span>, <span style="color:#ae81ff">2.0f</span>, <span style="color:#ae81ff">3.0f</span>, <span style="color:#ae81ff">4.0f</span>);
 my_func(<span style="color:#f92672">&amp;</span>pos.xy); <span style="color:#75715e">// 错误
 </span></code></pre></div>
-</p>
 <p>
-使用 <code class="verbatim">sizeof</code> 可以获得向量数据类型的大小, 等于 元素数量乘以每个元素的大小. sizeof(float4) = 16字节, sizeof(half4) = 8字节.
-</p>
-<h2 id="headline-3">
+使用 <code class="verbatim">sizeof</code> 可以获得向量数据类型的大小, 等于 元素数量乘以每个元素的大小. sizeof(float4) = 16字节, sizeof(half4) = 8字节.</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
 2.2.2 向量构造函数
-</h2>
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<p>向量的构造函数可以被用来从一系列的标量或者向量来创建新的向量. 当向量被初始化时, 他的参数签名决定了构造函数如何被调用. 
+例如, 当向量初始化时, 只使用了一个标量参数, 那么向量的所有元素都被设置为这个标量的值.</p>
 <p>
-向量的构造函数可以被用来从一系列的标量或者向量来创建新的向量. 当向量被初始化时, 他的参数签名决定了构造函数如何被调用. 
-例如, 当向量初始化时, 只使用了一个标量参数, 那么向量的所有元素都被设置为这个标量的值.
-</p>
+如果一个向量从多个标量或者向量, 甚至混合初始化时, 向量的元素被依次设置为参数的元素. The arguments are consumed from left to right. Each argument has all its components consumed, in order, before any components from the next argument are consumed.</p>
 <p>
-如果一个向量从多个标量或者向量, 甚至混合初始化时, 向量的元素被依次设置为参数的元素. The arguments are consumed from left to right. Each argument has all its components consumed, in order, before any components from the next argument are consumed.
-</p>
-<p>
-float4的所有构造函数:
-</p>
+float4的所有构造函数:</p>
 <p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">float4(<span style="color:#66d9ef">float</span> x);
 float4(<span style="color:#66d9ef">float</span> x, <span style="color:#66d9ef">float</span> y, <span style="color:#66d9ef">float</span> z, <span style="color:#66d9ef">float</span> w); float4(float2 a, float2 b);
@@ -302,17 +270,21 @@ float4(<span style="color:#66d9ef">float</span> a, float2 b, <span style="color:
 float4(float3 a, <span style="color:#66d9ef">float</span> b);
 float4(<span style="color:#66d9ef">float</span> a, float3 b);
 float4(float4 x);
-</code></pre></div>
-</p>
-<h2 id="headline-4">
+</code></pre></div></p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
 2.2.3 Packed Vector Types
-</h2>
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
+<p>…..</p>
 <p>
-…..
-</p>
-<p>
-WWDC 2014 Session 604有探讨.
-</p></div>
+WWDC 2014 Session 604有探讨.</p>
+</div>
+</div>
+</div>
+</div></div>
 
 		<p class="meta">Posted on <span class="postdate">22. July 2018</span></p>
 	</article>
