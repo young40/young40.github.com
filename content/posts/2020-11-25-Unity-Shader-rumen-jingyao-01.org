@@ -1,0 +1,17 @@
+#+TITLE: Unity Shader入门精要笔记 一
+#+DATE: 2020-11-25T12:37:51+08:00
+#+TAGS[]: Unity Shader
+#+CATEGORIES[]: UnityShader入门精要
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: true
+
+本书的前四章被分为基础篇. 第一章名为“欢迎来到Shader的世界", 实在是有点太水, 几乎可以略过.
+
+那就谈谈我对渲染, 对Shader的一点理解吧.
+
+之前一直用Cocos来做2D游戏, 总离不开图片(纹理), 各种效果也无非都是用图片来拼凑. 接触到3D之后,
+首先知道的东西是模型, 一个人物, 一个物体总需要一个模型来表现, 模型上再蒙上一层纹理.
+
+1. 模型+光照+纹理
+
