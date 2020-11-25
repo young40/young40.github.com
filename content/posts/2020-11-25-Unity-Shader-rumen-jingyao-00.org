@@ -1,0 +1,34 @@
+#+TITLE: Unity Shader入门精要笔记 零
+#+DATE: 2020-11-25T10:33:19+08:00
+#+TAGS[]: Unity Shader
+#+CATEGORIES[]: UnityShader入门精要
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: false
+
+<<Unity Shader 入门精要>> 是国内关于Unity Shader的稀有的一本书, 也几乎是每一位有志于学习Unity Shader的开发者必读之书.
+最近我开始学习Unity Shader, 计划详读此书并记录笔记和感悟.
+
+# more
+
+本书出版于2016年, 市面上约50元价格非常实惠, 再遇到各种优惠非常超值. 亚马逊上有约15元的电子书, 四舍五入几乎等于不要钱.
+另外本书也上架了微信阅读, 可以用免费无限卡白嫖. 尽管市面上盗版PDF唾手可得, 实在是不推荐看盗版书.
+
+下面列一些关于本书的一些链接, 相信会对学习本书大有裨益.
+本书配套源码托管于Github, 地址如下:
+https://github.com/candycat1992/Unity_Shaders_Book
+随书所有彩色插图:
+http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_images.html
+本书勘误:
+http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_corrigenda.html
+另外作者也公开了本书的第四章(关于数学部分):
+http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_chapter_4.pdf
+重写了本书的第十八章(基于物理的渲染):
+http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_chapter_18.pdf
+作者冯乐乐的博客地址(已经不更新了, 但部分博文依然值得一读):
+https://blog.csdn.net/candycat1992
+作者知乎首页:
+https://www.zhihu.com/people/lele-feng-15
+
+以下是我关于本书所有笔记索引:
+第1章 欢迎来到Shader的世界 
