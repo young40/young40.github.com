@@ -1,0 +1,35 @@
+#+TITLE: Unity Shader中的语义和语义绑定
+#+DATE: 2020-11-17T11:26:33+08:00
+#+TAGS[]: Unity Shader
+#+CATEGORIES[]: Unity
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: true
+
+在Unity Shader编程中, 我们经常可以看到诸如POSITION, SV_POSITION, TEXCOORD0等关键词. 
+
+CPU架构
+流水线
+
+SV_
+
+语义种类含义
+
+多个SubShader
+多个Pass
+Fallback
+
+数学问题
+
+数据传递问题
+
+光照
+
+其他概念
+
+编译为OpenGL/Metal/DirectX
+
+和材质的关系
+
+函数变量
+
