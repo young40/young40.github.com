@@ -15,39 +15,73 @@
 另外本书也上架了微信阅读, 可以用免费无限卡白嫖. 尽管市面上盗版PDF唾手可得, 实在是不推荐看盗版书.
 
 下面列一些关于本书的一些链接, 相信会对学习本书大有裨益.
+
 本书配套源码托管于Github, 地址如下:
+
 https://github.com/candycat1992/Unity_Shaders_Book
+
 随书所有彩色插图:
+
 http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_images.html
+
 本书勘误:
+
 http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_corrigenda.html
+
 另外作者也公开了本书的第四章(关于数学部分):
+
 http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_chapter_4.pdf
+
 重写了本书的第十八章(基于物理的渲染):
+
 http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_chapter_18.pdf
+
 作者冯乐乐的博客地址(已经不更新了, 但部分博文依然值得一读):
+
 https://blog.csdn.net/candycat1992
+
 作者知乎首页:
+
 https://www.zhihu.com/people/lele-feng-15
 
 以下是我关于本书所有笔记索引:
-第1章 欢迎来到Shader的世界 
+
+第1章 欢迎来到Shader的世界
+
 第2章 渲染流水线
+
 第3章 Unity Shader基础
+
 第4章 学习Shader所需的数学基础
+
 第5章 开始Unity Shader学习之旅
+
 第6章 Unity 中的基础光照
+
 第7章 基础纹理
+
 第8章 透明效果
+
 第9章 更复杂的光照
+
 第10章 高级纹理
+
 第11章 让画面动起来
+
 第12章 屏幕后处理效果
+
 第13章 使用深度和纹理法线
+
 第14章 非真实感渲染
+
 第15章 使用噪声
+
 第16章 Unity 中的渲染优化技术
+
 第17章 Unity 的表面着色器探秘
+
 第18章 急于物理的渲染
+
 第19章 Unity 5 更新了什么
+
 第20章 还有更多内容吗
