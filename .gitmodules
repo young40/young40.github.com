@@ -4,6 +4,3 @@
 [submodule "themes/solar-theme-hugo"]
 	path = themes/solar-theme-hugo
 	url = git@github.com:young40/solar-theme-hugo.git
-[submodule "themes/even"]
-	path = themes/even
-	url = https://github.com/olOwOlo/hugo-theme-even.git
