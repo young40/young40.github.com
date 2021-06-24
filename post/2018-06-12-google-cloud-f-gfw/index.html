@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Google Cloud安装Shadowsocks - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="杨世玲" /><meta name="description" content=" Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记录一下重点过程.
+" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.83.1 with theme even" />
+
+
+<link rel="canonical" href="https://www.young40.com/post/2018-06-12-google-cloud-f-gfw/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Google Cloud安装Shadowsocks" />
+<meta property="og:description" content="
+Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记录一下重点过程." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.young40.com/post/2018-06-12-google-cloud-f-gfw/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-06-12T23:25:30&#43;08:00" />
+<meta property="article:modified_time" content="2018-06-12T23:25:30&#43;08:00" />
+
+<meta itemprop="name" content="Google Cloud安装Shadowsocks">
+<meta itemprop="description" content="
+Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记录一下重点过程."><meta itemprop="datePublished" content="2018-06-12T23:25:30&#43;08:00" />
+<meta itemprop="dateModified" content="2018-06-12T23:25:30&#43;08:00" />
+<meta itemprop="wordCount" content="510">
+<meta itemprop="keywords" content="Shadowsocks," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Google Cloud安装Shadowsocks"/>
+<meta name="twitter:description" content="
+Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记录一下重点过程."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Google Cloud安装Shadowsocks</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-06-12 </span>
+        <div class="post-category">
+            <a href="/categories/shadowsocks/"> Shadowsocks </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">防火墙配置</a>
+</li>
+<li><a href="#headline-2">地区选择</a>
+</li>
+<li><a href="#headline-3">创建实例</a>
+</li>
+<li><a href="#headline-4">初步配置</a>
+</li>
+<li><a href="#headline-5">开启BBR支持</a>
+</li>
+<li><a href="#headline-6">软件升级</a>
+</li>
+<li><a href="#headline-7">安装Shadowsocks</a>
+</li>
+<li><a href="#headline-8">检查状态</a>
+</li>
+<li><a href="#headline-9">收工</a>
+</li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>
+Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记录一下重点过程.</p>
+<div id="outline-container-headline-1" class="outline-5">
+<h5 id="headline-1">
+防火墙配置
+</h5>
+<div id="outline-text-headline-1" class="outline-text-5">
+<p>找到防火墙配置, 创建一条新的防火墙规则. 重点配置如下:</p>
+<ul>
+<li>
+<p>目标: 网络中的所有实例</p>
+</li>
+<li>
+<p>来源IP地址范围: 0.0.0.0/0</p>
+</li>
+<li>
+<p>协议和端口: 指定协议和端口 tcp:8888</p>
+</li>
+</ul>
+<p>解释一下:</p>
+<ul>
+<li>
+<p>目标, 可以应用到所有的实例, 这样再开其他地区实例可以直接应用当前的防火墙配置</p>
+</li>
+<li>
+<p>来源IP地址范围, 允许所有的IP连接</p>
+</li>
+<li>
+<p>协议端口, 开启了Shadowsocks的端口, 需要和自己的配置对上. 我看网络上好多人的配置基本是都是允许了所有的端口连接, 这样非常不安全, 还是需要按需开放才够安全.</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-5">
+<h5 id="headline-2">
+地区选择
+</h5>
+<div id="outline-text-headline-2" class="outline-text-5">
+<p>我开启了两个实例, 分别选择的是台湾省(asia-east1-c)和新加坡(asia-southeast1-c). </p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-5">
+<h5 id="headline-3">
+创建实例
+</h5>
+<div id="outline-text-headline-3" class="outline-text-5">
+<p>创建实例, 选择乞丐版, 镜像选Ubuntu 18.04 LTS, 输入本机的SSH密钥. 启动之后会分配一个临时IP, 在网络中将这个IP改成静态IP.</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-5">
+<h5 id="headline-4">
+初步配置
+</h5>
+<div id="outline-text-headline-4" class="outline-text-5">
+<ul>
+<li>
+<p>修改当前账户密码</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">sudo passwd</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>
+<p>安装zsh和oh my zsh</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">sudo apt-get install zsh</code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-5">
+<h5 id="headline-5">
+开启BBR支持
+</h5>
+<div id="outline-text-headline-5" class="outline-text-5">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">sudo <span class="nb">echo</span> <span class="s2">&#34;net.core.default_qdisc=fq&#34;</span> &gt;&gt; /etc/sysctl.conf
+sudo <span class="nb">echo</span> <span class="s2">&#34;net.ipv4.tcp_congestion_control=bbr&#34;</span> &gt;&gt; /etc/sysctl.conf
+<span class="c1"># 让设置生效</span>
+sysctl -p
+<span class="c1"># 检查设置是否生效</span>
+lsmod <span class="p">|</span> grep bbr</code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-5">
+<h5 id="headline-6">
+软件升级
+</h5>
+<div id="outline-text-headline-6" class="outline-text-5">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get upgrade</code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-5">
+<h5 id="headline-7">
+安装Shadowsocks
+</h5>
+<div id="outline-text-headline-7" class="outline-text-5">
+<ul>
+<li>
+<p>安装</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">sudo apt-get install shadowsocks-libev</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>
+<p>配置</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">sudo vim /etc/shadowsocks-libev/config.json</code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-5">
+<h5 id="headline-8">
+检查状态
+</h5>
+<div id="outline-text-headline-8" class="outline-text-5">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">systemctl status shadowsocks-libev.service</code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-5">
+<h5 id="headline-9">
+收工
+</h5>
+<div id="outline-text-headline-9" class="outline-text-5">
+<p>愉快地F*** GFW吧!</p>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">杨世玲</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-06-12
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/shadowsocks/">Shadowsocks</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2018-06-30-learn-swift-01-guard/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">学习Swift: guard</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2018-02-09-move-to-hugo/">
+            <span class="next-text nav-default">迁移到了Hugo, 又双叒叕迁移了??!!!</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://www.young40.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

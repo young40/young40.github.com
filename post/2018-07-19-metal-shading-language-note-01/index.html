@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>MTSL笔记01: 简介 - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="杨世玲" /><meta name="description" content=" 最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完.
+" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.83.1 with theme even" />
+
+
+<link rel="canonical" href="https://www.young40.com/post/2018-07-19-metal-shading-language-note-01/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="MTSL笔记01: 简介" />
+<meta property="og:description" content="
+最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.young40.com/post/2018-07-19-metal-shading-language-note-01/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-07-19T22:23:05&#43;08:00" />
+<meta property="article:modified_time" content="2018-07-19T22:23:05&#43;08:00" />
+
+<meta itemprop="name" content="MTSL笔记01: 简介">
+<meta itemprop="description" content="
+最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完."><meta itemprop="datePublished" content="2018-07-19T22:23:05&#43;08:00" />
+<meta itemprop="dateModified" content="2018-07-19T22:23:05&#43;08:00" />
+<meta itemprop="wordCount" content="993">
+<meta itemprop="keywords" content="metal,shader," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MTSL笔记01: 简介"/>
+<meta name="twitter:description" content="
+最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">MTSL笔记01: 简介</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-07-19 </span>
+        <div class="post-category">
+            <a href="/categories/metalshadinglanguage%E7%AC%94%E8%AE%B0/"> MetalShadingLanguage笔记 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">前言</a>
+<ul>
+<li><a href="#headline-2">1.1 适用读者</a>
+</li>
+<li><a href="#headline-3">1.2 文档结构</a>
+</li>
+<li><a href="#headline-4">1.3 参考</a>
+</li>
+<li><a href="#headline-5">1.4 Metal和C++14</a>
+<ul>
+<li><a href="#headline-6">1.4.1 重载(overloading)</a>
+</li>
+<li><a href="#headline-7">1.4.2 模版(Templates)</a>
+</li>
+<li><a href="#headline-8">1.4.3 预编译指令</a>
+</li>
+<li><a href="#headline-9">1.4.4 限制</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-10">1.5 Metal 像素坐标系统</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>
+最近在看Metal, Metal Shader不仅绕不过, 还是Metal学习的重点. 学习Metal Shader的资料很少, 庆幸的是苹果提供了很好的文档. 尽管是英文的, 我还是希望自己能坚持下来啃完.</p>
+<p>
+下载: <a href="https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf">Metal Shading Language Specification</a></p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+前言
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>本文档是关于Metal 通用图形和计算的语言. Metal Shader是一门基于C++的编程语言, 开发者可以使用它来写出可以运行在GPU上的图形或者通用并行计算的程序.
+图形和通用计算程序可以紧密地集成在一起, 因为他们都是由Metal Shader这个统一的语言写成的.</p>
+<p>
+PS: 原文似乎不再区分Metal和Metal Shader. 所以, 我也不再区分. </p>
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+1.1 适用读者
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>使用Metal framework的开发者应该阅读本文档.</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+1.2 文档结构
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<ul>
+<li>
+<p>简介,         本文档简介, 覆盖了Metal Shader和C++ 14之间的相同和不同之处.</p>
+</li>
+<li>
+<p>数据结构,     列举了Metal的数据类型. 向量(vector), 矩阵(matrices), buffer, 纹理(texture), 采样器(sampler). 还讨论了数据对齐(type alignment), 类型转换.</p>
+</li>
+<li>
+<p>运算操作,     Metal 运算. </p>
+</li>
+<li>
+<p>函数和变量,   函数和变量的声明细节, 属性(attribute)</p>
+</li>
+<li>
+<p>Metal 标准库, 一系列内置函数</p>
+</li>
+<li>
+<p>编译,         Metal 编译器(complier)的可选项, 包括, 预编译指令, (options for math intrinsics), 流程(control) 优化.</p>
+</li>
+<li>
+<p>Numerical Compliance, describes requirements for representing floating-point numbers, including accuracy in mathematical operations.</p>
+</li>
+</ul>
+<p>如果没有特殊说明, 本文档提及的特性都在Metal 1.0后都适用.</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
+1.3 参考
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
+<p>
+C++: </p>
+<p>
+C++程序设计语言(第四版) 有中文版</p>
+<p>
+Metal:</p>
+<p>
+官方文档, <a href="https://developer.apple.com/documentation/metal">https://developer.apple.com/documentation/metal</a></p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-3">
+<h3 id="headline-5">
+1.4 Metal和C++14
+</h3>
+<div id="outline-text-headline-5" class="outline-text-3">
+<p>
+Metal基于C++ 14的标准, 进行了一些扩展, 也有一些限制. </p>
+<p>
+PS: C++ 14 Specification, <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf">http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf</a></p>
+<div id="outline-container-headline-6" class="outline-4">
+<h4 id="headline-6">
+1.4.1 重载(overloading)
+</h4>
+<div id="outline-text-headline-6" class="outline-text-4">
+<p>Metal支持重载. The function overloading rules are extended to include the address space attribute of an argument. 
+Metal的图形和计算(kernel)函数不能被重载. (C++ 14 Spec, Section 13)</p>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-4">
+<h4 id="headline-7">
+1.4.2 模版(Templates)
+</h4>
+<div id="outline-text-headline-7" class="outline-text-4">
+<p>Metal 支持模版. </p>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-4">
+<h4 id="headline-8">
+1.4.3 预编译指令
+</h4>
+<div id="outline-text-headline-8" class="outline-text-4">
+<p>Meal 支持.  (C++ 14 Spec, Section 16)</p>
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-4">
+<h4 id="headline-9">
+1.4.4 限制
+</h4>
+<div id="outline-text-headline-9" class="outline-text-4">
+<p>下列C++ 14的特性, Metal不支持.</p>
+<ul>
+<li>
+<p>lambda 表达式                              (C++ 14 Spec, Section 5.1.2)</p>
+</li>
+<li>
+<p>dynamic_cast 动态类型转换                  (C++ 14 Spec, Section 5.2.7)</p>
+</li>
+<li>
+<p>类型识别                                   (C++ 14 Spec, Section 5.2.8)</p>
+</li>
+<li>
+<p>递归调用                                   (C++ 14 Spec, Section 5.2.2)</p>
+</li>
+<li>
+<p>new 和 delete 操作                         (C++ 14 Spec, Section 5.3.4, 5.3.5)</p>
+</li>
+<li>
+<p>noexcept 操作                              (C++ 14 Spec, Section 5.3.7)</p>
+</li>
+<li>
+<p>goto 语句                                  (C++ 14 Spec, Section 6.6)</p>
+</li>
+<li>
+<p>register, thread_local storage attribute   (C++ 14 Spec, Section 7.1.1)</p>
+</li>
+<li>
+<p>virtual function attribute                 (C++ 14 Spec, Section 7.1.2)</p>
+</li>
+<li>
+<p>类的继承                                   (C++ 14 Spec, Section 10, Section 11)</p>
+</li>
+<li>
+<p>异常处理                                   (C++ 14 Spec, Section 15)</p>
+</li>
+</ul>
+<p>不能在Metal中使用C++ 标准库, Metal拥有自己的标准库.</p>
+<p>
+Metal 限制了指针的使用:</p>
+<ul>
+<li>
+<p>Arguments to Metal graphics and kernel functions declared in a program that are pointers must be declared with the Metal device, threadgroup, threadgroup_imageblock, or constant address space attribute.</p>
+</li>
+<li>
+<p>函数指针不支持.</p>
+</li>
+</ul>
+<p>Metal函数不能命名为 <code class="verbatim">main</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-10" class="outline-3">
+<h3 id="headline-10">
+1.5 Metal 像素坐标系统
+</h3>
+<div id="outline-text-headline-10" class="outline-text-3">
+<p>Pixel coordinate, framebuffer attachment, 左上角为坐标原点.</p>
+</div>
+</div>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">杨世玲</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-07-19
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/metal/">metal</a>
+          <a href="/tags/shader/">shader</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2018-07-21-metal-shading-language-note-02/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">MTSL笔记02: 数据类型 - 标量</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2018-07-17-learnmetal-a-colored-triangle/">
+            <span class="next-text nav-default">学习Metal: 带色的三角形</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://www.young40.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

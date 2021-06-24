@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>学习Metal: MetalKit - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="杨世玲" /><meta name="description" content=" 当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果.  MetalKit提供的MTKView更为方便快捷. " /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.83.1 with theme even" />
+
+
+<link rel="canonical" href="https://www.young40.com/post/2018-07-06-learnmetal-metalkit/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="学习Metal: MetalKit" />
+<meta property="og:description" content="
+当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. 
+
+MetalKit提供的MTKView更为方便快捷. " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.young40.com/post/2018-07-06-learnmetal-metalkit/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-07-06T23:30:16&#43;08:00" />
+<meta property="article:modified_time" content="2018-07-06T23:30:16&#43;08:00" />
+
+<meta itemprop="name" content="学习Metal: MetalKit">
+<meta itemprop="description" content="
+当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. 
+
+MetalKit提供的MTKView更为方便快捷. "><meta itemprop="datePublished" content="2018-07-06T23:30:16&#43;08:00" />
+<meta itemprop="dateModified" content="2018-07-06T23:30:16&#43;08:00" />
+<meta itemprop="wordCount" content="467">
+<meta itemprop="keywords" content="metal,swift,playground," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="学习Metal: MetalKit"/>
+<meta name="twitter:description" content="
+当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. 
+
+MetalKit提供的MTKView更为方便快捷. "/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">学习Metal: MetalKit</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-07-06 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0metal/"> 学习Metal </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p>
+当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. </p>
+<p>
+MetalKit提供的MTKView更为方便快捷. </p>
+<p>
+我们新建一个Xcode Playground, <code class="verbatim">02.MTKView.playground</code>.</p>
+<p>
+我们首先需要引入需要引用的库:</p>
+<p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="nc">MetalKit</span>
+<span class="kd">import</span> <span class="nc">PlaygroundSupport</span></code></pre></td></tr></table>
+</div>
+</div></p>
+<p>
+我们再从MTKView派生一个MyMetalView, 并重写draw方法.</p>
+<p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">MyMetalView</span><span class="p">:</span> <span class="n">MTKView</span> <span class="p">{</span>
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="kc">_</span> <span class="n">dirtyRect</span><span class="p">:</span> <span class="n">NSRect</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="n">dirtyRect</span><span class="p">)</span>
+
+        <span class="kd">let</span> <span class="nv">renderPassDescriptor</span><span class="p">:</span> <span class="n">MTLRenderPassDescriptor</span><span class="p">?</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">currentRenderPassDescriptor</span>
+        <span class="kd">let</span> <span class="nv">drawable</span><span class="p">:</span> <span class="n">CAMetalDrawable</span><span class="p">?</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">currentDrawable</span>
+
+        <span class="kd">let</span> <span class="nv">bgColor</span><span class="p">:</span> <span class="n">MTLClearColor</span> <span class="p">=</span> <span class="n">MTLClearColor</span><span class="p">(</span><span class="n">red</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">green</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">blue</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">renderPassDescriptor</span><span class="p">?.</span><span class="n">colorAttachments</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">clearColor</span> <span class="p">=</span> <span class="n">bgColor</span>
+
+        <span class="kd">let</span> <span class="nv">command_queue</span><span class="p">:</span> <span class="n">MTLCommandQueue</span><span class="p">?</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">device</span><span class="p">?.</span><span class="n">makeCommandQueue</span><span class="p">()</span>
+
+        <span class="kd">let</span> <span class="nv">command_buffer</span><span class="p">:</span> <span class="n">MTLCommandBuffer</span><span class="p">?</span> <span class="p">=</span> <span class="n">command_queue</span><span class="p">?.</span><span class="n">makeCommandBuffer</span><span class="p">()</span>
+
+        <span class="kd">let</span> <span class="nv">command_encoder</span><span class="p">:</span> <span class="n">MTLCommandEncoder</span><span class="p">?</span> <span class="p">=</span> <span class="n">command_buffer</span><span class="p">?.</span><span class="n">makeRenderCommandEncoder</span><span class="p">(</span><span class="n">descriptor</span><span class="p">:</span> <span class="n">renderPassDescriptor</span><span class="p">!)</span>
+        <span class="n">command_encoder</span><span class="p">?.</span><span class="n">endEncoding</span><span class="p">()</span>
+
+        <span class="n">command_buffer</span><span class="p">?.</span><span class="n">present</span><span class="p">(</span><span class="n">drawable</span><span class="p">!)</span>
+        <span class="n">command_buffer</span><span class="p">?.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div></p>
+<p>
+可以从上面的代码看到, 我们使用了MTLRenderPassDescriptor, CAMetalDrawable, MTLCommandQueue, MTLCommandBuffer, MTLCommandEncoder等类,
+做了一次最基本的渲染.</p>
+<p>
+接着我们调用MyMetalView, 并显示到Playground的Live View中.</p>
+<p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">let</span> <span class="nv">rect</span> <span class="p">=</span> <span class="n">CGRect</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="mi">320</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mi">480</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">device</span> <span class="p">=</span> <span class="n">MTLCreateSystemDefaultDevice</span><span class="p">()</span><span class="o">!</span>
+
+<span class="kd">let</span> <span class="nv">view</span> <span class="p">=</span> <span class="n">MyMetalView</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">rect</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">device</span><span class="p">)</span>
+
+<span class="n">PlaygroundPage</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">liveView</span> <span class="p">=</span> <span class="n">view</span></code></pre></td></tr></table>
+</div>
+</div></p>
+<p>
+打开Live View, 就可以看到我们本地的渲染结果.</p>
+<p>
+<img src="/upload/2018-07/001.MyMetalKit.png" alt="/upload/2018-07/001.MyMetalKit.png" title="/upload/2018-07/001.MyMetalKit.png" /></p>
+<p>
+同样源码托管在github: <a href="https://github.com/young40/LearnMetal">https://github.com/young40/LearnMetal</a> . 欢迎star, 感谢!</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">杨世玲</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-07-06
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/metal/">metal</a>
+          <a href="/tags/swift/">swift</a>
+          <a href="/tags/playground/">playground</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2018-07-14-learnmetal-a-triangle/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">学习Metal: Hello, Triangle</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2018-07-04-learnmetal-get-device/">
+            <span class="next-text nav-default">学习Metal: 获取设备</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://www.young40.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

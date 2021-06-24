@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>MTSL笔记03: 数据类型 - 向量 - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="杨世玲" /><meta name="description" content=" Metal支持一系列向量数据类型, 由系统的向量数学库提供.
+ PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.
+" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.83.1 with theme even" />
+
+
+<link rel="canonical" href="https://www.young40.com/post/2018-07-22-metal-shading-languae-note-03/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="MTSL笔记03: 数据类型 - 向量" />
+<meta property="og:description" content="
+Metal支持一系列向量数据类型, 由系统的向量数学库提供.
+
+PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.young40.com/post/2018-07-22-metal-shading-languae-note-03/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2018-07-22T00:00:06&#43;08:00" />
+<meta property="article:modified_time" content="2018-07-22T00:00:06&#43;08:00" />
+
+<meta itemprop="name" content="MTSL笔记03: 数据类型 - 向量">
+<meta itemprop="description" content="
+Metal支持一系列向量数据类型, 由系统的向量数学库提供.
+
+PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库."><meta itemprop="datePublished" content="2018-07-22T00:00:06&#43;08:00" />
+<meta itemprop="dateModified" content="2018-07-22T00:00:06&#43;08:00" />
+<meta itemprop="wordCount" content="978">
+<meta itemprop="keywords" content="metal,shader," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MTSL笔记03: 数据类型 - 向量"/>
+<meta name="twitter:description" content="
+Metal支持一系列向量数据类型, 由系统的向量数学库提供.
+
+PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">MTSL笔记03: 数据类型 - 向量</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-07-22 </span>
+        <div class="post-category">
+            <a href="/categories/metalshadinglanguage%E7%AC%94%E8%AE%B0/"> MetalShadingLanguage笔记 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">2.2 向量数据类型</a>
+<ul>
+<li><a href="#headline-2">访问向量中的元素</a>
+</li>
+<li><a href="#headline-3">2.2.2 向量构造函数</a>
+</li>
+<li><a href="#headline-4">2.2.3 Packed Vector Types</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>
+Metal支持一系列向量数据类型, 由系统的向量数学库提供.</p>
+<p>
+PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+2.2 向量数据类型
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>
+向量类型包括:</p>
+<p>
+booln, charn, shortn, intn, ucharn, ushortn, uintn, halfn, floatn</p>
+<p>
+上面这些类型名字中结尾的n可以是2, 3, 4, 分别代表了2维, 3维, 4维的向量类型. 表3中列举了这些数据类型的大小和对齐大小.</p>
+<p>
+表3</p>
+<table>
+<tbody>
+<tr>
+<td>类型</td>
+<td class="align-right">大小(byte字节)</td>
+<td class="align-right">对齐大小(byte字节)</td>
+</tr>
+<tr>
+<td>bool2</td>
+<td class="align-right">2</td>
+<td class="align-right">2</td>
+</tr>
+<tr>
+<td>bool3</td>
+<td class="align-right">4</td>
+<td class="align-right">4</td>
+</tr>
+<tr>
+<td>bool4</td>
+<td class="align-right">4</td>
+<td class="align-right">4</td>
+</tr>
+<tr>
+<td>char2, uchar2</td>
+<td class="align-right">2</td>
+<td class="align-right">2</td>
+</tr>
+<tr>
+<td>char3, uchar3</td>
+<td class="align-right">4</td>
+<td class="align-right">4</td>
+</tr>
+<tr>
+<td>char4, uchar4</td>
+<td class="align-right">4</td>
+<td class="align-right">4</td>
+</tr>
+<tr>
+<td>short2, ushort2</td>
+<td class="align-right">4</td>
+<td class="align-right">4</td>
+</tr>
+<tr>
+<td>short3, ushort3</td>
+<td class="align-right">8</td>
+<td class="align-right">8</td>
+</tr>
+<tr>
+<td>short4, ushort4</td>
+<td class="align-right">8</td>
+<td class="align-right">8</td>
+</tr>
+<tr>
+<td>int2, uint2</td>
+<td class="align-right">8</td>
+<td class="align-right">8</td>
+</tr>
+<tr>
+<td>int3, uint3</td>
+<td class="align-right">16</td>
+<td class="align-right">16</td>
+</tr>
+<tr>
+<td>int4, uint4</td>
+<td class="align-right">16</td>
+<td class="align-right">16</td>
+</tr>
+<tr>
+<td>half2</td>
+<td class="align-right">4</td>
+<td class="align-right">4</td>
+</tr>
+<tr>
+<td>half3</td>
+<td class="align-right">8</td>
+<td class="align-right">8</td>
+</tr>
+<tr>
+<td>half4</td>
+<td class="align-right">8</td>
+<td class="align-right">8</td>
+</tr>
+<tr>
+<td>float2</td>
+<td class="align-right">8</td>
+<td class="align-right">8</td>
+</tr>
+<tr>
+<td>float3</td>
+<td class="align-right">16</td>
+<td class="align-right">16</td>
+</tr>
+<tr>
+<td>float4</td>
+<td class="align-right">16</td>
+<td class="align-right">16</td>
+</tr>
+</tbody>
+</table>
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+访问向量中的元素
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>可以使用数组下标来访问向量中的元素. 从0开始. </p>
+<p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">pos</span> <span class="o">=</span> <span class="n">float4</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">,</span> <span class="mf">3.0f</span><span class="p">,</span> <span class="mf">4.0f</span><span class="p">);</span>
+
+<span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="c1">// x = 1.0
+</span><span class="c1"></span><span class="kt">float</span> <span class="n">z</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">// z = 3.0
+</span><span class="c1"></span>
+<span class="n">float4</span> <span class="n">vA</span> <span class="o">=</span> <span class="n">float4</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">,</span> <span class="mf">3.0f</span><span class="p">,</span> <span class="mf">4.0f</span><span class="p">);</span>
+<span class="n">float4</span> <span class="n">vB</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vB</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">vA</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mf">2.0f</span><span class="p">;</span> <span class="c1">// vB = (2.0, 4.0, 6.0, 8.0);
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div></p>
+<p>
+Metal也支持使用 <code class="verbatim">.</code> (选择语法), 来访问向量的元素, xyzw来代表坐标, rgba来代表颜色.</p>
+<blockquote>
+<p>vector_data_type.xyzw
+vector_data_type.rgba</p>
+</blockquote>
+<p>
+可以单一地选择某一个元素. 
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">int4</span> <span class="n">test</span> <span class="o">=</span> <span class="n">int4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">test</span><span class="p">.</span><span class="n">x</span><span class="p">;</span> <span class="c1">// a = 0
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">text</span><span class="p">.</span><span class="n">y</span><span class="p">;</span> <span class="c1">// b = 1
+</span><span class="c1">// ...
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">f</span> <span class="o">=</span> <span class="n">test</span><span class="p">.</span><span class="n">g</span><span class="p">;</span> <span class="c1">// f = 1
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">g</span> <span class="o">=</span> <span class="n">test</span><span class="p">.</span><span class="n">a</span><span class="p">;</span> <span class="c1">// g = 2
+</span></code></pre></td></tr></table>
+</div>
+</div></p>
+<p>
+不能用下来这些方式来访问向量, 否则会导致编译错误.</p>
+<ul>
+<li>
+<p>超出向量的声明范围,</p>
+</li>
+</ul>
+<blockquote>
+<p>
+   2维向量只能用.xy或者.rg来访问, </p>
+<p>
+   3维向量只能用.xyz或者.rgb来访问</p>
+</blockquote>
+<p>
+   <div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp">       <span class="n">float2</span> <span class="n">pos</span><span class="p">;</span>
+       <span class="n">pos</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">;</span> <span class="c1">// 对的
+</span><span class="c1"></span>       <span class="n">pos</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">;</span> <span class="c1">// 错的
+</span><span class="c1"></span>   
+</code></pre></td></tr></table>
+</div>
+</div></p>
+<ul>
+<li>
+<p>在赋值的时候, 在等号左边同时使用两个一样的元素, 会引起歧义导致错误</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">pos</span><span class="p">.</span><span class="n">xx</span> <span class="o">=</span> <span class="n">float2</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">);</span> <span class="c1">// 使用了x两次, 错误
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>
+<p>等式两边的元素数量不同会导致错误.</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">pos</span><span class="p">.</span><span class="n">xy</span> <span class="o">=</span> <span class="n">float4</span><span class="p">(</span><span class="mf">1f</span><span class="p">,</span> <span class="mf">2f</span><span class="p">,</span> <span class="mf">3f</span><span class="p">,</span> <span class="mf">4f</span><span class="p">);</span><span class="c1">// float2 和 float4不匹配, 错误
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>
+<p>混合访问.xyzw和.rgba</p>
+</li>
+</ul>
+<p><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">pos</span><span class="p">.</span><span class="n">xg</span> <span class="o">=</span> <span class="n">float2</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">);</span> <span class="c1">// 混合使用, 错误 
+</span><span class="c1"></span><span class="n">float3</span> <span class="n">coord</span> <span class="o">=</span> <span class="n">pos</span><span class="p">.</span><span class="n">ryz</span><span class="p">;</span>      <span class="c1">// 错误
+</span></code></pre></td></tr></table>
+</div>
+</div> </p>
+<ul>
+<li>
+<p>A pointer or reference to a vector with swizzles is an error.</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">float4</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">float4</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">,</span> <span class="mf">3.0f</span><span class="p">,</span> <span class="mf">4.0f</span><span class="p">);</span>
+<span class="n">my_func</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pos</span><span class="p">.</span><span class="n">xy</span><span class="p">);</span> <span class="c1">// 错误
+</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>
+使用 <code class="verbatim">sizeof</code> 可以获得向量数据类型的大小, 等于 元素数量乘以每个元素的大小. sizeof(float4) = 16字节, sizeof(half4) = 8字节.</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+2.2.2 向量构造函数
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<p>向量的构造函数可以被用来从一系列的标量或者向量来创建新的向量. 当向量被初始化时, 他的参数签名决定了构造函数如何被调用. 
+例如, 当向量初始化时, 只使用了一个标量参数, 那么向量的所有元素都被设置为这个标量的值.</p>
+<p>
+如果一个向量从多个标量或者向量, 甚至混合初始化时, 向量的元素被依次设置为参数的元素. The arguments are consumed from left to right. Each argument has all its components consumed, in order, before any components from the next argument are consumed.</p>
+<p>
+float4的所有构造函数:</p>
+<p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">float4</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">);</span>
+<span class="n">float4</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="n">y</span><span class="p">,</span> <span class="kt">float</span> <span class="n">z</span><span class="p">,</span> <span class="kt">float</span> <span class="n">w</span><span class="p">);</span> <span class="n">float4</span><span class="p">(</span><span class="n">float2</span> <span class="n">a</span><span class="p">,</span> <span class="n">float2</span> <span class="n">b</span><span class="p">);</span>
+<span class="n">float4</span><span class="p">(</span><span class="n">float2</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="p">,</span> <span class="kt">float</span> <span class="n">c</span><span class="p">);</span>
+<span class="n">float4</span><span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="p">,</span> <span class="n">float2</span> <span class="n">c</span><span class="p">);</span>
+<span class="n">float4</span><span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="n">float2</span> <span class="n">b</span><span class="p">,</span> <span class="kt">float</span> <span class="n">c</span><span class="p">);</span>
+<span class="n">float4</span><span class="p">(</span><span class="n">float3</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="p">);</span>
+<span class="n">float4</span><span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="n">float3</span> <span class="n">b</span><span class="p">);</span>
+<span class="n">float4</span><span class="p">(</span><span class="n">float4</span> <span class="n">x</span><span class="p">);</span></code></pre></td></tr></table>
+</div>
+</div></p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
+2.2.3 Packed Vector Types
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
+<p>…..</p>
+<p>
+WWDC 2014 Session 604有探讨.</p>
+</div>
+</div>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">杨世玲</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2018-07-22
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/metal/">metal</a>
+          <a href="/tags/shader/">shader</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2020-11-25-unity-shader-rumen-jingyao-00/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Unity Shader入门精要笔记 零</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2018-07-21-metal-shading-language-note-02/">
+            <span class="next-text nav-default">MTSL笔记02: 数据类型 - 标量</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://www.young40.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

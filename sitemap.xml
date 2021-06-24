@@ -1,160 +1,221 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<?xml-stylesheet type="text/xsl" href="https://www.young40.com/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
     <loc>https://www.young40.com/categories/</loc>
     <lastmod>2020-11-25T10:33:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/</loc>
+    <loc>https://www.young40.com/post/</loc>
     <lastmod>2020-11-25T10:33:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/tags/shader/</loc>
     <lastmod>2020-11-25T10:33:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/tags/</loc>
     <lastmod>2020-11-25T10:33:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/tags/unity/</loc>
     <lastmod>2020-11-25T10:33:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/2020-11-25-unity-shader-rumen-jingyao-00/</loc>
+    <loc>https://www.young40.com/post/2020-11-25-unity-shader-rumen-jingyao-00/</loc>
     <lastmod>2020-11-25T10:33:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/categories/unityshader%E5%85%A5%E9%97%A8%E7%B2%BE%E8%A6%81/</loc>
     <lastmod>2020-11-25T10:33:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/</loc>
     <lastmod>2020-11-25T10:33:19+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/tags/metal/</loc>
     <lastmod>2018-07-22T00:00:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/categories/metalshadinglanguage%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2018-07-22T00:00:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/2018-07-22-metal-shading-languae-note-03/</loc>
+    <loc>https://www.young40.com/post/2018-07-22-metal-shading-languae-note-03/</loc>
     <lastmod>2018-07-22T00:00:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/2018-07-21-metal-shading-language-note-02/</loc>
+    <loc>https://www.young40.com/post/2018-07-21-metal-shading-language-note-02/</loc>
     <lastmod>2018-07-21T00:28:04+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/2018-07-19-metal-shading-language-note-01/</loc>
+    <loc>https://www.young40.com/post/2018-07-19-metal-shading-language-note-01/</loc>
     <lastmod>2018-07-19T22:23:05+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/tags/playground/</loc>
     <lastmod>2018-07-17T23:15:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/tags/swift/</loc>
     <lastmod>2018-07-17T23:15:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/categories/%E5%AD%A6%E4%B9%A0metal/</loc>
     <lastmod>2018-07-17T23:15:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/2018-07-17-learnmetal-a-colored-triangle/</loc>
+    <loc>https://www.young40.com/post/2018-07-17-learnmetal-a-colored-triangle/</loc>
     <lastmod>2018-07-17T23:15:13+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/2018-07-14-learnmetal-a-triangle/</loc>
+    <loc>https://www.young40.com/post/2018-07-14-learnmetal-a-triangle/</loc>
     <lastmod>2018-07-14T00:21:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/2018-07-06-learnmetal-metalkit/</loc>
+    <loc>https://www.young40.com/post/2018-07-06-learnmetal-metalkit/</loc>
     <lastmod>2018-07-06T23:30:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/2018-07-04-learnmetal-get-device/</loc>
+    <loc>https://www.young40.com/post/2018-07-04-learnmetal-get-device/</loc>
     <lastmod>2018-07-04T00:00:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/2018-07-02-learnmetal-introducing-metal/</loc>
+    <loc>https://www.young40.com/post/2018-07-02-learnmetal-introducing-metal/</loc>
     <lastmod>2018-07-02T19:13:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/tags/git/</loc>
     <lastmod>2018-07-01T00:44:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/2018-07-01-git-global-ignore/</loc>
+    <loc>https://www.young40.com/post/2018-07-01-git-global-ignore/</loc>
     <lastmod>2018-07-01T00:44:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/tags/%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2018-07-01T00:44:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/categories/%E6%9D%82%E8%AE%B0/</loc>
     <lastmod>2018-07-01T00:44:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/categories/swift/</loc>
     <lastmod>2018-06-30T11:25:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/2018-06-30-learn-swift-01-guard/</loc>
+    <loc>https://www.young40.com/post/2018-06-30-learn-swift-01-guard/</loc>
     <lastmod>2018-06-30T11:25:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/2018-06-12-google-cloud-f-gfw/</loc>
+    <loc>https://www.young40.com/post/2018-06-12-google-cloud-f-gfw/</loc>
     <lastmod>2018-06-12T23:25:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/tags/shadowsocks/</loc>
     <lastmod>2018-06-12T23:25:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://www.young40.com/categories/shadowsocks/</loc>
     <lastmod>2018-06-12T23:25:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://www.young40.com/posts/2018-02-09-move-to-hugo/</loc>
+    <loc>https://www.young40.com/post/2018-02-09-move-to-hugo/</loc>
     <lastmod>2018-02-09T15:58:36+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
 </urlset>
