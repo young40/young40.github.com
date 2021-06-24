@@ -11,14 +11,14 @@ UniRx的源码位于 =UniRx/Assets/Plugins/UniRx/Scripts= 目录, 用例位于 =
 
 重要的文件或目录有:
 
-| 文件/目录         | 说明 |
-|-------------------+------|
-| Observer.cs       | ss   |
-| Observable*.cs    |      |
-| Notifiers         |      |
-| Operator          |      |
-| Schedulers        |      |
-| Subjects          |      |
-| Disposables       |      |
-| UnityEngineBridge |      |
-| InternalUtil      |      |
+| 文件/目录         | 说明          |
+|-------------------+---------------|
+| Observer.cs       | ss            |
+| Observable*.cs    |               |
+| Notifiers         |               |
+| Operator          |               |
+| Schedulers        |               |
+| Subjects          |               |
+| Disposables       |               |
+| UnityEngineBridge | Unity扩展目录 |
+| InternalUtil      | 内部工具目录  |
