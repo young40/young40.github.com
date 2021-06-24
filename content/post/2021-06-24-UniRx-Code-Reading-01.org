@@ -11,14 +11,36 @@ UniRx的源码位于 =UniRx/Assets/Plugins/UniRx/Scripts= 目录, 用例位于 =
 
 重要的文件或目录有:
 
-| 文件/目录         | 说明          |
-|-------------------+---------------|
-| Observer.cs       | ss            |
-| Observable*.cs    |               |
-| Notifiers         |               |
-| Operator          |               |
-| Schedulers        |               |
-| Subjects          |               |
-| Disposables       |               |
-| UnityEngineBridge | Unity扩展目录 |
-| InternalUtil      | 内部工具目录  |
+# more
+
+| 文件/目录         | 说明           |
+|-------------------+----------------|
+| Observer.cs       | 观察者类的实现 |
+| Observable*.cs    | 被观察者的实现 |
+| Notifiers         |                |
+| Operator          | 运算符的实现   |
+| Schedulers        | 调度器         |
+| Subjects          |                |
+| Disposables       |                |
+| UnityEngineBridge | Unity扩展目录  |
+| InternalUtil      | 内部工具目录   |
+
+* 接口
+UniRx 使用了观察者模式, 我们先看下观察者模式的几个重要接口.
+
+** IObserve
+观察者需要实现 =OnNext=, =OnError=, =OnCompleted= 三个方法.
+{{< highlight C >}}
+
+public interface IObserver<in T>
+{
+    void OnCompleted();
+
+    void OnError(Exception error);
+
+    void OnNext(T value);
+}
+
+{{< /highlight >}}
+   
+** IObservable   
