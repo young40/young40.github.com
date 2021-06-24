@@ -7,4 +7,4 @@
 #+DRAFT: true
 
 * 源码目录
-UniRx的源码位于 UniRx/Assets/Plugins/UniRx/Scripts 目录, 
+UniRx的源码位于 =UniRx/Assets/Plugins/UniRx/Scripts= 目录, 
