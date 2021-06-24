@@ -1,4 +1,4 @@
-#+TITLE: UniRx源码分析
+#+TITLE: UniRx源码分析(一)
 #+DATE: 2021-06-24T17:26:34+08:00
 #+TAGS[]: Unity UniRx
 #+CATEGORIES[]: UniRx源码分析
@@ -7,4 +7,18 @@
 #+DRAFT: true
 
 * 源码目录
-UniRx的源码位于 =UniRx/Assets/Plugins/UniRx/Scripts= 目录, 
+UniRx的源码位于 =UniRx/Assets/Plugins/UniRx/Scripts= 目录, 用例位于 =Assets/Plugins/UniRx/Examples= 目录.
+
+重要的文件或目录有:
+
+| 文件/目录         | 说明 |
+|-------------------+------|
+| Observer.cs       | ss   |
+| Observable*.cs    |      |
+| Notifiers         |      |
+| Operator          |      |
+| Schedulers        |      |
+| Subjects          |      |
+| Disposables       |      |
+| UnityEngineBridge |      |
+| InternalUtil      |      |
