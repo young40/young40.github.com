@@ -30,25 +30,24 @@ UniRx 使用了观察者模式, 我们先看下观察者模式的几个重要接
 
 ** IObserve
 观察者需要实现 =OnNext=, =OnError=, =OnCompleted= 三个方法.
-{{< highlight C >}}
 
-public interface IObserver<in T>
-{
-    void OnCompleted();
-
-    void OnError(Exception error);
-
-    void OnNext(T value);
-}
-
-{{< /highlight >}}
+#+begin_src csharp
+  public interface IObserver<in T>
+  {
+      void OnCompleted();
+  
+      void OnError(Exception error);
+  
+      void OnNext(T value);
+  }
+#+end_src
    
 ** IObservable   
 被观察者需要实现 =Subscribe= 方法, 通过该方法被观察者可以订阅观察者.
-{{< highlight C >}}
 
-public interface IObservable<out T>
-{
-    IDisposable Subscribe(IObserver<T> observer);
-}
-{{< /highlight >}}
+#+begin_src csharp
+  public interface IObservable<out T>
+  {
+      IDisposable Subscribe(IObserver<T> observer);
+  }
+#+end_src
