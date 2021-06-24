@@ -44,3 +44,11 @@ public interface IObserver<in T>
 {{< /highlight >}}
    
 ** IObservable   
+被观察者需要实现 =Subscribe= 方法, 通过该方法被观察者可以订阅观察者.
+{{< highlight C >}}
+
+public interface IObservable<out T>
+{
+    IDisposable Subscribe(IObserver<T> observer);
+}
+{{< /highlight >}}
