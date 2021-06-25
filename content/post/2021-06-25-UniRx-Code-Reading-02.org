@@ -32,3 +32,20 @@
 #+end_src
 
 目前， 我还不确定为何会因 iOS AOT 产生流程分支.  
+
+同时也定义了具有带有不同数量(0-3) =State= 4个 =CreateSubscribeObserver= (=CreateSubscribeWithState(N)Observer=) 函数, 该函数为 =internal=, 仅在 =UniRx= 库内部使用。
+#+begin_src csharp
+  internal static IObserver<T> CreateSubscribeWithStateObserver<T, TState>(
+      TState                    state,
+      Action<T, TState>         onNext,
+      Action<Exception, TState> onError,
+      Action<TState>            onCompleted)
+  {
+      return new Subscribe<T, TState>(state, onNext, onError, onCompleted);
+  } 
+#+end_src
+
+=Create= 和 =CreateSubscribeObserver= 等函数，会返回 =Subscribe= 类的实例， 同样因为包含的 =State= 数量不同，有不同的 =Subscribe= 定义。
+=Subscribe= 类都派生至 IObserver<T>, 为私有类， 不能在外部调用。
+
+
