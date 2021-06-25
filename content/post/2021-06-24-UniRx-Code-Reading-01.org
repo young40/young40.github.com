@@ -51,3 +51,22 @@ UniRx 使用了观察者模式, 我们先看下观察者模式的几个重要接
       IDisposable Subscribe(IObserver<T> observer);
   }
 #+end_src
+
+** IDisposable
+   
+#+begin_src csharp
+  public interface IDisposable
+  {
+      void Dispose();
+  }
+#+end_src
+
+** ICancelable
+=ICancelable= 由UniRx定义，上面三个接口则是由C#提供。   
+   
+#+begin_src csharp
+  public interface ICancelable : IDisposable
+  {
+      bool IsDisposed { get; }
+  }
+#+end_src
