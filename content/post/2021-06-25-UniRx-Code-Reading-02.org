@@ -1,0 +1,34 @@
+#+TITLE: UniRx源码分析(二) Observer.cs
+#+DATE: 2021-06-25T15:34:16+08:00
+#+TAGS[]: Unity UniRx
+#+CATEGORIES[]: UniRx源码分析
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: true
+
+=Observer.cs= 包含了类 =Observer=, =ObserverExtensions=, =ObserverableExtensions=, =Stubs=.
+
+# more
+
+* Observer
+=Observer= 定义4了 =Create= 函数, 返回一个 =IOBserver<T>= 对象，其参数为 =Action<T> onNext=, =Action<Exception> onError=, =Action onCompleted=.
+包含参数最多的函数如下:
+
+#+begin_src csharp
+  public static IObserver<T> Create<T>(Action<T>         onNext,
+                                       Action<Exception> onError,
+                                       Action            onCompleted)
+  {
+      // need compare for avoid iOS AOT
+      if (onNext == Stubs<T>.Ignore)
+      {
+          return new EmptyOnNextAnonymousObserver<T>(onError, onCompleted);
+      }
+      else
+      {
+          return new AnonymousObserver<T>(onNext, onError, onCompleted);
+      }
+  }
+#+end_src
+
+目前， 我还不确定为何会因 iOS AOT 产生流程分支.  
