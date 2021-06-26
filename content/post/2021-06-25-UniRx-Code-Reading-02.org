@@ -124,7 +124,8 @@
   } 
 #+end_src
 
-我们可以看到这些扩展出的 =Subscribe= 函数会直接返回原对象的 =Subscribe= 函数调用返回值.
+我们可以看到这些扩展出的 =Subscribe= 函数会直接返回原对象的 =Subscribe= 函数调用返回值. 该返回值是 =IDisposable=, 可以在销毁时释放资源.
+
 传给原对象 =Subscribe= 函数的参数为 =Observer.CreateSubscribeWithStateObserver=, 根据上面的分析, 我们知道实际上就是 =Observer.Subscribe= 的实例.
 
 * =Stubs= 桩类
