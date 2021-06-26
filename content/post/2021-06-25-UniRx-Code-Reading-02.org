@@ -11,6 +11,7 @@
 # more
 
 * Observer
+** =Create= 函数
 =Observer= 定义4了 =Create= 函数, 返回一个 =IOBserver<T>= 对象，其参数为 =Action<T> onNext=, =Action<Exception> onError=, =Action onCompleted=.
 包含参数最多的函数如下:
 
@@ -33,6 +34,7 @@
 
 目前， 我还不确定为何会因 iOS AOT 产生流程分支.  
 
+** =CreateSubscibeObserver= 函数
 同时也定义了具有带有不同数量(0-3) =State= 4个 =CreateSubscribeObserver= (=CreateSubscribeWithState(N)Observer=) 函数, 该函数为 =internal=, 仅在 =UniRx= 库内部使用。
 #+begin_src csharp
   internal static IObserver<T> CreateSubscribeWithStateObserver<T, TState>(
@@ -45,7 +47,62 @@
   } 
 #+end_src
 
+** =Subscribe= 类
 =Create= 和 =CreateSubscribeObserver= 等函数，会返回 =Subscribe= 类的实例， 同样因为包含的 =State= 数量不同，有不同的 =Subscribe= 定义。
 =Subscribe= 类都派生至 IObserver<T>, 为私有类， 不能在外部调用。
 
+上述两种类型的 =Create= 函数, 都是返回了一个 =Subscribe= 对象实例, =Subscribe= 都实现了 =IObserver= 接口.
+我们在上面也能看到第一种 =Create= 函数, 实际返回的是 =EmptyOnNextAnonymousObserver= 或 =AnonymousObserver= 对象实例. 尽管拥有不同的名称, 但他们有对应的 =Subscribe= 实现, 有着相同的逻辑. (我暂时没有想明白, 为何保留了不同名字的相同逻辑的代码)
+
+根据是否含有 =State=, =Subscribe= 有几种不同的变种. 典型的实现如下:
+#+begin_src csharp
+  // TState数量不同
+  class Subscribe<T, TState> : IObserver<T>
+  {
+      readonly TState state;
+      readonly Action<T, TState> onNext;
+      readonly Action<Exception, TState> onError;
+      readonly Action<TState> onCompleted;
+  
+      int isStopped = 0;
+  
+      public Subscribe(TState       state,   
+          Action<T, TState>         onNext,
+          Action<Exception, TState> onError,
+          Action<TState>            onCompleted)
+      {
+          this.state = state;
+          this.onNext = onNext;
+          this.onError = onError;
+          this.onCompleted = onCompleted;
+      }
+  
+      public void OnNext(T value)
+      {
+          if (isStopped == 0)
+          {
+              onNext(value, state);
+          }
+      }
+  
+      public void OnError(Exception error)
+      {
+          if (Interlocked.Increment(ref isStopped) == 1)
+          {
+              // 带state版本会把state传回回调函数
+              onError(error, state);
+          }
+      }
+  
+  
+      public void OnCompleted()
+      {
+          if (Interlocked.Increment(ref isStopped) == 1)
+          {
+              // 带state版本会把state传回回调函数
+              onCompleted(state);
+          }
+      }
+  } 
+#+end_src
 
