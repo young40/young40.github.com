@@ -6,7 +6,7 @@
 #+OPTIONS: toc:nil
 #+DRAFT: true
 
-=Observer.cs= 包含了类 =Observer=, =ObserverExtensions=, =ObserverableExtensions=, =Stubs=.
+=Observer.cs= 包含了类 =Observer=, =ObserverExtensions=, =ObservableExtensions=, =Stubs=.
 
 # more
 
@@ -110,7 +110,7 @@
 * =ObserverExtensions= 扩展
 给 =IObserver= 扩展出两个 =Synchronize= 方法. 实际返回的是 =UniRx.Operators.SynchronizedObserver= 的实例, 我们等到看 =Operator= 时再讨论.
 
-* =ObserverableExtensions= 扩展
+* =ObservableExtensions= 扩展
 给 =IObservable= 扩展出各种 =Subscribe= 函数变种. 这些变种间的差异, 依然是是否有 =onNext=, =onError=, =onCompleted=, 以及 =State= 数量的不同.
 
 典型的实现如下:
