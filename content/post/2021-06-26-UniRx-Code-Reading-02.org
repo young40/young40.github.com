@@ -10,22 +10,22 @@
 
 # more
 
-|-----------------------------+------|
-| 文件                        | 说明 |
-|-----------------------------+------|
-| Observable.cs               |      |
-| Observable.Aggregate.cs     |      |
-| Observable.Awaiter.cs       |      |
-| Observable.Binding.cs       |      |
-| Observable.Blocking.cs      |      |
-| Observable.Concatenate.cs   |      |
-| Observable.Concurrency.cs   |      |
-| Observable.Conversions.cs   |      |
-| Observable.Creation.cs      |      |
-| Observable.ErrorHandling.cs |      |
-| Observable.Events.cs        |      |
-| Observable.FromAsync.cs     |      |
-| Observable.Joins.cs         |      |
-| Observable.Paging.cs        |      |
-| Observable.Time.cs          |      |
-|-----------------------------+------|
+|-----------------------------+------------------------------|
+| 文件                        | 说明                         |
+|-----------------------------+------------------------------|
+| Observable.cs               | Select, Where, ToArray等函数 |
+| Observable.Aggregate.cs     |                              |
+| Observable.Awaiter.cs       |                              |
+| Observable.Binding.cs       |                              |
+| Observable.Blocking.cs      |                              |
+| Observable.Concatenate.cs   |                              |
+| Observable.Concurrency.cs   |                              |
+| Observable.Conversions.cs   |                              |
+| Observable.Creation.cs      |                              |
+| Observable.ErrorHandling.cs |                              |
+| Observable.Events.cs        |                              |
+| Observable.FromAsync.cs     |                              |
+| Observable.Joins.cs         |                              |
+| Observable.Paging.cs        |                              |
+| Observable.Time.cs          |                              |
+|-----------------------------+------------------------------|
