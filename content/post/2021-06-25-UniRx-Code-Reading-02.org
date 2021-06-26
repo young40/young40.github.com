@@ -10,9 +10,10 @@
 
 # more
 
-* Observer
-** =Create= 函数
-=Observer= 定义4了 =Create= 函数, 返回一个 =IOBserver<T>= 对象，其参数为 =Action<T> onNext=, =Action<Exception> onError=, =Action onCompleted=.
+* =Observer= 类
+=Observer= 为静态( =static= )类.  
+*** =Create= 函数
+=Observer= 定义4了 =Create= 函数, 返回一个 =IObserver<T>= 对象，其参数为 =Action<T> onNext=, =Action<Exception> onError=, =Action onCompleted=.
 包含参数最多的函数如下:
 
 #+begin_src csharp
@@ -34,7 +35,7 @@
 
 目前， 我还不确定为何会因 iOS AOT 产生流程分支.  
 
-** =CreateSubscibeObserver= 函数
+*** =CreateSubscibeObserver= 函数
 同时也定义了具有带有不同数量(0-3) =State= 4个 =CreateSubscribeObserver= (=CreateSubscribeWithState(N)Observer=) 函数, 该函数为 =internal=, 仅在 =UniRx= 库内部使用。
 #+begin_src csharp
   internal static IObserver<T> CreateSubscribeWithStateObserver<T, TState>(
@@ -47,7 +48,7 @@
   } 
 #+end_src
 
-** =Subscribe= 类
+*** =Subscribe= 类
 =Create= 和 =CreateSubscribeObserver= 等函数，会返回 =Subscribe= 类的实例， 同样因为包含的 =State= 数量不同，有不同的 =Subscribe= 定义。
 =Subscribe= 类都派生至 IObserver<T>, 为私有类， 不能在外部调用。
 
@@ -106,3 +107,37 @@
   } 
 #+end_src
 
+* =ObserverExtensions= 扩展
+给 =IObserver= 扩展出两个 =Synchronize= 方法. 实际返回的是 =UniRx.Operators.SynchronizedObserver= 的实例, 我们等到看 =Operator= 时再讨论.
+
+* =ObserverableExtensions= 扩展
+给 =IObservable= 扩展出各种 =Subscribe= 函数变种. 这些变种间的差异, 依然是是否有 =onNext=, =onError=, =onCompleted=, 以及 =State= 数量的不同.
+
+典型的实现如下:
+
+#+begin_src csharp
+  public static IDisposable SubscribeWithState<T, TState>(this IObservable<T> source,
+                                                          TState state,
+                                                          Action<T, TState> onNext)
+  {
+      return source.Subscribe(Observer.CreateSubscribeWithStateObserver(state, onNext, Stubs<TState>.Throw, Stubs<TState>.Ignore));
+  } 
+#+end_src
+
+我们可以看到这些扩展出的 =Subscribe= 函数会直接返回原对象的 =Subscribe= 函数调用返回值.
+传给原对象 =Subscribe= 函数的参数为 =Observer.CreateSubscribeWithStateObserver=, 根据上面的分析, 我们知道实际上就是 =Observer.Subscribe= 的实例.
+
+* =Stubs= 桩类
+桩类里实现了空的 =Action=, =Action<Exception>= 等. 如果调用函数时, 我们不关系某一参数的值, 可以给其传入对应的桩类里的空的实现.
+
+典型实现如下:
+#+begin_src csharp
+internal static class Stubs<T>
+{
+    public static readonly Action<T> Ignore = (T t) => { };
+    public static readonly Func<T, T> Identity = (T t) => t;
+    public static readonly Action<Exception, T> Throw = (ex, _) => { ex.Throw(); };
+}
+#+end_src
+
+    
