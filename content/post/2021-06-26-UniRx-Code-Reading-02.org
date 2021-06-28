@@ -41,9 +41,9 @@
           return new TimerObservable(period, period, Scheduler.DefaultSchedulers.TimeBasedOperations);
       }  
       // .....
-      public static IObservable<T> Delay<T>(this IObservable<T> source, TimeSpan dueTime)
+      public static IObservable<TSource> Delay<TSource>(this IObservable<TSource> source, TimeSpan dueTime, IScheduler scheduler)
       {
-          return source.Delay(dueTime, Scheduler.DefaultSchedulers.TimeBasedOperations);
+          return new DelayObservable<TSource>(source, dueTime, scheduler);
       }
       // .....
   }
@@ -58,3 +58,6 @@
       .Subscribe(x => Debug.Log(DateTime.Now));
       // Subscribe 函数我们上次分析 Observer.cs文件时有提及.
 #+end_src
+
+翻看个 =Observable.*.cs= 的实现，我们可以看到各函数的实现大体都很短，例如 =Interval= 和 =Delay= 都是返回了一个新的对象。
+可以看出这些文件都是桥接性质，后续我们会分析他们的真正实现。
