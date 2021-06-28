@@ -30,3 +30,31 @@
 | Observable.Time.cs          |                              |
 |-----------------------------+------------------------------|
 
+表格中文件都有提供了类似的功能， 或给 =Observable= 类实现了新的静态成员函数，或给 =IObservable= 对象扩展了新的成员函数。
+
+例如, 在 =Observable.Time.cs= 中:
+#+begin_src csharp
+  public static partial class Observable
+  {
+      public static IObservable<long> Interval(TimeSpan period)
+      {
+          return new TimerObservable(period, period, Scheduler.DefaultSchedulers.TimeBasedOperations);
+      }  
+      // .....
+      public static IObservable<T> Delay<T>(this IObservable<T> source, TimeSpan dueTime)
+      {
+          return source.Delay(dueTime, Scheduler.DefaultSchedulers.TimeBasedOperations);
+      }
+      // .....
+  }
+#+end_src
+
+注意到函数 =Interval= 返回了 =IObservable= 对象， 而 =Delay= 又对 =IObservable= 进行了扩展。所以，我们就可以使用链式调用的方式连续调用 =Interval= 和 =Delay= 。
+
+例如：
+#+begin_src csharp
+  Observable.Interval(TimeSpan.FromSeconds(1)) // IObservable<long>
+      .Delay(TimeSpan.FromSeconds(3)) // IObservable<long>
+      .Subscribe(x => Debug.Log(DateTime.Now));
+      // Subscribe 函数我们上次分析 Observer.cs文件时有提及.
+#+end_src
