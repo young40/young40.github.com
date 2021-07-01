@@ -1,4 +1,4 @@
-#+TITLE: UniRx源码分析(四) Scheduler
+#+TITLE: UniRx源码分析(四) Disposables
 #+DATE: 2021-06-28T14:15:55+08:00
 #+TAGS[]: Unity UniRx
 #+CATEGORIES[]: UniRx源码分析
@@ -6,3 +6,9 @@
 #+OPTIONS: toc:nil
 #+DRAFT: true
 
+在源码的 =Disposables= 目录下， =UniRx= 实现了多种 =Disposable= 子类, 他们实现了 =IDisposable= 或 =ICancelable= 接口。
+
+* 套路
+各子类的套路基本是：
+** IsDisposed
+   

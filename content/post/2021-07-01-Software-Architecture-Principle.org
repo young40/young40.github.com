@@ -1,0 +1,31 @@
+#+TITLE: 软件架构原则
+#+DATE: 2021-07-01T16:06:00+08:00
+#+TAGS[]: Architecture
+#+CATEGORIES[]: Architecture
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: true
+
+* 什么是软件架构?
+  软件架构的定义，众说纷纭，不一而足。这里参考《架构整洁之道》的定义：
+  #+begin_quote
+软件架构是指设计软件的人为软件赋予的形状，这个形状是指系统如何被划分为组件（Components），各个组件如何排列（Arrangment）， 组件之间如何沟通（Communication）。
+  #+end_quote
+* S.O.L.I.D  
+  常见的说法是 =S.O.L.I.D= 五个原则， 是各种原则的首字母。
+- Single-responsibility principle 单一职责原则
+- Open-closed principle 开放封闭原则
+- Liskov subsitution principle 里氏替换原则
+- Interface segregation principle 接口隔离原则
+- Dependency inversion principle 依赖反转原则
+  
+  英文中 =solid= 意为 =坚硬的= 。
+* 单一职责原则  
+  
+  
+* 开放封闭原则  
+* 里氏替换原则  
+* 接口隔离原则  
+* 依赖反转原则  
+* 参考
+- [[https://zh.wikipedia.org/zh-cn/软件架构][维基百科: 软件架构]]
