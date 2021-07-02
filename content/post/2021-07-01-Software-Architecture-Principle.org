@@ -13,19 +13,40 @@
   #+end_quote
 * S.O.L.I.D  
   常见的说法是 =S.O.L.I.D= 五个原则， 是各种原则的首字母。
-- Single-responsibility principle 单一职责原则
-- Open-closed principle 开放封闭原则
-- Liskov subsitution principle 里氏替换原则
-- Interface segregation principle 接口隔离原则
-- Dependency inversion principle 依赖反转原则
+- [SRP] Single-responsibility principle 单一职责原则
+- [OCP] Open-closed principle 开放封闭原则
+- [LSP] Liskov subsitution principle 里氏替换原则
+- [ISP] Interface segregation principle 接口隔离原则
+- [DIP] Dependency inversion principle 依赖反转原则
   
   英文中 =solid= 意为 =坚硬的= 。
 * 单一职责原则  
-  
+#+begin_quote
+任何一个软件模块都应该只对某一类行为者负责。
+#+end_quote
+
+尽管我们都在用面向对象，但组织类的时候， 应该以行为（可以做的事）为标准。对象可以很复杂， 行为是单一的。
   
 * 开放封闭原则  
+  #+begin_quote
+  设计良好的计算机软件应该易于扩展，同时抗拒修改。
+  #+end_quote
+
+  对扩展开放， 对修改封闭。
+
+  封闭，当需求变化时，尽可能不修改源码。
+
+  或许只有积木式的代码， 才能做到在需求有变时，或新增积木（扩张），或改变积木配置顺序，来响应改变。
+  
 * 里氏替换原则  
+  理解里氏替换原则， 需要理解著名（臭名昭著）的正方形长方形问题。
+
+  如果正方形是长方形的子类，那么同时给正方形对象设置不等的长和宽，会导致正方形的面积和设置的长宽乘积不等。
+
+  
 * 接口隔离原则  
 * 依赖反转原则  
 * 参考
 - [[https://zh.wikipedia.org/zh-cn/软件架构][维基百科: 软件架构]]
+- [[https://weread.qq.com/web/reader/480322f072021a3248038c8kc81322c012c81e728d9d180][微信读书：架构整洁之道]]
+- [[https://blog.csdn.net/zhengzhb/article/details/7296944][设计模式六大原则（6）：开闭原则]]
