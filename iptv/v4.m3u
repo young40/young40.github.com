@@ -1,0 +1,121 @@
+#EXTM3U
+#EXTINF:-1, group-title="中央频道", CCTV-1
+http://223.110.243.170/PLTV/3/224/3221226316/index.m3u8
+#EXTINF:-1, group-title="中央频道", CCTV-3
+http://183.207.249.14/PLTV/3/224/3221225588/index.m3u8
+#EXTINF:-1, group-title="中央频道", CCTV-5
+http://223.110.243.172/PLTV/3/224/3221227166/index.m3u8
+#EXTINF:-1, group-title="中央频道", CCTV-6
+http://183.207.249.15/PLTV/3/224/3221225548/index.m3u8
+#EXTINF:-1, group-title="中央频道", CCTV-7
+http://183.207.249.6/PLTV/3/224/3221225546/index.m3u8
+#EXTINF:-1, group-title="中央频道", CCTV-8
+http://223.110.243.170/PLTV/3/224/3221227204/index.m3u8
+#EXTINF:-1, group-title="中央频道", CCTV-10
+http://183.207.249.14/PLTV/3/224/3221225550/index.m3u8
+#EXTINF:-1, group-title="中央频道", CCTV-12
+http://223.110.245.172/PLTV/3/224/3221225556/index.m3u8
+#EXTINF:-1, group-title="中央频道", CCTV-14
+http://223.110.245.169/PLTV/3/224/3221227201/index.m3u8
+#EXTINF:-1, group-title="中央频道", CCTV-5+
+http://183.207.249.14/PLTV/3/224/3221225604/index.m3u8
+#EXTINF:-1, group-title="地方频道", 凤凰中文
+http://223.110.245.139/ott.js.chinamobile.com/PLTV/3/224/3221226922/index.m3u8
+#EXTINF:-1, group-title="地方频道", 凤凰资讯
+http://183.207.249.35/PLTV/3/224/3221226923/index.m3u8
+#EXTINF:-1, group-title="地方频道", 凤凰香港
+http://183.207.249.35/PLTV/3/224/3221226975/index.m3u8
+#EXTINF:-1, group-title="地方频道", 北京纪实
+http://ivi.bupt.edu.cn/hls/btv11hd.m3u8
+#EXTINF:-1, group-title="地方频道", 北京青年
+http://ivi.bupt.edu.cn/hls/btv8.m3u8
+#EXTINF:-1, group-title="地方频道", 江苏卫视
+http://223.110.243.136/PLTV/3/224/3221227185/index.m3u8
+#EXTINF:-1, group-title="地方频道", 江苏城市
+http://183.207.249.8/PLTV/4/224/3221225929/index.m3u8
+#EXTINF:-1, group-title="地方频道", 海南藏语
+http://live.hnzzzzzdst.com/channel1/sd/live.m3u8
+#EXTINF:-1, group-title="地方频道", 湖北卫视
+http://223.110.243.171/PLTV/3/224/3221227211/index.m3u8
+#EXTINF:-1, group-title="地方频道", 湖南卫视
+http://223.110.243.136/PLTV/3/224/3221227220/index.m3u8
+#EXTINF:-1, group-title="地方频道", 黑龙江卫视
+http://223.110.243.169/PLTV/3/224/3221227252/index.m3u8
+#EXTINF:-1, group-title="地方频道", 香港耀才财经
+http://202.69.67.66:443/webcast/bshdlive-pc/playlist.m3u8
+#EXTINF:-1, group-title="地方频道", 江苏体育休闲频道
+http://183.207.249.12/PLTV/4/224/3221225935/index.m3u8
+#EXTINF:-1, group-title="地方频道", 东方卫视
+http://223.110.243.138/PLTV/3/224/3221227208/index.m3u8
+#EXTINF:-1, group-title="地方频道", 孝感公共
+http://xiaogan.live.cjyun.org/video/s10139-shpd/index.m3u8
+#EXTINF:-1, group-title="地方频道", 孝感新闻
+http://xiaogan.live.cjyun.org/video/s10139-xg/index.m3u8
+#EXTINF:-1, group-title="地方频道", 徐州公共
+http://stream1.huaihai.tv/ggpd/playlist.m3u8
+#EXTINF:-1, group-title="地方频道", 徐州影视
+http://stream1.huaihai.tv/wyys/playlist.m3u8
+#EXTINF:-1, group-title="地方频道", 徐州生活
+http://stream1.huaihai.tv/jjsh/playlist.m3u8
+#EXTINF:-1, group-title="地方频道", 徐州综合
+http://stream1.huaihai.tv/xwzh/playlist.m3u8
+#EXTINF:-1, group-title="地方频道", 洛阳综合
+http://live1.lytv.com.cn:1935/live/LYTV1-2/playlist.m3u8
+#EXTINF:-1, group-title="地方频道", 舟山公共
+http://live.wifizs.cn/ggsh/sd/live.m3u8
+#EXTINF:-1, group-title="地方频道", 舟山新闻
+http://live.wifizs.cn/xwzh/sd/live.m3u8
+#EXTINF:-1, group-title="地方频道", 舟山旅游
+http://live.wifizs.cn/qdly/sd/live.m3u8
+#EXTINF:-1, group-title="地方频道", 西安-2
+http://stream2.xiancity.cn/xatv2/sd/live.m3u8
+#EXTINF:-1, group-title="地方频道", 西安健康
+http://stream2.xiancity.cn/xatv5/sd/live.m3u8
+#EXTINF:-1, group-title="地方频道", 西安影视
+http://stream2.xiancity.cn/xatv4/sd/live.m3u8
+#EXTINF:-1, group-title="地方频道", 西安新闻
+http://stream2.xiancity.cn/xatv1/sd/live.m3u8
+#EXTINF:-1, group-title="地方频道", 西安资讯
+http://stream2.xiancity.cn/xatv3/sd/live.m3u8
+#EXTINF:-1, group-title="地方频道", 龙岩综合
+http://stream.lytv.net.cn/2/sd/live.m3u8
+#EXTINF:-1, group-title="地方频道", 万州三峡移民
+http://123.146.162.24:8013/tslslive/PU2vzMI/hls/live_sd.m3u8
+#EXTINF:-1, group-title="地方频道", 万州综合频道
+http://123.146.162.24:8013/tslslive/noEX9SG/hls/live_sd.m3u8
+#EXTINF:-1, group-title="地方频道", 亳州农村频道
+http://218.22.251.12:8001/tslslive/JpWzs2u/hls/live_sd.m3u8
+#EXTINF:-1, group-title="地方频道", 亳州新闻频道
+http://218.22.251.12:8001/tslslive/wT9aUpL/hls/live_sd.m3u8
+#EXTINF:-1, group-title="地方频道", 娄底综合频道
+http://119.39.242.52:1935/live/zonghe/playlist.m3u8
+#EXTINF:-1, group-title="地方频道", 衡水影视娱乐
+http://hls.hsrtv.cn/hls/hstv2.m3u8
+#EXTINF:-1, group-title="地方频道", 衡水新闻综合
+http://hls.hsrtv.cn/hls/hstv1.m3u8
+#EXTINF:-1, group-title="其他频道", HBO
+http://218.202.220.2:5000/nn_live.m3u8?id=HBO
+#EXTINF:-1, group-title="其他频道", TVRS
+http://wms.shared.streamshow.it:1935/tvrs/tvrs/live.m3u8
+#EXTINF:-1, group-title="其他频道", 金鹰卡通
+http://m-tvlmedia.public.bcs.ysten.com/ysten-business/live/jinyingkaton/1.m3u8
+#EXTINF:-1, group-title="其他频道", CHC电影
+http://ivi.bupt.edu.cn/hls/chchd.m3u8
+#EXTINF:-1, group-title="其他频道", MDF.1
+http://62.113.210.250/medienasa-live/mdf1_high/agustiny.m3u8
+#EXTINF:-1, group-title="其他频道", 优漫卡通-1
+http://223.110.243.171/PLTV/3/224/3221226982/index.m3u8
+#EXTINF:-1, group-title="其他频道", BestV体育-5
+http://223.110.245.147/ott.js.chinamobile.com/PLTV/3/224/3221226799/2.m3u8
+#EXTINF:-1, group-title="其他频道", Elbekanal
+http://62.113.210.250/medienasa-live/_definst_/mp4:elbe_high/chunklist_w1146564478.m3u8
+#EXTINF:-1, group-title="其他频道", NabdSyria
+http://www.elahmad.com/tv/m3u8/akamaihd.m3u8?id=nabdsyria
+#EXTINF:-1, group-title="其他频道", Newtv精品电影
+http://183.207.249.14/PLTV/3/224/3221225567/index.m3u8
+#EXTINF:-1, group-title="其他频道", 美国CGTN(Opt-1)
+http://live.cgtn.com/500/prog_index.m3u8
+#EXTINF:-1, group-title="其他频道", 美国CGTN(Opt-2)
+http://live.cgtn.com/1000/prog_index.m3u8
+#EXTINF:-1, group-title="广播频道", RadioBanovina
+http://136.243.21.140:9998/banovina
