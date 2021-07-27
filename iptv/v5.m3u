@@ -1,0 +1,111 @@
+#EXTM3U
+#EXTINF:-1,CCTV-1
+http://223.110.245.165/ott.js.chinamobile.com/PLTV/3/224/3221227375/index.m3u8
+#EXTINF:-1,CCTV-3
+http://183.207.249.14/PLTV/3/224/3221225588/index.m3u8
+#EXTINF:-1,CCTV-6
+http://223.110.245.159/ott.js.chinamobile.com/PLTV/3/224/3221227209/index.m3u8
+#EXTINF:-1, group-title="中央频道", CCTV-12
+http://223.110.245.172/PLTV/3/224/3221225556/index.m3u8
+#EXTINF:-1, group-title="中央频道", CCTV-14
+http://223.110.245.169/PLTV/3/224/3221227201/index.m3u8
+#EXTINF:-1, group-title="地方频道", 北京影视
+http://ivi.bupt.edu.cn/hls/btv4.m3u8
+#EXTINF:-1, group-title="地方频道", 北京文艺
+http://ivi.bupt.edu.cn/hls/btv2hd.m3u8
+#EXTINF:-1, group-title="地方频道", 北京新闻
+http://ivi.bupt.edu.cn/hls/btv9.m3u8
+#EXTINF:-1, group-title="地方频道", 北京生活
+http://ivi.bupt.edu.cn/hls/btv7.m3u8
+#EXTINF:-1, group-title="地方频道", 北京科教
+http://ivi.bupt.edu.cn/hls/btv3.m3u8
+#EXTINF:-1, group-title="地方频道", 北京财经
+http://ivi.bupt.edu.cn/hls/btv5.m3u8
+#EXTINF:-1, group-title="地方频道", 北京青年
+http://ivi.bupt.edu.cn/hls/btv8.m3u8
+#EXTINF:-1, group-title="地方频道", 天津卫视
+http://39.135.135.12:80/wh7f454c46tw1933124428_-2054845674/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225740/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=694
+#EXTINF:-1, group-title="地方频道", 西藏卫视
+http://39.134.65.72:80/wh7f454c46tw1933117189_889786975/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225638/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=132
+#EXTINF:-1, group-title="地方频道", 北京卡酷少儿
+http://39.134.65.3:80/wh7f454c46tw1933009533_-332308272/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225654/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=11
+#EXTINF:-1, group-title="地方频道", 山东教育卫视
+http://39.134.65.78:80/wh7f454c46tw1933125098_470361258/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225655/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=128
+#EXTINF:-1, group-title="地方频道", 香港衛視HKS
+http://zhibo.hkstv.tv/livestream/mutfysrq/playlist.m3u8
+#EXTINF:-1, group-title="地方频道", 东莞综合
+http://dslive.grtn.cn/dgzh/sd/live.m3u8?ts
+#EXTINF:-1, group-title="地方频道", 中山综合
+http://dslive.grtn.cn/zszh/sd/live.m3u8?ts
+#EXTINF:-1, group-title="地方频道", 佛山综合
+http://dslive.grtn.cn/fszh/sd/live.m3u8?ts
+#EXTINF:-1, group-title="地方频道", 厦门卫视
+http://223.110.245.159/ott.js.chinamobile.com/PLTV/3/224/3221226996/index.m3u8
+#EXTINF:-1, group-title="地方频道", 肇庆综合
+http://dslive.grtn.cn/zqzh/sd/live.m3u8?ts
+#EXTINF:-1, group-title="其他频道", 电影
+http://39.135.135.12:80/wh7f454c46tw1933105094_-625096505/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225743/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=694
+#EXTINF:-1, group-title="其他频道", 东南卫视
+http://39.134.65.76:80/wh7f454c46tw1932323481_-1193436131/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225620/index.m3u8?icpid=88888888&RTS=1579029478&from=1&hms_devid=131
+#EXTINF:-1, group-title="其他频道", 优漫卡通
+http://39.134.65.4:80/wh7f454c46tw1933127932_-1207322636/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225656/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=4
+#EXTINF:-1, group-title="其他频道", 哈哈炫动
+http://39.134.65.88:80/wh7f454c46tw1933128043_-322208636/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225657/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=134
+#EXTINF:-1, group-title="其他频道", 安多卫视
+http://39.134.65.78:80/wh7f454c46tw1932333408_1149385642/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225659/index.m3u8?icpid=88888888&RTS=1579029478&from=1&hms_devid=128
+#EXTINF:-1, group-title="其他频道", 金鹰卡通
+http://39.134.65.4:80/wh7f454c46tw1932626631_-746598519/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225653/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=4
+#EXTINF:-1, group-title="其他频道", CHC电影
+http://ivi.bupt.edu.cn/hls/chchd.m3u8
+#EXTINF:-1, group-title="其他频道", 印度APB
+http://hindiabp-lh.akamaihd.net/i/hindiabp1new_1@192103/master.m3u8
+#EXTINF:-1, group-title="其他频道", 欧美MTV
+http://m2otv-lh.akamaihd.net/i/m2oTv_1@186074/index_600_av-b.m3u8
+#EXTINF:-1, group-title="其他频道", CA-CPAC
+http://bcoveliveios-i.akamaihd.net/hls/live/248519/1242843915001_1/master.m3u8
+#EXTINF:-1, group-title="其他频道", NewTV 搏击
+http://39.134.65.65:80/wh7f454c46tw1933118763_-691332913/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225680/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=125
+#EXTINF:-1, group-title="其他频道", Newtv精品电影
+http://183.207.249.14/PLTV/3/224/3221225567/index.m3u8
+#EXTINF:-1, group-title="其他频道", NewTV 东北热剧
+http://39.135.135.12:80/wh7f454c46tw1933119583_617512298/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225741/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=694
+#EXTINF:-1, group-title="其他频道", NewTV 中国功夫
+http://39.134.65.84:80/wh7f454c46tw1933122944_256139629/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225681/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=130
+#EXTINF:-1, group-title="其他频道", NewTV 健康有约
+http://39.134.65.66:80/wh7f454c46tw1933128675_-106547739/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225673/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=126
+#EXTINF:-1, group-title="其他频道", NewTV 军事评论
+http://39.134.65.2:80/wh7f454c46tw1933112330_-1077647376/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225668/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=11
+#EXTINF:-1, group-title="其他频道", NewTV 军旅剧场
+http://39.134.65.80:80/wh7f454c46tw1933127363_696277505/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225676/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=124
+#EXTINF:-1, group-title="其他频道", NewTV 动画王国
+http://39.134.65.8:80/wh7f454c46tw1932618304_-1568321494/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225662/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=14
+#EXTINF:-1, group-title="其他频道", NewTV 古装剧场
+http://39.134.65.72:80/wh7f454c46tw1932819744_-1993410261/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225663/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=132
+#EXTINF:-1, group-title="其他频道", NewTV 家庭剧场
+http://39.134.65.6:80/wh7f454c46tw1932829804_1276949297/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225677/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=29
+#EXTINF:-1, group-title="其他频道", NewTV 惊悚悬疑
+http://39.134.65.6:80/wh7f454c46tw1933006885_-663399866/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225665/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=29
+#EXTINF:-1, group-title="其他频道", NewTV 明星大片
+http://39.134.65.6:80/wh7f454c46tw1932626875_2136730600/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225664/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=29
+#EXTINF:-1, group-title="其他频道", NewTV 欢乐剧场
+http://39.135.135.12:80/wh7f454c46tw1933121124_-1494028612/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225742/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=694
+#EXTINF:-1, group-title="其他频道", NewTV 海外剧场
+http://39.134.65.76:80/wh7f454c46tw1932636598_-2118705405/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225671/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=131
+#EXTINF:-1, group-title="其他频道", NewTV 潮妈辣婆
+http://39.134.65.88:80/wh7f454c46tw1933126788_676462383/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225685/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=134
+#EXTINF:-1, group-title="其他频道", NewTV 精品体育
+http://39.134.65.6:80/wh7f454c46tw1933117244_-1636594045/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225674/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=29
+#EXTINF:-1, group-title="其他频道", NewTV 精品大剧
+http://39.134.65.72:80/wh7f454c46tw1933009495_-1510557471/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225670/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=132
+#EXTINF:-1, group-title="其他频道", NewTV 精品纪录
+http://39.134.65.88:80/wh7f454c46tw1932618676_-704003954/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225672/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=134
+#EXTINF:-1, group-title="其他频道", NewTV 金牌综艺
+http://39.134.65.71:80/wh7f454c46tw1932631685_2130682535/ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221225666/index.m3u8?icpid=88888888&RTS=1579029479&from=1&hms_devid=135
+#EXTINF:-1, group-title="其他频道", FR-France24
+http://static.france24.com/live/F24_EN_LO_HLS/live_web.m3u8
+#EXTINF:-1, group-title="其他频道", JP-NHK World
+http://nhkwtvglobal-i.akamaihd.net/hls/live/263941/nhkwtvglobal/index.m3u8
+#EXTINF:-1, group-title="其他频道", NOTICIASCGTN1
+http://livees.cgtn.com/1000e/prog_index.m3u8
+#EXTINF:-1, group-title="其他频道", UK-London Live
+http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master.m3u8
