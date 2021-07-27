@@ -79,3 +79,5 @@ http://111.12.102.68:6610/PLTV/77777777/224/3221225664/index.m3u8?
 http://111.12.102.68:6610/PLTV/77777777/224/3221225651/index.m3u8?
 #EXTINF:-1 ,北京冬奥蓝光1 (Operation timed out)
 http://111.12.102.68:6610/PLTV/77777777/224/3221225667/index.m3u8?
+#EXTINF:-1 ,北京冬奥蓝光2 (Operation timed out)
+http://117.169.119.199:8080/live/HD-8000k-1080P-beijingjishi/index.m3u8
