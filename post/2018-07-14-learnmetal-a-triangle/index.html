@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.84.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.4 with theme even" />
 
 
 <link rel="canonical" href="https://www.young40.com/post/2018-07-14-learnmetal-a-triangle/" />
@@ -45,13 +45,13 @@
 学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.young40.com/post/2018-07-14-learnmetal-a-triangle/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-07-14T00:21:53&#43;08:00" />
-<meta property="article:modified_time" content="2018-07-14T00:21:53&#43;08:00" />
+<meta property="article:published_time" content="2018-07-14T00:21:53+08:00" />
+<meta property="article:modified_time" content="2018-07-14T00:21:53+08:00" />
 
 <meta itemprop="name" content="学习Metal: Hello, Triangle">
 <meta itemprop="description" content="
-学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形."><meta itemprop="datePublished" content="2018-07-14T00:21:53&#43;08:00" />
-<meta itemprop="dateModified" content="2018-07-14T00:21:53&#43;08:00" />
+学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形."><meta itemprop="datePublished" content="2018-07-14T00:21:53+08:00" />
+<meta itemprop="dateModified" content="2018-07-14T00:21:53+08:00" />
 <meta itemprop="wordCount" content="894">
 <meta itemprop="keywords" content="metal,swift,playground," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="学习Metal: Hello, Triangle"/>
@@ -171,7 +171,7 @@
 <p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -181,7 +181,7 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">MyMetalView</span><span class="p">:</span> <span class="n">MTKView</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">MyMetalView</span><span class="p">:</span> <span class="n">MTKView</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nv">vertexData</span><span class="p">:</span> <span class="p">[</span><span class="nb">Float</span><span class="p">]</span><span class="o">!</span>
     <span class="kd">var</span> <span class="nv">vertexBuffer</span><span class="p">:</span> <span class="n">MTLBuffer</span><span class="p">!</span>
 
@@ -204,7 +204,7 @@
 <p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -215,7 +215,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">public</span> <span class="kd">func</span> <span class="nf">initVertex</span><span class="p">()</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">public</span> <span class="kd">func</span> <span class="nf">initVertex</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">vertexData</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
@@ -237,7 +237,7 @@ Metal Shader
 <p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -255,7 +255,7 @@ Metal Shader
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;metal_stdlib&gt;</span><span class="cp">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;metal_stdlib&gt;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">metal</span><span class="p">;</span>
 
@@ -278,7 +278,7 @@ Metal Shader
 <p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -302,7 +302,7 @@ Metal Shader
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">public</span> <span class="kd">func</span> <span class="nf">initShader</span><span class="p">()</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">public</span> <span class="kd">func</span> <span class="nf">initShader</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nv">shaderStr</span> <span class="p">=</span> <span class="s">&#34;&#34;&#34; ... &#34;&#34;&#34;</span>
     <span class="k">do</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nv">library</span> <span class="p">=</span> <span class="k">try</span> <span class="kc">self</span><span class="p">.</span><span class="n">device</span><span class="p">?.</span><span class="n">makeLibrary</span><span class="p">(</span><span class="n">source</span><span class="p">:</span> <span class="n">shaderStr</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
@@ -340,7 +340,7 @@ Metal Shader
 <p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -362,7 +362,7 @@ Metal Shader
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">public</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="kc">_</span> <span class="n">dirtyRect</span><span class="p">:</span> <span class="n">NSRect</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">public</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="kc">_</span> <span class="n">dirtyRect</span><span class="p">:</span> <span class="n">NSRect</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">let</span> <span class="nv">renderPassDescriptor</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">currentRenderPassDescriptor</span><span class="p">!</span>
     <span class="kd">let</span> <span class="nv">drawable</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">currentDrawable</span>
         

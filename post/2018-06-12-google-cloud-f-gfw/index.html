@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.84.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.4 with theme even" />
 
 
 <link rel="canonical" href="https://www.young40.com/post/2018-06-12-google-cloud-f-gfw/" />
@@ -45,13 +45,13 @@
 Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记录一下重点过程." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.young40.com/post/2018-06-12-google-cloud-f-gfw/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-06-12T23:25:30&#43;08:00" />
-<meta property="article:modified_time" content="2018-06-12T23:25:30&#43;08:00" />
+<meta property="article:published_time" content="2018-06-12T23:25:30+08:00" />
+<meta property="article:modified_time" content="2018-06-12T23:25:30+08:00" />
 
 <meta itemprop="name" content="Google Cloud安装Shadowsocks">
 <meta itemprop="description" content="
-Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记录一下重点过程."><meta itemprop="datePublished" content="2018-06-12T23:25:30&#43;08:00" />
-<meta itemprop="dateModified" content="2018-06-12T23:25:30&#43;08:00" />
+Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记录一下重点过程."><meta itemprop="datePublished" content="2018-06-12T23:25:30+08:00" />
+<meta itemprop="dateModified" content="2018-06-12T23:25:30+08:00" />
 <meta itemprop="wordCount" content="510">
 <meta itemprop="keywords" content="Shadowsocks," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Google Cloud安装Shadowsocks"/>
@@ -229,10 +229,10 @@ Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记�
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">sudo passwd</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">sudo passwd</code></pre></td></tr></table>
 </div>
 </div>
 <ul>
@@ -242,10 +242,10 @@ Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记�
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">sudo apt-get install zsh</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">sudo apt-get install zsh</code></pre></td></tr></table>
 </div>
 </div>
 </div>
@@ -257,7 +257,7 @@ Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记�
 <div id="outline-text-headline-5" class="outline-text-5">
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -265,7 +265,7 @@ Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记�
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">sudo <span class="nb">echo</span> <span class="s2">&#34;net.core.default_qdisc=fq&#34;</span> &gt;&gt; /etc/sysctl.conf
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">sudo <span class="nb">echo</span> <span class="s2">&#34;net.core.default_qdisc=fq&#34;</span> &gt;&gt; /etc/sysctl.conf
 sudo <span class="nb">echo</span> <span class="s2">&#34;net.ipv4.tcp_congestion_control=bbr&#34;</span> &gt;&gt; /etc/sysctl.conf
 <span class="c1"># 让设置生效</span>
 sysctl -p
@@ -282,10 +282,10 @@ lsmod <span class="p">|</span> grep bbr</code></pre></td></tr></table>
 <div id="outline-text-headline-6" class="outline-text-5">
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get upgrade</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get upgrade</code></pre></td></tr></table>
 </div>
 </div>
 </div>
@@ -302,10 +302,10 @@ lsmod <span class="p">|</span> grep bbr</code></pre></td></tr></table>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">sudo apt-get install shadowsocks-libev</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">sudo apt-get install shadowsocks-libev</code></pre></td></tr></table>
 </div>
 </div>
 <ul>
@@ -315,10 +315,10 @@ lsmod <span class="p">|</span> grep bbr</code></pre></td></tr></table>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">sudo vim /etc/shadowsocks-libev/config.json</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">sudo vim /etc/shadowsocks-libev/config.json</code></pre></td></tr></table>
 </div>
 </div>
 </div>
@@ -330,10 +330,10 @@ lsmod <span class="p">|</span> grep bbr</code></pre></td></tr></table>
 <div id="outline-text-headline-8" class="outline-text-5">
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">systemctl status shadowsocks-libev.service</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">systemctl status shadowsocks-libev.service</code></pre></td></tr></table>
 </div>
 </div>
 </div>

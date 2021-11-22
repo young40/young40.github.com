@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.84.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.4 with theme even" />
 
 
 <link rel="canonical" href="https://www.young40.com/post/2018-07-22-metal-shading-languae-note-03/" />
@@ -48,15 +48,15 @@ Metal支持一系列向量数据类型, 由系统的向量数学库提供.
 PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.young40.com/post/2018-07-22-metal-shading-languae-note-03/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-07-22T00:00:06&#43;08:00" />
-<meta property="article:modified_time" content="2018-07-22T00:00:06&#43;08:00" />
+<meta property="article:published_time" content="2018-07-22T00:00:06+08:00" />
+<meta property="article:modified_time" content="2018-07-22T00:00:06+08:00" />
 
 <meta itemprop="name" content="MTSL笔记03: 数据类型 - 向量">
 <meta itemprop="description" content="
 Metal支持一系列向量数据类型, 由系统的向量数学库提供.
 
-PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库."><meta itemprop="datePublished" content="2018-07-22T00:00:06&#43;08:00" />
-<meta itemprop="dateModified" content="2018-07-22T00:00:06&#43;08:00" />
+PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库."><meta itemprop="datePublished" content="2018-07-22T00:00:06+08:00" />
+<meta itemprop="dateModified" content="2018-07-22T00:00:06+08:00" />
 <meta itemprop="wordCount" content="978">
 <meta itemprop="keywords" content="metal,shader," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="MTSL笔记03: 数据类型 - 向量"/>
@@ -292,7 +292,7 @@ booln, charn, shortn, intn, ucharn, ushortn, uintn, halfn, floatn</p>
 <p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -305,7 +305,7 @@ booln, charn, shortn, intn, ucharn, ushortn, uintn, halfn, floatn</p>
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">pos</span> <span class="o">=</span> <span class="n">float4</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">,</span> <span class="mf">3.0f</span><span class="p">,</span> <span class="mf">4.0f</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">pos</span> <span class="o">=</span> <span class="n">float4</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">,</span> <span class="mf">3.0f</span><span class="p">,</span> <span class="mf">4.0f</span><span class="p">);</span>
 
 <span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="c1">// x = 1.0
 </span><span class="c1"></span><span class="kt">float</span> <span class="n">z</span> <span class="o">=</span> <span class="n">pos</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">// z = 3.0
@@ -328,7 +328,7 @@ vector_data_type.rgba</p>
 可以单一地选择某一个元素. 
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -337,7 +337,7 @@ vector_data_type.rgba</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">int4</span> <span class="n">test</span> <span class="o">=</span> <span class="n">int4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">int4</span> <span class="n">test</span> <span class="o">=</span> <span class="n">int4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 
 <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">test</span><span class="p">.</span><span class="n">x</span><span class="p">;</span> <span class="c1">// a = 0
 </span><span class="c1"></span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">text</span><span class="p">.</span><span class="n">y</span><span class="p">;</span> <span class="c1">// b = 1
@@ -363,13 +363,13 @@ vector_data_type.rgba</p>
 <p>
    <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp">       <span class="n">float2</span> <span class="n">pos</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp">       <span class="n">float2</span> <span class="n">pos</span><span class="p">;</span>
        <span class="n">pos</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">;</span> <span class="c1">// 对的
 </span><span class="c1"></span>       <span class="n">pos</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mf">1.0f</span><span class="p">;</span> <span class="c1">// 错的
 </span><span class="c1"></span>   
@@ -383,10 +383,10 @@ vector_data_type.rgba</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">pos</span><span class="p">.</span><span class="n">xx</span> <span class="o">=</span> <span class="n">float2</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">);</span> <span class="c1">// 使用了x两次, 错误
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">pos</span><span class="p">.</span><span class="n">xx</span> <span class="o">=</span> <span class="n">float2</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">);</span> <span class="c1">// 使用了x两次, 错误
 </span></code></pre></td></tr></table>
 </div>
 </div>
@@ -397,10 +397,10 @@ vector_data_type.rgba</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">pos</span><span class="p">.</span><span class="n">xy</span> <span class="o">=</span> <span class="n">float4</span><span class="p">(</span><span class="mf">1f</span><span class="p">,</span> <span class="mf">2f</span><span class="p">,</span> <span class="mf">3f</span><span class="p">,</span> <span class="mf">4f</span><span class="p">);</span><span class="c1">// float2 和 float4不匹配, 错误
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">pos</span><span class="p">.</span><span class="n">xy</span> <span class="o">=</span> <span class="n">float4</span><span class="p">(</span><span class="mf">1f</span><span class="p">,</span> <span class="mf">2f</span><span class="p">,</span> <span class="mf">3f</span><span class="p">,</span> <span class="mf">4f</span><span class="p">);</span><span class="c1">// float2 和 float4不匹配, 错误
 </span></code></pre></td></tr></table>
 </div>
 </div>
@@ -411,11 +411,11 @@ vector_data_type.rgba</p>
 </ul>
 <p><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">pos</span><span class="p">.</span><span class="n">xg</span> <span class="o">=</span> <span class="n">float2</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">);</span> <span class="c1">// 混合使用, 错误 
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">pos</span><span class="p">.</span><span class="n">xg</span> <span class="o">=</span> <span class="n">float2</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">);</span> <span class="c1">// 混合使用, 错误 
 </span><span class="c1"></span><span class="n">float3</span> <span class="n">coord</span> <span class="o">=</span> <span class="n">pos</span><span class="p">.</span><span class="n">ryz</span><span class="p">;</span>      <span class="c1">// 错误
 </span></code></pre></td></tr></table>
 </div>
@@ -427,11 +427,11 @@ vector_data_type.rgba</p>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">float4</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">float4</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">,</span> <span class="mf">3.0f</span><span class="p">,</span> <span class="mf">4.0f</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">float4</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">float4</span><span class="p">(</span><span class="mf">1.0f</span><span class="p">,</span> <span class="mf">2.0f</span><span class="p">,</span> <span class="mf">3.0f</span><span class="p">,</span> <span class="mf">4.0f</span><span class="p">);</span>
 <span class="n">my_func</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pos</span><span class="p">.</span><span class="n">xy</span><span class="p">);</span> <span class="c1">// 错误
 </span></code></pre></td></tr></table>
 </div>
@@ -454,7 +454,7 @@ float4的所有构造函数:</p>
 <p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -464,7 +464,7 @@ float4的所有构造函数:</p>
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">float4</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">float4</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">);</span>
 <span class="n">float4</span><span class="p">(</span><span class="kt">float</span> <span class="n">x</span><span class="p">,</span> <span class="kt">float</span> <span class="n">y</span><span class="p">,</span> <span class="kt">float</span> <span class="n">z</span><span class="p">,</span> <span class="kt">float</span> <span class="n">w</span><span class="p">);</span> <span class="n">float4</span><span class="p">(</span><span class="n">float2</span> <span class="n">a</span><span class="p">,</span> <span class="n">float2</span> <span class="n">b</span><span class="p">);</span>
 <span class="n">float4</span><span class="p">(</span><span class="n">float2</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="p">,</span> <span class="kt">float</span> <span class="n">c</span><span class="p">);</span>
 <span class="n">float4</span><span class="p">(</span><span class="kt">float</span> <span class="n">a</span><span class="p">,</span> <span class="kt">float</span> <span class="n">b</span><span class="p">,</span> <span class="n">float2</span> <span class="n">c</span><span class="p">);</span>

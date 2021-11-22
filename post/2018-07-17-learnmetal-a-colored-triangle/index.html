@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.84.0 with theme even" />
+<meta name="generator" content="Hugo 0.89.4 with theme even" />
 
 
 <link rel="canonical" href="https://www.young40.com/post/2018-07-17-learnmetal-a-colored-triangle/" />
@@ -45,13 +45,13 @@
 上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.young40.com/post/2018-07-17-learnmetal-a-colored-triangle/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2018-07-17T23:15:13&#43;08:00" />
-<meta property="article:modified_time" content="2018-07-17T23:15:13&#43;08:00" />
+<meta property="article:published_time" content="2018-07-17T23:15:13+08:00" />
+<meta property="article:modified_time" content="2018-07-17T23:15:13+08:00" />
 
 <meta itemprop="name" content="学习Metal: 带色的三角形">
 <meta itemprop="description" content="
-上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色."><meta itemprop="datePublished" content="2018-07-17T23:15:13&#43;08:00" />
-<meta itemprop="dateModified" content="2018-07-17T23:15:13&#43;08:00" />
+上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色."><meta itemprop="datePublished" content="2018-07-17T23:15:13+08:00" />
+<meta itemprop="dateModified" content="2018-07-17T23:15:13+08:00" />
 <meta itemprop="wordCount" content="511">
 <meta itemprop="keywords" content="metal,swift,playground," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="学习Metal: 带色的三角形"/>
@@ -171,13 +171,13 @@
 <p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">struct</span> <span class="nc">Vertex</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">struct</span> <span class="nc">Vertex</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nv">position</span><span class="p">:</span> <span class="n">vector_float4</span>
     <span class="kd">var</span> <span class="nv">color</span><span class="p">:</span> <span class="n">vector_float4</span>
 <span class="p">}</span></code></pre></td></tr></table>
@@ -196,12 +196,12 @@ Vertex的数据结构中包含了顶点的位置和对应的颜色.</p>
 <p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">vertexData</span> <span class="p">=</span> <span class="p">[</span><span class="n">Vertex</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="p">[</span>   <span class="mi">0</span><span class="p">,</span>  <span class="mf">0.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="n">vertexData</span> <span class="p">=</span> <span class="p">[</span><span class="n">Vertex</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="p">[</span>   <span class="mi">0</span><span class="p">,</span>  <span class="mf">0.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
               <span class="n">Vertex</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
               <span class="n">Vertex</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="p">[</span> <span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span></code></pre></td></tr></table>
 </div>
@@ -219,13 +219,13 @@ Vertex的数据结构中包含了顶点的位置和对应的颜色.</p>
 <p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">Vertex</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">struct</span> <span class="nc">Vertex</span> <span class="p">{</span>
     <span class="n">float4</span> <span class="n">position</span> <span class="na">[[position]]</span><span class="p">;</span>
     <span class="n">float4</span> <span class="n">color</span><span class="p">;</span>
 <span class="p">};</span></code></pre></td></tr></table>
@@ -236,12 +236,12 @@ fragment function 我们需要返回Vertex对应的color.</p>
 <p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">fragment</span> <span class="n">float4</span> <span class="nf">fragment_func</span><span class="p">(</span><span class="n">Vertex</span> <span class="n">vert</span> <span class="na">[[stage_in]]</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">fragment</span> <span class="n">float4</span> <span class="nf">fragment_func</span><span class="p">(</span><span class="n">Vertex</span> <span class="n">vert</span> <span class="na">[[stage_in]]</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">vert</span><span class="p">.</span><span class="n">color</span><span class="p">;</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
@@ -268,12 +268,12 @@ fragment function 我们需要返回Vertex对应的color.</p>
 <p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-swift" data-lang="swift"><span class="n">vertexData</span> <span class="p">=</span> <span class="p">[</span>   <span class="mi">0</span><span class="p">,</span>  <span class="mf">0.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="n">vertexData</span> <span class="p">=</span> <span class="p">[</span>   <span class="mi">0</span><span class="p">,</span>  <span class="mf">0.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
               <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
                <span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span></code></pre></td></tr></table>
 </div>
