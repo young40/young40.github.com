@@ -54,7 +54,7 @@
 有道是, 工欲善其事, 必先利其器. 想研究代码, 最好不过的方式就是边修改边运行看看效果, 研究UGUI自然也不例外.
 我们先看下如何搭建一个可以修改调试UGUI环境."><meta itemprop="datePublished" content="2021-11-22T16:36:17+08:00" />
 <meta itemprop="dateModified" content="2021-11-22T16:36:17+08:00" />
-<meta itemprop="wordCount" content="843">
+<meta itemprop="wordCount" content="879">
 <meta itemprop="keywords" content="Unity,UGUI," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="UGUI源码分析(零): 环境搭建"/>
 <meta name="twitter:description" content="
@@ -235,7 +235,9 @@
 <p>
 可以将Unity编辑器重启, 以减少可能遇到的问题.</p>
 <blockquote>
-<p>这里将 <code class="verbatim">visualscripting</code> 也删除是因为 <code class="verbatim">visualscripting</code> 依赖了UGUI, 会自动引入UGUI(即使我们删除了UGUI的情况下). </p>
+<p>这里将 <code class="verbatim">visualscripting</code> 也删除是因为 <code class="verbatim">visualscripting</code> 依赖了UGUI, 会自动引入UGUI(即使我们删除了UGUI的情况下).</p>
+<p>
+未来不排除有更多插件依赖UGUI, 可以查看依赖关系后, 也同样做删除操作.</p>
 </blockquote>
 </div>
 </div>
