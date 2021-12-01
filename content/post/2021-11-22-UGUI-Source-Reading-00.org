@@ -42,6 +42,9 @@ Unity在2019.1及之前版本, 以dll的形式提供UGUI, 并在GitHub提供了U
 
 可以将Unity编辑器重启, 以减少可能遇到的问题.
 
+#+begin_quote
+这里将 =visualscripting= 也删除是因为 =visualscripting= 依赖了UGUI, 会自动引入UGUI(即使我们删除了UGUI的情况下). 
+#+end_quote
 *** 5. 验证
 修改 UGUI目录下 =Runtime/UI/Core/Button.cs= , 找到 =Press()= 函数, 给其增加一行日志打印.
 
