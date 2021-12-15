@@ -1216,12 +1216,8 @@ http://antvlive.ab5c6921.cdnviet.com/antv/chunklist.m3u8
 https://pulltv3.wanfudaluye.com/live/tv3.m3u8
 
 
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="派" time="0.475" screen="720x576",Hunan City (576p)
-http://hnsd.chinashadt.com:2036/live/stream:hunandushi.stream/playlist.m3u8
 
 
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="派" time="0.498" screen="1920x1080",Xuzhou TV 1
-http://223.110.245.165/ott.js.chinamobile.com/PLTV/3/224/3221225945/index.m3u8
 
 
 #EXTINF:-1 tvg-id="1" tvg-name="CCTV1" tvg-logo="https://upload.wikimedia.org/wikipedia/zh/6/65/CCTV-1_Logo.png" group-title="General" time="3.925" screen="1920x1080",CCTV-1综合 (1080p)
