@@ -764,8 +764,6 @@ http://183.207.249.35/PLTV/3/224/3221226923/index.m3u8
 http://223.110.245.136/PLTV/3/224/3221226923/index.m3u8
 
 
-#EXTINF:-1 tvg-id="6027" tvg-name="大爱一台" tvg-logo="http://www.daai.tv/images/logo.png" group-title="港澳台" time="0.424" screen="1280x720",大爱1
-https://pulltv1.wanfudaluye.com/live/tv1.m3u8
 
 
 #EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="港澳台" time="0.268" screen="1920x1080",数码时代高清
@@ -1212,8 +1210,6 @@ http://113.161.4.48:8080/phuyen/tv.m3u8
 http://antvlive.ab5c6921.cdnviet.com/antv/chunklist.m3u8
 
 
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="http://www.daai.tv/images/logo.png" group-title="台湾" time="0.778" screen="1280x720",DaAi
-https://pulltv3.wanfudaluye.com/live/tv3.m3u8
 
 
 
