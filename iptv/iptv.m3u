@@ -1,5 +1,5 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="27" tvg-name="湖南卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/hunan.png" group-title="卫视",15湖南卫视 (1080p)
+#EXTINF:-1 tvg-id="27" tvg-name="湖南卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/hunan.png" group-title="卫视",湖南卫视高清
 http://223.110.254.134:6610/cntv/live1/hunanstv/hunanstv/1.m3u8
 #EXTINF:-1 tvg-id="27" tvg-name="湖南卫视" tvg-logo="https://parco-zh.github.io/demo/HNWS.png" group-title="卫视",1湖南卫视 (1080p)
 http://39.134.66.66/PLTV/88888888/224/3221225506/index.m3u8
