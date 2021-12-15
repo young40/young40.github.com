@@ -1202,12 +1202,6 @@ http://140.207.241.2:8080/live/program/live/fztd/1300000/mnf.m3u8
 http://183.207.255.188/live/program/live/yxfyhd/4000000/mnf.m3u8
 
 
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="海外" time="1.885" screen="768x432",越南PTP hd
-http://113.161.4.48:8080/phuyen/tv.m3u8
-
-
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="海外" time="2.694" screen="720x576",越南越南
-http://antvlive.ab5c6921.cdnviet.com/antv/chunklist.m3u8
 
 
 
