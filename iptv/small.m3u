@@ -447,7 +447,7 @@ http://hwrr.jx.chinamobile.com:8080/PLTV/88888888/224/3221225657/index.m3u8
 http://219.150.217.47:6610/PLTV1/580/index.m3u8?icpid=dxrm1&servicetype=1&IASHttpSessionId=OTT
 
 
-#EXTINF:-1 tvg-id="47" tvg-name="河南卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/henan.png" group-title="卫视" time="0.661" screen="3840x2160",河南卫视4K
+#EXTINF:-1 tvg-id="47" tvg-name="河南卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/henan.png" group-title="超清4K" time="0.661" screen="3840x2160",河南卫视4K
 http://219.150.217.47:6610/PLTV2/2780/index.m3u8?icpid=dxrm1&servicetype=1&IASHttpSessionId=OTT
 
 #EXTINF:-1 tvg-id="46" tvg-name="黑龙江卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/heilongjiang.png" group-title="卫视" time="0.923" screen="1920x1080",黑龙江卫视
@@ -738,11 +738,11 @@ http://hw-m-l.cztv.com/channels/lantian/channel08/1080p.m3u8?k=1a7559a51eeb880b0
 http://hw-m-l.cztv.com/channels/lantian/channel09/1080p.m3u8?k=e50bfc43311fc5aecad39f294634bb01&t=1577153817
 
 
-#EXTINF:-1 tvg-id="1977" tvg-name="欢笑剧场" tvg-logo="http://epg.51zmt.top:8000/tb1/qt/huanxiao.png" group-title="4K测试节目" time="0.944" screen="1920x1080",欢笑剧场 4K
+#EXTINF:-1 tvg-id="1977" tvg-name="欢笑剧场" tvg-logo="http://epg.51zmt.top:8000/tb1/qt/huanxiao.png" group-title="其他" time="0.944" screen="1920x1080",欢笑剧场
 http://39.134.39.38/PLTV/88888888/224/3221226203/index.m3u8
 
 
-#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://raw.githubusercontent.com/390517840/tvg-logo/main/chunxiang4K.png" group-title="4K测试节目" time="0.524" screen="3840x2160",纯享4K
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="https://raw.githubusercontent.com/390517840/tvg-logo/main/chunxiang4K.png" group-title="超清4K" time="0.524" screen="3840x2160",纯享4K
 http://39.135.138.60:18890/PLTV/88888910/224/3221225786/index.m3u8
 
 
