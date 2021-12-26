@@ -1,0 +1,57 @@
+#+TITLE: sssssss
+#+DATE: 2021-12-17T15:08:53+08:00
+#+TAGS[]: 
+#+CATEGORIES[]: 
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: true
+
+
+#+begin_src 
+  
+$$E=mc^2$$
+#+end_src
+
+
+$$E=mc^2$$
+
+
+$$
+f \left( x \right) = {x}^{2}
+$$
+
+  When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+  \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
+
+
+$$  x^{3}$$
+
+  `\frac{d}{dx}
+
+  \sum_{i = 1}^{n} i
+
+  \int_{a}^{b} \frac{dt}{t}
+
+  `(2x^3 - x + z)	
+
+  f^{-1}(x) = x^{2}
+
+  $$a_0 + b_0 = C_9$$ 
+
+  \lim_{x \to 2} f(x) = 5
+
+ $$lim_{x \to 2} f(x) = 5$$ 
+
+ \documentclass{article}
+
+\begin{document}
+With in line mode this is typeset as lim_{x \to 2} f(x) = 5
+
+\medskip
+In display mode it is typset differently:
+\[ \lim_{x \to 2} f(x) = 5 \]
+\end{document}
+
+$$ 4 \sum\_{n=1}^{+\infty} \rho\_n^2 \sin^2 nh = \frac{1}{2\pi} \int\_{-\pi}^{\pi}|f(x+h) - f(x-h)|^2 dx. $$
+
+$$lim_{x \to a^{-}} f(x) = 5$$

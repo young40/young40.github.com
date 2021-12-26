@@ -1,0 +1,9 @@
+#+TITLE: 普林斯顿微积分读本笔记03 极限
+#+DATE: 2021-12-18T18:15:20+08:00
+#+TAGS[]: 
+#+CATEGORIES[]: 
+#+LAYOUT: post
+#+OPTIONS: toc:nil
+#+DRAFT: true
+
+极限是微积分的基础.
