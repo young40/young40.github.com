@@ -7,18 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>杨世玲</copyright>
-    <lastBuildDate>Mon, 22 Nov 2021 16:36:17 +0800</lastBuildDate><atom:link href="https://www.young40.com/post/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>UGUI源码分析(零): 环境搭建</title>
-      <link>https://www.young40.com/post/2021-11-22-ugui-source-reading-00/</link>
-      <pubDate>Mon, 22 Nov 2021 16:36:17 +0800</pubDate>
-      
-      <guid>https://www.young40.com/post/2021-11-22-ugui-source-reading-00/</guid>
-      <description>&lt;p&gt;
-有道是, 工欲善其事, 必先利其器. 想研究代码, 最好不过的方式就是边修改边运行看看效果, 研究UGUI自然也不例外.
-我们先看下如何搭建一个可以修改调试UGUI环境.&lt;/p&gt;</description>
-    </item>
-    
+    <lastBuildDate>Wed, 25 Nov 2020 10:33:19 +0800</lastBuildDate><atom:link href="https://www.young40.com/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Unity Shader入门精要笔记 零</title>
       <link>https://www.young40.com/post/2020-11-25-unity-shader-rumen-jingyao-00/</link>

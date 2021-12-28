@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>UGUI源码分析(零): 环境搭建 - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="杨世玲" /><meta name="description" content=" 有道是, 工欲善其事, 必先利其器. 想研究代码, 最好不过的方式就是边修改边运行看看效果, 研究UGUI自然也不例外. 我们先看下如何搭建一个可以修改调试UGUI环境.
+" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.91.1 with theme even" />
+
+
+<link rel="canonical" href="https://www.young40.com/org/2021-11-22-ugui-source-reading-00/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="UGUI源码分析(零): 环境搭建" />
+<meta property="og:description" content="
+有道是, 工欲善其事, 必先利其器. 想研究代码, 最好不过的方式就是边修改边运行看看效果, 研究UGUI自然也不例外.
+我们先看下如何搭建一个可以修改调试UGUI环境." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.young40.com/org/2021-11-22-ugui-source-reading-00/" /><meta property="article:section" content="org" />
+<meta property="article:published_time" content="2021-11-22T16:36:17+08:00" />
+<meta property="article:modified_time" content="2021-11-22T16:36:17+08:00" />
+
+<meta itemprop="name" content="UGUI源码分析(零): 环境搭建">
+<meta itemprop="description" content="
+有道是, 工欲善其事, 必先利其器. 想研究代码, 最好不过的方式就是边修改边运行看看效果, 研究UGUI自然也不例外.
+我们先看下如何搭建一个可以修改调试UGUI环境."><meta itemprop="datePublished" content="2021-11-22T16:36:17+08:00" />
+<meta itemprop="dateModified" content="2021-11-22T16:36:17+08:00" />
+<meta itemprop="wordCount" content="903">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="UGUI源码分析(零): 环境搭建"/>
+<meta name="twitter:description" content="
+有道是, 工欲善其事, 必先利其器. 想研究代码, 最好不过的方式就是边修改边运行看看效果, 研究UGUI自然也不例外.
+我们先看下如何搭建一个可以修改调试UGUI环境."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <p>
+有道是, 工欲善其事, 必先利其器. 想研究代码, 最好不过的方式就是边修改边运行看看效果, 研究UGUI自然也不例外.
+我们先看下如何搭建一个可以修改调试UGUI环境.</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+版本的选择
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>Unity在2019.1及之前版本, 以dll的形式提供UGUI, 并在GitHub提供了UGUI的C#源码下载(地址: <a href="https://github.com/Unity-Technologies/uGUI).">https://github.com/Unity-Technologies/uGUI).</a></p>
+<p>
+2019.2及以后版本, 使用PackageManager的形式提供UGUI及其源码, 但还是不方便进行修改和调试. </p>
+<p>
+在当前最新的2021.2.3f1版本, UGUI的部分Text相关控件被标记为Legacy, 取而代之的是由TextMeshPro提供相关控件. TextMeshPro的优点不再赘述,
+鉴于此情况, 研究UGUI, 也要把TextMeshPro一并研究.</p>
+<p>
+我选择了当前最新的2021.2.3f1版本(macOS), 相信环境搭建也适用2019.2以后版本. 至于2019.1及以前版本, 网上有很多教程, 大家可以参考一下.</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+操作步骤
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<div id="outline-container-headline-3" class="outline-4">
+<h4 id="headline-3">
+1. 新建项目
+</h4>
+<div id="outline-text-headline-3" class="outline-text-4">
+<p>使用2021.2.3f1版本新建项目, 建议用git将项目托管起来, 方便查看及保存修改记录.</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-4">
+<h4 id="headline-4">
+2. 导入TextMeshPro插件资源
+</h4>
+<div id="outline-text-headline-4" class="outline-text-4">
+<p>从菜单 <code class="verbatim">Window =&gt; TextMeshPro =&gt; Import TMP Essential Resources</code> 导入TextMeshPro插件资源.</p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-4">
+<h4 id="headline-5">
+3. 复制插件
+</h4>
+<div id="outline-text-headline-5" class="outline-text-4">
+<p>我们需要将UGUI和TextMeshPro插件先保存起来. 正常打开上一步中新建的项目, 将项目目录下Library/PackageCache下
+<code class="verbatim">com.unity.ugui@1.0.0</code>, <code class="verbatim">com.unity.textmeshpro@3.0.6</code>, <code class="verbatim">com.unity.visualscripting@1.7.5</code> 目录, 复制到项目Assets目录.
+可以将目录重命名为更简单的名字, 方便后序使用.</p>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-4">
+<h4 id="headline-6">
+4. 删除插件引用
+</h4>
+<div id="outline-text-headline-6" class="outline-text-4">
+<p>使用文本编辑器打开 <code class="verbatim">Packages/manifest.json</code> 删除如下插件:</p>
+<p>
+<code class="verbatim">&#34;com.unity.textmeshpro&#34;: &#34;3.0.6&#34;</code></p>
+<p>
+<code class="verbatim">&#34;com.unity.ugui&#34;: &#34;1.0.0&#34;</code></p>
+<p>
+<code class="verbatim">&#34;com.unity.visualscripting&#34;: &#34;1.7.5&#34;</code>.</p>
+<p>
+可以将Unity编辑器重启, 以减少可能遇到的问题.</p>
+<blockquote>
+<p>这里将 <code class="verbatim">visualscripting</code> 也删除是因为 <code class="verbatim">visualscripting</code> 依赖了UGUI, 会自动引入UGUI(即使我们删除了UGUI的情况下).</p>
+<p>
+未来不排除有更多插件依赖UGUI, 可以查看依赖关系后, 也同样做删除操作.</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-4">
+<h4 id="headline-7">
+5. 验证
+</h4>
+<div id="outline-text-headline-7" class="outline-text-4">
+<p>修改 UGUI目录下 <code class="verbatim">Runtime/UI/Core/Button.cs</code> , 找到 <code class="verbatim">Press()</code> 函数, 给其增加一行日志打印.</p>
+<div class="src src-csharp">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp">  <span class="k">private</span> <span class="k">void</span> <span class="n">Press</span><span class="p">()</span>
+  <span class="p">{</span>
+      <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;Hello UGUI Button.&#34;</span><span class="p">);</span> <span class="c1">// 新增日志行
+</span><span class="c1"></span>      
+      <span class="k">if</span> <span class="p">(!</span><span class="n">IsActive</span><span class="p">()</span> <span class="p">||</span> <span class="p">!</span><span class="n">IsInteractable</span><span class="p">())</span>
+          <span class="k">return</span><span class="p">;</span>
+  
+      <span class="n">UISystemProfilerApi</span><span class="p">.</span><span class="n">AddMarker</span><span class="p">(</span><span class="s">&#34;Button.onClick&#34;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+      <span class="n">m_OnClick</span><span class="p">.</span><span class="n">Invoke</span><span class="p">();</span>
+  <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+<p>
+给场景中增加一个 <code class="verbatim">Button</code> , 运行后点击一下, 看下日志窗口是否有新的日志打印吧!</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-2">
+<h2 id="headline-8">
+待修复(填坑)问题
+</h2>
+<div id="outline-text-headline-8" class="outline-text-2">
+<p>TODO: TextMeshPro 的文字对齐的 icon 显示有问题.  </p>
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-2">
+<h2 id="headline-9">
+尽情冲浪
+</h2>
+<div id="outline-text-headline-9" class="outline-text-2">
+<p>快来一起在UGUI中尽情冲浪🏄‍♀️🏄吧.  </p>
+</div>
+</div>
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://www.young40.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+
+  <span class="division">|</span>
+
+  <span class="theme-info">
+      Network by
+      <a class="theme-link" href="https://www.netlify.com">Netlify</a>
+  </span>
+
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
