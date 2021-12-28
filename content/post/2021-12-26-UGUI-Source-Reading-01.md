@@ -20,23 +20,5 @@ draft = true
 
 我们可以看到 `Image` 组件的源码, 位于 `Runtime/UI/Core/Image.cs`, `Image` 类继承关系如下:
 
-```plantuml
-@startuml
-
-namespace UnityEngine.UI {
-    class Image
-    class MaskableGraphic
-    class Graphic
-    class UIBehaviour
-    class MonoBehaviour
-
-    MaskableGraphic <|-- Image
-    Graphic         <|-- MaskableGraphic
-    UIBehaviour     <|-- Graphic
-    MonoBehaviour   <|-- UIBehaviour
-}
-
-@enduml
-```
 
 {{< figure src="/ox-hugo/001.Image-Hierarchy.png" >}}
