@@ -1,7 +1,7 @@
 +++
 title = "UGUI源码分析(一): Image的渲染 "
 date = 2021-12-26T11:33:24+08:00
-lastmod = 2021-12-28T15:26:58+08:00
+lastmod = 2021-12-28T23:39:28+08:00
 tags = ["Unity", "UGUI"]
 categories = ["UGUI源码分析"]
 draft = true
@@ -18,7 +18,15 @@ draft = true
 我们在Hierarchy窗口创建一个Image(什么? 对象??), 可以在Inspector窗口看到它由 `RectTransform`, `Canvans Renderer`, `Image` 几个Component组成.
 我们可以给 `Image` 组件指定 `Source Image`, `Color`, `Material` 等属性.
 
-我们可以看到 `Image` 组件的源码, 位于 `Runtime/UI/Core/Image.cs`, `Image` 类继承关系如下:
+我们可以看到 `Image` 组件的源码, 位于 `Runtime/UI/Core/Image.cs`, `Image` 渲染相关的类继承关系如下:
 
 
-{{< figure src="/ox-hugo/001.Image-Hierarchy.png" >}}
+{{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-001.Image-Hierarchy.png" >}}
+
+
+## Mesh的生成 {#mesh的生成}
+
+我们在一个测试Scene中加入一个Image, 并给 `Image` 类的 `OnPopulateMesh` 函数添加断点, 运行调试后, 可以看到如下调用堆栈:
+![](/ox-hugo/2021-12-UGUI-Source-Reading-002.Debug-OnPopulateMesh.png)
+
+指定一个sprite.
