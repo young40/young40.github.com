@@ -1,7 +1,7 @@
 +++
 title = "UGUI源码分析(一): Image的渲染 "
 date = 2021-12-26T11:33:24+08:00
-lastmod = 2021-12-28T23:39:28+08:00
+lastmod = 2021-12-29T11:38:27+08:00
 tags = ["Unity", "UGUI"]
 categories = ["UGUI源码分析"]
 draft = true
@@ -20,13 +20,68 @@ draft = true
 
 我们可以看到 `Image` 组件的源码, 位于 `Runtime/UI/Core/Image.cs`, `Image` 渲染相关的类继承关系如下:
 
+```plantuml_REMOVE
+@startuml
 
-{{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-001.Image-Hierarchy.png" >}}
+namespace UnityEngine.UI {
+    class Image
+    class MaskableGraphic
+    class Graphic
+    class UIBehaviour
+    class MonoBehaviour
+
+    MaskableGraphic <|-- Image
+    Graphic         <|-- MaskableGraphic
+    UIBehaviour     <|-- Graphic
+    MonoBehaviour   <|-- UIBehaviour
+}
+
+@enduml
+```
+
+{{< figure src="2021-12-UGUI-Source-Reading/001.Image-Hierarchy.png" >}}
 
 
 ## Mesh的生成 {#mesh的生成}
 
 我们在一个测试Scene中加入一个Image, 并给 `Image` 类的 `OnPopulateMesh` 函数添加断点, 运行调试后, 可以看到如下调用堆栈:
 ![](/ox-hugo/2021-12-UGUI-Source-Reading-002.Debug-OnPopulateMesh.png)
+
+从上图我们也可以看到, 如果 `activeSprite` 为空的情况下(一般可以理解为在Inspector窗口不设置Source Image), 则会直接调用
+父类 `Graphic` 的 `OnPopulateMesh` 函数, 我们来看下其实现.
+
+```csharp
+protected virtual void OnPopulateMesh(VertexHelper vh)
+{
+    var r = GetPixelAdjustedRect();
+    var v = new Vector4(r.x, r.y, r.x + r.width, r.y + r.height);
+
+    Color32 color32 = color;
+    vh.Clear();
+    vh.AddVert(new Vector3(v.x, v.y), color32, new Vector2(0f, 0f)); //左下
+    vh.AddVert(new Vector3(v.x, v.w), color32, new Vector2(0f, 1f)); //左上
+    vh.AddVert(new Vector3(v.z, v.w), color32, new Vector2(1f, 1f)); //右上
+    vh.AddVert(new Vector3(v.z, v.y), color32, new Vector2(1f, 0f)); //右下
+
+    vh.AddTriangle(0, 1, 2);
+    vh.AddTriangle(2, 3, 0);
+}
+
+```
+
+我们知道, UI元素一般是按四边形来渲染, 即需要两个三角形. 在上面代码中, 可以看到变量 `v` 存储了四边形的左下角和右上角的坐标.
+然后以顺时针顺序把左下角, 左上角, 右上角, 右下角, 当作四个顶点坐标传给 `VertexHelper`, 这四点的顶点索引(Index), 依次为0, 1, 2, 3.
+分别以(0, 1, 2)和(2, 3, 0) 组成两个三角形, 构成了UI元素的Mesh.
+
+我们也看到通过给 `VertexHelper` 的 `AddVert` 函数, 也设置了对应顶点的颜色及纹理坐标.
+
+在Scene窗口的 Wireframe 下, 可以看到上述两个三角形组成的Mesh.
+![](/ox-hugo/2021-12-UGUI-Source-Reading-003.Scene-Wireframe.png)
+
+打开Frame Debug可以看到绘制参数, 和顶点信息, 4个顶点, 6个顶点索引.
+
+{{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-004.Frame-Debug.png" >}}
+
+{{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-005.Frame-Debug-Preview-Vertices.png" >}}
 
 指定一个sprite.
