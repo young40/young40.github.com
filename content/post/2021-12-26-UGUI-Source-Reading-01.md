@@ -1,7 +1,7 @@
 +++
 title = "UGUI源码分析(一): Image的渲染 "
 date = 2021-12-26T11:33:24+08:00
-lastmod = 2021-12-29T11:38:27+08:00
+lastmod = 2021-12-30T21:12:08+08:00
 tags = ["Unity", "UGUI"]
 categories = ["UGUI源码分析"]
 draft = true
@@ -20,7 +20,7 @@ draft = true
 
 我们可以看到 `Image` 组件的源码, 位于 `Runtime/UI/Core/Image.cs`, `Image` 渲染相关的类继承关系如下:
 
-```plantuml_REMOVE
+```plantuml
 @startuml
 
 namespace UnityEngine.UI {
@@ -39,7 +39,7 @@ namespace UnityEngine.UI {
 @enduml
 ```
 
-{{< figure src="2021-12-UGUI-Source-Reading/001.Image-Hierarchy.png" >}}
+{{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-001.Image-Hierarchy.png" >}}
 
 
 ## Mesh的生成 {#mesh的生成}
@@ -75,7 +75,7 @@ protected virtual void OnPopulateMesh(VertexHelper vh)
 
 我们也看到通过给 `VertexHelper` 的 `AddVert` 函数, 也设置了对应顶点的颜色及纹理坐标.
 
-在Scene窗口的 Wireframe 下, 可以看到上述两个三角形组成的Mesh.
+在Scene窗口的 Wireframe 模式下, 可以看到上述两个三角形组成的Mesh.
 ![](/ox-hugo/2021-12-UGUI-Source-Reading-003.Scene-Wireframe.png)
 
 打开Frame Debug可以看到绘制参数, 和顶点信息, 4个顶点, 6个顶点索引.
@@ -84,4 +84,12 @@ protected virtual void OnPopulateMesh(VertexHelper vh)
 
 {{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-005.Frame-Debug-Preview-Vertices.png" >}}
 
-指定一个sprite.
+Image有多种类型, 分别实现了???, 这些类型生成Mesh的方式不同, 但都是通过 `OnPopulateMesh` 函数来提供的.
+
+UI元素一定是按四边形来渲染吗? 答案是否定的. 当 `Image` 组件的 `Image Type` 为 `Simple` 并且勾选了 `Use Sprite Mesh` 时,
+当前使用的Sprite包含透明的区域, 此时其 `Sprite Mesh` 可能不是四边形, 就不以四边形来渲染.
+
+{{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-006.Sprite-Mesh.png" >}}
+
+`Image` 的部分参数变化, 可能也会引起Mesh的变化.
+![](/ox-hugo/2021-12-UGUI-Source-Reading-007.Image-Mesh-Changed.png)
