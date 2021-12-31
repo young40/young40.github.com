@@ -19,7 +19,7 @@
 
 我们可以看到 =Image= 组件的源码, 位于 =Runtime/UI/Core/Image.cs=, =Image= 渲染相关的类继承关系如下:
 
-#+BEGIN_SRC plantuml :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-001.Image-Hierarchy.png :exports both
+#+BEGIN_SRC plantuml_REMOVE :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-001.Image-Hierarchy.png :exports both :cache yes 
   @startuml
   
   namespace UnityEngine.UI {
@@ -39,8 +39,7 @@
 #+END_SRC
 
 #+RESULTS:
-[[file:2021-12-UGUI-Source-Reading/001.Image-Hierarchy.png]]
-
+[[file:2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-001.Image-Hierarchy.png]]
 
 * Mesh的生成
  我们在一个测试Scene中加入一个Image, 并给 =Image= 类的 =OnPopulateMesh= 函数添加断点, 运行调试后, 可以看到如下调用堆栈:
@@ -93,4 +92,53 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
 =Image= 的部分参数变化, 可能也会引起Mesh的变化.
 [[file:2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-007.Image-Mesh-Changed.png]]
 
- 
+* 材质的选择
+我们从 Inspector 窗口可以看到 =Image= 组件可以设置 =Material= 属性. 实际上该属性由 =Graphic= 类提供.
+材质相关的方法和属性及类继承关系如下图所示:
+
+#+BEGIN_SRC plantuml :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-008.Image-Hierarchy-Material.png :exports both :cache yes 
+  @startuml
+  
+  namespace UnityEngine.UI {
+          class Image {
+                  + Material material [override]
+  
+                  + {static} Material defaultETC1GraphicMaterial
+  
+                  # void UpdateMaterial() [override]
+          }
+          class MaskableGraphic
+          class Graphic
+          {
+                  + Material material        [virtual]
+                  + Material defaultMaterial [virtual]
+                  + Material materialForRendering [virtual]
+                  + {static} Material defaultGraphicMaterial
+  
+                  # void UpdateMaterial() [virtual]
+  
+          }
+  
+          interface IMaterialModifier
+          {
+                  Material GetModifierMaterial()
+          }
+  
+      MaskableGraphic <|-- Image
+          Graphic         <|-- MaskableGraphic
+  
+          IMaterialModifier <|-- MaskableGraphic
+  
+  }
+  
+  @enduml
+#+END_SRC
+
+给 =Image= 的 =material= 属性的 getter 方法添加断点后, 调试运行, 可以看到如下调用堆栈:
+
+ defaultGraphicMaterial 是                     s_DefaultUI = Canvas.GetDefaultCanvasMaterial();
+
+* 脏了吗?
+** 顶点脏了
+** 材质脏了
+** ????

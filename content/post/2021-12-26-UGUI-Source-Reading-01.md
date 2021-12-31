@@ -1,7 +1,7 @@
 +++
 title = "UGUI源码分析(一): Image的渲染 "
 date = 2021-12-26T11:33:24+08:00
-lastmod = 2021-12-30T21:12:08+08:00
+lastmod = 2021-12-31T01:01:05+08:00
 tags = ["Unity", "UGUI"]
 categories = ["UGUI源码分析"]
 draft = true
@@ -20,7 +20,7 @@ draft = true
 
 我们可以看到 `Image` 组件的源码, 位于 `Runtime/UI/Core/Image.cs`, `Image` 渲染相关的类继承关系如下:
 
-```plantuml
+```plantuml_REMOVE
 @startuml
 
 namespace UnityEngine.UI {
@@ -93,3 +93,63 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 `Image` 组�
 
 `Image` 的部分参数变化, 可能也会引起Mesh的变化.
 ![](/ox-hugo/2021-12-UGUI-Source-Reading-007.Image-Mesh-Changed.png)
+
+
+## 材质的选择 {#材质的选择}
+
+我们从 Inspector 窗口可以看到 `Image` 组件可以设置 `Material` 属性. 实际上该属性由 `Graphic` 类提供.
+材质相关的方法和属性及类继承关系如下图所示:
+
+```plantuml
+@startuml
+
+namespace UnityEngine.UI {
+        class Image {
+                + Material material [override]
+
+                + {static} Material defaultETC1GraphicMaterial
+
+                # void UpdateMaterial() [override]
+        }
+        class MaskableGraphic
+        class Graphic
+        {
+                + Material material        [virtual]
+                + Material defaultMaterial [virtual]
+                + Material materialForRendering [virtual]
+                + {static} Material defaultGraphicMaterial
+
+                # void UpdateMaterial() [virtual]
+
+        }
+
+        interface IMaterialModifier
+        {
+                Material GetModifierMaterial()
+        }
+
+    MaskableGraphic <|-- Image
+        Graphic         <|-- MaskableGraphic
+
+        IMaterialModifier <|-- MaskableGraphic
+
+}
+
+@enduml
+```
+
+给 `Image` 的 `material` 属性的 getter 方法添加断点后, 调试运行, 可以看到如下调用堆栈:
+
+defaultGraphicMaterial 是                     s\_DefaultUI = Canvas.GetDefaultCanvasMaterial();
+
+
+## 脏了吗? {#脏了吗}
+
+
+### 顶点脏了 {#顶点脏了}
+
+
+### 材质脏了 {#材质脏了}
+
+
+### ???? {#}
