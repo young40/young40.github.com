@@ -1,7 +1,7 @@
 +++
 title = "UGUI源码分析(一): Image的渲染 "
 date = 2021-12-26T11:33:24+08:00
-lastmod = 2022-01-01T19:31:44+08:00
+lastmod = 2022-01-01T20:22:11+08:00
 tags = ["Unity", "UGUI"]
 categories = ["UGUI源码分析"]
 draft = true
@@ -89,6 +89,9 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 `Image` 组�
 
 我们也从 `material` 的 getter 方法中看到, 在Inspector窗口设置的材质有最高优先级, 其次是如果给 `sprite` 设置了 `associatedAlphaSplitTexture`,
 则会使用 `defaultETC1GraphicMaterial`, 最后才会使用 `defaultMaterial`.
+
+追踪 `defaultMaterial` 的定义, 会发现它实际上是由 `Canvas.GetDefaultCanvasMaterial()` 提供,
+但该方法实现在 Unity 的C++代码中, 并不开源. 根据网上资料所说, 该方法会优先调用 SPR 中提供的UI材质, 再调用内置的UI默认Shader生成材质.
 
 我们也注意到, 在 `Graphic.materialForRendering` 属性中, 可以对材质进行修改.
 
