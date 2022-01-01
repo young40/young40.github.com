@@ -136,6 +136,10 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
 
 给 =Image= 的 =material= 属性的 getter 方法添加断点后, 调试运行, 可以看到如下调用堆栈:
 
+[[file:2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-009.Debug-Material-getter.png]]
+
+
+
  defaultGraphicMaterial 是                     s_DefaultUI = Canvas.GetDefaultCanvasMaterial();
 
 * 脏了吗?

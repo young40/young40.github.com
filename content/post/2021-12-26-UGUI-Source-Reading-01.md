@@ -1,7 +1,7 @@
 +++
 title = "UGUI源码分析(一): Image的渲染 "
 date = 2021-12-26T11:33:24+08:00
-lastmod = 2021-12-31T01:01:05+08:00
+lastmod = 2022-01-01T13:34:56+08:00
 tags = ["Unity", "UGUI"]
 categories = ["UGUI源码分析"]
 draft = true
@@ -139,6 +139,8 @@ namespace UnityEngine.UI {
 ```
 
 给 `Image` 的 `material` 属性的 getter 方法添加断点后, 调试运行, 可以看到如下调用堆栈:
+
+{{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-009.Debug-Material-getter.png" >}}
 
 defaultGraphicMaterial 是                     s\_DefaultUI = Canvas.GetDefaultCanvasMaterial();
 
