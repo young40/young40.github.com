@@ -1,7 +1,7 @@
 +++
 title = "UGUI源码分析(一): Image的渲染 "
 date = 2021-12-26T11:33:24+08:00
-lastmod = 2022-01-01T13:34:56+08:00
+lastmod = 2022-01-01T19:31:44+08:00
 tags = ["Unity", "UGUI"]
 categories = ["UGUI源码分析"]
 draft = true
@@ -20,24 +20,6 @@ draft = true
 
 我们可以看到 `Image` 组件的源码, 位于 `Runtime/UI/Core/Image.cs`, `Image` 渲染相关的类继承关系如下:
 
-```plantuml_REMOVE
-@startuml
-
-namespace UnityEngine.UI {
-    class Image
-    class MaskableGraphic
-    class Graphic
-    class UIBehaviour
-    class MonoBehaviour
-
-    MaskableGraphic <|-- Image
-    Graphic         <|-- MaskableGraphic
-    UIBehaviour     <|-- Graphic
-    MonoBehaviour   <|-- UIBehaviour
-}
-
-@enduml
-```
 
 {{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-001.Image-Hierarchy.png" >}}
 
@@ -100,47 +82,22 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 `Image` 组�
 我们从 Inspector 窗口可以看到 `Image` 组件可以设置 `Material` 属性. 实际上该属性由 `Graphic` 类提供.
 材质相关的方法和属性及类继承关系如下图所示:
 
-```plantuml
-@startuml
-
-namespace UnityEngine.UI {
-        class Image {
-                + Material material [override]
-
-                + {static} Material defaultETC1GraphicMaterial
-
-                # void UpdateMaterial() [override]
-        }
-        class MaskableGraphic
-        class Graphic
-        {
-                + Material material        [virtual]
-                + Material defaultMaterial [virtual]
-                + Material materialForRendering [virtual]
-                + {static} Material defaultGraphicMaterial
-
-                # void UpdateMaterial() [virtual]
-
-        }
-
-        interface IMaterialModifier
-        {
-                Material GetModifierMaterial()
-        }
-
-    MaskableGraphic <|-- Image
-        Graphic         <|-- MaskableGraphic
-
-        IMaterialModifier <|-- MaskableGraphic
-
-}
-
-@enduml
-```
 
 给 `Image` 的 `material` 属性的 getter 方法添加断点后, 调试运行, 可以看到如下调用堆栈:
 
 {{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-009.Debug-Material-getter.png" >}}
+
+我们也从 `material` 的 getter 方法中看到, 在Inspector窗口设置的材质有最高优先级, 其次是如果给 `sprite` 设置了 `associatedAlphaSplitTexture`,
+则会使用 `defaultETC1GraphicMaterial`, 最后才会使用 `defaultMaterial`.
+
+我们也注意到, 在 `Graphic.materialForRendering` 属性中, 可以对材质进行修改.
+
+这样我们就获得了渲染UI时用到的材质.
+
+
+## Shader在哪里? {#shader在哪里}
+
+材质使用的Shader在哪里呢?
 
 defaultGraphicMaterial 是                     s\_DefaultUI = Canvas.GetDefaultCanvasMaterial();
 

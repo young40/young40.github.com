@@ -96,39 +96,39 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
 我们从 Inspector 窗口可以看到 =Image= 组件可以设置 =Material= 属性. 实际上该属性由 =Graphic= 类提供.
 材质相关的方法和属性及类继承关系如下图所示:
 
-#+BEGIN_SRC plantuml :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-008.Image-Hierarchy-Material.png :exports both :cache yes 
+#+BEGIN_SRC plantuml_REMOVE :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-008.Image-Hierarchy-Material.png :exports both :cache yes 
   @startuml
   
   namespace UnityEngine.UI {
-          class Image {
-                  + Material material [override]
+      class Image {
+          + Material material [override]
   
-                  + {static} Material defaultETC1GraphicMaterial
+          + {static} Material defaultETC1GraphicMaterial
   
-                  # void UpdateMaterial() [override]
-          }
-          class MaskableGraphic
-          class Graphic
-          {
-                  + Material material        [virtual]
-                  + Material defaultMaterial [virtual]
-                  + Material materialForRendering [virtual]
-                  + {static} Material defaultGraphicMaterial
+          # void UpdateMaterial() [override]
+      }
+      class MaskableGraphic
+      class Graphic
+      {
+          # Material m_Material      [SerializeField]
+          + Material material        [virtual]
+          + Material defaultMaterial [virtual]
+          + {static} Material defaultGraphicMaterial
   
-                  # void UpdateMaterial() [virtual]
+          + Material materialForRendering [virtual]
   
-          }
+          # void UpdateMaterial() [virtual]
+      }
   
-          interface IMaterialModifier
-          {
-                  Material GetModifierMaterial()
-          }
+      interface IMaterialModifier
+      {
+          Material GetModifierMaterial()
+      }
   
       MaskableGraphic <|-- Image
-          Graphic         <|-- MaskableGraphic
+      Graphic         <|-- MaskableGraphic
   
-          IMaterialModifier <|-- MaskableGraphic
-  
+      IMaterialModifier <|-- MaskableGraphic
   }
   
   @enduml
@@ -138,8 +138,16 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
 
 [[file:2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-009.Debug-Material-getter.png]]
 
+我们也从 =material= 的 getter 方法中看到, 在Inspector窗口设置的材质有最高优先级, 其次是如果给 =sprite= 设置了 =associatedAlphaSplitTexture=,
+则会使用 =defaultETC1GraphicMaterial=, 最后才会使用 =defaultMaterial=.
 
+我们也注意到, 在 =Graphic.materialForRendering= 属性中, 可以对材质进行修改.
 
+这样我们就获得了渲染UI时用到的材质.
+
+* Shader在哪里?
+材质使用的Shader在哪里呢?   
+  
  defaultGraphicMaterial 是                     s_DefaultUI = Canvas.GetDefaultCanvasMaterial();
 
 * 脏了吗?
