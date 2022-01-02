@@ -1,7 +1,7 @@
 +++
 title = "UGUI源码分析(一): Image的渲染 "
-date = 2021-12-26T11:33:24+08:00
-lastmod = 2022-01-03T00:08:10+08:00
+date = 2022-01-03T00:13:53+08:00
+lastmod = 2022-01-03T00:42:12+08:00
 tags = ["Unity", "UGUI"]
 categories = ["UGUI源码分析"]
 draft = true
@@ -133,17 +133,34 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 `Image` 组�
 var uv = (activeSprite != null) ? Sprites.DataUtility.GetOuterUV(activeSprite) : Vector4.zero;
 ```
 
-trackimage
-                if (SetPropertyUtility.SetClass(ref m\_OverrideSprite, value))
 
+## 渲染一下 {#渲染一下}
 
-## 脏了吗? {#脏了吗}
+我们从上面调试时的堆栈可以看到, 这些调用都是由 `Graphic.Rebuild` 触发, 代码如下:
 
+```csharp
+public virtual void Rebuild(CanvasUpdate update)
+{
+    if (canvasRenderer == null || canvasRenderer.cull)
+        return;
 
-### 顶点脏了 {#顶点脏了}
+    switch (update)
+    {
+        case CanvasUpdate.PreRender:
+            if (m_VertsDirty)
+            {
+                UpdateGeometry();
+                m_VertsDirty = false;
+            }
+            if (m_MaterialDirty)
+            {
+                UpdateMaterial();
+                m_MaterialDirty = false;
+            }
+            break;
+    }
+}
+```
 
-
-### 材质脏了 {#材质脏了}
-
-
-### ???? {#}
+我们查看 `UpdateGeometry` 和 `UpdateMaterial` 的实现, 就可以看到生成的Mesh以及被选择的纹理, 材质等, 分别设置给了
+`CanvasRenderer`, 最终由 `CanvasRenderer` 来负责 `Image` (也包括所有 `Graphic` 的子类) 的渲染.

@@ -2,7 +2,7 @@
 #+TITLE: 
 #+HUGO_TAGS: Unity UGUI
 #+HUGO_CATEGORIES: UGUI源码分析
-#+DATE: 2021-12-26T11:33:24+08:00
+#+DATE: 2022-01-03T00:13:53+08:00
 #+HUGO_AUTO_SET_LASTMOD: t
 #+HUGO_DRAFT: true
 #+HUGO_BASE_DIR: ../
@@ -24,9 +24,9 @@
   
   namespace UnityEngine.UI {
       class Image
-      class MaskableGraphic
-      class Graphic
-      class UIBehaviour
+      abstract class MaskableGraphic
+      abstract class Graphic
+      abstract class UIBehaviour
       class MonoBehaviour
   
       MaskableGraphic <|-- Image
@@ -38,7 +38,7 @@
   @enduml
 #+END_SRC
 
-#+RESULTS:
+#+RESULTS[578c221523cec90c03c31fbc95af11d711e1dd09]:
 [[file:2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-001.Image-Hierarchy.png]]
 
 * Mesh的生成
@@ -107,8 +107,8 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
   
           # void UpdateMaterial() [override]
       }
-      class MaskableGraphic
-      class Graphic
+      abstract class MaskableGraphic
+      abstract class Graphic
       {
           # Material m_Material      [SerializeField]
           + Material material        [virtual]
@@ -134,7 +134,7 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
   @enduml
 #+END_SRC
 
-#+RESULTS[043b51586419f627134f640c0c915eeb59aaa6a8]:
+#+RESULTS[974b80f8579931166735ec7be5dcded3572c24fb]:
 [[file:2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-008.Image-Hierarchy-Material.png]]
 
 给 =Image= 的 =material= 属性的 getter 方法添加断点后, 调试运行, 可以看到如下调用堆栈:
@@ -182,7 +182,8 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
            + Sprite activeSprite 
            + Texture mainTexture [override]
       }
-      class Graphic
+      abstract class MaskableGraphic
+      abstract class Graphic
       {
           + Texture mainTexture [virtual]
           # {static} Texture2D s_WhiteTexture
@@ -195,7 +196,7 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
   @enduml
 #+END_SRC
 
-#+RESULTS[ee1a89e105f6656e41ac0130bba77335a2e179f3]:
+#+RESULTS[3375eea3333d650a2e3553f7c9649ef627ce26e2]:
 [[file:2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-011.Image-Texture-Hierarchy.png]]
 
 我们上面分析Mesh的生成时, 提到 =VertexHelper= 需要纹理坐标. 我们可以再回头看下, =Image= 不同类型的 Mesh
@@ -206,12 +207,31 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
   var uv = (activeSprite != null) ? Sprites.DataUtility.GetOuterUV(activeSprite) : Vector4.zero;
 #+end_src
 
+* 渲染一下
+我们从上面调试时的堆栈可以看到, 这些调用都是由 =Graphic.Rebuild= 触发, 代码如下:
+#+begin_src csharp
+  public virtual void Rebuild(CanvasUpdate update)
+  {
+      if (canvasRenderer == null || canvasRenderer.cull)
+          return;
+  
+      switch (update)
+      {
+          case CanvasUpdate.PreRender:
+              if (m_VertsDirty)
+              {
+                  UpdateGeometry();
+                  m_VertsDirty = false;
+              }
+              if (m_MaterialDirty)
+              {
+                  UpdateMaterial();
+                  m_MaterialDirty = false;
+              }
+              break;
+      }
+  }
+#+end_src
 
-
-trackimage
-                if (SetPropertyUtility.SetClass(ref m_OverrideSprite, value))
-
-* 脏了吗?
-** 顶点脏了
-** 材质脏了
-** ????
+我们查看 =UpdateGeometry= 和 =UpdateMaterial= 的实现, 就可以看到生成的Mesh以及被选择的纹理, 材质等, 分别设置给了
+=CanvasRenderer=, 最终由 =CanvasRenderer= 来负责 =Image= (也包括所有 =Graphic= 的子类) 的渲染.
