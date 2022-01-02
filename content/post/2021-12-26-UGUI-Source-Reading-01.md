@@ -1,13 +1,13 @@
 +++
 title = "UGUI源码分析(一): Image的渲染 "
 date = 2021-12-26T11:33:24+08:00
-lastmod = 2022-01-02T21:57:13+08:00
+lastmod = 2022-01-03T00:08:10+08:00
 tags = ["Unity", "UGUI"]
 categories = ["UGUI源码分析"]
 draft = true
 +++
 
-我们都知道在Unity中渲染一个3D的物体, 需要提供3D物体的模型, 纹理, 材质甚至Shader. 但我们在制作UI时, 并不需要提供这些(Image还是可以提供材质??????????).
+我们都知道在Unity中渲染一个3D的物体, 需要提供3D物体的模型, 纹理, 材质甚至Shader. 但我们在制作UI时, 并不是必须提供这些.
 那UI是另起炉灶, 有一套新机制吗? 答案是否定的. 下面我们就从UGUI源码层面来看看Image的渲染.
 
 <!--more-->
@@ -15,7 +15,7 @@ draft = true
 
 ## 初遇Image组件 {#初遇image组件}
 
-我们在Hierarchy窗口创建一个Image(什么? 对象??), 可以在Inspector窗口看到它由 `RectTransform`, `Canvans Renderer`, `Image` 几个Component组成.
+我们在Hierarchy窗口创建一个Image控件, 可以在Inspector窗口看到它由 `RectTransform`, `Canvans Renderer`, `Image` 几个Component组成.
 我们可以给 `Image` 组件指定 `Source Image`, `Color`, `Material` 等属性.
 
 我们可以看到 `Image` 组件的源码, 位于 `Runtime/UI/Core/Image.cs`, `Image` 渲染相关的类继承关系如下:
@@ -66,7 +66,7 @@ protected virtual void OnPopulateMesh(VertexHelper vh)
 
 {{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-005.Frame-Debug-Preview-Vertices.png" >}}
 
-Image有多种类型, 分别实现了???, 这些类型生成Mesh的方式不同, 但都是通过 `OnPopulateMesh` 函数来提供的.
+Image有多种类型, 这些类型生成Mesh的方式不同, 但都是通过 `OnPopulateMesh` 函数来提供的.
 
 UI元素一定是按四边形来渲染吗? 答案是否定的. 当 `Image` 组件的 `Image Type` 为 `Simple` 并且勾选了 `Use Sprite Mesh` 时,
 当前使用的Sprite包含透明的区域, 此时其 `Sprite Mesh` 可能不是四边形, 就不以四边形来渲染.

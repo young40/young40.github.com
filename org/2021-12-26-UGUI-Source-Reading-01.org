@@ -8,18 +8,18 @@
 #+HUGO_BASE_DIR: ../
 #+OPTIONS: author:nil
 
-我们都知道在Unity中渲染一个3D的物体, 需要提供3D物体的模型, 纹理, 材质甚至Shader. 但我们在制作UI时, 并不需要提供这些(Image还是可以提供材质??????????).
+我们都知道在Unity中渲染一个3D的物体, 需要提供3D物体的模型, 纹理, 材质甚至Shader. 但我们在制作UI时, 并不是必须提供这些.
 那UI是另起炉灶, 有一套新机制吗? 答案是否定的. 下面我们就从UGUI源码层面来看看Image的渲染.
 
 #+HUGO: MORE
 
 * 初遇Image组件
-我们在Hierarchy窗口创建一个Image(什么? 对象??), 可以在Inspector窗口看到它由 =RectTransform=, =Canvans Renderer=, =Image= 几个Component组成.
+我们在Hierarchy窗口创建一个Image控件, 可以在Inspector窗口看到它由 =RectTransform=, =Canvans Renderer=, =Image= 几个Component组成.
 我们可以给 =Image= 组件指定 =Source Image=, =Color=, =Material= 等属性.
 
 我们可以看到 =Image= 组件的源码, 位于 =Runtime/UI/Core/Image.cs=, =Image= 渲染相关的类继承关系如下:
 
-#+BEGIN_SRC plantuml_REMOVE :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-001.Image-Hierarchy.png :exports both :cache yes 
+#+BEGIN_SRC plantuml :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-001.Image-Hierarchy.png :exports both :cache yes 
   @startuml
   
   namespace UnityEngine.UI {
@@ -82,7 +82,7 @@
 
 [[file:2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-005.Frame-Debug-Preview-Vertices.png]]
 
-Image有多种类型, 分别实现了???, 这些类型生成Mesh的方式不同, 但都是通过 =OnPopulateMesh= 函数来提供的.
+Image有多种类型, 这些类型生成Mesh的方式不同, 但都是通过 =OnPopulateMesh= 函数来提供的.
 
 UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组件的 =Image Type= 为 =Simple= 并且勾选了 =Use Sprite Mesh= 时,
 当前使用的Sprite包含透明的区域, 此时其 =Sprite Mesh= 可能不是四边形, 就不以四边形来渲染. 
@@ -96,7 +96,7 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
 我们从 Inspector 窗口可以看到 =Image= 组件可以设置 =Material= 属性. 实际上该属性由 =Graphic= 类提供.
 材质相关的方法和属性及类继承关系如下图所示:
 
-#+BEGIN_SRC plantuml_REMOVE :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-008.Image-Hierarchy-Material.png :exports both :cache yes 
+#+BEGIN_SRC plantuml :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-008.Image-Hierarchy-Material.png :exports both :cache yes 
   @startuml
   
   namespace UnityEngine.UI {
@@ -169,7 +169,7 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
 
 纹理相关的方法和属性及类继承关系如下图所示:
 
-#+BEGIN_SRC plantuml_REMOVE :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-011.Image-Texture-Hierarchy.png :exports both :cache yes 
+#+BEGIN_SRC plantuml :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-011.Image-Texture-Hierarchy.png :exports both :cache yes 
   @startuml
   
   namespace UnityEngine.UI {
