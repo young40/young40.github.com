@@ -128,7 +128,7 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
       MaskableGraphic <|-- Image
       Graphic         <|-- MaskableGraphic
   
-      IMaterialModifier <|-- MaskableGraphic
+      IMaterialModifier <|.. MaskableGraphic
   }
   
   @enduml
