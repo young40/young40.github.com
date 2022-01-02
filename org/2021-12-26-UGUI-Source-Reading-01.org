@@ -198,6 +198,15 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
 #+RESULTS[ee1a89e105f6656e41ac0130bba77335a2e179f3]:
 [[file:2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-011.Image-Texture-Hierarchy.png]]
 
+我们上面分析Mesh的生成时, 提到 =VertexHelper= 需要纹理坐标. 我们可以再回头看下, =Image= 不同类型的 Mesh
+是如何匹配其纹理坐标的.
+
+例如, 我们在 =GenerateSimpleSprite= 可以看到:
+#+begin_src csharp
+  var uv = (activeSprite != null) ? Sprites.DataUtility.GetOuterUV(activeSprite) : Vector4.zero;
+#+end_src
+
+
 
 trackimage
                 if (SetPropertyUtility.SetClass(ref m_OverrideSprite, value))

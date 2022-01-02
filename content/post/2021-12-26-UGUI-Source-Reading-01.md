@@ -1,7 +1,7 @@
 +++
 title = "UGUI源码分析(一): Image的渲染 "
 date = 2021-12-26T11:33:24+08:00
-lastmod = 2022-01-02T11:51:22+08:00
+lastmod = 2022-01-02T15:51:17+08:00
 tags = ["Unity", "UGUI"]
 categories = ["UGUI源码分析"]
 draft = true
@@ -123,6 +123,15 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 `Image` 组�
 
 
 {{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-011.Image-Texture-Hierarchy.png" >}}
+
+我们上面分析Mesh的生成时, 提到 `VertexHelper` 需要纹理坐标. 我们可以再回头看下, `Image` 不同类型的 Mesh
+是如何匹配其纹理坐标的.
+
+例如, 我们在 `GenerateSimpleSprite` 可以看到:
+
+```csharp
+var uv = (activeSprite != null) ? Sprites.DataUtility.GetOuterUV(activeSprite) : Vector4.zero;
+```
 
 trackimage
                 if (SetPropertyUtility.SetClass(ref m\_OverrideSprite, value))
