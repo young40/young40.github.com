@@ -1,10 +1,10 @@
 +++
 title = "UGUI源码分析(一): Image的渲染 "
 date = 2022-01-03T00:13:53+08:00
-lastmod = 2022-01-03T00:42:12+08:00
+lastmod = 2022-01-03T00:45:16+08:00
 tags = ["Unity", "UGUI"]
 categories = ["UGUI源码分析"]
-draft = true
+draft = false
 +++
 
 我们都知道在Unity中渲染一个3D的物体, 需要提供3D物体的模型, 纹理, 材质甚至Shader. 但我们在制作UI时, 并不是必须提供这些.
