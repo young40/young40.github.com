@@ -7,16 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>杨世玲</copyright>
-    <lastBuildDate>Mon, 22 Nov 2021 16:36:17 +0800</lastBuildDate><atom:link href="https://www.young40.com/categories/ugui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Jan 2022 00:13:53 +0800</lastBuildDate><atom:link href="https://www.young40.com/categories/ugui%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UGUI源码分析(一): Image的渲染 </title>
+      <link>https://www.young40.com/post/2021-12-26-ugui-source-reading-01/</link>
+      <pubDate>Mon, 03 Jan 2022 00:13:53 +0800</pubDate>
+      
+      <guid>https://www.young40.com/post/2021-12-26-ugui-source-reading-01/</guid>
+      <description>&lt;p&gt;我们都知道在Unity中渲染一个3D的物体, 需要提供3D物体的模型, 纹理, 材质甚至Shader. 但我们在制作UI时, 并不是必须提供这些.
+那UI是另起炉灶, 有一套新机制吗? 答案是否定的. 下面我们就从UGUI源码层面来看看Image的渲染.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>UGUI源码分析(零): 环境搭建</title>
       <link>https://www.young40.com/post/2021-11-22-ugui-source-reading-00/</link>
       <pubDate>Mon, 22 Nov 2021 16:36:17 +0800</pubDate>
       
       <guid>https://www.young40.com/post/2021-11-22-ugui-source-reading-00/</guid>
-      <description>&lt;p&gt;
-有道是, 工欲善其事, 必先利其器. 想研究代码, 最好不过的方式就是边修改边运行看看效果, 研究UGUI自然也不例外.
-我们先看下如何搭建一个可以修改调试UGUI环境.&lt;/p&gt;</description>
+      <description>有道是, 工欲善其事, 必先利其器. 想研究代码, 最好不过的方式就是边修改边运行看看效果, 研究UGUI自然也不例外. 我们先看下如何搭建一个可以修改</description>
     </item>
     
   </channel>
