@@ -19,7 +19,7 @@
 
 我们可以看到 =Image= 组件的源码, 位于 =Runtime/UI/Core/Image.cs=, =Image= 渲染相关的类继承关系如下:
 
-#+BEGIN_SRC plantuml_REMOVE :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-001.Image-Hierarchy.png :exports both :cache yes 
+#+BEGIN_SRC plantuml :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-001.Image-Hierarchy.png :exports both :cache yes 
   @startuml
   
   namespace UnityEngine.UI {
@@ -96,7 +96,7 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
 我们从 Inspector 窗口可以看到 =Image= 组件可以设置 =Material= 属性. 实际上该属性由 =Graphic= 类提供.
 材质相关的方法和属性及类继承关系如下图所示:
 
-#+BEGIN_SRC plantuml_REMOVE :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-008.Image-Hierarchy-Material.png :exports both :cache yes 
+#+BEGIN_SRC plantuml :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-008.Image-Hierarchy-Material.png :exports both :cache yes 
   @startuml
   
   namespace UnityEngine.UI {
@@ -165,6 +165,35 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 =Image= 组�
 
 我们看到首先如果有 =activeSprite= , 则会使用 =activeSprite.texture=. 再接着会尝试使用 =material= 中的纹理, 都不存在的情况下, 会使用默认的白色纹理.
 
+=activeSprite= 会优先返回 =m_OverrideSprite=, 其次返回 =sprite= (即 =m_Sprite=, Inspector中设置的 Sprite).
+
+纹理相关的方法和属性及类继承关系如下图所示:
+
+#+BEGIN_SRC plantuml :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-011.Image-Texture-Hierarchy.png :exports both :cache yes 
+  @startuml
+  
+  namespace UnityEngine.UI {
+      class Image
+      class MaskableGraphic
+      class Graphic
+      class UIBehaviour
+      class MonoBehaviour
+  
+      MaskableGraphic <|-- Image
+      Graphic         <|-- MaskableGraphic
+      UIBehaviour     <|-- Graphic
+      MonoBehaviour   <|-- UIBehaviour
+  }
+  
+  @enduml
+#+END_SRC
+
+#+RESULTS[ee1a89e105f6656e41ac0130bba77335a2e179f3]:
+[[file:2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-011.Image-Texture-Hierarchy.png]]
+
+
+trackimage
+                if (SetPropertyUtility.SetClass(ref m_OverrideSprite, value))
 
 * 脏了吗?
 ** 顶点脏了

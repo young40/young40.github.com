@@ -1,7 +1,7 @@
 +++
 title = "UGUI源码分析(一): Image的渲染 "
 date = 2021-12-26T11:33:24+08:00
-lastmod = 2022-01-02T11:22:45+08:00
+lastmod = 2022-01-02T11:38:13+08:00
 tags = ["Unity", "UGUI"]
 categories = ["UGUI源码分析"]
 draft = true
@@ -116,6 +116,16 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 `Image` 组�
 {{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-010.Debug-mainTexture-getter.png" >}}
 
 我们看到首先如果有 `activeSprite` , 则会使用 `activeSprite.texture`. 再接着会尝试使用 `material` 中的纹理, 都不存在的情况下, 会使用默认的白色纹理.
+
+`activeSprite` 会优先返回 `m_OverrideSprite`, 其次返回 `sprite` (即 `m_Sprite`, Inspector中设置的 Sprite).
+
+纹理相关的方法和属性及类继承关系如下图所示:
+
+
+{{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-011.Image-Texture-Hierarchy.png" >}}
+
+trackimage
+                if (SetPropertyUtility.SetClass(ref m\_OverrideSprite, value))
 
 
 ## 脏了吗? {#脏了吗}
