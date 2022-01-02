@@ -1,7 +1,7 @@
 +++
 title = "UGUI源码分析(一): Image的渲染 "
 date = 2021-12-26T11:33:24+08:00
-lastmod = 2022-01-01T20:22:11+08:00
+lastmod = 2022-01-02T11:22:45+08:00
 tags = ["Unity", "UGUI"]
 categories = ["UGUI源码分析"]
 draft = true
@@ -83,6 +83,8 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 `Image` 组�
 材质相关的方法和属性及类继承关系如下图所示:
 
 
+{{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-008.Image-Hierarchy-Material.png" >}}
+
 给 `Image` 的 `material` 属性的 getter 方法添加断点后, 调试运行, 可以看到如下调用堆栈:
 
 {{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-009.Debug-Material-getter.png" >}}
@@ -102,7 +104,18 @@ UI元素一定是按四边形来渲染吗? 答案是否定的. 当 `Image` 组�
 
 材质使用的Shader在哪里呢?
 
-defaultGraphicMaterial 是                     s\_DefaultUI = Canvas.GetDefaultCanvasMaterial();
+我们可以在[Unity网站下载](https://unity3d.com/cn/get-unity/download/archive)到对应版本的内置Shader以作为参考. UI部分Shader位于 `./DefaultResourcesExtra/UI` 目录.
+
+
+## 纹理的提供 {#纹理的提供}
+
+可以在 `Inspector` 窗口给 `Image` 组件设置 `Source Image`, 为 `Sprite` 类型. `Sprite` 类位于 `UnityEngine` 命名空间下, 并非 UGUI 专用.
+
+我们给 `Image` 的 `mainTexture` 属性的 getter 方法增加断点, 调试后可以看到如下堆栈:
+
+{{< figure src="/ox-hugo/2021-12-UGUI-Source-Reading-010.Debug-mainTexture-getter.png" >}}
+
+我们看到首先如果有 `activeSprite` , 则会使用 `activeSprite.texture`. 再接着会尝试使用 `material` 中的纹理, 都不存在的情况下, 会使用默认的白色纹理.
 
 
 ## 脏了吗? {#脏了吗}
