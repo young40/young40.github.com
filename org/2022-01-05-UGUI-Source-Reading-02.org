@@ -7,5 +7,62 @@
 #+HUGO_BASE_DIR: ../
 #+OPTIONS: author:nil
 
+=Mask 遮罩=  可以按自身的形状限制子元素的显示范围. 这句话有点抽象, 实际上自己动手做一下就很好理解.
+例如, 我们常见的显示圆形头像的效果, 就是拿一个圆形的图像来限制方形头像的显示范围, 就能得到圆形头像.
+下面我们就来看看Mask的背后的原理和其源码.
+
+* 模板缓冲区和模板测试
+=Mask= 的原理是模板缓冲区和模板测试. 模板缓冲区给每个像素分配一个8位的模板值, 渲染 =Mask= 时会写入指定的值.
+子元素在渲染时, 会做模板测试, 如果不通过则舍弃子元素的片元, 通过则会正常渲染, 以此达到控制子元素显示范围的目的.
+
+* Mask相关的类
+=Mask= 相关的类和属性如下:
+
+#+BEGIN_SRC plantuml :file 2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-003.Mask-Hierarchy.png :exports both :cache yes 
+  @startuml
+
+  class Mask
+  {
+      - bool m_ShowMaskGraphic [SerializeField]
+  }
+
+  class MaskUtilities
+  {
+      + {static} void NotifyStencilStateChanged()
+      + {static} Transform FindRootSortOverrideCanvas()
+      + {static} int GetStencilDepth()
+  }
+
+  class StencilMaterial
+  {
+      + {static} Material Add()
+  }
+
+  class Image
+  abstract class Graphic
+  abstract class MaskableGraphic
+  {
+      # bool m_ShouldRecalculateStencil
+  }
+
+  interface IMaterialModifier
+  {
+      Material GetModifierMaterial()
+  }
+
+  UIBehaviour <|-- Mask
+
+  Graphic         <|-- MaskableGraphic
+  MaskableGraphic <|-- Image
+
+  IMaterialModifier <|.. MaskableGraphic
+  IMaterialModifier <|.. Mask
+  @enduml
+#+END_SRC
+
+#+RESULTS[40c389bff6f9243c7b7fa0b490a7d72513527977]:
+[[file:2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-003.Mask-Hierarchy.png]]
+
+
 * 参考
   * https://www.cnblogs.com/iwiniwin/p/15131528.html
