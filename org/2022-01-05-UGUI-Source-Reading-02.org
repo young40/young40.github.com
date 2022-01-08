@@ -67,7 +67,7 @@
   @enduml
 #+END_SRC
 
-#+RESULTS[5b26384d9d5468a9e13e482e92d29ca59e7595fe]:
+#+RESULTS[d1d81021e3e11834454b31ff0b0f86f5d0546e76]:
 [[file:2021-12-UGUI-Source-Reading/2021-12-UGUI-Source-Reading-012.Mask-Hierarchy.png]]
 
 * 一个Demo
@@ -132,7 +132,24 @@
   }
 #+end_src
 
-从上面这段代码中可以看到
+从上面这段代码中可以看到, =NotifyStencilStateChanged= 会寻找子对象上所有的实现了 =IMaskable= 接口的组件,
+并调用其 =RecalculateMasking= 方法.
+
+我们看下 =MaskableGraphic.RecalculateMasking= 方法:
+#+begin_src csharp
+  public virtual void RecalculateMasking()
+  {
+      // Remove the material reference as either the graphic of the mask has been enable/ disabled.
+      // This will cause the material to be repopulated from the original if need be. (case 994413)
+      StencilMaterial.Remove(m_MaskMaterial);
+      m_MaskMaterial = null;
+      m_ShouldRecalculateStencil = true;
+      SetMaterialDirty();
+  }
+#+end_src
+
+这里主要是将 =m_ShouldRecalculateStencil= 置为 true.
+
 
 
 * 参考

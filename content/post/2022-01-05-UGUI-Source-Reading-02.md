@@ -1,7 +1,7 @@
 +++
 title = "UGUI源码分析(一): Mask 面具🎭之下"
 date = 2022-01-05T22:12:45+08:00
-lastmod = 2022-01-08T09:24:29+08:00
+lastmod = 2022-01-08T12:40:15+08:00
 tags = ["Unity", "UGUI"]
 categories = ["UGUI源码分析"]
 draft = true
@@ -69,6 +69,48 @@ protected override void OnEnable()
     MaskUtilities.NotifyStencilStateChanged(this);
 }
 ```
+
+可以看到如果 `graphic is MaskableGraphic` 就设置 `isMaskingGraphic` 为 `true` , 这里的 `graphic`, 实际上就
+是红色Image的 `Image` 组件.
+
+然后调用了 `MaskUtilities.NotifyStencilStateChanged(this)`, 我们打开其实现.
+
+```csharp
+public static void NotifyStencilStateChanged(Component mask)
+{
+    var components = ListPool<Component>.Get();
+    mask.GetComponentsInChildren(components);
+    for (var i = 0; i < components.Count; i++)
+    {
+        if (components[i] == null || components[i].gameObject == mask.gameObject)
+            continue;
+
+        var toNotify = components[i] as IMaskable;
+        if (toNotify != null)
+            toNotify.RecalculateMasking();
+    }
+    ListPool<Component>.Release(components);
+}
+```
+
+从上面这段代码中可以看到, `NotifyStencilStateChanged` 会寻找子对象上所有的实现了 `IMaskable` 接口的组件,
+并调用其 `RecalculateMasking` 方法.
+
+我们看下 `MaskableGraphic.RecalculateMasking` 方法:
+
+```csharp
+public virtual void RecalculateMasking()
+{
+    // Remove the material reference as either the graphic of the mask has been enable/ disabled.
+    // This will cause the material to be repopulated from the original if need be. (case 994413)
+    StencilMaterial.Remove(m_MaskMaterial);
+    m_MaskMaterial = null;
+    m_ShouldRecalculateStencil = true;
+    SetMaterialDirty();
+}
+```
+
+这里主要是将 `m_ShouldRecalculateStencil` 置为 true.
 
 
 ## 参考 {#参考}
