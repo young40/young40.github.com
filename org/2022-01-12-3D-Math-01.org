@@ -1,0 +1,11 @@
+#+TITLE: 3D数学基础笔记 01
+#+HUGO_TAGS: Math 3D
+#+HUGO_CATEGORIES: 3D数学基础笔记
+#+DATE: 2022-01-12T19:20:04+08:00
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_DRAFT: true
+#+HUGO_BASE_DIR: ../
+#+OPTIONS: author:nil
+
+* 游戏中的坐标系
+** 笛卡尔坐标系
