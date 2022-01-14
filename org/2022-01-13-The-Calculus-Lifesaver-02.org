@@ -1,0 +1,16 @@
+#+TITLE:普林斯顿微积分读本笔记02 三角函数
+#+HUGO_TAGS: 普林斯顿 微积分
+#+HUGO_CATEGORIES: 普林斯顿微积分读本笔记
+#+DATE: 2022-01-13T10:03:17+08:00
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_DRAFT: true
+#+HUGO_BASE_DIR: ../
+#+OPTIONS: author:nil
+
+* 弧度
+ * 半径为1的单位元的周长为2π个单位
+ * 2π弧度 = 360˚ 
+* ASTC方法   
+ * 分别描述四个象限的为正的函数. All(A) S(Sin) T(Tan) C(Cos)
+* 三角函数图像
+* 三角恒等式
