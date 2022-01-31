@@ -57,3 +57,8 @@ In display mode it is typset differently:
 $$ 4 \sum\_{n=1}^{+\infty} \rho\_n^2 \sin^2 nh = \frac{1}{2\pi} \int\_{-\pi}^{\pi}|f(x+h) - f(x-h)|^2 dx. $$
 
 $$lim_{x \to a^{-}} f(x) = 5$$
+
+* 参考
+ * http://masikkk.com/article/MathJax/
+ * https://blog.csdn.net/Mage_EE/article/details/75317083
+ * https://blog.csdn.net/Mage_EE?type=blog
