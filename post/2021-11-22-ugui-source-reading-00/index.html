@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2 with theme even" />
+<meta name="generator" content="Hugo 0.94.2 with theme even" />
 
 
 <link rel="canonical" href="https://www.young40.com/post/2021-11-22-ugui-source-reading-00/" />
@@ -66,6 +66,16 @@
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
 
 </head>
 <body>
@@ -231,17 +241,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">private</span> <span class="k">void</span> <span class="n">Press</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;Hello UGUI Button.&#34;</span><span class="p">);</span> <span class="c1">// 新增日志行
-</span><span class="c1"></span>
-    <span class="k">if</span> <span class="p">(!</span><span class="n">IsActive</span><span class="p">()</span> <span class="p">||</span> <span class="p">!</span><span class="n">IsInteractable</span><span class="p">())</span>
-        <span class="k">return</span><span class="p">;</span>
-
-    <span class="n">UISystemProfilerApi</span><span class="p">.</span><span class="n">AddMarker</span><span class="p">(</span><span class="s">&#34;Button.onClick&#34;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-    <span class="n">m_OnClick</span><span class="p">.</span><span class="n">Invoke</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">private</span> <span class="k">void</span> <span class="n">Press</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;Hello UGUI Button.&#34;</span><span class="p">);</span> <span class="c1">// 新增日志行</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(!</span><span class="n">IsActive</span><span class="p">()</span> <span class="p">||</span> <span class="p">!</span><span class="n">IsInteractable</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">UISystemProfilerApi</span><span class="p">.</span><span class="n">AddMarker</span><span class="p">(</span><span class="s">&#34;Button.onClick&#34;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m_OnClick</span><span class="p">.</span><span class="n">Invoke</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>给场景中增加一个 <code>Button</code> , 运行后点击一下, 看下日志窗口是否有新的日志打印吧!</p>
 <h2 id="待修复--填坑--问题">待修复(填坑)问题</h2>
@@ -274,7 +284,7 @@
       <nav class="post-nav">
         <a class="prev" href="/post/2021-12-26-ugui-source-reading-01/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">UGUI源码分析(一): Image的渲染 </span>
+            <span class="prev-text nav-default">UGUI源码分析(一): Image的渲染</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/2020-11-25-unity-shader-rumen-jingyao-00/">
@@ -343,7 +353,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

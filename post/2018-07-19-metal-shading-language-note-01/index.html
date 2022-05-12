@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2 with theme even" />
+<meta name="generator" content="Hugo 0.94.2 with theme even" />
 
 
 <link rel="canonical" href="https://www.young40.com/post/2018-07-19-metal-shading-language-note-01/" />
@@ -70,6 +70,16 @@
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
 
 </head>
 <body>
@@ -205,27 +215,13 @@ PS: 原文似乎不再区分Metal和Metal Shader. 所以, 我也不再区分. </
 </h3>
 <div id="outline-text-headline-3" class="outline-text-3">
 <ul>
-<li>
-<p>简介,         本文档简介, 覆盖了Metal Shader和C++ 14之间的相同和不同之处.</p>
-</li>
-<li>
-<p>数据结构,     列举了Metal的数据类型. 向量(vector), 矩阵(matrices), buffer, 纹理(texture), 采样器(sampler). 还讨论了数据对齐(type alignment), 类型转换.</p>
-</li>
-<li>
-<p>运算操作,     Metal 运算. </p>
-</li>
-<li>
-<p>函数和变量,   函数和变量的声明细节, 属性(attribute)</p>
-</li>
-<li>
-<p>Metal 标准库, 一系列内置函数</p>
-</li>
-<li>
-<p>编译,         Metal 编译器(complier)的可选项, 包括, 预编译指令, (options for math intrinsics), 流程(control) 优化.</p>
-</li>
-<li>
-<p>Numerical Compliance, describes requirements for representing floating-point numbers, including accuracy in mathematical operations.</p>
-</li>
+<li>简介,         本文档简介, 覆盖了Metal Shader和C++ 14之间的相同和不同之处.</li>
+<li>数据结构,     列举了Metal的数据类型. 向量(vector), 矩阵(matrices), buffer, 纹理(texture), 采样器(sampler). 还讨论了数据对齐(type alignment), 类型转换.</li>
+<li>运算操作,     Metal 运算. </li>
+<li>函数和变量,   函数和变量的声明细节, 属性(attribute)</li>
+<li>Metal 标准库, 一系列内置函数</li>
+<li>编译,         Metal 编译器(complier)的可选项, 包括, 预编译指令, (options for math intrinsics), 流程(control) 优化.</li>
+<li>Numerical Compliance, describes requirements for representing floating-point numbers, including accuracy in mathematical operations.</li>
 </ul>
 <p>如果没有特殊说明, 本文档提及的特性都在Metal 1.0后都适用.</p>
 </div>
@@ -286,50 +282,24 @@ Metal的图形和计算(kernel)函数不能被重载. (C++ 14 Spec, Section 13)<
 <div id="outline-text-headline-9" class="outline-text-4">
 <p>下列C++ 14的特性, Metal不支持.</p>
 <ul>
-<li>
-<p>lambda 表达式                              (C++ 14 Spec, Section 5.1.2)</p>
-</li>
-<li>
-<p>dynamic_cast 动态类型转换                  (C++ 14 Spec, Section 5.2.7)</p>
-</li>
-<li>
-<p>类型识别                                   (C++ 14 Spec, Section 5.2.8)</p>
-</li>
-<li>
-<p>递归调用                                   (C++ 14 Spec, Section 5.2.2)</p>
-</li>
-<li>
-<p>new 和 delete 操作                         (C++ 14 Spec, Section 5.3.4, 5.3.5)</p>
-</li>
-<li>
-<p>noexcept 操作                              (C++ 14 Spec, Section 5.3.7)</p>
-</li>
-<li>
-<p>goto 语句                                  (C++ 14 Spec, Section 6.6)</p>
-</li>
-<li>
-<p>register, thread_local storage attribute   (C++ 14 Spec, Section 7.1.1)</p>
-</li>
-<li>
-<p>virtual function attribute                 (C++ 14 Spec, Section 7.1.2)</p>
-</li>
-<li>
-<p>类的继承                                   (C++ 14 Spec, Section 10, Section 11)</p>
-</li>
-<li>
-<p>异常处理                                   (C++ 14 Spec, Section 15)</p>
-</li>
+<li>lambda 表达式                              (C++ 14 Spec, Section 5.1.2)</li>
+<li>dynamic_cast 动态类型转换                  (C++ 14 Spec, Section 5.2.7)</li>
+<li>类型识别                                   (C++ 14 Spec, Section 5.2.8)</li>
+<li>递归调用                                   (C++ 14 Spec, Section 5.2.2)</li>
+<li>new 和 delete 操作                         (C++ 14 Spec, Section 5.3.4, 5.3.5)</li>
+<li>noexcept 操作                              (C++ 14 Spec, Section 5.3.7)</li>
+<li>goto 语句                                  (C++ 14 Spec, Section 6.6)</li>
+<li>register, thread_local storage attribute   (C++ 14 Spec, Section 7.1.1)</li>
+<li>virtual function attribute                 (C++ 14 Spec, Section 7.1.2)</li>
+<li>类的继承                                   (C++ 14 Spec, Section 10, Section 11)</li>
+<li>异常处理                                   (C++ 14 Spec, Section 15)</li>
 </ul>
 <p>不能在Metal中使用C++ 标准库, Metal拥有自己的标准库.</p>
 <p>
 Metal 限制了指针的使用:</p>
 <ul>
-<li>
-<p>Arguments to Metal graphics and kernel functions declared in a program that are pointers must be declared with the Metal device, threadgroup, threadgroup_imageblock, or constant address space attribute.</p>
-</li>
-<li>
-<p>函数指针不支持.</p>
-</li>
+<li>Arguments to Metal graphics and kernel functions declared in a program that are pointers must be declared with the Metal device, threadgroup, threadgroup_imageblock, or constant address space attribute.</li>
+<li>函数指针不支持.</li>
 </ul>
 <p>Metal函数不能命名为 <code class="verbatim">main</code>.</p>
 </div>
@@ -440,7 +410,7 @@ Metal 限制了指针的使用:</p>
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2 with theme even" />
+<meta name="generator" content="Hugo 0.94.2 with theme even" />
 
 
 <link rel="canonical" href="https://www.young40.com/post/2018-07-14-learnmetal-a-triangle/" />
@@ -70,6 +70,16 @@
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
 
 </head>
 <body>
@@ -185,14 +195,14 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">class</span> <span class="nc">MyMetalView</span><span class="p">:</span> <span class="n">MTKView</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nv">vertexData</span><span class="p">:</span> <span class="p">[</span><span class="nb">Float</span><span class="p">]</span><span class="o">!</span>
-    <span class="kd">var</span> <span class="nv">vertexBuffer</span><span class="p">:</span> <span class="n">MTLBuffer</span><span class="p">!</span>
-
-    <span class="kd">var</span> <span class="nv">renderPipelineState</span><span class="p">:</span> <span class="n">MTLRenderPipelineState</span><span class="p">!</span>
-
-    <span class="kd">var</span> <span class="nv">cmdQueue</span><span class="p">:</span> <span class="n">MTLCommandQueue</span><span class="p">!</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">MyMetalView</span><span class="p">:</span> <span class="n">MTKView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">vertexData</span><span class="p">:</span> <span class="p">[</span><span class="nb">Float</span><span class="p">]</span><span class="o">!</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">vertexBuffer</span><span class="p">:</span> <span class="n">MTLBuffer</span><span class="p">!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">renderPipelineState</span><span class="p">:</span> <span class="n">MTLRenderPipelineState</span><span class="p">!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">cmdQueue</span><span class="p">:</span> <span class="n">MTLCommandQueue</span><span class="p">!</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div></p>
 </div>
@@ -219,15 +229,15 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">public</span> <span class="kd">func</span> <span class="nf">initVertex</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">vertexData</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
-
-    <span class="kd">let</span> <span class="nv">vertexDataSize</span> <span class="p">=</span> <span class="n">vertexData</span><span class="p">.</span><span class="bp">count</span> <span class="o">*</span> <span class="n">MemoryLayout</span><span class="p">&lt;</span><span class="nb">Float</span><span class="p">&gt;.</span><span class="n">size</span>
-
-    <span class="n">vertexBuffer</span> <span class="p">=</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">device</span><span class="p">?.</span><span class="n">makeBuffer</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="n">vertexData</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="n">vertexDataSize</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">[]))</span><span class="o">!</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">func</span> <span class="nf">initVertex</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vertexData</span> <span class="p">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">vertexDataSize</span> <span class="p">=</span> <span class="n">vertexData</span><span class="p">.</span><span class="bp">count</span> <span class="o">*</span> <span class="n">MemoryLayout</span><span class="p">&lt;</span><span class="nb">Float</span><span class="p">&gt;.</span><span class="n">size</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">vertexBuffer</span> <span class="p">=</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">device</span><span class="p">?.</span><span class="n">makeBuffer</span><span class="p">(</span><span class="n">bytes</span><span class="p">:</span> <span class="n">vertexData</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="n">vertexDataSize</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">[]))</span><span class="o">!</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div></p>
 </div>
@@ -259,22 +269,22 @@ Metal Shader
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&lt;metal_stdlib&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">metal</span><span class="p">;</span>
-
-<span class="k">struct</span> <span class="nc">Vertex</span> <span class="p">{</span>
-    <span class="n">float4</span> <span class="n">postion</span> <span class="na">[[position]]</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="n">vertex</span> <span class="n">Vertex</span> <span class="nf">vertex_func</span><span class="p">(</span><span class="n">constant</span> <span class="n">Vertex</span> <span class="o">*</span><span class="n">vertices</span> <span class="p">[[</span><span class="n">buffer</span><span class="p">(</span><span class="mi">0</span><span class="p">)]],</span>
-                          <span class="n">uint</span> <span class="n">vid</span> <span class="na">[[vertex_id]]</span> <span class="p">){</span>
-    <span class="k">return</span> <span class="n">vertices</span><span class="p">[</span><span class="n">vid</span><span class="p">];</span>
-<span class="p">}</span>
-
-<span class="n">fragment</span> <span class="n">float4</span> <span class="nf">fragment_func</span><span class="p">(</span><span class="n">Vertex</span> <span class="n">vert</span> <span class="na">[[stage_in]]</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">float4</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;metal_stdlib&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="k">namespace</span> <span class="n">metal</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">Vertex</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float4</span> <span class="n">postion</span> <span class="na">[[position]]</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">vertex</span> <span class="n">Vertex</span> <span class="nf">vertex_func</span><span class="p">(</span><span class="n">constant</span> <span class="n">Vertex</span> <span class="o">*</span><span class="n">vertices</span> <span class="p">[[</span><span class="n">buffer</span><span class="p">(</span><span class="mi">0</span><span class="p">)]],</span>
+</span></span><span class="line"><span class="cl">                          <span class="n">uint</span> <span class="n">vid</span> <span class="na">[[vertex_id]]</span> <span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">vertices</span><span class="p">[</span><span class="n">vid</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fragment</span> <span class="n">float4</span> <span class="nf">fragment_func</span><span class="p">(</span><span class="n">Vertex</span> <span class="n">vert</span> <span class="na">[[stage_in]]</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">float4</span><span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div></p>
 <p>
@@ -306,28 +316,28 @@ Metal Shader
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">public</span> <span class="kd">func</span> <span class="nf">initShader</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nv">shaderStr</span> <span class="p">=</span> <span class="s">&#34;&#34;&#34; ... &#34;&#34;&#34;</span>
-    <span class="k">do</span> <span class="p">{</span>
-        <span class="kd">let</span> <span class="nv">library</span> <span class="p">=</span> <span class="k">try</span> <span class="kc">self</span><span class="p">.</span><span class="n">device</span><span class="p">?.</span><span class="n">makeLibrary</span><span class="p">(</span><span class="n">source</span><span class="p">:</span> <span class="n">shaderStr</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
-
-        <span class="kd">let</span> <span class="nv">vertex_func</span> <span class="p">=</span> <span class="n">library</span><span class="p">?.</span><span class="n">makeFunction</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;vertex_func&#34;</span><span class="p">)</span>
-        <span class="kd">let</span> <span class="nv">fragment_func</span> <span class="p">=</span> <span class="n">library</span><span class="p">?.</span><span class="n">makeFunction</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;fragment_func&#34;</span><span class="p">)</span>
-
-        <span class="kd">let</span> <span class="nv">renderPipelineDescriptor</span> <span class="p">=</span> <span class="n">MTLRenderPipelineDescriptor</span><span class="p">()</span>
-
-        <span class="n">renderPipelineDescriptor</span><span class="p">.</span><span class="n">vertexFunction</span> <span class="p">=</span> <span class="n">vertex_func</span>
-        <span class="n">renderPipelineDescriptor</span><span class="p">.</span><span class="n">fragmentFunction</span> <span class="p">=</span> <span class="n">fragment_func</span>
-
-        <span class="n">renderPipelineDescriptor</span><span class="p">.</span><span class="n">colorAttachments</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">pixelFormat</span> <span class="p">=</span> <span class="n">MTLPixelFormat</span><span class="p">.</span><span class="n">bgra8Unorm</span>
-
-        <span class="n">renderPipelineState</span> <span class="p">=</span> <span class="k">try</span> <span class="kc">self</span><span class="p">.</span><span class="n">device</span><span class="p">?.</span><span class="n">makeRenderPipelineState</span><span class="p">(</span><span class="n">descriptor</span><span class="p">:</span> <span class="n">renderPipelineDescriptor</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="k">catch</span> <span class="kd">let</span> <span class="nv">e</span> <span class="p">{</span>
-        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">e</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
-        <span class="bp">fatalError</span><span class="p">()</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">func</span> <span class="nf">initShader</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">shaderStr</span> <span class="p">=</span> <span class="s">&#34;&#34;&#34; ... &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">do</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nv">library</span> <span class="p">=</span> <span class="k">try</span> <span class="kc">self</span><span class="p">.</span><span class="n">device</span><span class="p">?.</span><span class="n">makeLibrary</span><span class="p">(</span><span class="n">source</span><span class="p">:</span> <span class="n">shaderStr</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nv">vertex_func</span> <span class="p">=</span> <span class="n">library</span><span class="p">?.</span><span class="n">makeFunction</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;vertex_func&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nv">fragment_func</span> <span class="p">=</span> <span class="n">library</span><span class="p">?.</span><span class="n">makeFunction</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;fragment_func&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nv">renderPipelineDescriptor</span> <span class="p">=</span> <span class="n">MTLRenderPipelineDescriptor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">renderPipelineDescriptor</span><span class="p">.</span><span class="n">vertexFunction</span> <span class="p">=</span> <span class="n">vertex_func</span>
+</span></span><span class="line"><span class="cl">        <span class="n">renderPipelineDescriptor</span><span class="p">.</span><span class="n">fragmentFunction</span> <span class="p">=</span> <span class="n">fragment_func</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">renderPipelineDescriptor</span><span class="p">.</span><span class="n">colorAttachments</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">pixelFormat</span> <span class="p">=</span> <span class="n">MTLPixelFormat</span><span class="p">.</span><span class="n">bgra8Unorm</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">renderPipelineState</span> <span class="p">=</span> <span class="k">try</span> <span class="kc">self</span><span class="p">.</span><span class="n">device</span><span class="p">?.</span><span class="n">makeRenderPipelineState</span><span class="p">(</span><span class="n">descriptor</span><span class="p">:</span> <span class="n">renderPipelineDescriptor</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="kd">let</span> <span class="nv">e</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;</span><span class="si">\(</span><span class="n">e</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">fatalError</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div></p>
 <p>
@@ -366,26 +376,26 @@ Metal Shader
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">public</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="kc">_</span> <span class="n">dirtyRect</span><span class="p">:</span> <span class="n">NSRect</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nv">renderPassDescriptor</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">currentRenderPassDescriptor</span><span class="p">!</span>
-    <span class="kd">let</span> <span class="nv">drawable</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">currentDrawable</span>
-        
-    <span class="kd">let</span> <span class="nv">bgColor</span> <span class="p">=</span> <span class="n">MTLClearColor</span><span class="p">(</span><span class="n">red</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">green</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">blue</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
-
-    <span class="n">renderPassDescriptor</span><span class="p">.</span><span class="n">colorAttachments</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">clearColor</span> <span class="p">=</span> <span class="n">bgColor</span>
-
-    <span class="kd">let</span> <span class="nv">cmdBuffer</span> <span class="p">=</span> <span class="n">cmdQueue</span><span class="p">.</span><span class="n">makeCommandBuffer</span><span class="p">()</span><span class="o">!</span>
-        
-    <span class="kd">let</span> <span class="nv">cmdEncoder</span> <span class="p">=</span> <span class="n">cmdBuffer</span><span class="p">.</span><span class="n">makeRenderCommandEncoder</span><span class="p">(</span><span class="n">descriptor</span><span class="p">:</span> <span class="n">renderPassDescriptor</span><span class="p">)</span><span class="o">!</span>
-
-    <span class="n">cmdEncoder</span><span class="p">.</span><span class="n">setRenderPipelineState</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">renderPipelineState</span><span class="p">!)</span>
-    <span class="n">cmdEncoder</span><span class="p">.</span><span class="n">setVertexBuffer</span><span class="p">(</span><span class="n">vertexBuffer</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">cmdEncoder</span><span class="p">.</span><span class="n">drawPrimitives</span><span class="p">(</span><span class="n">type</span><span class="p">:</span> <span class="n">MTLPrimitiveType</span><span class="p">.</span><span class="n">triangle</span><span class="p">,</span> <span class="n">vertexStart</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">vertexCount</span><span class="p">:</span> <span class="mi">3</span><span class="p">)</span>
-    <span class="n">cmdEncoder</span><span class="p">.</span><span class="n">endEncoding</span><span class="p">()</span>
-        
-    <span class="n">cmdBuffer</span><span class="p">.</span><span class="n">present</span><span class="p">(</span><span class="n">drawable</span><span class="p">!)</span>
-    <span class="n">cmdBuffer</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kr">override</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="kc">_</span> <span class="n">dirtyRect</span><span class="p">:</span> <span class="n">NSRect</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">renderPassDescriptor</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">currentRenderPassDescriptor</span><span class="p">!</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">drawable</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">currentDrawable</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">bgColor</span> <span class="p">=</span> <span class="n">MTLClearColor</span><span class="p">(</span><span class="n">red</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span> <span class="n">green</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">blue</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">renderPassDescriptor</span><span class="p">.</span><span class="n">colorAttachments</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">clearColor</span> <span class="p">=</span> <span class="n">bgColor</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">cmdBuffer</span> <span class="p">=</span> <span class="n">cmdQueue</span><span class="p">.</span><span class="n">makeCommandBuffer</span><span class="p">()</span><span class="o">!</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">cmdEncoder</span> <span class="p">=</span> <span class="n">cmdBuffer</span><span class="p">.</span><span class="n">makeRenderCommandEncoder</span><span class="p">(</span><span class="n">descriptor</span><span class="p">:</span> <span class="n">renderPassDescriptor</span><span class="p">)</span><span class="o">!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">cmdEncoder</span><span class="p">.</span><span class="n">setRenderPipelineState</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">renderPipelineState</span><span class="p">!)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cmdEncoder</span><span class="p">.</span><span class="n">setVertexBuffer</span><span class="p">(</span><span class="n">vertexBuffer</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cmdEncoder</span><span class="p">.</span><span class="n">drawPrimitives</span><span class="p">(</span><span class="n">type</span><span class="p">:</span> <span class="n">MTLPrimitiveType</span><span class="p">.</span><span class="n">triangle</span><span class="p">,</span> <span class="n">vertexStart</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">vertexCount</span><span class="p">:</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cmdEncoder</span><span class="p">.</span><span class="n">endEncoding</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="n">cmdBuffer</span><span class="p">.</span><span class="n">present</span><span class="p">(</span><span class="n">drawable</span><span class="p">!)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cmdBuffer</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div></p>
 </div>
@@ -501,7 +511,7 @@ Metal Shader
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

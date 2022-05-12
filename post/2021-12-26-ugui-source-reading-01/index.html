@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>UGUI源码分析(一): Image的渲染  - 杨世玲的博客</title>
+  <title>UGUI源码分析(一): Image的渲染 - 杨世玲的博客</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2 with theme even" />
+<meta name="generator" content="Hugo 0.94.2 with theme even" />
 
 
 <link rel="canonical" href="https://www.young40.com/post/2021-12-26-ugui-source-reading-01/" />
@@ -40,21 +40,21 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="UGUI源码分析(一): Image的渲染 " />
+<meta property="og:title" content="UGUI源码分析(一): Image的渲染" />
 <meta property="og:description" content="我们都知道在Unity中渲染一个3D的物体, 需要提供3D物体的模型, 纹理, 材质甚至Shader. 但我们在制作UI时, 并不是必须提供这些.
 那UI是另起炉灶, 有一套新机制吗? 答案是否定的. 下面我们就从UGUI源码层面来看看Image的渲染." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.young40.com/post/2021-12-26-ugui-source-reading-01/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-01-03T00:13:53+08:00" />
-<meta property="article:modified_time" content="2022-01-03T00:45:16+08:00" />
+<meta property="article:modified_time" content="2022-01-05T22:13:10+08:00" />
 
-<meta itemprop="name" content="UGUI源码分析(一): Image的渲染 ">
+<meta itemprop="name" content="UGUI源码分析(一): Image的渲染">
 <meta itemprop="description" content="我们都知道在Unity中渲染一个3D的物体, 需要提供3D物体的模型, 纹理, 材质甚至Shader. 但我们在制作UI时, 并不是必须提供这些.
 那UI是另起炉灶, 有一套新机制吗? 答案是否定的. 下面我们就从UGUI源码层面来看看Image的渲染."><meta itemprop="datePublished" content="2022-01-03T00:13:53+08:00" />
-<meta itemprop="dateModified" content="2022-01-03T00:45:16+08:00" />
-<meta itemprop="wordCount" content="1638">
+<meta itemprop="dateModified" content="2022-01-05T22:13:10+08:00" />
+<meta itemprop="wordCount" content="1637">
 <meta itemprop="keywords" content="Unity,UGUI," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="UGUI源码分析(一): Image的渲染 "/>
+<meta name="twitter:title" content="UGUI源码分析(一): Image的渲染"/>
 <meta name="twitter:description" content="我们都知道在Unity中渲染一个3D的物体, 需要提供3D物体的模型, 纹理, 材质甚至Shader. 但我们在制作UI时, 并不是必须提供这些.
 那UI是另起炉灶, 有一套新机制吗? 答案是否定的. 下面我们就从UGUI源码层面来看看Image的渲染."/>
 
@@ -70,6 +70,16 @@
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
 
 </head>
 <body>
@@ -133,7 +143,7 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">UGUI源码分析(一): Image的渲染 </h1>
+      <h1 class="post-title">UGUI源码分析(一): Image的渲染</h1>
 
       <div class="post-meta">
         <span class="post-time"> 2022-01-03 </span>
@@ -195,26 +205,24 @@
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
-</span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">protected</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">OnPopulateMesh</span><span class="p">(</span><span class="n">VertexHelper</span> <span class="n">vh</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">var</span> <span class="n">r</span> <span class="p">=</span> <span class="n">GetPixelAdjustedRect</span><span class="p">();</span>
-    <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">r</span><span class="p">.</span><span class="n">x</span> <span class="p">+</span> <span class="n">r</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">r</span><span class="p">.</span><span class="n">y</span> <span class="p">+</span> <span class="n">r</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>
-
-    <span class="n">Color32</span> <span class="n">color32</span> <span class="p">=</span> <span class="n">color</span><span class="p">;</span>
-    <span class="n">vh</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
-    <span class="n">vh</span><span class="p">.</span><span class="n">AddVert</span><span class="p">(</span><span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="n">color32</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">0f</span><span class="p">));</span> <span class="c1">//左下
-</span><span class="c1"></span>    <span class="n">vh</span><span class="p">.</span><span class="n">AddVert</span><span class="p">(</span><span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">w</span><span class="p">),</span> <span class="n">color32</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">1f</span><span class="p">));</span> <span class="c1">//左上
-</span><span class="c1"></span>    <span class="n">vh</span><span class="p">.</span><span class="n">AddVert</span><span class="p">(</span><span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">w</span><span class="p">),</span> <span class="n">color32</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">1f</span><span class="p">));</span> <span class="c1">//右上
-</span><span class="c1"></span>    <span class="n">vh</span><span class="p">.</span><span class="n">AddVert</span><span class="p">(</span><span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="n">color32</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">0f</span><span class="p">));</span> <span class="c1">//右下
-</span><span class="c1"></span>
-    <span class="n">vh</span><span class="p">.</span><span class="n">AddTriangle</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">);</span>
-    <span class="n">vh</span><span class="p">.</span><span class="n">AddTriangle</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">protected</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">OnPopulateMesh</span><span class="p">(</span><span class="n">VertexHelper</span> <span class="n">vh</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">r</span> <span class="p">=</span> <span class="n">GetPixelAdjustedRect</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">r</span><span class="p">.</span><span class="n">x</span> <span class="p">+</span> <span class="n">r</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">r</span><span class="p">.</span><span class="n">y</span> <span class="p">+</span> <span class="n">r</span><span class="p">.</span><span class="n">height</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Color32</span> <span class="n">color32</span> <span class="p">=</span> <span class="n">color</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vh</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vh</span><span class="p">.</span><span class="n">AddVert</span><span class="p">(</span><span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="n">color32</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">0f</span><span class="p">));</span> <span class="c1">//左下</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vh</span><span class="p">.</span><span class="n">AddVert</span><span class="p">(</span><span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">w</span><span class="p">),</span> <span class="n">color32</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">0f</span><span class="p">,</span> <span class="m">1f</span><span class="p">));</span> <span class="c1">//左上</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vh</span><span class="p">.</span><span class="n">AddVert</span><span class="p">(</span><span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">w</span><span class="p">),</span> <span class="n">color32</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">1f</span><span class="p">));</span> <span class="c1">//右上</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vh</span><span class="p">.</span><span class="n">AddVert</span><span class="p">(</span><span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="n">color32</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">1f</span><span class="p">,</span> <span class="m">0f</span><span class="p">));</span> <span class="c1">//右下</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">vh</span><span class="p">.</span><span class="n">AddTriangle</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vh</span><span class="p">.</span><span class="n">AddTriangle</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>我们知道, UI元素一般是按四边形来渲染, 即需要两个三角形. 在上面代码中, 可以看到变量 <code>v</code> 存储了四边形的左下角和右上角的坐标.
 然后以顺时针顺序把左下角, 左上角, 右上角, 右下角, 当作四个顶点坐标传给 <code>VertexHelper</code>, 这四点的顶点索引(Index), 依次为0, 1, 2, 3.
@@ -276,8 +284,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">uv</span> <span class="p">=</span> <span class="p">(</span><span class="n">activeSprite</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">?</span> <span class="n">Sprites</span><span class="p">.</span><span class="n">DataUtility</span><span class="p">.</span><span class="n">GetOuterUV</span><span class="p">(</span><span class="n">activeSprite</span><span class="p">)</span> <span class="p">:</span> <span class="n">Vector4</span><span class="p">.</span><span class="n">zero</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kt">var</span> <span class="n">uv</span> <span class="p">=</span> <span class="p">(</span><span class="n">activeSprite</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">?</span> <span class="n">Sprites</span><span class="p">.</span><span class="n">DataUtility</span><span class="p">.</span><span class="n">GetOuterUV</span><span class="p">(</span><span class="n">activeSprite</span><span class="p">)</span> <span class="p">:</span> <span class="n">Vector4</span><span class="p">.</span><span class="n">zero</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="渲染一下">渲染一下</h2>
 <p>我们从上面调试时的堆栈可以看到, 这些调用都是由 <code>Graphic.Rebuild</code> 触发, 代码如下:</p>
@@ -306,28 +314,28 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">Rebuild</span><span class="p">(</span><span class="n">CanvasUpdate</span> <span class="n">update</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">canvasRenderer</span> <span class="p">==</span> <span class="k">null</span> <span class="p">||</span> <span class="n">canvasRenderer</span><span class="p">.</span><span class="n">cull</span><span class="p">)</span>
-        <span class="k">return</span><span class="p">;</span>
-
-    <span class="k">switch</span> <span class="p">(</span><span class="n">update</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">case</span> <span class="n">CanvasUpdate</span><span class="p">.</span><span class="n">PreRender</span><span class="p">:</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">m_VertsDirty</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">UpdateGeometry</span><span class="p">();</span>
-                <span class="n">m_VertsDirty</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">m_MaterialDirty</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">UpdateMaterial</span><span class="p">();</span>
-                <span class="n">m_MaterialDirty</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="k">break</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="n">Rebuild</span><span class="p">(</span><span class="n">CanvasUpdate</span> <span class="n">update</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">canvasRenderer</span> <span class="p">==</span> <span class="k">null</span> <span class="p">||</span> <span class="n">canvasRenderer</span><span class="p">.</span><span class="n">cull</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">switch</span> <span class="p">(</span><span class="n">update</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="n">CanvasUpdate</span><span class="p">.</span><span class="n">PreRender</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">m_VertsDirty</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">UpdateGeometry</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">m_VertsDirty</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">m_MaterialDirty</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">UpdateMaterial</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">m_MaterialDirty</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>我们查看 <code>UpdateGeometry</code> 和 <code>UpdateMaterial</code> 的实现, 就可以看到生成的Mesh以及被选择的纹理, 材质等, 分别设置给了
 <code>CanvasRenderer</code>, 最终由 <code>CanvasRenderer</code> 来负责 <code>Image</code> (也包括所有 <code>Graphic</code> 的子类) 的渲染.</p>
@@ -341,7 +349,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2022-01-03
+        2022-01-05
         
     </span>
   </p>
@@ -421,7 +429,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

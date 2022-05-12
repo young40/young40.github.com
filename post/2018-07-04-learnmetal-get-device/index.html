@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2 with theme even" />
+<meta name="generator" content="Hugo 0.94.2 with theme even" />
 
 
 <link rel="canonical" href="https://www.young40.com/post/2018-07-04-learnmetal-get-device/" />
@@ -70,6 +70,16 @@
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
 
 </head>
 <body>
@@ -162,7 +172,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">import</span> <span class="nc">Metal</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">import</span> <span class="nc">Metal</span></span></span></code></pre></td></tr></table>
 </div>
 </div></p>
 <p>
@@ -171,7 +181,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">var</span> <span class="nv">defaultDevice</span> <span class="p">=</span> <span class="n">MTLCreateSystemDefaultDevice</span><span class="p">()</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nv">defaultDevice</span> <span class="p">=</span> <span class="n">MTLCreateSystemDefaultDevice</span><span class="p">()</span></span></span></code></pre></td></tr></table>
 </div>
 </div></p>
 <p>
@@ -192,16 +202,16 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="kd">func</span> <span class="nf">showDevice</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">MTLDevice</span><span class="p">)</span> <span class="p">{</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;----------我们要展示一个Metal了-----------&#34;</span><span class="p">)</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;设备名称:      </span><span class="se">\t</span><span class="si">\(</span><span class="n">device</span><span class="p">.</span><span class="n">name</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;是否是低性能:   </span><span class="se">\t</span><span class="si">\(</span><span class="n">device</span><span class="p">.</span><span class="n">isLowPower</span>  <span class="p">?</span> <span class="s">&#34;是&#34;</span> <span class="p">:</span> <span class="s">&#34;否&#34;</span> <span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;是否接显示器:   </span><span class="se">\t</span><span class="si">\(</span><span class="n">device</span><span class="p">.</span><span class="n">isHeadless</span>  <span class="p">?</span> <span class="s">&#34;否&#34;</span> <span class="p">:</span> <span class="s">&#34;是&#34;</span> <span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;设置是否可移除: </span><span class="se">\t</span><span class="si">\(</span><span class="n">device</span><span class="p">.</span><span class="n">isRemovable</span> <span class="p">?</span> <span class="s">&#34;是&#34;</span> <span class="p">:</span> <span class="s">&#34;否&#34;</span> <span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
-    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;设备注册ID:    </span><span class="se">\t</span><span class="si">\(</span><span class="n">device</span><span class="p">.</span><span class="n">registryID</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="n">showDevice</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">device</span><span class="p">)</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">showDevice</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">MTLDevice</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;----------我们要展示一个Metal了-----------&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;设备名称:      </span><span class="se">\t</span><span class="si">\(</span><span class="n">device</span><span class="p">.</span><span class="n">name</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;是否是低性能:   </span><span class="se">\t</span><span class="si">\(</span><span class="n">device</span><span class="p">.</span><span class="n">isLowPower</span>  <span class="p">?</span> <span class="s">&#34;是&#34;</span> <span class="p">:</span> <span class="s">&#34;否&#34;</span> <span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;是否接显示器:   </span><span class="se">\t</span><span class="si">\(</span><span class="n">device</span><span class="p">.</span><span class="n">isHeadless</span>  <span class="p">?</span> <span class="s">&#34;否&#34;</span> <span class="p">:</span> <span class="s">&#34;是&#34;</span> <span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;设置是否可移除: </span><span class="se">\t</span><span class="si">\(</span><span class="n">device</span><span class="p">.</span><span class="n">isRemovable</span> <span class="p">?</span> <span class="s">&#34;是&#34;</span> <span class="p">:</span> <span class="s">&#34;否&#34;</span> <span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;设备注册ID:    </span><span class="se">\t</span><span class="si">\(</span><span class="n">device</span><span class="p">.</span><span class="n">registryID</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">showDevice</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">device</span><span class="p">)</span></span></span></code></pre></td></tr></table>
 </div>
 </div></p>
 <p>
@@ -227,13 +237,13 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="c1">// 当然我们也可以获取到所有的设备</span>
-<span class="kd">let</span> <span class="nv">devices</span> <span class="p">=</span> <span class="n">MTLCopyAllDevices</span><span class="p">()</span>
-
-<span class="c1">// 遍历所有设备</span>
-<span class="k">for</span> <span class="n">device</span> <span class="k">in</span> <span class="n">devices</span> <span class="p">{</span>
-    <span class="n">showDevice</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">device</span><span class="p">)</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// 当然我们也可以获取到所有的设备</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">devices</span> <span class="p">=</span> <span class="n">MTLCopyAllDevices</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 遍历所有设备</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">device</span> <span class="k">in</span> <span class="n">devices</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">showDevice</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">device</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div></p>
 <p>
@@ -349,7 +359,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

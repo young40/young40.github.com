@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2 with theme even" />
+<meta name="generator" content="Hugo 0.94.2 with theme even" />
 
 
 <link rel="canonical" href="https://www.young40.com/post/2020-11-25-unity-shader-rumen-jingyao-00/" />
@@ -73,6 +73,16 @@
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
 
 </head>
 <body>
@@ -173,34 +183,20 @@
 </h2>
 <div id="outline-text-headline-1" class="outline-text-2">
 <ul>
-<li>
-<p>本书配套源码托管于Github:
-<a href="https://github.com/candycat1992/Unity_Shaders_Book">https://github.com/candycat1992/Unity_Shaders_Book</a></p>
-</li>
-<li>
-<p>随书所有彩色插图:
-<a href="http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_images.html">http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_images.html</a></p>
-</li>
-<li>
-<p>本书勘误:
-<a href="http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_corrigenda.html">http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_corrigenda.html</a></p>
-</li>
-<li>
-<p>另外作者也公开了本书的第四章(关于数学部分):
-<a href="http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_chapter_4.pdf">http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_chapter_4.pdf</a></p>
-</li>
-<li>
-<p>重写了本书的第十八章(基于物理的渲染):
-<a href="http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_chapter_18.pdf">http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_chapter_18.pdf</a></p>
-</li>
-<li>
-<p>作者冯乐乐的博客地址(已经不更新了, 但部分博文依然值得一读):
-<a href="https://blog.csdn.net/candycat1992">https://blog.csdn.net/candycat1992</a></p>
-</li>
-<li>
-<p>作者知乎首页:
-<a href="https://www.zhihu.com/people/lele-feng-15">https://www.zhihu.com/people/lele-feng-15</a></p>
-</li>
+<li>本书配套源码托管于Github:
+<a href="https://github.com/candycat1992/Unity_Shaders_Book">https://github.com/candycat1992/Unity_Shaders_Book</a></li>
+<li>随书所有彩色插图:
+<a href="http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_images.html">http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_images.html</a></li>
+<li>本书勘误:
+<a href="http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_corrigenda.html">http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_corrigenda.html</a></li>
+<li>另外作者也公开了本书的第四章(关于数学部分):
+<a href="http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_chapter_4.pdf">http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_chapter_4.pdf</a></li>
+<li>重写了本书的第十八章(基于物理的渲染):
+<a href="http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_chapter_18.pdf">http://candycat1992.github.io/unity_shaders_book/unity_shaders_book_chapter_18.pdf</a></li>
+<li>作者冯乐乐的博客地址(已经不更新了, 但部分博文依然值得一读):
+<a href="https://blog.csdn.net/candycat1992">https://blog.csdn.net/candycat1992</a></li>
+<li>作者知乎首页:
+<a href="https://www.zhihu.com/people/lele-feng-15">https://www.zhihu.com/people/lele-feng-15</a></li>
 </ul>
 </div>
 </div>
@@ -210,66 +206,26 @@
 </h2>
 <div id="outline-text-headline-2" class="outline-text-2">
 <ul>
-<li>
-<p>第1章 欢迎来到Shader的世界</p>
-</li>
-<li>
-<p>第2章 渲染流水线</p>
-</li>
-<li>
-<p>第3章 Unity Shader基础</p>
-</li>
-<li>
-<p>第4章 学习Shader所需的数学基础</p>
-</li>
-<li>
-<p>第5章 开始Unity Shader学习之旅</p>
-</li>
-<li>
-<p>第6章 Unity 中的基础光照</p>
-</li>
-<li>
-<p>第7章 基础纹理</p>
-</li>
-<li>
-<p>第8章 透明效果</p>
-</li>
-<li>
-<p>第9章 更复杂的光照</p>
-</li>
-<li>
-<p>第10章 高级纹理</p>
-</li>
-<li>
-<p>第11章 让画面动起来</p>
-</li>
-<li>
-<p>第12章 屏幕后处理效果</p>
-</li>
-<li>
-<p>第13章 使用深度和纹理法线</p>
-</li>
-<li>
-<p>第14章 非真实感渲染</p>
-</li>
-<li>
-<p>第15章 使用噪声</p>
-</li>
-<li>
-<p>第16章 Unity 中的渲染优化技术</p>
-</li>
-<li>
-<p>第17章 Unity 的表面着色器探秘</p>
-</li>
-<li>
-<p>第18章 急于物理的渲染</p>
-</li>
-<li>
-<p>第19章 Unity 5 更新了什么</p>
-</li>
-<li>
-<p>第20章 还有更多内容吗</p>
-</li>
+<li>第1章 欢迎来到Shader的世界</li>
+<li>第2章 渲染流水线</li>
+<li>第3章 Unity Shader基础</li>
+<li>第4章 学习Shader所需的数学基础</li>
+<li>第5章 开始Unity Shader学习之旅</li>
+<li>第6章 Unity 中的基础光照</li>
+<li>第7章 基础纹理</li>
+<li>第8章 透明效果</li>
+<li>第9章 更复杂的光照</li>
+<li>第10章 高级纹理</li>
+<li>第11章 让画面动起来</li>
+<li>第12章 屏幕后处理效果</li>
+<li>第13章 使用深度和纹理法线</li>
+<li>第14章 非真实感渲染</li>
+<li>第15章 使用噪声</li>
+<li>第16章 Unity 中的渲染优化技术</li>
+<li>第17章 Unity 的表面着色器探秘</li>
+<li>第18章 急于物理的渲染</li>
+<li>第19章 Unity 5 更新了什么</li>
+<li>第20章 还有更多内容吗</li>
 </ul>
 </div>
 </div>
@@ -367,7 +323,7 @@
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 

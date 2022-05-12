@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.91.2 with theme even" />
+<meta name="generator" content="Hugo 0.94.2 with theme even" />
 
 
 <link rel="canonical" href="https://www.young40.com/post/2018-06-12-google-cloud-f-gfw/" />
@@ -70,6 +70,16 @@ Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记�
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
 
 </head>
 <body>
@@ -181,27 +191,15 @@ Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记�
 <div id="outline-text-headline-1" class="outline-text-5">
 <p>找到防火墙配置, 创建一条新的防火墙规则. 重点配置如下:</p>
 <ul>
-<li>
-<p>目标: 网络中的所有实例</p>
-</li>
-<li>
-<p>来源IP地址范围: 0.0.0.0/0</p>
-</li>
-<li>
-<p>协议和端口: 指定协议和端口 tcp:8888</p>
-</li>
+<li>目标: 网络中的所有实例</li>
+<li>来源IP地址范围: 0.0.0.0/0</li>
+<li>协议和端口: 指定协议和端口 tcp:8888</li>
 </ul>
 <p>解释一下:</p>
 <ul>
-<li>
-<p>目标, 可以应用到所有的实例, 这样再开其他地区实例可以直接应用当前的防火墙配置</p>
-</li>
-<li>
-<p>来源IP地址范围, 允许所有的IP连接</p>
-</li>
-<li>
-<p>协议端口, 开启了Shadowsocks的端口, 需要和自己的配置对上. 我看网络上好多人的配置基本是都是允许了所有的端口连接, 这样非常不安全, 还是需要按需开放才够安全.</p>
-</li>
+<li>目标, 可以应用到所有的实例, 这样再开其他地区实例可以直接应用当前的防火墙配置</li>
+<li>来源IP地址范围, 允许所有的IP连接</li>
+<li>协议端口, 开启了Shadowsocks的端口, 需要和自己的配置对上. 我看网络上好多人的配置基本是都是允许了所有的端口连接, 这样非常不安全, 还是需要按需开放才够安全.</li>
 </ul>
 </div>
 </div>
@@ -227,29 +225,25 @@ Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记�
 </h5>
 <div id="outline-text-headline-4" class="outline-text-5">
 <ul>
-<li>
-<p>修改当前账户密码</p>
-</li>
+<li>修改当前账户密码</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">sudo passwd</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo passwd</span></span></code></pre></td></tr></table>
 </div>
 </div>
 <ul>
-<li>
-<p>安装zsh和oh my zsh</p>
-</li>
+<li>安装zsh和oh my zsh</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">sudo apt-get install zsh</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt-get install zsh</span></span></code></pre></td></tr></table>
 </div>
 </div>
 </div>
@@ -269,12 +263,12 @@ Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记�
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">sudo <span class="nb">echo</span> <span class="s2">&#34;net.core.default_qdisc=fq&#34;</span> &gt;&gt; /etc/sysctl.conf
-sudo <span class="nb">echo</span> <span class="s2">&#34;net.ipv4.tcp_congestion_control=bbr&#34;</span> &gt;&gt; /etc/sysctl.conf
-<span class="c1"># 让设置生效</span>
-sysctl -p
-<span class="c1"># 检查设置是否生效</span>
-lsmod <span class="p">|</span> grep bbr</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo <span class="nb">echo</span> <span class="s2">&#34;net.core.default_qdisc=fq&#34;</span> &gt;&gt; /etc/sysctl.conf
+</span></span><span class="line"><span class="cl">sudo <span class="nb">echo</span> <span class="s2">&#34;net.ipv4.tcp_congestion_control=bbr&#34;</span> &gt;&gt; /etc/sysctl.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># 让设置生效</span>
+</span></span><span class="line"><span class="cl">sysctl -p
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查设置是否生效</span>
+</span></span><span class="line"><span class="cl">lsmod <span class="p">|</span> grep bbr</span></span></code></pre></td></tr></table>
 </div>
 </div>
 </div>
@@ -289,7 +283,7 @@ lsmod <span class="p">|</span> grep bbr</code></pre></td></tr></table>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get upgrade</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt-get update <span class="o">&amp;&amp;</span> sudo apt-get upgrade</span></span></code></pre></td></tr></table>
 </div>
 </div>
 </div>
@@ -300,29 +294,25 @@ lsmod <span class="p">|</span> grep bbr</code></pre></td></tr></table>
 </h5>
 <div id="outline-text-headline-7" class="outline-text-5">
 <ul>
-<li>
-<p>安装</p>
-</li>
+<li>安装</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">sudo apt-get install shadowsocks-libev</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt-get install shadowsocks-libev</span></span></code></pre></td></tr></table>
 </div>
 </div>
 <ul>
-<li>
-<p>配置</p>
-</li>
+<li>配置</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">sudo vim /etc/shadowsocks-libev/config.json</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo vim /etc/shadowsocks-libev/config.json</span></span></code></pre></td></tr></table>
 </div>
 </div>
 </div>
@@ -337,7 +327,7 @@ lsmod <span class="p">|</span> grep bbr</code></pre></td></tr></table>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">systemctl status shadowsocks-libev.service</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">systemctl status shadowsocks-libev.service</span></span></code></pre></td></tr></table>
 </div>
 </div>
 </div>
@@ -443,7 +433,7 @@ lsmod <span class="p">|</span> grep bbr</code></pre></td></tr></table>
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 
