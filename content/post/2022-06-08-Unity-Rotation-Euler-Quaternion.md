@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-09T18:07:04+08:00
+lastmod = 2022-06-09T23:32:23+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -41,7 +41,7 @@ draft = true
 PS: X,Y,Z轴的颜色正好和三原色Red,Green,Blue对应. 在游戏开发中我们还能在其他地方也看到这种对应关系.
 
 
-### 当X轴旋转90&deg;时 {#当x轴旋转90-and-deg-时}
+### 当X轴旋转&plusmn;90&deg;时 {#当x轴旋转-and-plusmn-90-and-deg-时}
 
 我们先在Inspector中将飞机绕X轴旋转90&deg;, 这时再操作Y轴与Z轴, 我们可以惊奇地发现, 旋转效果 `似乎` 是完全一致的.
 我们再也不能通过旋转Y轴, 让飞机偏航(yaw)了.
@@ -50,3 +50,32 @@ PS: X,Y,Z轴的颜色正好和三原色Red,Green,Blue对应. 在游戏开发中�
  <source src="/ox-hugo/2022-06-Rotation-003.Plane-X-90.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
+
+此时(保持绕X轴旋转90&deg;), 我们先后操作Y轴和Z轴相同的度数(例如30&deg;), 我们会发现两次操作抵消了, 飞机的姿态回到了原位, 即Y,Z轴都是0&deg;的状态.
+
+我们再让飞机的X轴旋转-90&deg;, 再操作Y轴和Z轴一定的度数(例如各30&deg;), 可以看到其效果等同于单独操作Y轴或Z轴其度数之和(30&deg;+30&deg;=60&deg;).
+
+
+### 不可跨越的90&deg; {#不可跨越的90-and-deg}
+
+Unity提供了多种旋转的Api, 其中由对象的transform提供的eulerAngles可以获取或设置欧拉角.
+我们尝试用其让飞机做持续旋转的动画.
+
+我们使用如下代码:
+
+```csharp
+void Update()
+{
+    transform.eulerAngles += new Vector3(30 * Time.deltaTime, 0, 0);
+}
+```
+
+效果如下:
+
+ <video width="680" height="570" controls>
+ <source src="/ox-hugo/2022-06-Rotation-004.Plane-Rotation-Cant-Beyond-90.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+本来期望飞机可以绕X轴持续进行360&deg;旋转, 但可以看到从0&deg;旋转到90&deg;附近无法跨越过去, 在90&deg;附近反复横跳.
+同样如果我们从0&deg;开始, 以上述反方向旋转, 则无法跨过-90&deg;.
