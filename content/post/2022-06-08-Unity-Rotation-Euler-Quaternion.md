@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-09T23:32:23+08:00
+lastmod = 2022-06-10T10:49:04+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -79,3 +79,20 @@ void Update()
 
 本来期望飞机可以绕X轴持续进行360&deg;旋转, 但可以看到从0&deg;旋转到90&deg;附近无法跨越过去, 在90&deg;附近反复横跳.
 同样如果我们从0&deg;开始, 以上述反方向旋转, 则无法跨过-90&deg;.
+
+这些看起来还真是奇怪的问题呢!
+
+
+## 旋转的几种表示方法 {#旋转的几种表示方法}
+
+旋转有多种表示方法, 例如轴角法, 旋转矩阵, 欧拉角, 四元数, 游戏引擎中用到了多种旋转表示方法. 我们来看看这些不同表示方法之间的联系.
+
+
+### 四元数 {#四元数}
+
+Unity在引擎内部使用四元数存储旋转和方位, 在其文档中[^fn:1]有明确指出.
+
+
+## 参考文档 {#参考文档}
+
+[^fn:1]: <https://docs.unity3d.com/Manual/QuaternionAndEulerRotationsInUnity.html> Rotation and orientation in Unity [Unity官方文档]
