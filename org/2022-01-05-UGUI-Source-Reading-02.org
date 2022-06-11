@@ -5,6 +5,7 @@
 #+HUGO_AUTO_SET_LASTMOD: t
 #+HUGO_DRAFT: true
 #+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: post
 #+OPTIONS: author:nil
 
 =Mask 遮罩=  可以按自身的形状限制子元素的显示范围. 这句话有点抽象, 实际上自己动手做一下就很好理解.

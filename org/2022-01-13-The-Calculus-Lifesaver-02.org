@@ -5,6 +5,7 @@
 #+HUGO_AUTO_SET_LASTMOD: t
 #+HUGO_DRAFT: true
 #+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: post
 #+OPTIONS: author:nil
 
 * 弧度

@@ -5,6 +5,7 @@
 #+HUGO_AUTO_SET_LASTMOD: t
 #+HUGO_DRAFT: false
 #+HUGO_BASE_DIR: ../
+#+HUGO_SECTION: post
 #+OPTIONS: author:nil
 
 有道是, 工欲善其事, 必先利其器. 想研究代码, 最好不过的方式就是边修改边运行看看效果, 研究UGUI自然也不例外.
