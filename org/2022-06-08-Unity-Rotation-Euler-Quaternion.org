@@ -90,6 +90,39 @@ Unity提供了多种旋转的Api, 其中由对象的transform提供的eulerAngle
 
 ** 二维空间旋转   
 二维空间中, 物体只能围绕某一个点旋转, 我们一般选择绕原点旋转.
+
+#+begin_export html-not
+<script src="https://www.geogebra.org/apps/deployggb.js"></script>
+
+<script>
+var parameters = {
+"id": "ggbApplet",
+"width":800,
+"height":800,
+"borderColor":"white",
+"language":"en",
+"filename":"/ox-hugo/2022-06-Rotation-005.2D-Rotation.ggb"};
+var applet = new GGBApplet(parameters, '5.0');
+//applet.setHTML5Codebase('5.0/web3d/');
+window.onload = function() {applet.inject('ggbApplet')};
+</script>
+
+<div id="ggbApplet"></div>
+#+end_export
+
+#+SOURCE: https://www.geogebra.org/calculator/eebadpkb
+[[file:/ox-hugo/2022-06-Rotation-005.2D-Rotation.svg]]
+
+在上图中, 我们通过将原基向量$p$, $q$ 旋转\theta\deg{}得到新的基向量$p`$, $q`$, 
+所以可以得到二维空间的旋转矩阵:
+
+$$
+R(\theta) = \begin{bmatrix}
+cos(\theta) & sin(\theta) \\
+-sin(\theta) & cos(\theta) \\
+\end{bmatrix}
+$$
+
 #+begin_quote
 之所以选择原点是因为我们总是可以对物体做平移操作, 先平移至原点, 旋转之后再平移回去.
 从数学上讲, 平移操作是非线形操作, 我们需要将二维空间升至三维空间做平移, 即引入齐次坐标.

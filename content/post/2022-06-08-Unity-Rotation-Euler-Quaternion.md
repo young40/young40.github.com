@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-11T13:35:08+08:00
+lastmod = 2022-06-11T20:38:05+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -97,6 +97,20 @@ void Update()
 ### 二维空间旋转 {#二维空间旋转}
 
 二维空间中, 物体只能围绕某一个点旋转, 我们一般选择绕原点旋转.
+
+<a id="figure--https:--www.geogebra.org-calculator-eebadpkb"></a>
+
+{{< figure src="/ox-hugo/2022-06-Rotation-005.2D-Rotation.svg" >}}
+
+在上图中, 我们通过将原基向量\\(p\\), \\(q\\) 旋转&theta;&deg;得到新的基向量\\(p\`\\), \\(q\`\\),
+所以可以得到二维空间的旋转矩阵:
+
+\\[
+R(\theta) = \begin{bmatrix}
+cos(\theta) & sin(\theta) \\\\
+-sin(\theta) & cos(\theta) \\\\
+\end{bmatrix}
+\\]
 
 > 之所以选择原点是因为我们总是可以对物体做平移操作, 先平移至原点, 旋转之后再平移回去.
 > 从数学上讲, 平移操作是非线形操作, 我们需要将二维空间升至三维空间做平移, 即引入齐次坐标.
