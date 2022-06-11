@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-11T20:38:05+08:00
+lastmod = 2022-06-12T02:42:35+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -102,12 +102,13 @@ void Update()
 
 {{< figure src="/ox-hugo/2022-06-Rotation-005.2D-Rotation.svg" >}}
 
-在上图中, 我们通过将原基向量\\(p\\), \\(q\\) 旋转&theta;&deg;得到新的基向量\\(p\`\\), \\(q\`\\),
+在上图中, 我们通过将原基向量\\(p\\), \\(q\\) 旋转&theta;&deg;得到新的基向量\\(p'\\), \\(q'\\),
 所以可以得到二维空间的旋转矩阵:
 
 \\[
-R(\theta) = \begin{bmatrix}
-cos(\theta) & sin(\theta) \\\\
+R(\theta) = \begin{bmatrix}p' \\\ q' \\\ \end{bmatrix}
+= \begin{bmatrix}
+cos(\theta)  & sin(\theta) \\\\
 -sin(\theta) & cos(\theta) \\\\
 \end{bmatrix}
 \\]
@@ -120,6 +121,40 @@ cos(\theta) & sin(\theta) \\\\
 ### 坐标系与旋转正方向 {#坐标系与旋转正方向}
 
 在三维空间中, 左手坐标系中采用左手法则确定旋转正方向, 右手坐标系采用右手法则确定旋转正方向. Unity中采用了左手坐标系, 因此我们下面提到的旋转都遵循左手法则.
+
+
+### 绕坐标轴旋转 {#绕坐标轴旋转}
+
+我们先看一下三维空间中绕x轴旋转. 因为绕x轴旋转, 则其x坐标不变, 也意味着其x基向量不变, 与二维空间的旋转类似.
+
+<a id="figure--https:--www.geogebra.org-calculator-xvzyhqhr"></a>
+
+{{< figure src="/ox-hugo/2022-06-Rotation-006.3D-Rotation-X-Axis.png" >}}
+
+由上图我们可以得到原基向量\\(p\\), \\(q\\), \\(r\\) 旋转&theta;&deg;后得到新的基向量\\(p'\\), \\(q'\\), \\(r'\\), 也得到三维空间中绕x轴的旋转矩阵:
+\\[
+R\_x(\theta) = \begin{bmatrix}p' \\\\ q' \\\\ r' \\\\ \end{bmatrix}
+= \begin{bmatrix}
+1 & 0       & 0      \\\\\
+0 & cos(\theta)  & sin(\theta) \\\\\
+0 & -sin(\theta) & cos(\theta) \\\\\
+\end{bmatrix}
+\\]
+
+同理, 我们可以很快得出绕y轴的旋转矩阵.
+\\[
+R\_y(\theta) = \begin{bmatrix} p' \\\\ q' \\\\ r' \\\\ \end{bmatrix}
+= \begin{bmatrix}
+cos(\theta) & 0 & -sin(\theta) \\\\\
+0      & 1 & 0       \\\\\
+sin(\theta) & 0 & cos(\theta)  \\\\\
+\end{bmatrix}
+\\]
+
+以及绕z轴的旋转矩阵.
+\\[
+R\_z(\theta) = \begin{bmatrix} p\end{bmatrix}
+\\]
 
 
 ## 旋转的几种表示方法 {#旋转的几种表示方法}
