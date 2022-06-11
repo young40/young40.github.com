@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Unity, 旋转, 万向锁, 欧拉角和四元数 - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+<meta name=viewport content="width=device-width,initial-scale=1">  
+<meta charset="utf-8"/>
+
+
+<meta name="author" content="杨世玲" /><meta name="description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想," /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.94.2 with theme even" />
+
+
+<link rel="canonical" href="https://www.young40.com/posts/2022-06-08-unity-rotation-euler-quaternion/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Unity, 旋转, 万向锁, 欧拉角和四元数" />
+<meta property="og:description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想," />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.young40.com/posts/2022-06-08-unity-rotation-euler-quaternion/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-08T23:52:01+08:00" />
+<meta property="article:modified_time" content="2022-06-11T18:58:05+08:00" />
+
+<meta itemprop="name" content="Unity, 旋转, 万向锁, 欧拉角和四元数">
+<meta itemprop="description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想,"><meta itemprop="datePublished" content="2022-06-08T23:52:01+08:00" />
+<meta itemprop="dateModified" content="2022-06-11T18:58:05+08:00" />
+<meta itemprop="wordCount" content="1450">
+<meta itemprop="keywords" content="Unity," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Unity, 旋转, 万向锁, 欧拉角和四元数"/>
+<meta name="twitter:description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想,"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    <p>旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转.
+你可能会想, 这么常见的东西一定很简单吧? 其实并没有那么简单.
+作为一名游戏开发工程师, 我们能在网上找到关于欧拉角, 四元数, 万向锁的资料数不胜数, 但大都不成体系.
+而且研究比较深入的反而是在运动控制, 飞行控制领域. 可能飞控不好就会炸机&hellip;</p>
+<p>下面让我们来看下Unity中旋转相关的知识点.</p>
+<h2 id="unity中的旋转">Unity中的旋转</h2>
+<p>手头有一个简易的飞机模型, 放在Unity里正好合适, 你也可以选择一款自己喜欢的机型. (一方面, 旋转中的几个术语来源于飞行.
+另一方面, 飞机模型比起球体, 立方体来讲更加直观.)</p>
+<figure><img src="/ox-hugo/2022-06-Rotation-001.Plane.png"/>
+</figure>
+
+<h3 id="先转一下">先转一下</h3>
+<p>我们在Inspector中, 可以让飞机分别绕X, Y, Z轴旋转一下. 可以看到这三种旋转分别对应了飞机可以做的三种基本旋转:</p>
+<table>
+<thead>
+<tr>
+<th>轴</th>
+<th>英文</th>
+<th>中文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X</td>
+<td>pitch</td>
+<td>俯仰角</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>yaw</td>
+<td>偏航角</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>roll</td>
+<td>滚转角</td>
+</tr>
+</tbody>
+</table>
+ <video width="680" height="570" controls>
+ <source src="/ox-hugo/2022-06-Rotation-002.Plane-Basic-Rotation.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<p>PS: X,Y,Z轴的颜色正好和三原色Red,Green,Blue对应. 在游戏开发中我们还能在其他地方也看到这种对应关系.</p>
+<h3 id="当x轴旋转-and-plusmn-90-and-deg-时">当X轴旋转±90°时</h3>
+<p>我们先在Inspector中将飞机绕X轴旋转90°, 这时再操作Y轴与Z轴, 我们可以惊奇地发现, 旋转效果 <code>似乎</code> 是完全一致的.
+我们再也不能通过旋转Y轴, 让飞机偏航(yaw)了.</p>
+ <video width="680" height="570" controls>
+ <source src="/ox-hugo/2022-06-Rotation-003.Plane-X-90.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<p>此时(保持绕X轴旋转90°), 我们先后操作Y轴和Z轴相同的度数(例如30°), 我们会发现两次操作抵消了, 飞机的姿态回到了原位, 即Y,Z轴都是0°的状态.</p>
+<p>我们再让飞机的X轴旋转-90°, 再操作Y轴和Z轴一定的度数(例如各30°), 可以看到其效果等同于单独操作Y轴或Z轴其度数之和(30°+30°=60°).</p>
+<h3 id="不可跨越的90-and-deg">不可跨越的90°</h3>
+<p>Unity提供了多种旋转的Api, 其中由对象的transform提供的eulerAngles可以获取或设置欧拉角.
+我们尝试用其让飞机做持续旋转的动画.</p>
+<p>我们使用如下代码:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">void</span> <span class="n">Update</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">transform</span><span class="p">.</span><span class="n">eulerAngles</span> <span class="p">+=</span> <span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="m">30</span> <span class="p">*</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果如下:</p>
+ <video width="680" height="570" controls>
+ <source src="/ox-hugo/2022-06-Rotation-004.Plane-Rotation-Cant-Beyond-90.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<p>本来期望飞机可以绕X轴持续进行360°旋转, 但可以看到从0°旋转到90°附近无法跨越过去, 在90°附近反复横跳.
+同样如果我们从0°开始, 以上述反方向旋转, 则无法跨过-90°.</p>
+<p>这些看起来还真是奇怪的问题呢!</p>
+<h2 id="旋转基础">旋转基础</h2>
+<h3 id="三角函数">三角函数</h3>
+<p>想要深入研究旋转, 基础的三角函数是必须的. 但我们在这里就不展开了, 仅给出需要了解的部分定理或公式.</p>
+<ul>
+<li>和差化积公式</li>
+<li>半角/倍角公式</li>
+</ul>
+<h3 id="二维空间旋转">二维空间旋转</h3>
+<p>二维空间中, 物体只能围绕某一个点旋转, 我们一般选择绕原点旋转.</p>
+<script src="https://www.geogebra.org/apps/deployggb.js"></script>
+<script>
+var parameters = {
+"id": "ggbApplet",
+"width":500,
+"height":500,
+"borderColor":"white",
+"language":"en",
+"filename":"/ox-hugo/2022-06-Rotation-005.2D-Rotation.ggb"};
+var applet = new GGBApplet(parameters, '5.0');
+applet.setHTML5Codebase('5.0/web3d/');
+window.onload = function() {applet.inject('ggbApplet')};
+</script>
+<div id="ggbApplet"></div>
+<blockquote>
+<p>之所以选择原点是因为我们总是可以对物体做平移操作, 先平移至原点, 旋转之后再平移回去.
+从数学上讲, 平移操作是非线形操作, 我们需要将二维空间升至三维空间做平移, 即引入齐次坐标.
+平移和旋转恰好可以互不影响地存在于升维后的矩阵中, 所以我们可以简便地采用以原点为中心点做旋转.</p>
+</blockquote>
+<h3 id="坐标系与旋转正方向">坐标系与旋转正方向</h3>
+<p>在三维空间中, 左手坐标系中采用左手法则确定旋转正方向, 右手坐标系采用右手法则确定旋转正方向. Unity中采用了左手坐标系, 因此我们下面提到的旋转都遵循左手法则.</p>
+<h2 id="旋转的几种表示方法">旋转的几种表示方法</h2>
+<p>旋转有多种表示方法, 例如轴角法, 旋转矩阵, 欧拉角, 四元数, 游戏引擎中用到了多种旋转表示方法. 我们来看看这些不同表示方法之间的联系.</p>
+<h3 id="旋转矩阵">旋转矩阵</h3>
+<h3 id="轴角法">轴角法</h3>
+<h3 id="欧拉角">欧拉角</h3>
+<h3 id="四元数">四元数</h3>
+<p>Unity在引擎内部使用四元数存储旋转和方位, 在其文档中<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>有明确指出.</p>
+<h2 id="参考文档">参考文档</h2>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="https://docs.unity3d.com/Manual/QuaternionAndEulerRotationsInUnity.html">Rotation and orientation in Unity(Unity官方文档)</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="https://www.young40.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+
+  <span class="division">|</span>
+
+  <span class="theme-info">
+      Network by
+      <a class="theme-link" href="https://www.netlify.com">Netlify</a>
+  </span>
+
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

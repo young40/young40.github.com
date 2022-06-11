@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on 杨世玲的博客</title>
-    <link>https://www.young40.com/posts/</link>
-    <description>Recent content in Posts on 杨世玲的博客</description>
+    <title>Unity on 杨世玲的博客</title>
+    <link>https://www.young40.com/categories/unity/</link>
+    <description>Recent content in Unity on 杨世玲的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>杨世玲</copyright>
-    <lastBuildDate>Wed, 08 Jun 2022 23:52:01 +0800</lastBuildDate><atom:link href="https://www.young40.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Jun 2022 23:52:01 +0800</lastBuildDate><atom:link href="https://www.young40.com/categories/unity/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Unity, 旋转, 万向锁, 欧拉角和四元数</title>
       <link>https://www.young40.com/posts/2022-06-08-unity-rotation-euler-quaternion/</link>
