@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-10T15:51:46+08:00
+lastmod = 2022-06-11T10:48:40+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -83,6 +83,17 @@ void Update()
 这些看起来还真是奇怪的问题呢!
 
 
+## 旋转基础 {#旋转基础}
+
+
+### 三角函数 {#三角函数}
+
+想要深入研究旋转, 基础的三角函数是必须的. 但我们在这里就不展开了, 仅给出需要了解的部分定理或公式.
+
+-   和差化积公式
+-   半角/倍角公式
+
+
 ## 旋转的几种表示方法 {#旋转的几种表示方法}
 
 旋转有多种表示方法, 例如轴角法, 旋转矩阵, 欧拉角, 四元数, 游戏引擎中用到了多种旋转表示方法. 我们来看看这些不同表示方法之间的联系.
@@ -98,4 +109,4 @@ Unity在引擎内部使用四元数存储旋转和方位, 在其文档中[^fn:1]
 
 ## 参考文档 {#参考文档}
 
-[^fn:1]: <https://docs.unity3d.com/Manual/QuaternionAndEulerRotationsInUnity.html> Rotation and orientation in Unity [Unity官方文档]
+[^fn:1]: [Rotation and orientation in Unity(Unity官方文档)](https://docs.unity3d.com/Manual/QuaternionAndEulerRotationsInUnity.html)
