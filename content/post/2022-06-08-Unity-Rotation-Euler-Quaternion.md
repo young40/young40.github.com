@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-12T02:42:35+08:00
+lastmod = 2022-06-12T02:56:00+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -135,9 +135,9 @@ cos(\theta)  & sin(\theta) \\\\
 \\[
 R\_x(\theta) = \begin{bmatrix}p' \\\\ q' \\\\ r' \\\\ \end{bmatrix}
 = \begin{bmatrix}
-1 & 0       & 0      \\\\\
-0 & cos(\theta)  & sin(\theta) \\\\\
-0 & -sin(\theta) & cos(\theta) \\\\\
+1 & 0       & 0      \\\\
+0 & cos(\theta)  & sin(\theta) \\\\
+0 & -sin(\theta) & cos(\theta) \\\\
 \end{bmatrix}
 \\]
 
@@ -145,15 +145,20 @@ R\_x(\theta) = \begin{bmatrix}p' \\\\ q' \\\\ r' \\\\ \end{bmatrix}
 \\[
 R\_y(\theta) = \begin{bmatrix} p' \\\\ q' \\\\ r' \\\\ \end{bmatrix}
 = \begin{bmatrix}
-cos(\theta) & 0 & -sin(\theta) \\\\\
-0      & 1 & 0       \\\\\
-sin(\theta) & 0 & cos(\theta)  \\\\\
+cos(\theta) & 0 & -sin(\theta) \\\\
+0      & 1 & 0       \\\\
+sin(\theta) & 0 & cos(\theta)  \\\\
 \end{bmatrix}
 \\]
 
 以及绕z轴的旋转矩阵.
 \\[
-R\_z(\theta) = \begin{bmatrix} p\end{bmatrix}
+R\_z(\theta) = \begin{bmatrix} p' \\\\ q' \\\\ r' \\\\ \end{bmatrix}
+= \begin{bmatrix}
+cos(\theta)  & sin(\theta) & 0 \\\\
+-sin(0) & cos(0) & 0 \\\\
+0       & 0      & 1 \\\\
+\end{bmatrix}
 \\]
 
 

@@ -142,9 +142,9 @@ $$
 $$
 R_x(\theta) = \begin{bmatrix}p' \\\ q' \\\ r' \\\ \end{bmatrix}
 = \begin{bmatrix}
-1 & 0       & 0      \\\
-0 & cos(\theta)  & sin(\theta) \\\
-0 & -sin(\theta) & cos(\theta) \\\
+1 & 0       & 0      \\
+0 & cos(\theta)  & sin(\theta) \\
+0 & -sin(\theta) & cos(\theta) \\
 \end{bmatrix}
 $$
 
@@ -152,9 +152,9 @@ $$
 $$
 R_y(\theta) = \begin{bmatrix} p' \\\ q' \\\ r' \\\ \end{bmatrix}
 = \begin{bmatrix}
-cos(\theta) & 0 & -sin(\theta) \\\
-0      & 1 & 0       \\\
-sin(\theta) & 0 & cos(\theta)  \\\
+cos(\theta) & 0 & -sin(\theta) \\
+0      & 1 & 0       \\
+sin(\theta) & 0 & cos(\theta)  \\
 \end{bmatrix}
 $$
 
@@ -162,6 +162,9 @@ $$
 $$
 R_z(\theta) = \begin{bmatrix} p' \\\ q' \\\ r' \\\ \end{bmatrix}
 = \begin{bmatrix}
+cos(\theta)  & sin(\theta) & 0 \\
+-sin(0) & cos(0) & 0 \\
+0       & 0      & 1 \\
 \end{bmatrix}
 $$
 
