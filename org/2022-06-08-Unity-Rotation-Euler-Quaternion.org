@@ -140,7 +140,7 @@ $$
 
 由上图我们可以得到原基向量$p$, $q$, $r$ 旋转\theta\deg{}后得到新的基向量$p'$, $q'$, $r'$, 也得到三维空间中绕x轴的旋转矩阵:
 $$
-R_x(\theta) = \begin{bmatrix}p' \\\ q' \\\ r' \\\ \end{bmatrix}
+R_x(\theta) = \begin{bmatrix}p' \\ q' \\ r' \\ \end{bmatrix}
 = \begin{bmatrix}
 1 & 0       & 0      \\
 0 & cos(\theta)  & sin(\theta) \\
@@ -167,6 +167,9 @@ cos(\theta)  & sin(\theta) & 0 \\
 0       & 0      & 1 \\
 \end{bmatrix}
 $$
+
+** 绕任意轴的旋转
+
 
 * 旋转的几种表示方法
 旋转有多种表示方法, 例如轴角法, 旋转矩阵, 欧拉角, 四元数, 游戏引擎中用到了多种旋转表示方法. 我们来看看这些不同表示方法之间的联系.
