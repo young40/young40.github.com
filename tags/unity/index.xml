@@ -7,16 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>杨世玲</copyright>
-    <lastBuildDate>Wed, 08 Jun 2022 23:52:01 +0800</lastBuildDate><atom:link href="https://www.young40.com/tags/unity/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Unity, 旋转, 万向锁, 欧拉角和四元数</title>
-      <link>https://www.young40.com/posts/2022-06-08-unity-rotation-euler-quaternion/</link>
-      <pubDate>Wed, 08 Jun 2022 23:52:01 +0800</pubDate>
-      
-      <guid>https://www.young40.com/posts/2022-06-08-unity-rotation-euler-quaternion/</guid>
-      <description>旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想,</description>
-    </item>
-    
+    <lastBuildDate>Mon, 03 Jan 2022 00:13:53 +0800</lastBuildDate><atom:link href="https://www.young40.com/tags/unity/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>UGUI源码分析(一): Image的渲染</title>
       <link>https://www.young40.com/post/2021-12-26-ugui-source-reading-01/</link>
