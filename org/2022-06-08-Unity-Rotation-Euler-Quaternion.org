@@ -139,6 +139,7 @@ $$
 [[file:2022-06/2022-06-Rotation-006.3D-Rotation-X-Axis.png]]
 
 由上图我们可以得到原基向量$p$, $q$, $r$ 旋转\theta\deg{}后得到新的基向量$p'$, $q'$, $r'$, 也得到三维空间中绕x轴的旋转矩阵:
+
 $$
 R_x(\theta) = \begin{bmatrix}p' \\ q' \\ r' \\ \end{bmatrix}
 = \begin{bmatrix}
@@ -149,6 +150,7 @@ R_x(\theta) = \begin{bmatrix}p' \\ q' \\ r' \\ \end{bmatrix}
 $$
 
 同理, 我们可以很快得出绕y轴的旋转矩阵.
+
 $$
 R_y(\theta) = \begin{bmatrix} p' \\\ q' \\\ r' \\\ \end{bmatrix}
 = \begin{bmatrix}
@@ -159,6 +161,7 @@ sin(\theta) & 0 & cos(\theta)  \\
 $$
 
 以及绕z轴的旋转矩阵.
+
 $$
 R_z(\theta) = \begin{bmatrix} p' \\\ q' \\\ r' \\\ \end{bmatrix}
 = \begin{bmatrix}
@@ -184,15 +187,19 @@ $v$ 可以分解为和 $n$ 平行的和垂直的两个变量 $v_{\parallel}$ (�
 
 
 $v_{\parallel}$ 可以看做 $v$ 在 $n$ 上的投影, 我们有:
+
 $$ v_{\parallel} = (v\cdot{}n)n \tag1 $$
 
 $v$ 是其平行于和垂直于 $n$ 的向量和:
+
 $$ v_{\perp} = v - v_{\parallel} = v - (v \cdot n)n \tag2 $$
 
 $n$ 和 $v_{\parallel}$ 平行:
+
 $$ n \times v_{\parallel} = 0 \tag3 $$
 
 $w$ 由 $n$ 和 $v_{\perp}$ 叉乘所得:
+
 $$\begin{eqnarray}
 w &=& n \times v_{\perp}                   \\\
   &=& n \times (v - v_{\parallel} )        \\\
@@ -202,12 +209,14 @@ w &=& n \times v_{\perp}                   \\\
 \end{eqnarray}$$
 
 我们首先可以看到, $v_{\perp}^{\prime}$ 可以看做其在 $v_{\perp}$ 和 $w$ 上的投影向量之和, 所以我们有:
+
 $$\begin{eqnarray}
 v_{\perp}^{\prime} &=& v_{\perp}cos(\theta) + wsin(\theta) \\\
                    &=& (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag5
 \end{eqnarray}$$
 
 旋转后的向量 $v'$:
+
 $$\begin{eqnarray}
 v' &=& v_{\parallel} + v_{\perp}^{\prime} \\
    &=& (v \cdot n)n + (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag6
@@ -236,6 +245,7 @@ $$
 我们可以用基向量 $p, q, r$ 旋转后的基向量 $p', q', r'$ 组成 3\times{}3 旋转矩阵. 旋转矩阵为正交矩阵.
 
 正交矩阵就意味着, 其转置矩阵等于其逆矩阵, 并且转置矩阵和原矩阵乘积为单位矩阵I.
+
 $$ M^T = M^{-1} $$
 $$ MM^T = MM^{-1} = I $$
 
