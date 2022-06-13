@@ -132,6 +132,7 @@ $$
 {{< figure src="/ox-hugo/2022-06-Rotation-006.3D-Rotation-X-Axis.png" >}}
 
 由上图我们可以得到原基向量$pg, $q$, $r$ 旋转&theta;&deg;后得到新的基向量$p'$, $q'$, $r'$, 也得到三维空间中绕x轴的旋转矩阵:
+
 $$
 R\_x(\theta) = \begin{bmatrix}p' \\\ q' \\\ r' \\\ \end{bmatrix}
 = \begin{bmatrix}
@@ -142,6 +143,7 @@ R\_x(\theta) = \begin{bmatrix}p' \\\ q' \\\ r' \\\ \end{bmatrix}
 $$
 
 同理, 我们可以很快得出绕y轴的旋转矩阵.
+
 $$
 R\_y(\theta) = \begin{bmatrix} p' // q' // r' // \end{bmatrix}
 = \begin{bmatrix}
@@ -152,6 +154,7 @@ sin(\theta) & 0 & cos(\theta)  //
 $$
 
 以及绕z轴的旋转矩阵.
+
 $$
 R\_z(\theta) = \begin{bmatrix} p' // q' // r' // \end{bmatrix}
 = \begin{bmatrix}
