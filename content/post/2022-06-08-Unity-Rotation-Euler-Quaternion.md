@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-13T11:04:38+08:00
+lastmod = 2022-06-13T14:30:14+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -164,9 +164,53 @@ cos(\theta)  & sin(\theta) & 0 \\\\
 
 ### 绕任意轴的旋转 {#绕任意轴的旋转}
 
+旋转也可以围绕任意的轴, 我们仍然不考虑平移的问题, 假设旋转轴通过原点.
+
 <a id="figure--https:--www.geogebra.org-calculator-tdqqruce"></a>
 
 {{< figure src="/ox-hugo/2022-06-Rotation-007.3D-Rotation-By-Any.png" >}}
+
+如上图所示, 向量 \\(v\\) (米黄色)围绕单位向量 \\(n\\) 旋转 &theta;&deg;, 得到新的向量 \\(v'\\)(土黄色).
+\\(v\\) 可以分解为和 \\(n\\) 平行的和垂直的两个变量 \\(v\_{\parallel}\\) (红色), \\(v\_{\perp}\\)(绿色), 既\\(v=v\_{\parallel}+v\_{\perp}\\).
+旋转后 \\(v\_{\parallel}\\) 因为和 \\(n\\) 平行不受影响, \\(v\_{\perp}\\) 变为 \\(v\_{\perp}^{\prime}\\).
+我们可以看到 \\(v\_{\perp}\\) 和 \\(v\_{\perp}^{\prime}\\) 之间的夹角为 &theta; (注意: 不是向量 \\(v\\) 和 \\(v'\\) 之间的夹角为 &theta;).
+还添加了一个与 \\(n\\) 和 \\(v\_{\perp}\\) 都垂直的向量 \\(w\\), \\(w\\) 的长度和 \\(v\_{\perp}\\) 及 \\(v\_{\perp}^{\prime}\\) 相等.
+
+根据这些已知的关系, 我们有以下等式:
+
+\\(v\_{\parallel}\\) 可以看做 \\(v\\) 在 \\(n\\) 上的投影, 我们有:
+\\[ v\_{\parallel} = (v\cdot{}n)n \tag1 \\]
+
+\\(v\\) 是其平行于和垂直于 \\(n\\) 的向量和:
+\\[ v\_{\perp} = v - v\_{\parallel} = v - (v \cdot n)n \tag2 \\]
+
+\\(n\\) 和 \\(v\_{\parallel}\\) 平行:
+\\[ n \times v\_{\parallel} = 0 \tag3 \\]
+
+\\(w\\) 由 \\(n\\) 和 \\(v\_{\perp}\\) 叉乘所得:
+\\[\begin{eqnarray}
+w &=& n \times v\_{\perp}                   \\\\\
+  &=& n \times (v - v\_{\parallel} )        \\\\\
+  &=& n \times v - n \times v\_{\parallel}  \\\\\
+  &=& n \times v - 0                       \\\\\
+  &=& n \times v                           \tag4
+\end{eqnarray}\\]
+
+我们首先可以看到, \\(v\_{\perp}^{\prime}\\) 可以看做其在 \\(v\_{\perp}\\) 和 \\(w\\) 上的投影向量之和, 所以我们有:
+\\[\begin{eqnarray}
+v\_{\perp}^{\prime} &=& v\_{\perp}cos(\theta) + wsin(\theta) \\\\\
+                   &=& (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag5
+\end{eqnarray}\\]
+
+旋转后的向量 \\(v'\\):
+\\[\begin{eqnarray}
+v' &=& v\_{\parallel} + v\_{\perp}^{\prime} \\\\
+   &=& (v \cdot n)n + (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag6
+\end{eqnarray}\\]
+
+由此我们得出了任意向量 \\(v\\) 绕单位向量 \\(n\\) 旋转 &theta; 后的向量 \\(v'\\) 公式.
+
+我们知道
 
 
 ## 旋转的几种表示方法 {#旋转的几种表示方法}
