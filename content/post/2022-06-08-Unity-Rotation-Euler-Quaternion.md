@@ -191,6 +191,7 @@ $ng 和 $v\_{\parallel}$ 平行:
 $$ n \times v\_{\parallel} = 0 \tag3 $$
 
 $wg 由 $n$ 和 $v\_{\perp}$ 叉乘所得:
+
 $$\begin{eqnarray}
 w &=& n \times v\_{\perp}                   //
   &=& n \times (v - v\_{\parallel} )        //
@@ -200,12 +201,14 @@ w &=& n \times v\_{\perp}                   //
 \end{eqnarray}$$
 
 我们首先可以看到, $v\_{\perp}^{\prime}g 可以看做其在 $v\_{\perp}$ 和 $w$ 上的投影向量之和, 所以我们有:
+
 $$\begin{eqnarray}
 v\_{\perp}^{\prime} &=& v\_{\perp}cos(\theta) + wsin(\theta) //
                    &=& (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag5
 \end{eqnarray}$$
 
 旋转后的向量 $v'g:
+
 $$\begin{eqnarray}
 v' &=& v\_{\parallel} + v\_{\perp}^{\prime} //
    &=& (v \cdot n)n + (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag6
