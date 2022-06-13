@@ -113,7 +113,7 @@ window.onload = function() {applet.inject('ggbApplet')};
 #+SOURCE: https://www.geogebra.org/calculator/eebadpkb
 [[file:2022-06/2022-06-Rotation-005.2D-Rotation.svg]]
 
-在上图中, 我们通过将原基向量$p$, $q$ 旋转 $\theta\deg{}$ 得到新的基向量$p'$, $q'$, 
+在上图中, 我们通过将原基向量$p$, $q$ 旋转 $\theta\degree$ 得到新的基向量$p'$, $q'$, 
 所以可以得到二维空间的旋转矩阵:
 
 $$
