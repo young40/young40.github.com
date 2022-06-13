@@ -171,7 +171,7 @@ $$
 ** 绕任意轴的旋转
 
 #+SOURCE: https://www.geogebra.org/calculator/tdqqruce
-[[file:2022-06/2022-06-Rotation-006.3D-Rotation-By-Any.png]]
+[[file:2022-06/2022-06-Rotation-007.3D-Rotation-By-Any.png]]
 
 * 旋转的几种表示方法
 旋转有多种表示方法, 例如轴角法, 旋转矩阵, 欧拉角, 四元数, 游戏引擎中用到了多种旋转表示方法. 我们来看看这些不同表示方法之间的联系.
