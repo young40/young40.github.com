@@ -119,8 +119,8 @@ window.onload = function() {applet.inject('ggbApplet')};
 $$
 R(\theta) = \begin{bmatrix}p' \\\ q' \\\ \end{bmatrix}
 = \begin{bmatrix}
-cos(\theta)  & sin(\theta) \\\
--sin(\theta) & cos(\theta) \\\
+cos(\theta)  & sin(\theta) \\
+-sin(\theta) & cos(\theta) \\
 \end{bmatrix}
 $$
 
