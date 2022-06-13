@@ -106,10 +106,10 @@ void Update()
 所以可以得到二维空间的旋转矩阵:
 
 $$
-R(\theta) = \begin{bmatrix}p' \\\\ q' \\\\ \end{bmatrix}
+R(\theta) = \begin{bmatrix}p' \\ q' \\ \end{bmatrix}
 = \begin{bmatrix}
-cos(\theta)  & sin(\theta) \\\\
--sin(\theta) & cos(\theta) \\\\
+cos(\theta)  & sin(\theta) \\
+-sin(\theta) & cos(\theta) \\
 \end{bmatrix}
 $$
 
@@ -134,33 +134,33 @@ $$
 由上图我们可以得到原基向量$p$, $q$, $r$ 旋转&theta;&deg;后得到新的基向量$p'$, $q'$, $r'$, 也得到三维空间中绕x轴的旋转矩阵:
 
 $$
-R\_x(\theta) = \begin{bmatrix}p' \\\ q' \\\ r' \\\ \end{bmatrix}
+R\_x(\theta) = \begin{bmatrix}p' \\ q' \\ r' \\ \end{bmatrix}
 = \begin{bmatrix}
-1 & 0       & 0      \\\\
-0 & cos(\theta)  & sin(\theta) \\\\
-0 & -sin(\theta) & cos(\theta) \\\\
+1 & 0       & 0      \\
+0 & cos(\theta)  & sin(\theta) \\
+0 & -sin(\theta) & cos(\theta) \\
 \end{bmatrix}
 $$
 
 同理, 我们可以很快得出绕y轴的旋转矩阵.
 
 $$
-R\_y(\theta) = \begin{bmatrix} p' \\\\ q' \\\\ r' \\\\ \end{bmatrix}
+R\_y(\theta) = \begin{bmatrix} p' \\ q' \\ r' \\ \end{bmatrix}
 = \begin{bmatrix}
-cos(\theta) & 0 & -sin(\theta) \\\\
-0      & 1 & 0       \\\\
-sin(\theta) & 0 & cos(\theta)  \\\\
+cos(\theta) & 0 & -sin(\theta) \\
+0      & 1 & 0       \\
+sin(\theta) & 0 & cos(\theta)  \\
 \end{bmatrix}
 $$
 
 以及绕z轴的旋转矩阵.
 
 $$
-R\_z(\theta) = \begin{bmatrix} p' \\\\ q' \\\\ r' \\\\ \end{bmatrix}
+R\_z(\theta) = \begin{bmatrix} p' \\ q' \\ r' \\ \end{bmatrix}
 = \begin{bmatrix}
-cos(\theta)  & sin(\theta) & 0 \\\\
--sin(0) & cos(0) & 0 \\\\
-0       & 0      & 1 \\\\
+cos(\theta)  & sin(\theta) & 0 \\
+-sin(0) & cos(0) & 0 \\
+0       & 0      & 1 \\
 \end{bmatrix}
 $$
 
@@ -196,24 +196,24 @@ $$ n \times v\_{\parallel} = 0 \tag3 $$
 $w$ 由 $n$ 和 $v\_{\perp}$ 叉乘所得:
 
 $$\begin{eqnarray}
-w &=& n \times v\_{\perp}                   \\\\\
-  &=& n \times (v - v\_{\parallel} )        \\\\\
-  &=& n \times v - n \times v\_{\parallel}  \\\\\
-  &=& n \times v - 0                       \\\\\
+w &=& n \times v\_{\perp}                   \\
+  &=& n \times (v - v\_{\parallel} )        \\
+  &=& n \times v - n \times v\_{\parallel}  \\
+  &=& n \times v - 0                       \\
   &=& n \times v                           \tag4
 \end{eqnarray}$$
 
 我们首先可以看到, $v\_{\perp}^{\prime}$ 可以看做其在 $v\_{\perp}$ 和 $w$ 上的投影向量之和, 所以我们有:
 
 $$\begin{eqnarray}
-v\_{\perp}^{\prime} &=& v\_{\perp}cos(\theta) + wsin(\theta) \\\\\
+v\_{\perp}^{\prime} &=& v\_{\perp}cos(\theta) + wsin(\theta) \\
                    &=& (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag5
 \end{eqnarray}$$
 
 旋转后的向量 $v'$:
 
 $$\begin{eqnarray}
-v' &=& v\_{\parallel} + v\_{\perp}^{\prime} \\\\
+v' &=& v\_{\parallel} + v\_{\perp}^{\prime} \\
    &=& (v \cdot n)n + (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag6
 \end{eqnarray}$$
 
@@ -223,7 +223,7 @@ v' &=& v\_{\parallel} + v\_{\perp}^{\prime} \\\\
 
 $$
 R(n, \theta) = \begin{bmatrix}
-p^{\prime} \\\ q^{\prime} \\\ r^{\prime}
+p^{\prime} \\ q^{\prime} \\ r^{\prime}
 \end{bmatrix}
 $$
 
