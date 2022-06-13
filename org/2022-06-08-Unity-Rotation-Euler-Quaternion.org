@@ -19,7 +19,7 @@
 另一方面, 飞机模型比起球体, 立方体来讲更加直观.)
 
 
-[[file:/ox-hugo/2022-06-Rotation-001.Plane.png]]
+[[file:2022-06/2022-06-Rotation-001.Plane.png]]
 
 ** 先转一下
 我们在Inspector中, 可以让飞机分别绕X, Y, Z轴旋转一下. 可以看到这三种旋转分别对应了飞机可以做的三种基本旋转:
@@ -111,7 +111,7 @@ window.onload = function() {applet.inject('ggbApplet')};
 #+end_export
 
 #+SOURCE: https://www.geogebra.org/calculator/eebadpkb
-[[file:/ox-hugo/2022-06-Rotation-005.2D-Rotation.svg]]
+[[file:2022-06/2022-06-Rotation-005.2D-Rotation.svg]]
 
 在上图中, 我们通过将原基向量$p$, $q$ 旋转\theta\deg{}得到新的基向量$p'$, $q'$, 
 所以可以得到二维空间的旋转矩阵:
@@ -136,7 +136,7 @@ $$
 我们先看一下三维空间中绕x轴旋转. 因为绕x轴旋转, 则其x坐标不变, 也意味着其x基向量不变, 与二维空间的旋转类似.
 
 #+SOURCE: https://www.geogebra.org/calculator/xvzyhqhr
-[[file:/ox-hugo/2022-06-Rotation-006.3D-Rotation-X-Axis.png]]
+[[file:2022-06/2022-06-Rotation-006.3D-Rotation-X-Axis.png]]
 
 由上图我们可以得到原基向量$p$, $q$, $r$ 旋转\theta\deg{}后得到新的基向量$p'$, $q'$, $r'$, 也得到三维空间中绕x轴的旋转矩阵:
 $$
@@ -170,6 +170,8 @@ $$
 
 ** 绕任意轴的旋转
 
+#+SOURCE: https://www.geogebra.org/calculator/tdqqruce
+[[file:2022-06/2022-06-Rotation-006.3D-Rotation-By-Any.png]]
 
 * 旋转的几种表示方法
 旋转有多种表示方法, 例如轴角法, 旋转矩阵, 欧拉角, 四元数, 游戏引擎中用到了多种旋转表示方法. 我们来看看这些不同表示方法之间的联系.

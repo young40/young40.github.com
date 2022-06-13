@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-12T02:56:00+08:00
+lastmod = 2022-06-13T10:40:09+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -133,7 +133,7 @@ cos(\theta)  & sin(\theta) \\\\
 
 由上图我们可以得到原基向量\\(p\\), \\(q\\), \\(r\\) 旋转&theta;&deg;后得到新的基向量\\(p'\\), \\(q'\\), \\(r'\\), 也得到三维空间中绕x轴的旋转矩阵:
 \\[
-R\_x(\theta) = \begin{bmatrix}p' \\\\ q' \\\\ r' \\\\ \end{bmatrix}
+R\_x(\theta) = \begin{bmatrix}p' \\\ q' \\\ r' \\\ \end{bmatrix}
 = \begin{bmatrix}
 1 & 0       & 0      \\\\
 0 & cos(\theta)  & sin(\theta) \\\\
@@ -160,6 +160,13 @@ cos(\theta)  & sin(\theta) & 0 \\\\
 0       & 0      & 1 \\\\
 \end{bmatrix}
 \\]
+
+
+### 绕任意轴的旋转 {#绕任意轴的旋转}
+
+<a id="figure--https:--www.geogebra.org-calculator-tdqqruce"></a>
+
+{{< figure src="/ox-hugo/2022-06-Rotation-006.3D-Rotation-By-Any.png" >}}
 
 
 ## 旋转的几种表示方法 {#旋转的几种表示方法}
