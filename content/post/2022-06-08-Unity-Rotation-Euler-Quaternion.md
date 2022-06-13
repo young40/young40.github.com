@@ -200,22 +200,22 @@ w &=& n \times v\_{\perp}                   \\\
   &=& n \times (v - v\_{\parallel} )        \\\
   &=& n \times v - n \times v\_{\parallel}  \\\
   &=& n \times v - 0                       \\\
-  &=& n \times v                           \tag4
-\end{eqnarray}$$
+  &=& n \times v                           
+\end{eqnarray} \tag4$$
 
 我们首先可以看到, $v\_{\perp}^{\prime}$ 可以看做其在 $v\_{\perp}$ 和 $w$ 上的投影向量之和, 所以我们有:
 
 $$\begin{eqnarray}
 v\_{\perp}^{\prime} &=& v\_{\perp}cos(\theta) + wsin(\theta) \\\
-                   &=& (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag5
-\end{eqnarray}$$
+                   &=& (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  
+\end{eqnarray} \tag5 $$
 
 旋转后的向量 $v'$:
 
 $$\begin{eqnarray}
 v' &=& v\_{\parallel} + v\_{\perp}^{\prime} \\\
-   &=& (v \cdot n)n + (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag6
-\end{eqnarray}$$
+   &=& (v \cdot n)n + (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  
+\end{eqnarray} \tag6 $$
 
 由此我们得出了任意向量 $v$ 绕单位向量 $n$ 旋转 &theta; 后的向量 $v'$ 公式.
 
