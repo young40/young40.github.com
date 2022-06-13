@@ -38,10 +38,44 @@ public class ToZhihu
         c = c.Replace("\\\\\\", "\\\\");
 
         string[] lines = c.Split("\n");
+        
+        var repairSlash = false;
+        for (int i = 0; i < lines.Length; i++)
+        {
+            var line = lines[i];
+
+            if (!line.Contains("$$") && line.Contains("$") && line.Contains("\\_"))
+            {
+                line = line.Replace("\\_", "_");
+                lines[i] = line;
+            }
+
+            var dollarOn = line.Contains("$$");
+            if (dollarOn && !repairSlash)
+            {
+                repairSlash = true;
+                line = line.Replace("\\_", "_");
+                lines[i] = line;
+                continue;
+            }
+
+            if (repairSlash && line.Contains("\\_"))
+            {
+                line = line.Replace("\\_", "_");
+                lines[i] = line;
+            }
+
+            if (dollarOn && repairSlash)
+            {
+                repairSlash = false;
+            }
+        }
 
         var willSkip = false;
         for (int i = 0; i < lines.Length; i++)
         {
+            var line = lines[i];
+            
             if (lines[i].StartsWith("#") && lines[i].Contains("{#"))
             {
                 var lA = lines[i].Split("{#");

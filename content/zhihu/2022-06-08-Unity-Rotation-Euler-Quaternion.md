@@ -135,7 +135,7 @@ $$
 由上图我们可以得到原基向量 $$p$$ ,  $$q$$ ,  $$r$$  旋转&theta;&deg;后得到新的基向量 $$p'$$ ,  $$q'$$ ,  $$r'$$ , 也得到三维空间中绕x轴的旋转矩阵:
 
 $$
-R\_x(\theta) = \begin{bmatrix}p' \\ q' \\ r' \\ \end{bmatrix}
+R_x(\theta) = \begin{bmatrix}p' \\ q' \\ r' \\ \end{bmatrix}
 = \begin{bmatrix}
 1 & 0       & 0      \\
 0 & cos(\theta)  & sin(\theta) \\
@@ -147,7 +147,7 @@ $$
 同理, 我们可以很快得出绕y轴的旋转矩阵.
 
 $$
-R\_y(\theta) = \begin{bmatrix} p' \\ q' \\ r' \\ \end{bmatrix}
+R_y(\theta) = \begin{bmatrix} p' \\ q' \\ r' \\ \end{bmatrix}
 = \begin{bmatrix}
 cos(\theta) & 0 & -sin(\theta) \\
 0      & 1 & 0       \\
@@ -159,7 +159,7 @@ $$
 以及绕z轴的旋转矩阵.
 
 $$
-R\_z(\theta) = \begin{bmatrix} p' \\ q' \\ r' \\ \end{bmatrix}
+R_z(\theta) = \begin{bmatrix} p' \\ q' \\ r' \\ \end{bmatrix}
 = \begin{bmatrix}
 cos(\theta)  & sin(\theta) & 0 \\
 -sin(0) & cos(0) & 0 \\
@@ -178,43 +178,43 @@ $$
 <img src="http://121.196.158.145/ox-hugo/2022-06-Rotation-007.3D-Rotation-By-Any.png" />
 
 如上图所示, 向量  $$v$$  (米黄色)围绕单位向量  $$n$$  旋转 &theta;&deg;, 得到新的向量  $$v'$$ (土黄色).
- $$v$$  可以分解为和  $$n$$  平行的和垂直的两个变量  $$v\_{\parallel}$$  (红色),  $$v\_{\perp}$$ (绿色), 既 $$v=v\_{\parallel}+v\_{\perp}$$ .
-旋转后  $$v\_{\parallel}$$  因为和  $$n$$  平行不受影响,  $$v\_{\perp}$$  变为  $$v\_{\perp}^{\prime}$$ .
-我们可以看到  $$v\_{\perp}$$  和  $$v\_{\perp}^{\prime}$$  之间的夹角为 &theta; (注意: 不是向量  $$v$$  和  $$v'$$  之间的夹角为 &theta;).
-还添加了一个与  $$n$$  和  $$v\_{\perp}$$  都垂直的向量  $$w$$ ,  $$w$$  的长度和  $$v\_{\perp}$$  及  $$v\_{\perp}^{\prime}$$  相等.
+ $$v$$  可以分解为和  $$n$$  平行的和垂直的两个变量  $$v_{\parallel}$$  (红色),  $$v_{\perp}$$ (绿色), 既 $$v=v_{\parallel}+v_{\perp}$$ .
+旋转后  $$v_{\parallel}$$  因为和  $$n$$  平行不受影响,  $$v_{\perp}$$  变为  $$v_{\perp}^{\prime}$$ .
+我们可以看到  $$v_{\perp}$$  和  $$v_{\perp}^{\prime}$$  之间的夹角为 &theta; (注意: 不是向量  $$v$$  和  $$v'$$  之间的夹角为 &theta;).
+还添加了一个与  $$n$$  和  $$v_{\perp}$$  都垂直的向量  $$w$$ ,  $$w$$  的长度和  $$v_{\perp}$$  及  $$v_{\perp}^{\prime}$$  相等.
 
 根据这些已知的关系, 我们有以下等式:
 
- $$v\_{\parallel}$$  可以看做  $$v$$  在  $$n$$  上的投影, 我们有:
+ $$v_{\parallel}$$  可以看做  $$v$$  在  $$n$$  上的投影, 我们有:
 
-$$ v\_{\parallel} = (v\cdot{}n)n \tag1 \\
+$$ v_{\parallel} = (v\cdot{}n)n \tag1 \\
 $$
 
  $$v$$  是其平行于和垂直于  $$n$$  的向量和:
 
-$$ v\_{\perp} = v - v\_{\parallel} = v - (v \cdot n)n \tag2 \\
+$$ v_{\perp} = v - v_{\parallel} = v - (v \cdot n)n \tag2 \\
 $$
 
- $$n$$  和  $$v\_{\parallel}$$  平行:
+ $$n$$  和  $$v_{\parallel}$$  平行:
 
-$$ n \times v\_{\parallel} = 0 \tag3 \\
+$$ n \times v_{\parallel} = 0 \tag3 \\
 $$
 
- $$w$$  由  $$n$$  和  $$v\_{\perp}$$  叉乘所得:
+ $$w$$  由  $$n$$  和  $$v_{\perp}$$  叉乘所得:
 
 $$\begin{eqnarray}
-w &=& n \times v\_{\perp}                   \\
-  &=& n \times (v - v\_{\parallel} )        \\
-  &=& n \times v - n \times v\_{\parallel}  \\
+w &=& n \times v_{\perp}                   \\
+  &=& n \times (v - v_{\parallel} )        \\
+  &=& n \times v - n \times v_{\parallel}  \\
   &=& n \times v - 0                       \\
   &=& n \times v                           \tag4
 \end{eqnarray}\\
 $$
 
-我们首先可以看到,  $$v\_{\perp}^{\prime}$$  可以看做其在  $$v\_{\perp}$$  和  $$w$$  上的投影向量之和, 所以我们有:
+我们首先可以看到,  $$v_{\perp}^{\prime}$$  可以看做其在  $$v_{\perp}$$  和  $$w$$  上的投影向量之和, 所以我们有:
 
 $$\begin{eqnarray}
-v\_{\perp}^{\prime} &=& v\_{\perp}cos(\theta) + wsin(\theta) \\
+v_{\perp}^{\prime} &=& v_{\perp}cos(\theta) + wsin(\theta) \\
                    &=& (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag5
 \end{eqnarray}\\
 $$
@@ -222,7 +222,7 @@ $$
 旋转后的向量  $$v'$$ :
 
 $$\begin{eqnarray}
-v' &=& v\_{\parallel} + v\_{\perp}^{\prime} \\
+v' &=& v_{\parallel} + v_{\perp}^{\prime} \\
    &=& (v \cdot n)n + (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag6
 \end{eqnarray}\\
 $$
@@ -282,9 +282,9 @@ $$
 
 ### 四元数 
 
-Unity在引擎内部使用四元数存储旋转和方位, 在其文档中[fn:1]有明确指出.
+Unity在引擎内部使用四元数存储旋转和方位, 在其文档中[^fn:1]有明确指出.
 
 
 ## 参考文档 
 
-[fn:1]: [Rotation and orientation in Unity(Unity官方文档)](https://docs.unity3d.com/Manual/QuaternionAndEulerRotationsInUnity.html)
+[^fn:1]: [Rotation and orientation in Unity(Unity官方文档)](https://docs.unity3d.com/Manual/QuaternionAndEulerRotationsInUnity.html)
