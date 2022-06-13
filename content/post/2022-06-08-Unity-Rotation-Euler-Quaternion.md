@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-13T10:44:07+08:00
+lastmod = 2022-06-13T10:44:38+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -106,10 +106,10 @@ void Update()
 所以可以得到二维空间的旋转矩阵:
 
 \\[
-R(\theta) = \begin{bmatrix}p' \\\ q' \\\ \end{bmatrix}
+R(\theta) = \begin{bmatrix}p' \\\\ q' \\\\ \end{bmatrix}
 = \begin{bmatrix}
-cos(\theta)  & sin(\theta) \\\\
--sin(\theta) & cos(\theta) \\\\
+cos(\theta)  & sin(\theta) \\\\\
+-sin(\theta) & cos(\theta) \\\\\
 \end{bmatrix}
 \\]
 

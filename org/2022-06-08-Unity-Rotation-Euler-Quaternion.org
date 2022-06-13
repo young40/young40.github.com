@@ -117,10 +117,10 @@ window.onload = function() {applet.inject('ggbApplet')};
 所以可以得到二维空间的旋转矩阵:
 
 $$
-R(\theta) = \begin{bmatrix}p' \\ q' \\ \end{bmatrix}
+R(\theta) = \begin{bmatrix}p' \\\ q' \\\ \end{bmatrix}
 = \begin{bmatrix}
-cos(\theta)  & sin(\theta) \\
--sin(\theta) & cos(\theta) \\
+cos(\theta)  & sin(\theta) \\\
+-sin(\theta) & cos(\theta) \\\
 \end{bmatrix}
 $$
 
