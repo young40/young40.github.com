@@ -102,7 +102,7 @@ void Update()
 
 {{< figure src="/ox-hugo/2022-06-Rotation-005.2D-Rotation.svg" >}}
 
-在上图中, 我们通过将原基向量\\(p\\), \\(q\\) 旋转&theta;&deg;得到新的基向量\\(p'\\), \\(q'\\),
+在上图中, 我们通过将原基向量$pg, $q$ 旋转&theta;&deg;得到新的基向量$p'$, $q'$,
 所以可以得到二维空间的旋转矩阵:
 
 $$
@@ -131,35 +131,35 @@ $$
 
 {{< figure src="/ox-hugo/2022-06-Rotation-006.3D-Rotation-X-Axis.png" >}}
 
-由上图我们可以得到原基向量\\(p\\), \\(q\\), \\(r\\) 旋转&theta;&deg;后得到新的基向量\\(p'\\), \\(q'\\), \\(r'\\), 也得到三维空间中绕x轴的旋转矩阵:
-\\[
+由上图我们可以得到原基向量$pg, $q$, $r$ 旋转&theta;&deg;后得到新的基向量$p'$, $q'$, $r'$, 也得到三维空间中绕x轴的旋转矩阵:
+$$
 R\_x(\theta) = \begin{bmatrix}p' \\\ q' \\\ r' \\\ \end{bmatrix}
 = \begin{bmatrix}
 1 & 0       & 0      \\\\
 0 & cos(\theta)  & sin(\theta) \\\\
 0 & -sin(\theta) & cos(\theta) \\\\
 \end{bmatrix}
-\\]
+$$
 
 同理, 我们可以很快得出绕y轴的旋转矩阵.
-\\[
+$$
 R\_y(\theta) = \begin{bmatrix} p' \\\\ q' \\\\ r' \\\\ \end{bmatrix}
 = \begin{bmatrix}
 cos(\theta) & 0 & -sin(\theta) \\\\
 0      & 1 & 0       \\\\
 sin(\theta) & 0 & cos(\theta)  \\\\
 \end{bmatrix}
-\\]
+$$
 
 以及绕z轴的旋转矩阵.
-\\[
+$$
 R\_z(\theta) = \begin{bmatrix} p' \\\\ q' \\\\ r' \\\\ \end{bmatrix}
 = \begin{bmatrix}
 cos(\theta)  & sin(\theta) & 0 \\\\
 -sin(0) & cos(0) & 0 \\\\
 0       & 0      & 1 \\\\
 \end{bmatrix}
-\\]
+$$
 
 
 ### 绕任意轴的旋转 {#绕任意轴的旋转}
@@ -170,53 +170,53 @@ cos(\theta)  & sin(\theta) & 0 \\\\
 
 {{< figure src="/ox-hugo/2022-06-Rotation-007.3D-Rotation-By-Any.png" >}}
 
-如上图所示, 向量 \\(v\\) (米黄色)围绕单位向量 \\(n\\) 旋转 &theta;&deg;, 得到新的向量 \\(v'\\)(土黄色).
-\\(v\\) 可以分解为和 \\(n\\) 平行的和垂直的两个变量 \\(v\_{\parallel}\\) (红色), \\(v\_{\perp}\\)(绿色), 既\\(v=v\_{\parallel}+v\_{\perp}\\).
-旋转后 \\(v\_{\parallel}\\) 因为和 \\(n\\) 平行不受影响, \\(v\_{\perp}\\) 变为 \\(v\_{\perp}^{\prime}\\).
-我们可以看到 \\(v\_{\perp}\\) 和 \\(v\_{\perp}^{\prime}\\) 之间的夹角为 &theta; (注意: 不是向量 \\(v\\) 和 \\(v'\\) 之间的夹角为 &theta;).
-还添加了一个与 \\(n\\) 和 \\(v\_{\perp}\\) 都垂直的向量 \\(w\\), \\(w\\) 的长度和 \\(v\_{\perp}\\) 及 \\(v\_{\perp}^{\prime}\\) 相等.
+如上图所示, 向量 $vg (米黄色)围绕单位向量 $n$ 旋转 &theta;&deg;, 得到新的向量 $v'$(土黄色).
+$vg 可以分解为和 $n$ 平行的和垂直的两个变量 $v\_{\parallel}$ (红色), $v\_{\perp}$(绿色), 既$v=v\_{\parallel}+v\_{\perp}$.
+旋转后 $v\_{\parallel}g 因为和 $n$ 平行不受影响, $v\_{\perp}$ 变为 $v\_{\perp}^{\prime}$.
+我们可以看到 $v\_{\perp}g 和 $v\_{\perp}^{\prime}$ 之间的夹角为 &theta; (注意: 不是向量 $v$ 和 $v'$ 之间的夹角为 &theta;).
+还添加了一个与 $ng 和 $v\_{\perp}$ 都垂直的向量 $w$, $w$ 的长度和 $v\_{\perp}$ 及 $v\_{\perp}^{\prime}$ 相等.
 
 根据这些已知的关系, 我们有以下等式:
 
-\\(v\_{\parallel}\\) 可以看做 \\(v\\) 在 \\(n\\) 上的投影, 我们有:
-\\[ v\_{\parallel} = (v\cdot{}n)n \tag1 \\]
+$v\_{\parallel}g 可以看做 $v$ 在 $n$ 上的投影, 我们有:
+$$ v\_{\parallel} = (v\cdot{}n)n \tag1 $$
 
-\\(v\\) 是其平行于和垂直于 \\(n\\) 的向量和:
-\\[ v\_{\perp} = v - v\_{\parallel} = v - (v \cdot n)n \tag2 \\]
+$vg 是其平行于和垂直于 $n$ 的向量和:
+$$ v\_{\perp} = v - v\_{\parallel} = v - (v \cdot n)n \tag2 $$
 
-\\(n\\) 和 \\(v\_{\parallel}\\) 平行:
-\\[ n \times v\_{\parallel} = 0 \tag3 \\]
+$ng 和 $v\_{\parallel}$ 平行:
+$$ n \times v\_{\parallel} = 0 \tag3 $$
 
-\\(w\\) 由 \\(n\\) 和 \\(v\_{\perp}\\) 叉乘所得:
-\\[\begin{eqnarray}
+$wg 由 $n$ 和 $v\_{\perp}$ 叉乘所得:
+$$\begin{eqnarray}
 w &=& n \times v\_{\perp}                   \\\\\
   &=& n \times (v - v\_{\parallel} )        \\\\\
   &=& n \times v - n \times v\_{\parallel}  \\\\\
   &=& n \times v - 0                       \\\\\
   &=& n \times v                           \tag4
-\end{eqnarray}\\]
+\end{eqnarray}$$
 
-我们首先可以看到, \\(v\_{\perp}^{\prime}\\) 可以看做其在 \\(v\_{\perp}\\) 和 \\(w\\) 上的投影向量之和, 所以我们有:
-\\[\begin{eqnarray}
+我们首先可以看到, $v\_{\perp}^{\prime}g 可以看做其在 $v\_{\perp}$ 和 $w$ 上的投影向量之和, 所以我们有:
+$$\begin{eqnarray}
 v\_{\perp}^{\prime} &=& v\_{\perp}cos(\theta) + wsin(\theta) \\\\\
                    &=& (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag5
-\end{eqnarray}\\]
+\end{eqnarray}$$
 
-旋转后的向量 \\(v'\\):
-\\[\begin{eqnarray}
+旋转后的向量 $v'g:
+$$\begin{eqnarray}
 v' &=& v\_{\parallel} + v\_{\perp}^{\prime} \\\\
    &=& (v \cdot n)n + (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag6
-\end{eqnarray}\\]
+\end{eqnarray}$$
 
-由此我们得出了任意向量 \\(v\\) 绕单位向量 \\(n\\) 旋转 &theta; 后的向量 \\(v'\\) 公式.
+由此我们得出了任意向量 $vg 绕单位向量 $n$ 旋转 &theta; 后的向量 $v'$ 公式.
 
 我们知道旋转矩阵由其旋转后的坐标系的基向量组成, 我们使用上面公式(6), 就可以求解新的基向量以及旋转矩阵.
 
-\\[
+$$
 R(n, \theta) = \begin{bmatrix}
 p^{\prime} \\\ q^{\prime} \\\ r^{\prime}
 \end{bmatrix}
-\\]
+$$
 
 > 矩阵形式太复杂了, 暂时先不详细列出了.
 
@@ -228,11 +228,11 @@ p^{\prime} \\\ q^{\prime} \\\ r^{\prime}
 
 ### 旋转矩阵 {#旋转矩阵}
 
-我们可以用基向量 \\(p, q, r\\) 旋转后的基向量 \\(p', q', r'\\) 组成 3&times;3 旋转矩阵. 旋转矩阵为正交矩阵.
+我们可以用基向量 $p, q, rg 旋转后的基向量 $p', q', r'$ 组成 3&times;3 旋转矩阵. 旋转矩阵为正交矩阵.
 
 正交矩阵就意味着, 其转置矩阵等于其逆矩阵, 并且转置矩阵和原矩阵乘积为单位矩阵I.
-\\[ M^T = M^{-1} \\]
-\\[ MM^T = MM^{-1} = I \\]
+$$ M^T = M^{-1} $$
+$$ MM^T = MM^{-1} = I $$
 
 -   旋转矩阵的优点
     -   矩阵形式可以方便地在物体坐标系和惯性坐标系之间旋转向量.
