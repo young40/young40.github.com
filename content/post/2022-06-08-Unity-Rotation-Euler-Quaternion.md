@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-14T16:14:45+08:00
+lastmod = 2022-06-14T17:13:46+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -35,7 +35,7 @@ draft = true
 
 {{< figure src="/ox-hugo/2022-06-Rotation-002.Plane-Basic-Rotation.gif" >}}
 
-PS: X,Y,Z轴的颜色正好和三原色Red,Green,Blue对应. 在游戏开发中我们还能在其他地方也看到这种对应关系.
+> X,Y,Z轴的颜色正好和三原色Red,Green,Blue对应. 在游戏开发中我们还能在其他地方也看到这种对应关系.
 
 
 ### 当X轴旋转&plusmn;90&deg;时 {#当x轴旋转-and-plusmn-90-and-deg-时}

@@ -35,7 +35,7 @@
 
 <img src="http://121.196.158.145/ox-hugo/2022-06-Rotation-002.Plane-Basic-Rotation.gif" />
 
-PS: X,Y,Z轴的颜色正好和三原色Red,Green,Blue对应. 在游戏开发中我们还能在其他地方也看到这种对应关系.
+> X,Y,Z轴的颜色正好和三原色Red,Green,Blue对应. 在游戏开发中我们还能在其他地方也看到这种对应关系.
 
 
 ### 当X轴旋转&plusmn;90&deg;时 
