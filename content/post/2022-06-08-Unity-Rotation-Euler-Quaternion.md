@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-14T02:51:54+08:00
+lastmod = 2022-06-14T15:29:01+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -33,10 +33,7 @@ draft = true
 | Y | yaw   | 偏航角 |
 | Z | roll  | 滚转角 |
 
- <video width="680" height="570" controls>
- <source src="/ox-hugo/2022-06-Rotation-002.Plane-Basic-Rotation.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+{{< figure src="/ox-hugo/2022-06-Rotation-002.Plane-Basic-Rotation.gif" >}}
 
 PS: X,Y,Z轴的颜色正好和三原色Red,Green,Blue对应. 在游戏开发中我们还能在其他地方也看到这种对应关系.
 
@@ -46,10 +43,7 @@ PS: X,Y,Z轴的颜色正好和三原色Red,Green,Blue对应. 在游戏开发中�
 我们先在Inspector中将飞机绕X轴旋转90&deg;, 这时再操作Y轴与Z轴, 我们可以惊奇地发现, 旋转效果 `似乎` 是完全一致的.
 我们再也不能通过旋转Y轴, 让飞机偏航(yaw)了.
 
- <video width="680" height="570" controls>
- <source src="/ox-hugo/2022-06-Rotation-003.Plane-X-90.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+{{< figure src="/ox-hugo/2022-06-Rotation-003.Plane-X-90.gif" >}}
 
 此时(保持绕X轴旋转90&deg;), 我们先后操作Y轴和Z轴相同的度数(例如30&deg;), 我们会发现两次操作抵消了, 飞机的姿态回到了原位, 即Y,Z轴都是0&deg;的状态.
 
@@ -72,10 +66,7 @@ void Update()
 
 效果如下:
 
- <video width="680" height="570" controls>
- <source src="/ox-hugo/2022-06-Rotation-004.Plane-Rotation-Cant-Beyond-90.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+{{< figure src="/ox-hugo/2022-06-Rotation-004.Plane-Rotation-Cant-Beyond-90.gif" >}}
 
 本来期望飞机可以绕X轴持续进行360&deg;旋转, 但可以看到从0&deg;旋转到90&deg;附近无法跨越过去, 在90&deg;附近反复横跳.
 同样如果我们从0&deg;开始, 以上述反方向旋转, 则无法跨过-90&deg;.
@@ -100,7 +91,7 @@ void Update()
 
 <a id="figure--https:--www.geogebra.org-calculator-eebadpkb"></a>
 
-{{< figure src="/ox-hugo/2022-06-Rotation-005.2D-Rotation.svg" >}}
+{{< figure src="2022-06/2022-06-Rotation-005.2D-Rotation.png" >}}
 
 在上图中, 我们通过将原基向量 $p$ ,  $q$  旋转&theta;&deg;得到新的基向量 $p'$ ,  $q'$ ,
 所以可以得到二维空间的旋转矩阵:
