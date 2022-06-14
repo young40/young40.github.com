@@ -91,7 +91,7 @@ void Update()
 
 <a id="figure--https:--www.geogebra.org-calculator-eebadpkb"></a>
 
-{{< figure src="2022-06/2022-06-Rotation-005.2D-Rotation.png" >}}
+<img src="http://121.196.158.145/ox-hugo/2022-06-Rotation-005.2D-Rotation.png" />
 
 在上图中, 我们通过将原基向量 $$p$$ ,  $$q$$  旋转&theta;&deg;得到新的基向量 $$p'$$ ,  $$q'$$ ,
 所以可以得到二维空间的旋转矩阵:

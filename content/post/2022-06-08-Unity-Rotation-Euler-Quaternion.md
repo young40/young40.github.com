@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-14T15:29:01+08:00
+lastmod = 2022-06-14T16:14:45+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -91,7 +91,7 @@ void Update()
 
 <a id="figure--https:--www.geogebra.org-calculator-eebadpkb"></a>
 
-{{< figure src="2022-06/2022-06-Rotation-005.2D-Rotation.png" >}}
+{{< figure src="/ox-hugo/2022-06-Rotation-005.2D-Rotation.png" >}}
 
 在上图中, 我们通过将原基向量 $p$ ,  $q$  旋转&theta;&deg;得到新的基向量 $p'$ ,  $q'$ ,
 所以可以得到二维空间的旋转矩阵:
