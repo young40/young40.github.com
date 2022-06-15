@@ -13,6 +13,7 @@ if (args.Length > 0)
     if (File.Exists(file))
     {
         Console.WriteLine("Got File: " + file);
+        ToZhihu.ParseFile(file);
         return;
     }
     else if (Directory.Exists(file))
