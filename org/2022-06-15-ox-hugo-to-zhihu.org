@@ -8,4 +8,4 @@
 #+HUGO_SECTION: post
 #+OPTIONS: author:nil
 
-测试
+很羡慕别人的文章中错落有致的数学公式, 
