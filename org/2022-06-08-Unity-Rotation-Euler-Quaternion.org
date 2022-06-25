@@ -247,7 +247,7 @@ $$ MM^T = MM^{-1} = I $$
    - 求逆向旋转方便. 逆向旋转需要逆矩阵, 而逆矩阵与转置矩阵相同, 通过简单的转置即可求得.
 
  * 旋转矩阵的缺点
-   - 需要更多内存. 矩阵需要存储9个数字, 相比欧拉角只需要3个数字, 四元数只需要4个数字.
+   - 需要更多内存. 矩阵需要存储9个数字, 相比欧拉角只需要3个数字, 四元数仅需要4个数字.
    - 矩阵非常不直观, 也几乎不可能不借助计算机计算出任意方位的旋转矩阵.
    - 矩阵可能不是合法的旋转矩阵. 矩阵蠕变可能会导致旋转矩阵不合法, 需要通过矩阵正交化解决.
 
@@ -261,6 +261,7 @@ $$ MM^T = MM^{-1} = I $$
 
 *** 旋转顺序
 必须明确旋转顺序, 指定其旋转轴???? Unity的旋转顺序???
+Unity使用 =ZXY= 顺序.
 *** 固定轴和动态轴
 *** 角度范围
 ** 四元数
@@ -269,11 +270,31 @@ $$ MM^T = MM^{-1} = I $$
 
 [[file:2022-06/2022-06-Rotation-008.i-Rotation.png]]
 
+*** 四元数的优点
+ * 四元数仅需要4个数字就可以表达旋转.
+ * 四元数不受万向锁的困扰.
+ * 四元数容易插值.
+*** 四元数的缺点   
+ * 四元数由复数(???四维复数)的概念构造, 不易理解, 不符合人的直觉.
 *** Unity与四元数
 Unity在引擎内部使用四元数存储旋转和方位, 在其文档中[fn:1]有明确指出.
 
-Unity提供了 =Quaternion= 类, 用于相关操作.
+Unity提供了 =Quaternion= 类, 用于相关操作. 下面是其常用的几个方法/属性:
+ * Quaternion.identity
+   单位旋转(只读). 表示不旋转, 物体与其父对象或世界轴完全对齐.
+ * Quaternion.LookRotation
+   根据旋转后物体的 =forward= (和物体Z轴对齐), =upwards= (X轴与 =forward= 和 =upwards= 的叉积对齐, =upwards= 不一定与Y轴对齐) 创建Quaternion.
+ * Quaternion.FromToRotation
+   从 =fromDirection= 到 =toDirection= 的旋转.
+ * Quaternion.Slerp
+   插值
+ * Quaternion.Euler
+   返回欧拉角表示的四元数旋转.
+ * Quaternion.Angle
+   返回两个四元数之间的夹角(应该绕同一点旋转, 否则无意义)
+   
 
 
 * 参考文档
 [fn:1] [[https://docs.unity3d.com/Manual/QuaternionAndEulerRotationsInUnity.html][Rotation and orientation in Unity(Unity官方文档)]]
+[[https://docs.unity3d.com/ScriptReference/Quaternion.html][Unity - Scripting API: Quaternion]]
