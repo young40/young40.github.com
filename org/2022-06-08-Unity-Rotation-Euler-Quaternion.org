@@ -256,6 +256,17 @@ $$ MM^T = MM^{-1} = I $$
 旋转矩阵要求其3个行向量是单位矩阵, 并且3个行向量需要互相垂直.我们也可以理解为, 我们把三维空间的问题转化为九维空间带有六个约束的问题.
 #+END_QUOTE
 
+** 轴角法
+使用绕任意轴旋转的方法, 也可以表达旋转.
+ * 优点
+
+   没有万向锁的问题
+ * 缺点
+   - 插值不够平滑, 甚至会产生跳跃问题
+
+   - 不能保证插值得到的矢量长度相等. (TODO 为什么????)
+ * 和四元数比较
+   轴角法在三维空间中, 四元数是四维空间.
 ** 欧拉角
 数学家欧拉证明了单个角位移可以由多个角位移组合而成. 
 
@@ -270,12 +281,57 @@ Unity使用 =ZXY= 顺序.
 
 [[file:2022-06/2022-06-Rotation-008.i-Rotation.png]]
 
+ * 复数可以看作两元数???
+ * 三元数???
+*** 四元数的由来
+
+*** 四元数的基础
+ * 四元数的记法
+   
+   四元数包含一个标量分量和一个三维向量分量. 标量分量常记作 =w=, 向量分量可以记作单一向量 $v$ 或分开的 =x, y, z=.
+
+   两种记法如下:
+   $$[w, v]$$
+   $$[w, (x, y, z)]$$
+ * 四元数与轴角法
+   
+
+ * 负四元数
+
+   将四元数的各分量加上负号, 得到负四元数.
+   $$-q = -[w, (x, y, z)] = [-w, (-x, -y, -z)] = -[w, v] = [-w, -v]$$
+
+   $q$ 和 $-q$ 代表的角位移是相同的. \theta\deg 加上 360\deg 的奇数倍, 不会改变四元数代表的角位移, 四元数变为负四元数.
+   三维旋转的角位移有两种不同的四元数表示法, 它们互为负四元数.
+
+ * 单位四元数
+   
+   单位四元数表示没有旋转. 由负四元数可知, 几何上有两种四元数可以表示单位四元数: $[1, \vec{0}]$ 和 $[-1, \vec{0}]$. 
+   
+   单位四元数的模为1.
+ * 纯四元数
+*** 四元数的运算
+ * 模
+   $$\begin{eqnarray} \lVert q \rVert
+   &=& \lVert [w, (x, y, z)] \rVert \\
+   &=& \sqrt{w^2 + x^2 + y^2 + z^2} \\
+   &=& \lVert [w, v] \rVert \\
+   &=& \sqrt{w^2 + \lVert v \rVert^2} \end{eqnarray}$$
+ *    
+*** 四元数与点
+
 *** 四元数的优点
  * 四元数仅需要4个数字就可以表达旋转.
  * 四元数不受万向锁的困扰.
  * 四元数容易插值.
+ * 相比矩阵可以更容易给出旋转轴与旋转角.  
 *** 四元数的缺点   
  * 四元数由复数(???四维复数)的概念构造, 不易理解, 不符合人的直觉.
+*** 四元数和轴角
+四元数和轴角法有一定关系, 绕 $n$ 轴旋转 $\theta$ 对应的四元数为:
+$$q = \begin{bmatrix} cos(\frac{\theta}{2}) & sin(\frac{\theta}{2})n
+\end{bmatrix} = \begin{bmatrix} cos(\frac{\theta}{2}) & sin(\frac{\theta}{2})n_x & sin(\frac{\theta}{2})n_y & sin(\frac{\theta}{2})n_z
+\end{bmatrix}$$
 *** Unity与四元数
 Unity在引擎内部使用四元数存储旋转和方位, 在其文档中[fn:1]有明确指出.
 
@@ -298,3 +354,6 @@ Unity提供了 =Quaternion= 类, 用于相关操作. 下面是其常用的几个
 * 参考文档
 [fn:1] [[https://docs.unity3d.com/Manual/QuaternionAndEulerRotationsInUnity.html][Rotation and orientation in Unity(Unity官方文档)]]
 [[https://docs.unity3d.com/ScriptReference/Quaternion.html][Unity - Scripting API: Quaternion]]
+
+* 文档
+[[https://zhuanlan.zhihu.com/p/110997893][为什么你天天只看见四元数和八元数？ - 知乎]]
