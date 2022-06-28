@@ -310,6 +310,15 @@ Unity使用 `ZXY` 顺序.
 
 #### 四元数的由来 
 
+$$i^2 = j^2 = k^2 = ijk = -1\\
+$$
+$$ij = k = -ji\\
+$$
+$$jk = i = -kj \\
+$$
+$$ki = j = -ik\\
+$$
+
 
 #### 四元数的基础 
 
@@ -339,20 +348,113 @@ $$
 
     单位四元数表示没有旋转. 由负四元数可知, 几何上有两种四元数可以表示单位四元数:  $$[1, \vec{0}]$$  和  $$[-1, \vec{0}]$$ .
 
+    但在数学上只认为  $$[1, \vec{0}]$$  为单位四元数.
+     $$q$$  和 $$-q$$尽管代表了相同的角位移, 我们依然认为其不等.  $$[-1, \vec{0}]$$  也不是单位四元数.
+
+    任意四元数  $$q$$  乘以单位四元数, 依然得到其自身.
+
     单位四元数的模为1.
+
+    要区分单位旋转和单位四元数.
 -   纯四元数
+
+    标量分量为0的四元数称为纯四元数.
 
 
 #### 四元数的运算 
 
 -   模
+
+    模也被称作范数.
+
     $$\begin{eqnarray} \lVert q \rVert
        &=& \lVert [w, (x, y, z)] \rVert \\
        &=& \sqrt{w^2 + x^2 + y^2 + z^2} \\
        &=& \lVert [w, v] \rVert \\
        &=& \sqrt{w^2 + \lVert v \rVert^2} \end{eqnarray}\\
 $$
--
+-   共轭和逆
+    四元数的共轭记作  $$q^\*$$ , 将四元数的向量分量变负得到其共轭.
+    $$\begin{eqnarray} q^\*
+       &=& [w, v]^\* \\
+       &=& [w, -v]  \\
+       &=& [w, (x, y, z)]^\* \\
+       &=& [w, (-x, -y, -z)] \end{eqnarray}\\
+$$
+
+    四元数的逆记作  $$q^{-1}$$ , 四元数的共轭除以其模得到其逆.
+    $$q^{-1} = \frac{q^\*}{\lVert q \rVert} \\
+$$
+
+    四元数乘以其逆得到单位四元数.
+    $$qq^{-1} = [1, \vec{0}]\\
+$$
+
+    单位四元数的共轭和逆相等.
+
+    四元数  $$q$$  和其共轭  $$q\*$$  代表了相反的角位移. 因为是将其向量分量变负, 相当于颠倒了旋转方向.
+
+<!--listend-->
+
+-   乘法-叉乘
+
+    四元数有点乘和叉乘, 如果不特别指出, 乘法指叉乘.
+
+    -   定义
+
+    四元数的叉乘算法如下:
+    $$\begin{eqnarray}&& (w_1 + x_1i + y_1j + z_1k)(w_2 + x_2i + y_2j + z_2k) \\
+       &=& w_1 w_2  + w_1 x_2i   + w_1 y_2j   + w_1 z_2k  + \\
+       &&  x_1 w_2i + x_1 x_2i^2 + x_1 y_2ij  + x_1 z_2ik + \\
+       &&  y_1 w_2j + y_1 x_2ji  + y_1 y_2j^2 + y_1 z_2jk + \\
+       &&  z_1 w_2k + z_1 x_2ki  + z_1 y_2kj  + z_1 z_2k^2  \\
+       &=& w_1 w_2  + w_1 x_2i    + w_1 y_2j    + w_1 z_2k  +   \\
+       &&  x_1 w_2i + x_1 x_2(-1) + x_1 y_2(k)  + x_1 z_2(-j) + \\
+       &&  y_1 w_2j + y_1 x_2(-k) + y_1 y_2(-1) + y_1 z_2(i) +  \\
+       &&  z_1 w_2k + z_1 x_2(j)  + z_1 y_2(-i) + z_1 z_2(-1)   \\
+       &=& w_1 w_2 - x_1 x_2 - y_1 y_2 - z_1 z_2 +    \\
+       &&  (w_1 x_2 + x_1 w_2 + y_1 z_2 - z_1 y_2)i + \\
+       &&  (w_1 y_2 + y_1 w_2 + z_1 x_2 - x_1 z_2)j + \\
+       &&  (w_1 z_2 + z_1 w_2 + x_1 y_2 - y_1 x_2)k
+       \end{eqnarray}\\
+$$
+
+    所以四元数乘法可以定义如下:
+    $$ [w_1, (x_1, y_1, z_1)][w_2, (x_2, y_2, z_2)] = \\
+       \begin{bmatrix}
+        w_1 w_2 - x_1 x_2 - y_1 y_2 - z_1 z_2     \\
+       w_1 x_2 + x_1 w_2 + y_1 z_2 - z_1 y_2      \\
+       w_1 y_2 + y_1 w_2 + z_1 x_2 - x_1 z_2      \\
+       w_1 z_2 + z_1 w_2 + x_1 y_2 - y_1 x_2
+       \end{bmatrix}\\
+$$
+
+    $$[w_1, v_1][w_2, v_2] =
+       \begin{bmatrix} w_1 w_2-v_1\cdot{}v_2,& w_1 v_2 + w_2 v_1 + v_2 \times v_1
+       \end{bmatrix}\\
+$$
+
+    -   叉乘的符号
+
+        不需要为四元数叉乘使用符号
+    -   叉乘的结合律和 ~~交换律~~
+
+        四元数满足结合律, 但不满足交换律.
+        $$(ab)c = a(bc)\\
+$$
+        $$ab \ne ba\\
+$$
+    -   叉乘的模
+
+        四元数叉乘的模等于模的乘积.
+        $$\lVert q_1q_2\rVert = \lVert q_1 \rVert \lVert q_2 \rVert\\
+$$
+
+    -   叉乘的逆
+
+        四元数叉乘的逆等于各个四元数的逆以相反的顺序相乘.
+        $$(ab)^{-1} = b^{-1}a^{-1}\\
+$$
 
 
 #### 四元数与点 
@@ -387,7 +489,11 @@ Unity在引擎内部使用四元数存储旋转和方位, 在其文档中[^fn:1]
 Unity提供了 `Quaternion` 类, 用于相关操作. 下面是其常用的几个方法/属性:
 
 -   Quaternion.identity
+
+    值为[1, \vec{0}]
     单位旋转(只读). 表示不旋转, 物体与其父对象或世界轴完全对齐.
+
+    单位旋转和单位四元数不同.
 -   Quaternion.LookRotation
     根据旋转后物体的 `forward` (和物体Z轴对齐), `upwards` (X轴与 `forward` 和 `upwards` 的叉积对齐, `upwards` 不一定与Y轴对齐) 创建Quaternion.
 -   Quaternion.FromToRotation
@@ -406,6 +512,9 @@ Unity提供了 `Quaternion` 类, 用于相关操作. 下面是其常用的几个
 ## 文档 
 
 [为什么你天天只看见四元数和八元数？ - 知乎](https://zhuanlan.zhihu.com/p/110997893)
+[Understanding Quaternions 中文翻译《理解四元数》](https://www.qiujiawei.com/understanding-quaternions/)
+[Understanding Quaternions | 3D Game Engine Programming](https://www.3dgep.com/understanding-quaternions/)
+[对游戏开发中的四元数的一些理解 - 知乎](https://zhuanlan.zhihu.com/p/385337220)
 
 [^fn:1]: [Rotation and orientation in Unity(Unity官方文档)](https://docs.unity3d.com/Manual/QuaternionAndEulerRotationsInUnity.html)
     [Unity - Scripting API: Quaternion](https://docs.unity3d.com/ScriptReference/Quaternion.html)
