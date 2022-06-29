@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-29T13:15:49+08:00
+lastmod = 2022-06-29T15:31:14+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -475,6 +475,65 @@ $$
         可以通过改变四元数叉乘的定义, 来反转乘法顺序. 此时并没有改变四元数的基本性质和几何解释.
         $$[w\_1, v\_1][w\_2, v\_2] = [w\_1w\_2 - v\_1\cdot{}v\_2, w\_1v\_2 +w\_2v\_1+v\_1\cdot{}v\_2]\\
 $$
+
+        调整叉乘定义后, 旋转定义如下:
+        $$p\prime = q^{-1}pq\\
+$$
+
+        连续旋转乘法和旋转发生顺序一致:
+        $$\begin{eqnarray}
+             p\prime &=& b^{-1}(a^{-1}pa)b \\\
+                     &=& (b^{-1}a^{-1})p(ab) \\\
+        	     &=& (ab)^{-1}p(ab)
+             \end{eqnarray}\\
+$$
+    -   四元数的差
+
+        利用给定方位  $a$  和  $b$ , 求出  $a$  到  $b$  的旋转角位移  $d$ .  $d$  被定义为  $a$  到  $b$  的差.
+        $$\begin{eqnarray}ad &=& b \\\
+             a^{-1}(ad) &=& a^{-1}b \\\
+             (a^{-1}a)d &=& a^{-1}b \\\
+             [1, \vec{0}]d &=& a^{-1}b \\\
+             d &=& a^{-1}b
+             \end{eqnarray}\\
+$$
+
+        在数学上, 两个四元数之间的差更类似于除法, 而不是普通代数意义上的减法.
+    -   四元数的点乘
+        $$\begin{eqnarray} q\_1 q\_2 &=& [w\_1, v\_1][w\_2, v\_2] = w\_1 w\_2 + v\_1 \cdot v\_2 \\\
+             &=& [w\_1, (x\_1, y\_1, z\_1)][w\_2, (x\_2, y\_2, z\_2)] = w\_1 w\_2 + x\_1 x\_2 + y\_1 y\_2 + z\_1 z\_2
+             \end{eqnarray}\\
+$$
+
+        点乘的结果为标量.
+        对于单位四元数  $q\_1$   $q\_2$ , $ -1 &le; q_1 &sdot; q_2 &le; 1$.
+
+        通常只关心点乘的绝对值, 因为  $q\_1 \cdot q\_2 = -(q\_1 \cdot -q\_2)$ .  $q\_1 \cdot q\_2$  的绝对值越大说明其代表的角位移越相似.
+
+    -   四元数的对数, 指数
+
+        设有  $\alpha = \frac{\theta}{2}$ , 单位向量  $n$ . 有四元数:
+        $$q =\begin{bmatrix} \cos\alpha & n\sin\alpha \end{bmatrix}\\
+$$
+         $q$  的对数定义为:
+        $$\log{q} = \log(\begin{bmatrix}\cos{\alpha} & n\sin(\alpha)\end{bmatrix}) = \begin{bmatrix}0 & \alpha{}n\end{bmatrix}\\
+$$
+
+        四元数的指数以相反方式定义. 有四元数  $q = [0, \alpha{}n]$ . 则有:
+        $$exp(p) = exp([0, \alpha{}n]) = [\cos\alpha, n\sin\alpha]\\
+$$
+
+        我们可以看到对于四元数而言, 对数和指数依然是互为逆运算.
+        $$exp(log(q)) = q\\
+$$
+    -   标量乘运算
+
+        标量乘运算定义为每个分量乘以标量.
+        $$\begin{eqnarray} kq &=& k[w, v] = [kw, kv] \\\
+             &=& k[w, (x, y, z)] = [kw, (kx, ky, kz)]
+             \end{eqnarray}\\
+$$
+    -   四元数的幂
 
 
 #### 四元数与点 {#四元数与点}
