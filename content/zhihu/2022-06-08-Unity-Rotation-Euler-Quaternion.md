@@ -408,10 +408,10 @@ $$
        &&  x_1 w_2i + x_1 x_2i^2 + x_1 y_2ij  + x_1 z_2ik + \\
        &&  y_1 w_2j + y_1 x_2ji  + y_1 y_2j^2 + y_1 z_2jk + \\
        &&  z_1 w_2k + z_1 x_2ki  + z_1 y_2kj  + z_1 z_2k^2  \\
-       &=& w_1 w_2  + w_1 x_2i    + w_1 y_2j    + w_1 z_2k  +   \\
-       &&  x_1 w_2i + x_1 x_2(-1) + x_1 y_2(k)  + x_1 z_2(-j) + \\
-       &&  y_1 w_2j + y_1 x_2(-k) + y_1 y_2(-1) + y_1 z_2(i) +  \\
-       &&  z_1 w_2k + z_1 x_2(j)  + z_1 y_2(-i) + z_1 z_2(-1)   \\
+       &=& w_1 w_2                     + \textcolor{red}{w_1 x_2i}     + \textcolor{green}{w_1 y_2j}  + \textcolor{blue}{w_1 z_2k}     + \\
+       &&  \textcolor{red}{x_1 w_2i}   + x_1 x_2(-1)                   + \textcolor{blue}{x_1 y_2(k)} + \textcolor{green}{x_1 z_2(-j)} + \\
+       &&  \textcolor{green}{y_1 w_2j} + \textcolor{blue}{y_1 x_2(-k)} + y_1 y_2(-1)                  + \textcolor{red}{y_1 z_2(i)}    + \\
+       &&  \textcolor{blue}{z_1 w_2k}  + \textcolor{green}{z_1 x_2(j)} + \textcolor{red}{z_1 y_2(-i)} + z_1 z_2(-1)                      \\
        &=& w_1 w_2 - x_1 x_2 - y_1 y_2 - z_1 z_2 +    \\
        &&  (w_1 x_2 + x_1 w_2 + y_1 z_2 - z_1 y_2)i + \\
        &&  (w_1 y_2 + y_1 w_2 + z_1 x_2 - x_1 z_2)j + \\
@@ -471,6 +471,8 @@ $$
              \end{eqnarray}\\
 $$
         我们可以看到先执行  $$a$$  旋转, 再执行  $$b$$  旋转, 等价于执行乘积  $$ba$$  的单次旋转.
+
+        可以通过改变四元数叉乘的定义, 来反转乘法顺序. 此时并没有改变四元数的基本性质和几何解释.
 
 
 #### 四元数与点 

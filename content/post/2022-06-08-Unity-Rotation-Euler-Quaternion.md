@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-29T10:44:59+08:00
+lastmod = 2022-06-29T12:25:32+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -408,10 +408,10 @@ $$
        &&  x\_1 w\_2i + x\_1 x\_2i^2 + x\_1 y\_2ij  + x\_1 z\_2ik + \\\
        &&  y\_1 w\_2j + y\_1 x\_2ji  + y\_1 y\_2j^2 + y\_1 z\_2jk + \\\
        &&  z\_1 w\_2k + z\_1 x\_2ki  + z\_1 y\_2kj  + z\_1 z\_2k^2  \\\
-       &=& w\_1 w\_2  + w\_1 x\_2i    + w\_1 y\_2j    + w\_1 z\_2k  +   \\\
-       &&  x\_1 w\_2i + x\_1 x\_2(-1) + x\_1 y\_2(k)  + x\_1 z\_2(-j) + \\\
-       &&  y\_1 w\_2j + y\_1 x\_2(-k) + y\_1 y\_2(-1) + y\_1 z\_2(i) +  \\\
-       &&  z\_1 w\_2k + z\_1 x\_2(j)  + z\_1 y\_2(-i) + z\_1 z\_2(-1)   \\\
+       &=& w\_1 w\_2                     + \textcolor{red}{w\_1 x\_2i}     + \textcolor{green}{w\_1 y\_2j}  + \textcolor{blue}{w\_1 z\_2k}     + \\\
+       &&  \textcolor{red}{x\_1 w\_2i}   + x\_1 x\_2(-1)                   + \textcolor{blue}{x\_1 y\_2(k)} + \textcolor{green}{x\_1 z\_2(-j)} + \\\
+       &&  \textcolor{green}{y\_1 w\_2j} + \textcolor{blue}{y\_1 x\_2(-k)} + y\_1 y\_2(-1)                  + \textcolor{red}{y\_1 z\_2(i)}    + \\\
+       &&  \textcolor{blue}{z\_1 w\_2k}  + \textcolor{green}{z\_1 x\_2(j)} + \textcolor{red}{z\_1 y\_2(-i)} + z\_1 z\_2(-1)                      \\\
        &=& w\_1 w\_2 - x\_1 x\_2 - y\_1 y\_2 - z\_1 z\_2 +    \\\
        &&  (w\_1 x\_2 + x\_1 w\_2 + y\_1 z\_2 - z\_1 y\_2)i + \\\
        &&  (w\_1 y\_2 + y\_1 w\_2 + z\_1 x\_2 - x\_1 z\_2)j + \\\
@@ -471,6 +471,8 @@ $$
              \end{eqnarray}\\
 $$
         我们可以看到先执行  $a$  旋转, 再执行  $b$  旋转, 等价于执行乘积  $ba$  的单次旋转.
+
+        可以通过改变四元数叉乘的定义, 来反转乘法顺序. 此时并没有改变四元数的基本性质和几何解释.
 
 
 #### 四元数与点 {#四元数与点}
