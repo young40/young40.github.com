@@ -320,6 +320,15 @@ $$ki = j = -ik$$
    单位四元数的模为1.
 
    要区分单位旋转和单位四元数.
+
+   ???
+   单位四元数可能定义为 $\widehat{q} = [0, \widehat{v}]$, 其中 $\widehat{v}$ 为单位向量.
+   $$\widehat{q}^2 = [0, \widehat{v}][0, \widehat{v}] = [-\widehat{v} \cdot \widehat{v}, \widehat{v} \times \widehat{v}]
+   = [-1, \vec{0}]
+   $$
+
+   只看实数部分, 单位四元数的平方为 -1.
+   
  * 纯四元数
 
    标量分量为0的四元数称为纯四元数.

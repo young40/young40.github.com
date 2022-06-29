@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-29T16:33:45+08:00
+lastmod = 2022-06-29T18:03:06+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -356,6 +356,16 @@ $$
     单位四元数的模为1.
 
     要区分单位旋转和单位四元数.
+
+    ???
+    单位四元数可能定义为  $\widehat{q} = [0, \widehat{v}]$ , 其中  $\widehat{v}$  为单位向量.
+    $$\widehat{q}^2 = [0, \widehat{v}][0, \widehat{v}] = [-\widehat{v} \cdot \widehat{v}, \widehat{v} \times \widehat{v}]
+       = [-1, \vec{0}]
+       \\
+$$
+
+    只看实数部分, 单位四元数的平方为 -1.
+
 -   纯四元数
 
     标量分量为0的四元数称为纯四元数.
