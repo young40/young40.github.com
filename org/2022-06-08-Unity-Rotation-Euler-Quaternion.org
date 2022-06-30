@@ -464,6 +464,8 @@ $$ki = j = -ik$$
 
    - 四元数的对数, 指数
 
+     四元数的对数和指数都是定义如此, 不需要证明.
+
      设有 $\alpha = \frac{\theta}{2}$, 单位向量 $n$. 有四元数:
      $$q =\begin{bmatrix} \cos\alpha & n\sin\alpha \end{bmatrix}$$
      $q$ 的对数定义为:
@@ -515,6 +517,10 @@ t在0到1之间变换.
      
 最终得到的slerp插值公式如下:
 $$slerp(q_0, q_1, t) = q_0(\Delta{}q)^t = q_0(q^{-1}_0 q_1)^t$$
+
+# https://www.geogebra.org/calculator/hjz2ekxf
+
+
 
 *** 四元数与点
 

@@ -522,6 +522,8 @@ $$
 
     -   四元数的对数, 指数
 
+        四元数的对数和指数都是定义如此, 不需要证明.
+
         设有  $$\alpha = \frac{\theta}{2}$$ , 单位向量  $$n$$ . 有四元数:
         $$q =\begin{bmatrix} \cos\alpha & n\sin\alpha \end{bmatrix}\\
 $$

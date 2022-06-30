@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-06-29T21:00:14+08:00
+lastmod = 2022-06-30T10:20:40+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -521,6 +521,8 @@ $$
         通常只关心点乘的绝对值, 因为  $q\_1 \cdot q\_2 = -(q\_1 \cdot -q\_2)$ .  $q\_1 \cdot q\_2$  的绝对值越大说明其代表的角位移越相似.
 
     -   四元数的对数, 指数
+
+        四元数的对数和指数都是定义如此, 不需要证明.
 
         设有  $\alpha = \frac{\theta}{2}$ , 单位向量  $n$ . 有四元数:
         $$q =\begin{bmatrix} \cos\alpha & n\sin\alpha \end{bmatrix}\\
