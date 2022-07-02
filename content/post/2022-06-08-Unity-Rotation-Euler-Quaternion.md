@@ -1,7 +1,7 @@
 +++
 title = "Unity, 旋转, 万向锁, 欧拉角和四元数"
 date = 2022-06-08T23:52:01+08:00
-lastmod = 2022-07-01T20:08:32+08:00
+lastmod = 2022-07-02T18:14:03+08:00
 tags = ["Unity"]
 categories = ["Unity"]
 draft = true
@@ -590,6 +590,57 @@ $$
 
 最终得到的slerp插值公式如下:
 $$slerp(q\_0, q\_1, t) = q\_0(\Delta{}q)^t = q\_0(q^{-1}\_0 q\_1)^t\\
+$$
+
+上面的推导过程是按照代数的方法推导的.
+
+我们可以在四维空间中解释四元数. 旋转四元数都是单位四元数, 它们都在四维的一个超球面上.
+
+slerp的基本思想就是在四维超球面上沿连接两个四元数的四维超弧上做插值, 这也是球面线性插值这个名称的来历.
+
+可以从二维关系类比四维的情形.
+![](/ox-hugo/2022-06-Rotation-009.2D-Slerp.png)
+
+图中  $v\_0, v\_1, v\_t$  都是单位向量, 其模都为1:
+$$\lVert v\_0 \rVert = \lVert v\_1 \rVert = \lVert v\_t \rVert = 1\\
+$$
+
+图中  $k\_1v\_1$  和  $v\_1$  平行, 所以有:
+$$k\_0v\_0 + k\_1v\_1 = v\_t\\
+$$
+
+在三角形  $AOB$  中有:
+$$\sin(t\theta) = \frac{AB}{\lVert v\_t \rVert} = AB\\
+$$
+
+在三角形  $ACB$  中有:
+$$\sin(\theta) = \frac{AB}{\lVert k\_1v\_1 \rVert} = \frac{AB}{k\_1}\\
+$$
+
+由上面两个式子可以得出:
+$$k\_1 = \frac{\sin(t\theta)}{\sin(\theta)}\\
+$$
+
+继续求解  $k\_0$ :
+$$\lVert k\_0v\_0 \rVert = k\_0 = OC = OB - BC = \lVert v\_t \rVert \cos(t\theta) - k\_1cos(\theta) = cos(t\theta) - k\_1cos(\theta)\\
+$$
+
+代入  $k\_1$  并化简, 这里会使用一次三角函数和公式  $\sin(\alpha - \beta) = \sin(\alpha)\cos(\beta) - cos(\alpha)sin(\beta)$ :
+$$\begin{eqnarray}
+k\_0 &=& cos(t\theta) - k\_1cos(\theta) \\\
+    &=& cos(t\theta) - \frac{\cos(\theta)\sin(t\theta)}{sin(\theta)} \\\
+    &=& \frac{\sin(\theta)\cos(t\theta) - cos(\theta)\sin(t\theta)}{\sin(\theta)}  \\\
+    &=& \frac{\sin(\theta - t\theta)}{\sin(\theta)} \\\
+    &=& \frac{\sin((1-t)\theta)}{\sin(\theta)}
+\end{eqnarray}\\
+$$
+
+最终我们得到:
+$$v\_t = k\_0v\_0 + k\_1v\_1 = \frac{\sin((1-t)\theta)}{\sin(\theta)}v\_0 + \frac{\sin(t\theta)}{\sin(\theta)}v\_1\\
+$$
+
+推广到四元数有:
+$$slerp(q\_0, q\_1, t) = \frac{\sin((1-t)\theta)}{\sin(\theta)}q\_0 + \frac{\sin(t\theta)}{\sin(\theta)}q\_1\\
 $$
 
 -   小角度插值
