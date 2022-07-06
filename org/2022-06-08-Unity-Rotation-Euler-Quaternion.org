@@ -628,7 +628,7 @@ Unity提供了 =Quaternion= 类, 用于相关操作. 下面是其常用的几个
  * Quaternion.Angle
    返回两个四元数之间的夹角(应该绕同一点旋转, 否则无意义)
    
-
+* 旋转与群论
 
 * 参考文档
 [fn:1] [[https://docs.unity3d.com/Manual/QuaternionAndEulerRotationsInUnity.html][Rotation and orientation in Unity(Unity官方文档)]]
