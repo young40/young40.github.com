@@ -433,6 +433,10 @@ $$ki = j = -ik$$
      下面公式可以表示 $p$ 绕 $n$ 旋转 $\theta$:
      $$ p\prime = qpq^{-1}$$
 
+     #+begin_quote
+上面公式的本质是, 将在四维空间上的旋转限制在一个三维空间中.
+     #+end_quote
+
      四元数叉乘在处理多次旋转上很有优势, 我们看下将点 $p$ 先旋转 $a$, 再旋转 $b$:
      $$\begin{eqnarray}
      p\prime &=& b(apa^{-1})b^{-1} \\
@@ -588,6 +592,8 @@ $$slerp(q_0, q_1, t) = \frac{\sin((1-t)\theta)}{\sin(\theta)}q_0 + \frac{\sin(t\
 *** 四元数样条-squad
 slerp可以提供两个方位之间的插值, 并且可以保持插值的角速度固定. 当我们使用slerp给多个方位之间插值时, 插值的角速度会在中间方位处发生突变.
 
+squad在slerp基础上, 实现了多点一阶连续可导
+
 *** 四元数映射-实数??
 *** 四元数映射-矢量映射???
 
@@ -630,6 +636,9 @@ Unity提供了 =Quaternion= 类, 用于相关操作. 下面是其常用的几个
    
 * 旋转与群论
 
+* 有没有三元数
+ * 复数相当于二元数 $a+bi$
+ * 三元数如果定义为 $a+bi+cj$, 会遇到 $ij$ 的乘积无定义的情况
 * 参考文档
 [fn:1] [[https://docs.unity3d.com/Manual/QuaternionAndEulerRotationsInUnity.html][Rotation and orientation in Unity(Unity官方文档)]]
 [[https://docs.unity3d.com/ScriptReference/Quaternion.html][Unity - Scripting API: Quaternion]]
