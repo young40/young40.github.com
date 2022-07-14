@@ -24,7 +24,8 @@
       <pubDate>Mon, 22 Nov 2021 16:36:17 +0800</pubDate>
       
       <guid>https://www.young40.com/post/2021-11-22-ugui-source-reading-00/</guid>
-      <description>有道是, 工欲善其事, 必先利其器. 想研究代码, 最好不过的方式就是边修改边运行看看效果, 研究UGUI自然也不例外. 我们先看下如何搭建一个可以修改</description>
+      <description>&lt;p&gt;有道是, 工欲善其事, 必先利其器. 想研究代码, 最好的方式就是边修改边运行看看效果, 研究UGUI自然也不例外.
+我们先看下如何搭建一个可以修改调试UGUI环境.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -168,6 +169,44 @@ Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记�
 &lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-5&#34;&gt;
 &lt;p&gt;继上次迁移之后, 我的博客又一次&lt;sup class=&#34;footnote-reference&#34;&gt;&lt;a id=&#34;footnote-reference-1&#34; href=&#34;#footnote-1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;迁移了. 基于Node.js的Hexo&lt;sup class=&#34;footnote-reference&#34;&gt;&lt;a id=&#34;footnote-reference-2&#34; href=&#34;#footnote-2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;用起来还不错, 但现在每次执行hexo命令的时候, 都是一大堆Warning. 
 偶然间发现了基于Go的Hugo&lt;sup class=&#34;footnote-reference&#34;&gt;&lt;a id=&#34;footnote-reference-3&#34; href=&#34;#footnote-3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;, 所以又萌生了迁移的念头.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.young40.com/zhihu/2021-11-22-ugui-source-reading-00/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.young40.com/zhihu/2021-11-22-ugui-source-reading-00/</guid>
+      <description>&lt;p&gt;有道是, 工欲善其事, 必先利其器. 想研究代码, 最好的方式就是边修改边运行看看效果, 研究UGUI自然也不例外.
+我们先看下如何搭建一个可以修改调试UGUI环境.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.young40.com/zhihu/2021-12-26-ugui-source-reading-01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.young40.com/zhihu/2021-12-26-ugui-source-reading-01/</guid>
+      <description>&lt;p&gt;我们都知道在Unity中渲染一个3D的物体, 需要提供3D物体的模型, 纹理, 材质甚至Shader. 但我们在制作UI时, 并不是必须提供这些.
+那UI是另起炉灶, 有一套新机制吗? 答案是否定的. 下面我们就从UGUI源码层面来看看Image的渲染.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.young40.com/zhihu/2022-06-08-unity-rotation-euler-quaternion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.young40.com/zhihu/2022-06-08-unity-rotation-euler-quaternion/</guid>
+      <description>旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想,</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.young40.com/zhihu/2022-06-15-ox-hugo-to-zhihu/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.young40.com/zhihu/2022-06-15-ox-hugo-to-zhihu/</guid>
+      <description>很羡慕别人的文章中错落有致的数学公式,</description>
     </item>
     
   </channel>

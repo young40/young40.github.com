@@ -14,8 +14,6 @@
 <meta name="msapplication-navbutton-color" content="#f8f5ec">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
-<meta name=viewport content="width=device-width,initial-scale=1">  
-<meta charset="utf-8"/>
 
 
 <meta name="author" content="杨世玲" /><meta name="description" content=" 当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果.  MetalKit提供的MTKView更为方便快捷. " /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
@@ -74,6 +72,20 @@ MetalKit提供的MTKView更为方便快捷. "/>
   <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
 <![endif]-->
 
+<script>
+  MathJax = {
+    tex: {
+	inlineMath: [["$", "$"]]
+    },
+    displayMath: [
+      ["$$", "$$"],
+      
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>

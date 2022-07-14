@@ -14,8 +14,6 @@
 <meta name="msapplication-navbutton-color" content="#f8f5ec">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
-<meta name=viewport content="width=device-width,initial-scale=1">  
-<meta charset="utf-8"/>
 
 
 <meta name="author" content="杨世玲" /><meta name="description" content="又双叒叕迁移了  继上次迁移之后, 我的博客又一次1迁移了. 基于Node.js的Hexo2用起来还不错, 但现在每次执行hexo命令的时候, 都是一大堆Warning. 偶然间发现了基于Go的Hugo3, 所以又萌生了迁移的念头.
@@ -84,6 +82,20 @@
   <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
 <![endif]-->
 
+<script>
+  MathJax = {
+    tex: {
+	inlineMath: [["$", "$"]]
+    },
+    displayMath: [
+      ["$$", "$$"],
+      
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
