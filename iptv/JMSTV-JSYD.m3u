@@ -1,0 +1,55 @@
+#EXTM3U
+#EXTINF:-1 tvg-id="1872" tvg-name="北京纪实" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/beijingjishi.png" group-title="北京",冬奥纪实8k
+http://down.btvcloud.com:80/8k2021zhibo/zhibo8K2021.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="未分类",cctv奥运频道4k
+http://ott.mobaibox.com/TVOD/3/224/3221228127/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="未分类",cctv5  16m
+http://ott.mobaibox.com/PLTV/3/224/3221228179/index.m3u8
+#EXTINF:-1 tvg-id="6" tvg-name="CCTV5+" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV5+.png" group-title="央视",cctv5+ 16m
+http://ott.mobaibox.com/PLTV/3/224/3221228176/index.m3u8
+#EXTINF:-1 tvg-id="1" tvg-name="CCTV1" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV1.png" group-title="央视",CCTV1 Max16M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228149/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="未分类",CCTV2 12M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228094/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="未分类",CCTV2 14M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228248/index.m3u8
+#EXTINF:-1 tvg-id="3" tvg-name="CCTV3" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV3.png" group-title="央视",CCTV3 14M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228174/index.m3u8
+#EXTINF:-1 tvg-id="3" tvg-name="CCTV3" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV3.png" group-title="央视",CCTV3 Max16M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228126/index.m3u8
+#EXTINF:-1 tvg-id="4" tvg-name="CCTV4" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV4.png" group-title="央视",CCTV4 14M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228142/index.m3u8
+#EXTINF:-1 tvg-id="4" tvg-name="CCTV4" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV4.png" group-title="央视",CCTV4 Max16M1080
+http://ott.mobaibox.com/PLTV/3/224/3221227549/index.m3u8
+#EXTINF:-1 tvg-id="4" tvg-name="CCTV4" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV4.png" group-title="央视",CCTV4 Max16M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228091/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="" tvg-logo="" group-title="未分类",CCTV5 Max16M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228179/index.m3u8
+#EXTINF:-1 tvg-id="6" tvg-name="CCTV5+" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV5+.png" group-title="央视",CCTV5+ Max16M1080
+http://ott.mobaibox.com/PLTV/3/224/3221227502/index.m3u8
+#EXTINF:-1 tvg-id="6" tvg-name="CCTV5+" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV5+.png" group-title="央视",CCTV5+ Max16M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228176/index.m3u8
+#EXTINF:-1 tvg-id="7" tvg-name="CCTV6" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV6.png" group-title="央视",CCTV6 Max16M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228123/index.m3u8
+#EXTINF:-1 tvg-id="9" tvg-name="CCTV8" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV8.png" group-title="央视",CCTV8 Max16M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228194/index.m3u8
+#EXTINF:-1 tvg-id="10" tvg-name="CCTV9" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV9.png" group-title="央视",CCTV9 8M1080
+http://ott.mobaibox.com/PLTV/3/224/3221227614/index.m3u8
+#EXTINF:-1 tvg-id="11" tvg-name="CCTV10" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV10.png" group-title="央视",CCTV10 8M1080
+http://ott.mobaibox.com/PLTV/3/224/3221227620/index.m3u8
+#EXTINF:-1 tvg-id="13" tvg-name="CCTV12" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV12.png" group-title="央视",CCTV12 8M1080
+http://ott.mobaibox.com/PLTV/3/224/3221227637/index.m3u8
+#EXTINF:-1 tvg-id="14" tvg-name="CCTV13" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV13.png" group-title="央视",CCTV13 8M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228224/index.m3u8
+#EXTINF:-1 tvg-id="33" tvg-name="广东卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/guangdong.png" group-title="卫视",广东卫视 Max16M1080
+http://ott.mobaibox.com/PLTV/3/224/3221227476/index.m3u8
+#EXTINF:-1 tvg-id="29" tvg-name="江苏卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/jiangsu.png" group-title="卫视",江苏卫视 14M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228251/index.m3u8
+#EXTINF:-1 tvg-id="29" tvg-name="江苏卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/jiangsu.png" group-title="卫视",江苏卫视 Max16M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228097/index.m3u8
+#EXTINF:-1 tvg-id="28" tvg-name="浙江卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/zhejiang.png" group-title="卫视",浙江卫视 14M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228180/index.m3u8
+#EXTINF:-1 tvg-id="27" tvg-name="湖南卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/hunan.png" group-title="卫视",湖南卫视 14M1080
+http://ott.mobaibox.com/PLTV/3/224/3221228177/index.m3u8
+#EXTINF:-1 tvg-id="27" tvg-name="湖南卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/hunan.png" group-title="卫视",湖南卫视 Max16M1080
+http://ott.mobaibox.com/PLTV/3/224/3221227482/index.m3u8
