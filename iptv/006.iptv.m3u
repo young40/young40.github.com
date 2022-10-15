@@ -1,16 +1,17 @@
 #EXTM3U
 
-#EXTINF:-1 tvg-id="1" tvg-name="CCTV1" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV1.png" group-title="央视",CCTV-1高清
-http://111.20.33.106/TVOD/88888893/224/3221226231/index.m3u8?icpid=88888893&from=1&hms_devid=844,543
+#EXTINF:-1 tvg-id="1" tvg-name="CCTV1" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV1.png" group-title="央视",CCTV-1 1
+http://39.134.32.108:6610/270000001111/1110000301/index.m3u8?IASHttpSessionId=OTT
 
-#EXTINF:-1 tvg-id="7" tvg-name="CCTV6" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV6.png" group-title="央视",CCTV-6
-http://183.207.248.37/PLTV/3/224/3221227209/index.m3u8
+#EXTINF:-1 tvg-id="7" tvg-name="CCTV6" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV6.png" group-title="央视",CCTV-6 1
+http://39.134.32.102:6610/270000001111/1110000307/index.m3u8?IASHttpSessionId=OTT
 
 #EXTINF:-1 tvg-id="9" tvg-name="CCTV8" tvg-logo="http://epg.51zmt.top:8000/tb1/CCTV/CCTV8.png" group-title="央视",CCTV-8电视剧
-http://183.207.248.12/PLTV/3/224/3221227204/index.m3u8
+http://125.40.191.58:9901/tsfile/live/1007_1.m3u8
+
 
 #EXTINF:-1 tvg-id="31" tvg-name="东方卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/dongfang.png" group-title="卫视",东方卫视
-http://111.40.196.35/PLTV/88888888/224/3221225509/index.m3u8
+http://111.20.33.108/PLTV/88888893/224/3221226217/index.m3u8?icpid=88888893&from=1&hms_devid=844,443
 
 
 
@@ -36,15 +37,15 @@ http://111.20.33.80/TVOD/88888893/224/3221226206/index.m3u8?icpid=88888893&from=
 #EXTINF:-1 tvg-id="48" tvg-name="湖北卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/hubei.png" group-title="卫视",湖北卫视
 
 
-#EXTINF:-1 tvg-id="28" tvg-name="浙江卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/zhejiang.png" group-title="卫视",浙江卫视
-http://hw-m-l.cztv.com/channels/lantian/channel01/1080p.m3u8?k=1a7559a51eeb880b021619a07f463ac4&t=1577153787
+#EXTINF:-1 tvg-id="28" tvg-name="浙江卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/zhejiang.png" group-title="卫视",浙江卫视 1
+http://hw-m-l.cztv.com/channels/lantian/channel01/1080p.m3u8
 #EXTINF:-1 tvg-id="28" tvg-name="浙江卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/zhejiang.png" group-title="卫视",浙江卫视
 http://121.51.249.6/4403-tx.otvstream.otvcloud.com/otv/skcc/live/channel19/1300.m3u8
 #EXTINF:-1 tvg-id="28" tvg-name="浙江卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/zhejiang.png" group-title="卫视",浙江卫视
 http://111.20.33.69/TVOD/88888893/224/3221226199/index.m3u8?icpid=88888893&from=1&hms_devid=844,3
 
 
-#EXTINF:-1 tvg-id="29" tvg-name="江苏卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/jiangsu.png" group-title="卫视",江苏卫视
-http://121.51.249.6/4403-tx.otvstream.otvcloud.com/otv/skcc/live/channel18/1300.m3u8
+#EXTINF:-1 tvg-id="29" tvg-name="江苏卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/jiangsu.png" group-title="卫视",江苏卫视 1
+http://183.207.255.197/live/program/live/jswshd/2300000/mnf.m3u8
 #EXTINF:-1 tvg-id="29" tvg-name="江苏卫视" tvg-logo="http://epg.51zmt.top:8000/tb1/ws/jiangsu.png" group-title="卫视",江苏卫视
 http://121.51.249.6/4403-tx.otvstream.otvcloud.com/otv/skcc/live/channel18/index.m3u8
