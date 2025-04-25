@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cocos2d-X on 杨世玲的博客</title>
+    <link>http://localhost:8077/categories/cocos2d-x/</link>
+    <description>Recent content in Cocos2d-X on 杨世玲的博客</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>杨世玲</copyright>
+    <lastBuildDate>Thu, 01 Aug 2013 22:10:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:8077/categories/cocos2d-x/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CocosBuilder 多分辨率</title>
+      <link>http://localhost:8077/post/2013-08-01-cocosbuilder-multi-resolution/</link>
+      <pubDate>Thu, 01 Aug 2013 22:10:00 +0800</pubDate>
+      <guid>http://localhost:8077/post/2013-08-01-cocosbuilder-multi-resolution/</guid>
+      <description>&lt;p&gt;最近两个项目大量使用了CocosBuilder, 对于开发效率提高是巨大的. 一直计划写一篇博客谈谈CocosBuilder的多分辨率问题, 懒病加上一些疙疙瘩瘩的小事情, 拖延了一个多月, 才终于下定决心要尽快完成这篇博客.&lt;/p&gt;&#xA;&lt;p&gt;在这篇文章中, 假定你比较熟悉CocosBuilder, 如果您还不是很熟悉CocosBuilder, 推荐您看下我的另外一篇文章. &lt;a href=&#34;http://www.ityran.com/archives/2614&#34;&gt;从零开始学习CocosBuilder&lt;/a&gt; 我还是小菜鸟一个, 难免会有很多错误, 还望各位看客不吝赐教.&lt;/p&gt;&#xA;&lt;p&gt;版本:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Cocos2d-x 2.1.4 &lt;a href=&#34;http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip&#34;&gt;http://cocos2d-x.googlecode.com/files/cocos2d-x-2.1.4.zip&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;CocosBuilder 3.0alpha5 &lt;a href=&#34;http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip&#34;&gt;http://cocosbuilder.googlecode.com/files/CocosBuilder-3.0-alpha5.zip&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;最近几次Cocos2d-x和CocosBuilder(以下简写为2dx和ccb)都是联合发布的, 使用联合发布的版本会减少不兼容的可能.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>基于Pomelo和Cocos2d-x的聊天室</title>
+      <link>http://localhost:8077/post/2013-01-08-chat-of-pomelo-for-cocos2d-x/</link>
+      <pubDate>Tue, 08 Jan 2013 00:39:00 +0800</pubDate>
+      <guid>http://localhost:8077/post/2013-01-08-chat-of-pomelo-for-cocos2d-x/</guid>
+      <description>&lt;p&gt;据说聊天室和游戏系统有很多相似之处, 并且很多游戏本身就带着多人聊天系统. 所以Pomelo将聊天室作为了一个例子.&lt;/p&gt;&#xA;&lt;p&gt;开源是非常棒的思想和运动, 我简单提两点体会,&#xA;1.发现了问题可以不用等官方响应,自己有能力就可以马上修复. 2.你可以贡献自己的代码,很多人都可以贡献代码,可以让项目快速发展.&#xA;当然一旦你的代码被接受并被很多人使用, 心中的成就感是不言而喻的.&lt;/p&gt;&#xA;&lt;p&gt;之所以要提到开源, 是因为今天我们要用到的东西基本上全部是开源的, 并且我们还要对其中的代码做一些修改才能正常工作. 再一次为开源鼓掌!&lt;/p&gt;&#xA;&lt;p&gt;这并不是一篇Pomelo,或者Cocos2d-x的入门说明, 需要你对这两者都有一定的了解.&#xA;同时, 无论是Pomelo还是Cocos2d-x, 我都是新手, 如果文章中有错误的地方, 希望您能不吝指出.&#xA;您可以在文章下面留言, 或者在新浪微博上发微薄 @杨世玲&#xA;(需要说明的一点是, 请勿私信提问非隐私性技术问题, 我是希望您的问题, 我的或者其他朋友的回复,能被更多朋友搜索到,&#xA;我希望我们的交流, 能让更多朋友受到启发, 受益. 这也是对社区和世界和平的一点贡献吧.)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2d-x深读4:CCAutoReleasePool</title>
+      <link>http://localhost:8077/post/2013-01-03-cocos2d-x-source-code-research-4-ccautoreleasepool/</link>
+      <pubDate>Thu, 03 Jan 2013 15:09:00 +0800</pubDate>
+      <guid>http://localhost:8077/post/2013-01-03-cocos2d-x-source-code-research-4-ccautoreleasepool/</guid>
+      <description>&lt;p&gt;&lt;code&gt;CCAutoReleasePool.h&lt;/code&gt;主要定义了两个类&lt;code&gt;CCAutoReleasePool&lt;/code&gt;和&lt;code&gt;CCPoolManager&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;其实因为cocos2d-x自动管理内存的原因, 所以, 我们平时很少需要直接使用这两个类. &lt;br&gt;&#xA;为了探究其中的自动管理内存的机制, 我们直接分析其代码.&lt;/p&gt;&#xA;&lt;p&gt;总体上来讲, 内存管理这块的机制难度或许比较大. 我研究了一天, 还是有诸多疑问. &lt;br&gt;&#xA;暂时先放一放, 待我功力进化后再来继续研究这块.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2d-x深读3:CCObject</title>
+      <link>http://localhost:8077/post/2012-12-31-cocos2d-x-source-code-research-3-ccobject/</link>
+      <pubDate>Mon, 31 Dec 2012 17:21:00 +0800</pubDate>
+      <guid>http://localhost:8077/post/2012-12-31-cocos2d-x-source-code-research-3-ccobject/</guid>
+      <description>&lt;p&gt;CCObject是绝大部分cocos2d-x类的基类, 我们就从这里一步一步揭开cocos2d-x的奥秘.&lt;/p&gt;&#xA;&lt;p&gt;CCObject承担了两个重要的功能, 拷贝机制和内存管理.&lt;/p&gt;&#xA;&lt;p&gt;##拷贝机制&#xA;打开&lt;code&gt;CCObject.h&lt;/code&gt; 首先看到的是类CCCopying, 而CCObject是从该类派生. 从这个意义上来讲CCCopying才是大部分类的基类.&lt;br&gt;&#xA;但CCCopying其实非常简单, 再加上没有其他类从CCCopying派生, 所以说CCObject才是大部分类的基类也是不错的. 我认为CCCopying仅仅是一个接口性质.&lt;/p&gt;&#xA;&lt;p&gt;CCCopying这个类非常简单, 只有一个成员函数copyWithZone(CCZone *pZone); 简单到其实现只是为了报错. 尽管如此, 但其却承担了拷贝机制这一重要的功能.&lt;/p&gt;&#xA;&lt;p&gt;cocos2d-x和cocos2d-iphone是近亲, 所以cocos2d-x在API上会和cocos2d-iphone保持一致, 代码上也多有借鉴. CCObject明显就有很多NSObject的痕迹.&#xA;当然我对Objective-c并不熟悉, 这里都是些猜测罢了. copyWithZone或许就是借鉴了Obj-c.&lt;/p&gt;&#xA;&lt;p&gt;我们先来看下拷贝机制, 至于CCObject的代码倒不忙着看.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>一步一步CocosBuilder(4)[完结]</title>
+      <link>http://localhost:8077/post/2012-12-29-cocosbuilder-step-by-step-part-four/</link>
+      <pubDate>Sat, 29 Dec 2012 10:54:00 +0800</pubDate>
+      <guid>http://localhost:8077/post/2012-12-29-cocosbuilder-step-by-step-part-four/</guid>
+      <description>&lt;p&gt;这一节也是很轻松, 主要是牵涉到Timeline的切换. 其他的都是简单的界面制作.&lt;br&gt;&#xA;所以CocosBuilder的威力也体现在这里, 很少的代码就能驱动界面了.&lt;/p&gt;&#xA;&lt;p&gt;我们这次先做&lt;code&gt;Particle System&lt;/code&gt;, &lt;code&gt;Scroll View&lt;/code&gt;, 最后以&lt;code&gt;Animations&lt;/code&gt;收官.&lt;/p&gt;&#xA;&lt;p&gt;#####1&#xA;制作&lt;code&gt;Particle System&lt;/code&gt;和&lt;code&gt;Scroll View&lt;/code&gt;的界面很简单,我们也是以程序为重点, 所以不再赘述.&lt;br&gt;&#xA;只需要一句&lt;code&gt;this-&amp;gt;openTest(&amp;quot;ccb/Scroll.ccbi&amp;quot;);&lt;/code&gt;就可以调用新的界面了.&lt;br&gt;&#xA;其他诸如绑定之类相信大家已经是轻车熟路啦.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>一步一步CocosBuilder(3)</title>
+      <link>http://localhost:8077/post/2012-12-28-cocosbuilder-step-by-step-part-three/</link>
+      <pubDate>Fri, 28 Dec 2012 00:54:00 +0800</pubDate>
+      <guid>http://localhost:8077/post/2012-12-28-cocosbuilder-step-by-step-part-three/</guid>
+      <description>&lt;p&gt;今天要说的内容比较轻松, 重要的知识点不多.&lt;br&gt;&#xA;目标是实现&lt;code&gt;Menus &amp;amp; Items&lt;/code&gt;, &lt;code&gt;Sprites &amp;amp; 9 Slice&lt;/code&gt;, &lt;code&gt;Buttons &amp;amp; Labels&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;#####1&#xA;首先我们在CocosBuilder中建立一个新的&lt;code&gt;Header.ccb&lt;/code&gt;.具体请参见CocosBuilder的项目.  &lt;br&gt;&#xA;在创建的时候,勾选&lt;code&gt;Full Sceen&lt;/code&gt;, 并且将分辨率的&lt;code&gt;Height&lt;/code&gt;都修改为40.&lt;br&gt;&#xA;这个文件很简单, 根节点下只包含一个&lt;code&gt;CCLayerColor&lt;/code&gt;,根节点的&lt;code&gt;Custom class&lt;/code&gt;设置为&lt;code&gt;HeaderLayer&lt;/code&gt;.&lt;br&gt;&#xA;&lt;code&gt;CCLayerColor&lt;/code&gt;下面包含一个&lt;code&gt;CCLabelTTF&lt;/code&gt;和&lt;code&gt;CCMenu&lt;/code&gt;.&lt;br&gt;&#xA;&lt;code&gt;CCLabelTTF&lt;/code&gt;的变量绑定为类型&lt;code&gt;Owner var&lt;/code&gt;, 值为&lt;code&gt;mTitleLabelTTF&lt;/code&gt;.&lt;br&gt;&#xA;&lt;code&gt;CCMenu&lt;/code&gt;包含一个&lt;code&gt;CCMenuItemImage&lt;/code&gt;. &lt;code&gt;CCMenuItemImage&lt;/code&gt;的&lt;code&gt;Selector&lt;/code&gt;属性设置为&lt;code&gt;onBackClicked&lt;/code&gt;.   &lt;br&gt;&#xA;这个ccb作为一个公用的元素被其他ccb文件所引用. 是属于模块化的一个例子.&lt;br&gt;&#xA;然后我们在Xcode中新建一个&lt;code&gt;HeaderLayer&lt;/code&gt;类, 并同时声明一个&lt;code&gt;HeaderLayerLoader&lt;/code&gt;类.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>一步一步CocosBuilder(2)</title>
+      <link>http://localhost:8077/post/2012-12-25-cocosbuilder-step-by-step-part-two/</link>
+      <pubDate>Tue, 25 Dec 2012 21:15:00 +0800</pubDate>
+      <guid>http://localhost:8077/post/2012-12-25-cocosbuilder-step-by-step-part-two/</guid>
+      <description>&lt;p&gt;上一篇我们建立了基本的工作环境, 这一次我们将基本实现例子中的HelloCocosBuilder.&lt;/p&gt;&#xA;&lt;p&gt;###注意&#xA;这两天纠结了一个问题. 我发现按照上次的配置来实现例子, 图片的大小怎么都和例子中的搭配不上. 后来动用CCB的源代码才看出端倪.&#xA;CCB v3.0加入了一个&lt;code&gt;resources-auto&lt;/code&gt;的目录, 在发布的时候, 会自动缩放图片到对应的分辨率去. 因为图片的分辨率不合适(初步目测), 我们暂时不使用这功能. 请大家将上一篇文章&#xA;中的&lt;code&gt;resources-auto&lt;/code&gt;文件夹下图片移到父目录&lt;code&gt;ccb-source&lt;/code&gt;下面. 这个也解释了为什么&lt;code&gt;resources-auto&lt;/code&gt;有非图片文件会导致CCB崩溃的原因.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>一步一步CocosBuilder(1)</title>
+      <link>http://localhost:8077/post/2012-12-21-cocosbuilder-step-by-step-part-one/</link>
+      <pubDate>Fri, 21 Dec 2012 02:46:00 +0800</pubDate>
+      <guid>http://localhost:8077/post/2012-12-21-cocosbuilder-step-by-step-part-one/</guid>
+      <description>&lt;p&gt;CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.&#xA;CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.&#xA;我想这个也是其不够流行的原因吧.&lt;/p&gt;&#xA;&lt;p&gt;如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力.&#xA;我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实.&#xA;我无论C++,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.&lt;/p&gt;&#xA;&lt;p&gt;这次的目的是基本实现原来v2.0中的例子.&#xA;我采用的2d-x的版本是:cocos2d-2.1beta3-x-2.1.0, 以OS X版本为主, 以sample目录下的HelloCpp为基础改进. CCB的版本是v3.0alpha0.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2d-x深读2:CCPlatformMacros.h</title>
+      <link>http://localhost:8077/post/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/</link>
+      <pubDate>Mon, 17 Dec 2012 01:49:00 +0800</pubDate>
+      <guid>http://localhost:8077/post/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/</guid>
+      <description>&lt;ul&gt;&#xA;&lt;li&gt;路径:&lt;code&gt;cocos2d-2.1beta3-x-2.1.0/cocos2dx/include/ccConfig.h&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;路径:&lt;code&gt;cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/mac/CCPlatformDefine.h&lt;/code&gt; //注意我是以mac平台研究的, 其他平台略有不同&lt;/li&gt;&#xA;&lt;li&gt;路径:&lt;code&gt;cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform/CCPlatformMacros.h&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>2d-x深读1:CCPlatformConfig.h</title>
+      <link>http://localhost:8077/post/2012-12-17-cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/</link>
+      <pubDate>Mon, 17 Dec 2012 00:43:00 +0800</pubDate>
+      <guid>http://localhost:8077/post/2012-12-17-cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/</guid>
+      <description>&lt;p&gt;准备好好学习下Cocos2d-x(以下简称2dx), 我正在很努力地学习C++.&lt;/p&gt;&#xA;&lt;p&gt;作为新手的我, 只能从最基本的代码读起. 就从&lt;code&gt;CCPlatformConfig.h&lt;/code&gt;开始研究起吧, 这个文件没有include其他文件, 是最基本的文件.&lt;/p&gt;&#xA;&lt;p&gt;研究成果见代码.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

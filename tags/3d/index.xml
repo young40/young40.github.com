@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3D on 杨世玲的博客</title>
+    <link>http://localhost:8077/tags/3d/</link>
+    <description>Recent content in 3D on 杨世玲的博客</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>杨世玲</copyright>
+    <lastBuildDate>Sat, 11 Jun 2022 10:26:58 +0800</lastBuildDate>
+    <atom:link href="http://localhost:8077/tags/3d/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>3D数学基础笔记 01</title>
+      <link>http://localhost:8077/post/2022-01-12-3d-math-01/</link>
+      <pubDate>Wed, 12 Jan 2022 19:20:04 +0800</pubDate>
+      <guid>http://localhost:8077/post/2022-01-12-3d-math-01/</guid>
+      <description>&lt;h2 id=&#34;数字&#34;&gt;数字&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;自然数: 零和正整数&lt;/li&gt;&#xA;&lt;li&gt;整数&lt;/li&gt;&#xA;&lt;li&gt;有理数: 整数和分数&lt;/li&gt;&#xA;&lt;li&gt;无理数: 无限不循环小数&lt;/li&gt;&#xA;&lt;li&gt;实数: 有理数, 无理数&lt;/li&gt;&#xA;&lt;li&gt;复数&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;游戏中的坐标系&#34;&gt;游戏中的坐标系&lt;/h2&gt;&#xA;&lt;h3 id=&#34;笛卡尔坐标系&#34;&gt;笛卡尔坐标系&lt;/h3&gt;&#xA;&lt;h4 id=&#34;坐标系等价性&#34;&gt;坐标系等价性&lt;/h4&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;2D笛卡尔坐标系都是等价的&lt;/li&gt;&#xA;&lt;li&gt;3D笛卡尔坐标系存在两种, 左手坐标系, 右手坐标系. 这两种坐标系不等价&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;其他坐标系&#34;&gt;其他坐标系&lt;/h3&gt;&#xA;&lt;h4 id=&#34;2d极坐标&#34;&gt;2D极坐标&lt;/h4&gt;&#xA;&lt;h4 id=&#34;3d柱面坐标&#34;&gt;3D柱面坐标&lt;/h4&gt;&#xA;&lt;h4 id=&#34;3d球面坐标&#34;&gt;3D球面坐标&lt;/h4&gt;&#xA;&lt;h2 id=&#34;多坐标系&#34;&gt;多坐标系&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;世界坐标系&lt;/li&gt;&#xA;&lt;li&gt;物体坐标系&lt;/li&gt;&#xA;&lt;li&gt;摄像机坐标系&lt;/li&gt;&#xA;&lt;li&gt;惯性坐标系 从物体坐标系到惯性坐标系只需要旋转, 从惯性坐标系到世界坐标系只需要平移&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;3D游戏编程大师技巧 第四章&lt;/li&gt;&#xA;&lt;li&gt;游戏引擎架构 第四章&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.matongxue.com/madocs/244&#34;&gt;https://www.matongxue.com/madocs/244&lt;/a&gt; 如何通俗的解释仿射变换？&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

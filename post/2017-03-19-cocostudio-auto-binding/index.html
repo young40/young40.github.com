@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=8077&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>CocoStudio 节点自动绑定 - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" 懒是美德 换了一份工作, 第一步就是需要熟悉现有的代码。作为一个优化狂人，很容易就能从中看出值得优化的地方来。随手打开一个约2600多行的lua文件，发现满屏的seekNodeByName，简单统计一下约260行，10%。 我们在使用CocoStudio的时候，在代码中确实需要使用节点的Name来寻找节点，但不要忘记lua语言的动态性，恰当利用则事半功倍。更何况，懒是一种美德，我们努力思考，就能少写不少代码。
+" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.146.7 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:8077/post/2017-03-19-cocostudio-auto-binding/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="http://localhost:8077/post/2017-03-19-cocostudio-auto-binding/">
+  <meta property="og:site_name" content="杨世玲的博客">
+  <meta property="og:title" content="CocoStudio 节点自动绑定">
+  <meta property="og:description" content="懒是美德 换了一份工作, 第一步就是需要熟悉现有的代码。作为一个优化狂人，很容易就能从中看出值得优化的地方来。随手打开一个约2600多行的lua文件，发现满屏的seekNodeByName，简单统计一下约260行，10%。 我们在使用CocoStudio的时候，在代码中确实需要使用节点的Name来寻找节点，但不要忘记lua语言的动态性，恰当利用则事半功倍。更何况，懒是一种美德，我们努力思考，就能少写不少代码。">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2017-03-19T12:00:00+08:00">
+    <meta property="article:modified_time" content="2017-03-19T12:00:00+08:00">
+
+  <meta itemprop="name" content="CocoStudio 节点自动绑定">
+  <meta itemprop="description" content="懒是美德 换了一份工作, 第一步就是需要熟悉现有的代码。作为一个优化狂人，很容易就能从中看出值得优化的地方来。随手打开一个约2600多行的lua文件，发现满屏的seekNodeByName，简单统计一下约260行，10%。 我们在使用CocoStudio的时候，在代码中确实需要使用节点的Name来寻找节点，但不要忘记lua语言的动态性，恰当利用则事半功倍。更何况，懒是一种美德，我们努力思考，就能少写不少代码。">
+  <meta itemprop="datePublished" content="2017-03-19T12:00:00+08:00">
+  <meta itemprop="dateModified" content="2017-03-19T12:00:00+08:00">
+  <meta itemprop="wordCount" content="1479">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CocoStudio 节点自动绑定">
+  <meta name="twitter:description" content="懒是美德 换了一份工作, 第一步就是需要熟悉现有的代码。作为一个优化狂人，很容易就能从中看出值得优化的地方来。随手打开一个约2600多行的lua文件，发现满屏的seekNodeByName，简单统计一下约260行，10%。 我们在使用CocoStudio的时候，在代码中确实需要使用节点的Name来寻找节点，但不要忘记lua语言的动态性，恰当利用则事半功倍。更何况，懒是一种美德，我们努力思考，就能少写不少代码。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+<script>
+  MathJax = {
+    tex: {
+	inlineMath: [["$", "$"]]
+    },
+    displayMath: [
+      ["$$", "$$"],
+      
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">CocoStudio 节点自动绑定</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-03-19 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">懒是美德</a>
+</li>
+<li><a href="#headline-2">自动绑定</a>
+</li>
+<li><a href="#headline-3">来个实现</a>
+</li>
+<li><a href="#headline-4">一个规则</a>
+</li>
+<li><a href="#headline-5">有个技巧</a>
+</li>
+<li><a href="#headline-6">还有没有</a>
+</li>
+<li><a href="#headline-7">结束感悟</a>
+</li>
+<li><a href="#headline-8">Update</a>
+</li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+懒是美德
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>换了一份工作, 第一步就是需要熟悉现有的代码。作为一个优化狂人，很容易就能从中看出值得优化的地方来。随手打开一个约2600多行的lua文件，发现满屏的seekNodeByName，简单统计一下约260行，10%。
+我们在使用CocoStudio的时候，在代码中确实需要使用节点的Name来寻找节点，但不要忘记lua语言的动态性，恰当利用则事半功倍。更何况，懒是一种美德，我们努力思考，就能少写不少代码。</p>
+<p>
+{{{more}}}</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+自动绑定
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<p>假设我们有一个demo.csd文件，结构如下:</p>
+<div class="src src-text">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">|--Root
+</span></span><span class="line"><span class="cl">    |--spr_Background
+</span></span><span class="line"><span class="cl">    |--lbl_Title
+</span></span><span class="line"><span class="cl">    |--Node_DefaultName</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+<p>
+代码加载的时候，如果能自动绑定到代码改多好啊!</p>
+<div class="src src-lua">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">DemoLayer</span> <span class="o">=</span> <span class="n">class</span><span class="p">(</span><span class="s2">&#34;DemoLayer&#34;</span><span class="p">,</span> <span class="kr">function</span><span class="p">()</span> <span class="kr">return</span> <span class="n">cc.Layer</span><span class="p">:</span><span class="n">create</span><span class="p">()</span> <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">function</span> <span class="nc">DemoLayer</span><span class="p">:</span><span class="nf">init</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="n">loadCSB</span><span class="p">(</span><span class="s2">&#34;demo.csb&#34;</span><span class="p">,</span> <span class="n">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">self.lbl_Title</span><span class="p">:</span><span class="n">setString</span><span class="p">(</span><span class="s2">&#34;自动绑定太爽了&#34;</span><span class="p">)</span> <span class="c1">-- 如何能爽这一下???</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
+来个实现
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
+<p>下面是一份简单的实现。`attachedTo[nodeName] = child` 中，利用lua的动态性，直接给`attachedTo`这个对象增加新的属性，
+这样就能在`loadCSB(&#34;demo.csb&#34;, self)`后，直接用`self.lbl_Title`来访问节点了。</p>
+<div class="src src-lua">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">function</span> <span class="nf">loadCSB</span><span class="p">(</span><span class="n">csbName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">local</span> <span class="n">csbNode</span> <span class="o">=</span> <span class="n">cc.CSLoader</span><span class="p">:</span><span class="n">createNode</span><span class="p">(</span><span class="n">csbName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">gt.bindNodeByName</span><span class="p">(</span><span class="n">csbNode</span><span class="p">,</span> <span class="n">attachedTo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">return</span> <span class="n">csbNode</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">function</span> <span class="nf">bindNodeByName</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">attachedTo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">local</span> <span class="n">matchTable</span> <span class="o">=</span> <span class="p">{</span><span class="n">spr_</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span> <span class="n">nod_</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span> <span class="n">btn_</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span> <span class="n">lbl_</span><span class="o">=</span><span class="kc">true</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">child</span> <span class="kr">in</span> <span class="n">ipairs</span><span class="p">(</span><span class="n">node</span><span class="p">:</span><span class="n">getChildren</span><span class="p">())</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nodeName</span> <span class="o">=</span> <span class="n">child</span><span class="p">:</span><span class="n">getName</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nodeNameSub</span> <span class="o">=</span> <span class="n">string.sub</span><span class="p">(</span><span class="n">nodeName</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">matchTable</span><span class="p">[</span><span class="n">nodeNameSub</span><span class="p">]</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">      <span class="n">attachedTo</span><span class="p">[</span><span class="n">nodeName</span><span class="p">]</span> <span class="o">=</span> <span class="n">child</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">bindNodeByName</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">attachedTo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">end</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
+<h2 id="headline-4">
+一个规则
+</h2>
+<div id="outline-text-headline-4" class="outline-text-2">
+<p>CocoStudio在编辑csd文件的时候，会给节点加上默认的名字，通常这些名字都是乱七八糟，在代码里再使用这些名字，代码也会变得丑陋不堪。
+所以，有必要在CocoStudio中给节点一个有意义的名字，同时如果加上一个规则，还能减少节点绑定的数量。</p>
+<div class="src src-lua">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">matchTable</span> <span class="o">=</span> <span class="p">{</span><span class="n">spr_</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span> <span class="n">nod_</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span> <span class="n">btn_</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span> <span class="n">lbl_</span><span class="o">=</span><span class="kc">true</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">if</span> <span class="n">matchTable</span><span class="p">[</span><span class="n">nodeNameSub</span><span class="p">]</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">-- 是感兴趣的节点，匹配到了</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+<p>我在示例中的规则是以spr_, nod_等为前缀的节点。这里的matchTable有点意思，spr_这些并不是它的值，而是键(key), 所以拿到前缀之后，
+可以快速匹配，并不需要再跑一个循环了^_-.</p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+有个技巧
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
+<p>可能会有有序的节点，比如lbl_name1, lbl_name2, lbl_name3…, 我们固然可以通过类似于self.lbl_name1等来访问，但有时我们在比如for循环中
+如何访问这些节点呢？答案是我们可以利用下标的形式来访问这些节点.</p>
+<div class="src src-lua">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">name</span> <span class="o">=</span> <span class="n">self</span><span class="p">[</span><span class="s2">&#34;lbl_name&#34;</span> <span class="o">..</span> <span class="n">i</span><span class="p">]</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-2">
+<h2 id="headline-6">
+还有没有
+</h2>
+<div id="outline-text-headline-6" class="outline-text-2">
+<p>这只是一个简单的版本，简单的工程也够用了。复杂一些的话，比如可以加上重名检测，对于列表型的节点加以更多的处理，等等。。。
+如果你遇到问题，不妨通过微博联系我。</p>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-2">
+<h2 id="headline-7">
+结束感悟
+</h2>
+<div id="outline-text-headline-7" class="outline-text-2">
+<p>年复一年，终究是一事无成。能真切地感受到与日俱增的压力, 翻翻上一篇博客已经是一年多年前了，2016年竟是一字未写。想想前面两年的计划，多半是未完成，还有最可惜的Unreal的梦想。
+我的新年来的比较晚，Late better than Never, 希望今年能再多些思考，多写文字，多读点书，多点收入。</p>
+<p>
+再来回看正题，从懒这个美德出发，我们在写代码时，处处都可能有值得优化的地方，留心观察，能提出问题，找到解决方案只是时间问题。提出好的问题，才是最宝贵的。</p>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-2">
+<h2 id="headline-8">
+Update
+</h2>
+<div id="outline-text-headline-8" class="outline-text-2">
+<p><a href="http://blog.justbilt.com">bilt兄</a> 看了这篇博客以后，告诉我可以将有序列的节点以数组的方式访问更有效率，我马上更新了下代码，使用起来果然更加方便了.
+下面是带序列的节点组合成数组的一个小函数。</p>
+<div class="src src-lua">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl">  <span class="kr">function</span> <span class="nf">groupNode</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span> <span class="c1">-- 聚合序列节点为数组</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">_pre</span><span class="p">,</span> <span class="n">_num</span> <span class="o">=</span> <span class="n">string.match</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s2">&#34;(.+)(%d+)$&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">_pre</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">return</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">string.sub</span><span class="p">(</span><span class="n">_pre</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&#34;_&#34;</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">      <span class="n">_pre</span> <span class="o">=</span> <span class="n">string.sub</span><span class="p">(</span><span class="n">_pre</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">_pre</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">group</span><span class="p">[</span><span class="n">_pre</span><span class="p">]</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">      <span class="n">group</span><span class="p">[</span><span class="n">_pre</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">group</span><span class="p">[</span><span class="n">_pre</span><span class="p">][</span><span class="n">_num</span><span class="p">]</span> <span class="o">=</span> <span class="n">child</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">end</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+<p>如果节点名字是`nod_text1`, `nod_text2`… 或者`img_press_1`, `img_press_2`…的节点则可以用self.nod_text[1], self.nod_text[2]来访问了</p>
+<p>
+感谢bilt兄!</p>
+</div>
+</div>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2017-03-19
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/2017-07-01-profile-your-work/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Profile工作</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2015-12-22-using-git-as-magics/">
+            <span class="next-text nav-default">一次 git 花样实战</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+
+  <span class="division">|</span>
+
+  <span class="theme-info">
+      Network by
+      <a class="theme-link" href="https://www.netlify.com">Netlify</a>
+  </span>
+
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>

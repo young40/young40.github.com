@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Architecture on 杨世玲的博客</title>
+    <link>http://localhost:8077/categories/architecture/</link>
+    <description>Recent content in Architecture on 杨世玲的博客</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>杨世玲</copyright>
+    <lastBuildDate>Thu, 01 Jul 2021 16:06:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:8077/categories/architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>软件架构原则</title>
+      <link>http://localhost:8077/post/2021-07-01-software-architecture-principle/</link>
+      <pubDate>Thu, 01 Jul 2021 16:06:00 +0800</pubDate>
+      <guid>http://localhost:8077/post/2021-07-01-software-architecture-principle/</guid>
+      <description>&lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-2&#34;&gt;&#xA;&lt;h2 id=&#34;headline-1&#34;&gt;&#xA;什么是软件架构?&#xA;&lt;/h2&gt;&#xA;&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-2&#34;&gt;&#xA;&lt;p&gt;软件架构的定义，众说纷纭，不一而足。这里参考《架构整洁之道》的定义：&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;软件架构是指设计软件的人为软件赋予的形状，这个形状是指系统如何被划分为组件（Components），各个组件如何排列（Arrangment）， 组件之间如何沟通（Communication）。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

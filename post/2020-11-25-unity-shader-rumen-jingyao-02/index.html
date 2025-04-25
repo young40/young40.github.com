@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=8077&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Unity Shader入门精要笔记 二 - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" 本章介绍渲染管线.
+原料与目标 在开始渲染之前, 我们拥有的原料是诸如纹理, 模型, 光照之类. 我们渲染的目标是一副屏幕大小的图像.
+三大阶段 沿用《Real-Rendering》(第三版)的概念, 把渲染管线分为三个阶段:
+应用阶段(Application Stage) 几何阶段(Geometry Stage) 光栅化阶段(Rasterizer Stage) 这些阶段是概念性的, 每个阶段也包含了子阶段.
+" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.146.7 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:8077/post/2020-11-25-unity-shader-rumen-jingyao-02/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="http://localhost:8077/post/2020-11-25-unity-shader-rumen-jingyao-02/">
+  <meta property="og:site_name" content="杨世玲的博客">
+  <meta property="og:title" content="Unity Shader入门精要笔记 二">
+  <meta property="og:description" content="本章介绍渲染管线.
+原料与目标 在开始渲染之前, 我们拥有的原料是诸如纹理, 模型, 光照之类. 我们渲染的目标是一副屏幕大小的图像.
+三大阶段 沿用《Real-Rendering》(第三版)的概念, 把渲染管线分为三个阶段:
+应用阶段(Application Stage) 几何阶段(Geometry Stage) 光栅化阶段(Rasterizer Stage) 这些阶段是概念性的, 每个阶段也包含了子阶段.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2020-11-25T16:31:39+08:00">
+    <meta property="article:modified_time" content="2020-11-25T16:31:39+08:00">
+    <meta property="article:tag" content="Unity">
+    <meta property="article:tag" content="Shader">
+
+  <meta itemprop="name" content="Unity Shader入门精要笔记 二">
+  <meta itemprop="description" content="本章介绍渲染管线.
+原料与目标 在开始渲染之前, 我们拥有的原料是诸如纹理, 模型, 光照之类. 我们渲染的目标是一副屏幕大小的图像.
+三大阶段 沿用《Real-Rendering》(第三版)的概念, 把渲染管线分为三个阶段:
+应用阶段(Application Stage) 几何阶段(Geometry Stage) 光栅化阶段(Rasterizer Stage) 这些阶段是概念性的, 每个阶段也包含了子阶段.">
+  <meta itemprop="datePublished" content="2020-11-25T16:31:39+08:00">
+  <meta itemprop="dateModified" content="2020-11-25T16:31:39+08:00">
+  <meta itemprop="wordCount" content="973">
+  <meta itemprop="keywords" content="Unity,Shader">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Unity Shader入门精要笔记 二">
+  <meta name="twitter:description" content="本章介绍渲染管线.
+原料与目标 在开始渲染之前, 我们拥有的原料是诸如纹理, 模型, 光照之类. 我们渲染的目标是一副屏幕大小的图像.
+三大阶段 沿用《Real-Rendering》(第三版)的概念, 把渲染管线分为三个阶段:
+应用阶段(Application Stage) 几何阶段(Geometry Stage) 光栅化阶段(Rasterizer Stage) 这些阶段是概念性的, 每个阶段也包含了子阶段.">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+<script>
+  MathJax = {
+    tex: {
+	inlineMath: [["$", "$"]]
+    },
+    displayMath: [
+      ["$$", "$$"],
+      
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Unity Shader入门精要笔记 二</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-25 </span>
+        <div class="post-category">
+            <a href="/categories/unityshader%E5%85%A5%E9%97%A8%E7%B2%BE%E8%A6%81/"> UnityShader入门精要 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">原料与目标</a>
+</li>
+<li><a href="#headline-2">三大阶段</a>
+</li>
+<li><a href="#headline-3">应用阶段(Application Stage)</a>
+</li>
+<li><a href="#headline-4">几何阶段(Geometry Stage)</a>
+</li>
+<li><a href="#headline-5">光栅化阶段(Rasterizer Stage)</a>
+</li>
+<li><a href="#headline-6">几何阶段&amp;光栅化阶段流程图</a>
+</li>
+<li><a href="#headline-7">顶点着色器</a>
+</li>
+<li><a href="#headline-8">裁剪</a>
+</li>
+<li><a href="#headline-9">屏幕映射</a>
+</li>
+<li><a href="#headline-10">问题</a>
+</li>
+<li><a href="#headline-11">参考</a>
+</li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>
+本章介绍渲染管线.</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+原料与目标
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>在开始渲染之前, 我们拥有的原料是诸如纹理, 模型, 光照之类. 我们渲染的目标是一副屏幕大小的图像.</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+三大阶段
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<p>沿用《Real-Rendering》(第三版)的概念, 把渲染管线分为三个阶段:</p>
+<ul>
+<li>应用阶段(Application Stage)</li>
+<li>几何阶段(Geometry Stage)</li>
+<li>光栅化阶段(Rasterizer Stage)</li>
+</ul>
+<p>这些阶段是概念性的, 每个阶段也包含了子阶段.</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
+应用阶段(Application Stage)
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
+<p>应用阶段需要我们准备好场景数据, 例如摄像机位置, 各个模型, 光源等信息. 为了提高后续阶段的性能, 一般还需要
+在应用阶段做剔除(Culling)操作, 预先将不可见物体剔除. 然后还需要设置好每个模型的渲染状态, 使用的纹理,
+使用的Shader. 我们使用Unity编辑器和脚本完成设置, Unity会将准备好的数据(渲染图元)交给下一阶段.</p>
+<ul>
+<li>将数据加载到显存</li>
+<li>设置渲染状态</li>
+<li>调用DrawCall</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
+<h2 id="headline-4">
+几何阶段(Geometry Stage)
+</h2>
+<div id="outline-text-headline-4" class="outline-text-2">
+<p>几何阶段多再GPU上处理, 和渲染图元打交道, 进行逐顶点, 逐多边形操作.
+细分子阶段:</p>
+<ul>
+<li>顶点着色器(完全可编程)</li>
+<li>曲面细分着色器(完全可编程)</li>
+<li>几何着色器(完全可编程)</li>
+<li>裁剪(仅可配置)</li>
+<li>屏幕映射(固定函数阶段, 无法编程或配置)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+光栅化阶段(Rasterizer Stage)
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
+<p>光栅化阶段也在GPU上处理, 并渲染出最终图像, 生成屏幕上的每个像素.</p>
+<ul>
+<li>三角形设置(固定函数阶段, 无法编程或配置)</li>
+<li>三角形遍历(固定函数阶段, 无法编程或配置)</li>
+<li>片元着色器(完全可编程)</li>
+<li>逐片元操作(仅可配置)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-2">
+<h2 id="headline-6">
+几何阶段&amp;光栅化阶段流程图
+</h2>
+<div id="outline-text-headline-6" class="outline-text-2">
+<figure>
+<img src="/upload/Unity-Shader-rumen-jingyao-001.png" alt="/upload/Unity-Shader-rumen-jingyao-001.png" title="/upload/Unity-Shader-rumen-jingyao-001.png" /><figcaption>
+GPU渲染流水线
+</figcaption>
+</figure>
+<ul>
+<li>绿色代表完全可编程,</li>
+<li>黄色代码仅可配置,</li>
+<li>蓝色代表固定函数阶段无法编程或配置</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-2">
+<h2 id="headline-7">
+顶点着色器
+</h2>
+<div id="outline-text-headline-7" class="outline-text-2">
+<p>每个顶点(应用阶段被剔除的不会到达这一阶段)运行一次顶点着色器, 主要完成顶点坐标变换和逐顶点光照,
+并输出下一阶段需要的数据. </p>
+<p>
+最好可以理解:</p>
+<ul>
+<li>正交投影, 透视投影, 以及它们对应的变换矩阵</li>
+<li>透视除法</li>
+<li>齐次裁剪空间</li>
+<li>归一化的设备坐标, Normalized Device Coordinates, 简写NDC</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-2">
+<h2 id="headline-8">
+裁剪
+</h2>
+<div id="outline-text-headline-8" class="outline-text-2">
+<p>将不在摄像机视野范围内的图元(以及图元不在视野范围内的部分), 剔除. 裁剪阶段只能配置, 无法编程.</p>
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-2">
+<h2 id="headline-9">
+屏幕映射
+</h2>
+</div>
+<div id="outline-container-headline-10" class="outline-2">
+<h2 id="headline-10">
+问题
+</h2>
+<div id="outline-text-headline-10" class="outline-text-2">
+<ul>
+<li>图元是什么?</li>
+<li>SV_POSITION, POSITION的区别</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-11" class="outline-2">
+<h2 id="headline-11">
+参考
+</h2>
+<div id="outline-text-headline-11" class="outline-text-2">
+<p>本章涉及到大量的概念和计算, 想要完全弄懂, 需要反复阅读, 推导, 以下是我觉得很好的链接, 希望
+可以给大家更多帮助.</p>
+<ul>
+<li><a href="https://blog.csdn.net/softwarekid/article/details/45055253">齐次空间的裁剪</a></li>
+<li><a href="https://blog.csdn.net/wodownload2/article/details/85069240">unity里的正交投影和透视投影</a></li>
+<li><a href="https://www.jianshu.com/p/7e701d7bfd79">写给大家看的“透视除法” —— 齐次坐标和投影</a></li>
+</ul>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-11-25
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/unity/">Unity</a>
+          <a href="/tags/shader/">Shader</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2021-06-24-unirx-code-reading-01/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">UniRx源码分析(一) 基础接口</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2020-11-25-unity-shader-rumen-jingyao-01/">
+            <span class="next-text nav-default">Unity Shader入门精要笔记 一</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+
+  <span class="division">|</span>
+
+  <span class="theme-info">
+      Network by
+      <a class="theme-link" href="https://www.netlify.com">Netlify</a>
+  </span>
+
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>

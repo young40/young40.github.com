@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=8077&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>2d-x深读1:CCPlatformConfig.h - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="准备好好学习下Cocos2d-x(以下简称2dx), 我正在很努力地学习C&#43;&#43;.
+作为新手的我, 只能从最基本的代码读起. 就从CCPlatformConfig.h开始研究起吧, 这个文件没有include其他文件, 是最基本的文件.
+研究成果见代码.
+" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.146.7 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:8077/post/2012-12-17-cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="http://localhost:8077/post/2012-12-17-cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/">
+  <meta property="og:site_name" content="杨世玲的博客">
+  <meta property="og:title" content="2d-x深读1:CCPlatformConfig.h">
+  <meta property="og:description" content="准备好好学习下Cocos2d-x(以下简称2dx), 我正在很努力地学习C&#43;&#43;.
+作为新手的我, 只能从最基本的代码读起. 就从CCPlatformConfig.h开始研究起吧, 这个文件没有include其他文件, 是最基本的文件.
+研究成果见代码.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2012-12-17T00:43:00+08:00">
+    <meta property="article:modified_time" content="2012-12-17T00:43:00+08:00">
+
+  <meta itemprop="name" content="2d-x深读1:CCPlatformConfig.h">
+  <meta itemprop="description" content="准备好好学习下Cocos2d-x(以下简称2dx), 我正在很努力地学习C&#43;&#43;.
+作为新手的我, 只能从最基本的代码读起. 就从CCPlatformConfig.h开始研究起吧, 这个文件没有include其他文件, 是最基本的文件.
+研究成果见代码.">
+  <meta itemprop="datePublished" content="2012-12-17T00:43:00+08:00">
+  <meta itemprop="dateModified" content="2012-12-17T00:43:00+08:00">
+  <meta itemprop="wordCount" content="651">
+  <meta itemprop="keywords" content="Cocos2d-X,Cocos2d-X 源代码研究">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="2d-x深读1:CCPlatformConfig.h">
+  <meta name="twitter:description" content="准备好好学习下Cocos2d-x(以下简称2dx), 我正在很努力地学习C&#43;&#43;.
+作为新手的我, 只能从最基本的代码读起. 就从CCPlatformConfig.h开始研究起吧, 这个文件没有include其他文件, 是最基本的文件.
+研究成果见代码.">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+<script>
+  MathJax = {
+    tex: {
+	inlineMath: [["$", "$"]]
+    },
+    displayMath: [
+      ["$$", "$$"],
+      
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">2d-x深读1:CCPlatformConfig.h</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2012-12-17 </span>
+        <div class="post-category">
+            <a href="/categories/cocos2d-x/"> Cocos2d-x </a>
+            <a href="/categories/cocos2d-x-%E6%BA%90%E4%BB%A3%E7%A0%81%E7%A0%94%E7%A9%B6/"> Cocos2d-x 源代码研究 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>准备好好学习下Cocos2d-x(以下简称2dx), 我正在很努力地学习C++.</p>
+<p>作为新手的我, 只能从最基本的代码读起. 就从<code>CCPlatformConfig.h</code>开始研究起吧, 这个文件没有include其他文件, 是最基本的文件.</p>
+<p>研究成果见代码.</p>
+<ul>
+<li>版本:<code>cocos2d-2.1beta3-x-2.1.0</code></li>
+<li>路径:<code>cocos2d-2.1beta3-x-2.1.0/cocos2dx/platform</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#ifndef __CC_PLATFORM_CONFIG_H__
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define __CC_PLATFORM_CONFIG_H__
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">  Config of cocos2d-x project, per target platform.
+</span></span></span><span class="line"><span class="cl"><span class="cm">  */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//////////////////////////////////////////////////////////////////////////
+</span></span></span><span class="line"><span class="cl"><span class="c1">// pre configure
+</span></span></span><span class="line"><span class="cl"><span class="c1">//////////////////////////////////////////////////////////////////////////
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// define supported target platform macro which CC uses.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define CC_PLATFORM_UNKNOWN            0
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define CC_PLATFORM_IOS                1
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define CC_PLATFORM_ANDROID            2
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define CC_PLATFORM_WIN32              3
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define CC_PLATFORM_MARMALADE          4
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define CC_PLATFORM_LINUX              5
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define CC_PLATFORM_BADA               6
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define CC_PLATFORM_BLACKBERRY         7
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define CC_PLATFORM_MAC                8
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//默认是unknown的
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Determine target platform by compile environment macro.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define CC_TARGET_PLATFORM             CC_PLATFORM_UNKNOWN
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//CC_TARGET_OS_MAC等是从编译器的环境变量传入的. 参加各编译器或者IDE的预定义宏设置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// mac
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#if defined(CC_TARGET_OS_MAC)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#undef  CC_TARGET_PLATFORM </span><span class="c1">//先取消定义
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define CC_TARGET_PLATFORM         CC_PLATFORM_MAC </span><span class="c1">//定义为MAC平台
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// iphone
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#if defined(CC_TARGET_OS_IPHONE)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cp">#undef  CC_TARGET_PLATFORM
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cp">#define CC_TARGET_PLATFORM         CC_PLATFORM_IOS
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cp">#define CC_SUPPORT_PVRTC </span><span class="c1">//支持prv压缩格式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// android
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#if defined(ANDROID)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cp">#undef  CC_TARGET_PLATFORM
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cp">#define CC_TARGET_PLATFORM         CC_PLATFORM_ANDROID
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// win32
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#if defined(WIN32) &amp;&amp; defined(_WINDOWS)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cp">#undef  CC_TARGET_PLATFORM
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cp">#define CC_TARGET_PLATFORM         CC_PLATFORM_WIN32
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// linux
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#if defined(LINUX)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cp">#undef  CC_TARGET_PLATFORM
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cp">#define CC_TARGET_PLATFORM         CC_PLATFORM_LINUX
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// marmalade
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#if defined(MARMALADE)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#undef  CC_TARGET_PLATFORM
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define CC_TARGET_PLATFORM         CC_PLATFORM_MARMALADE
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// bada
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#if defined(SHP)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#undef  CC_TARGET_PLATFORM
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define CC_TARGET_PLATFORM         CC_PLATFORM_BADA
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// qnx
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#if defined(__QNX__)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cp">#undef  CC_TARGET_PLATFORM
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cp">#define CC_TARGET_PLATFORM     CC_PLATFORM_BLACKBERRY
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//////////////////////////////////////////////////////////////////////////
+</span></span></span><span class="line"><span class="cl"><span class="c1">// post configure
+</span></span></span><span class="line"><span class="cl"><span class="c1">//////////////////////////////////////////////////////////////////////////
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//不支持的平台,如果你在上面平台上遇到这个错误, 就可能是预定义变量, 或者编译器的环境变量设置错误
+</span></span></span><span class="line"><span class="cl"><span class="c1">// check user set platform
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#if ! CC_TARGET_PLATFORM
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cp">#error  &#34;Cannot recognize the target platform; are you targeting an unsupported platform?&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif 
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#pragma warning (disable:4127) </span><span class="c1">//在win32平台不显示4127的warning, 这个具体用法可以参见
+</span></span></span><span class="line"><span class="cl"><span class="c1">//http://blog.csdn.net/wowolook/article/details/8060334
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#endif  </span><span class="c1">// CC_PLATFORM_WIN32
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif  </span><span class="c1">// __CC_PLATFORM_CONFIG_H__
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2012-12-17
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">2d-x深读2:CCPlatformMacros.h</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2012-12-14-cocos2d-x-is-awesome/">
+            <span class="next-text nav-default">Cocos2d-x 真是太棒了</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+
+  <span class="division">|</span>
+
+  <span class="theme-info">
+      Network by
+      <a class="theme-link" href="https://www.netlify.com">Netlify</a>
+  </span>
+
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>

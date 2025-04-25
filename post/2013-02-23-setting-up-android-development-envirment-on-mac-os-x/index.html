@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=8077&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>搭建Mac OS X下cocos2d-x的Android开发环境 - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="##版本
+Cocos2d-x: cocos2d-2.1beta3-x-2.1.1 OS X: 10.8 Android ADT Bundle: v21.1.0 Android NDK: android-ndk-r8d Device: Android 4.2.1 这次我们测试的设备安装的是Android4.2.1, Cocos2d-x能支持Android2.2以上版本. ####文件路径:
+" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.146.7 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:8077/post/2013-02-23-setting-up-android-development-envirment-on-mac-os-x/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="http://localhost:8077/post/2013-02-23-setting-up-android-development-envirment-on-mac-os-x/">
+  <meta property="og:site_name" content="杨世玲的博客">
+  <meta property="og:title" content="搭建Mac OS X下cocos2d-x的Android开发环境">
+  <meta property="og:description" content="##版本
+Cocos2d-x: cocos2d-2.1beta3-x-2.1.1 OS X: 10.8 Android ADT Bundle: v21.1.0 Android NDK: android-ndk-r8d Device: Android 4.2.1 这次我们测试的设备安装的是Android4.2.1, Cocos2d-x能支持Android2.2以上版本. ####文件路径:">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2013-02-23T21:14:00+08:00">
+    <meta property="article:modified_time" content="2013-02-23T21:14:00+08:00">
+
+  <meta itemprop="name" content="搭建Mac OS X下cocos2d-x的Android开发环境">
+  <meta itemprop="description" content="##版本
+Cocos2d-x: cocos2d-2.1beta3-x-2.1.1 OS X: 10.8 Android ADT Bundle: v21.1.0 Android NDK: android-ndk-r8d Device: Android 4.2.1 这次我们测试的设备安装的是Android4.2.1, Cocos2d-x能支持Android2.2以上版本. ####文件路径:">
+  <meta itemprop="datePublished" content="2013-02-23T21:14:00+08:00">
+  <meta itemprop="dateModified" content="2013-02-23T21:14:00+08:00">
+  <meta itemprop="wordCount" content="1597">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="搭建Mac OS X下cocos2d-x的Android开发环境">
+  <meta name="twitter:description" content="##版本
+Cocos2d-x: cocos2d-2.1beta3-x-2.1.1 OS X: 10.8 Android ADT Bundle: v21.1.0 Android NDK: android-ndk-r8d Device: Android 4.2.1 这次我们测试的设备安装的是Android4.2.1, Cocos2d-x能支持Android2.2以上版本. ####文件路径:">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+<script>
+  MathJax = {
+    tex: {
+	inlineMath: [["$", "$"]]
+    },
+    displayMath: [
+      ["$$", "$$"],
+      
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">搭建Mac OS X下cocos2d-x的Android开发环境</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2013-02-23 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>##版本</p>
+<ul>
+<li>Cocos2d-x: cocos2d-2.1beta3-x-2.1.1</li>
+<li>OS X: 10.8</li>
+<li>Android ADT Bundle: v21.1.0</li>
+<li>Android NDK: android-ndk-r8d</li>
+<li>Device: Android 4.2.1  <br>
+这次我们测试的设备安装的是Android4.2.1, Cocos2d-x能支持Android2.2以上版本.</li>
+</ul>
+<p>####文件路径:</p>
+<ul>
+<li>Cocos2d-x: /opt/cocos2d-2.1beta3-x-2.1.1</li>
+<li>Android ADT Bundle: /opt/adt-bundle-mac-x86_64</li>
+<li>Android NDK: /opt/android-ndk
+下文中提及的这些路径, 请替换成您自己的路径</li>
+</ul>
+<p>##下载最新版本Cocos2d-x
+您可以在Cocos2d-x官网找到<a href="http://www.cocos2d-x.org/projects/cocos2d-x/wiki/Download">下载页面</a> <br>
+解压后到您需要的位置, 本文假设解压到以下位置</p>
+<pre class="mermaid">
+  /opt/cocos2d-2.1beta3-x-2.1.1
+</pre>
+
+<p>##检查JDK
+在终端中输入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">java -version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果您没有安装JDK, 系统会帮您自动安装JDK.<br>
+{% img /upload/2013-02/set-up-c-a-osx-001-jdk.png %}<br>
+安装过后您会看到如下输出</p>
+<pre class="mermaid">
+  java version &#34;1.6.0_37&#34;
+Java(TM) SE Runtime Environment (build 1.6.0_37-b06-434-11M3909)
+Java HotSpot(TM) 64-Bit Server VM (build 20.12-b01-434, mixed mode)
+</pre>
+
+<p>##下载最新版本Android ADT Bundle
+Google将Android SDK, Eclipse, ADT(Android Developer Tools)打包在一起,称作Android ADT Bundle, 简化了Android开发环境的搭建.<br>
+您可以在Android官网找到<a href="http://developer.android.com/sdk/index.html">下载页面</a> <br>
+解压到您需要的位置, 本文假设解压到以下位置</p>
+<pre class="mermaid">
+  /opt/adt-bundle-mac-x86_64
+</pre>
+
+<p>在终端中运行下面命令, 将ADT中的Eclipse放入您的程序文件夹, 方便启动</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ln -s /opt/adt-bundle-mac-x86_64/eclipse/Eclipse.app/ /Applications/Eclipse-ADT.app
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在/Applications中或者Launchpad中找到并打开Eclipse-ADT
+{% img /upload/2013-02/set-up-c-a-osx-002-adt.png %}</p>
+<p>##Eclipse的Retina支持
+如果您在使用带Retina的Mackbook Pro, Eclipse暂时还不支持Retina. 但有一个简单的<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=382972">解决方案</a></p>
+<ol>
+<li>在 /opt/adt-bundle-mac-x86_64/eclipse 找到 Eclipse.app</li>
+<li>编辑<code>Contents/Info.plist</code></li>
+<li>找到</li>
+</ol>
+<pre class="mermaid">
+  &lt;/dict&gt;
+&lt;/plist&gt;
+</pre>
+
+<p>在其上面添加</p>
+<pre class="mermaid">
+  &lt;key&gt;NSHighResolutionCapable&lt;/key&gt;
+&lt;true/&gt;
+</pre>
+
+<ol start="4">
+<li>将Eclipse.app移动到新的文件夹, 然后再移动回来. (防止系统缓存了上面提及的Info.plist)</li>
+<li>OK啦.</li>
+</ol>
+<p>##Android SDK Manager
+Android ADT Bundle中是包含了Android SDK Manager的. 启动您的Eclipse-ADT. 可以在工具栏中或者菜单中找到Android SDK Manager.<br>
+{% img /upload/2013-02/set-up-c-a-osx-003-sdk-1.png %} <br>
+{% img /upload/2013-02/set-up-c-a-osx-004-sdk-2.png %}</p>
+<p>##Android NDK
+您可以在Android官网找到Android的<a href="http://developer.android.com/tools/sdk/ndk/index.html">下载页面</a> <br>
+下载后解压到您需要的位置, 本文假设解压到以下位置</p>
+<pre class="mermaid">
+  /opt/android-ndk
+</pre>
+
+<p>##设置环境变量
+我们需要将SDK, NDK以及Cocos2d-x的路径中添加到环境变量中. 将以下内容添加到~/.bash_profile文件</p>
+<pre class="mermaid">
+  export COCOS2DX_ROOT=/opt/cocos2d-2.1beta3-x-2.1.1
+export ANDROID_SDK_ROOT=/opt/adt-bundle-mac-x86_64/sdk
+export ANDROID_NDK_ROOT=/opt/android-ndk
+export NDK_ROOT=/opt/android-ndk
+export PATH=$PATH:$ANDROID_NDK_ROOT
+export PATH=$PATH:$ANDROID_SDK_ROOT
+</pre>
+
+<p>##HelloWorld
+万事俱备, 我们现在就可以开始激动人心的Cocos2d-x之旅了.  <br>
+打开终端, 进入cocos2d-x所在目录并执行 <code>/opt/cocos2d-2.1beta3-x-2.1.1/create-android-project.sh</code>文件 <br>
+根据提示输入对应信息.</p>
+<pre class="mermaid">
+  Youngs-MacBook-Air:~ young40$ cd /opt/cocos2d-2.1beta3-x-2.1.1/
+Youngs-MacBook-Air:cocos2d-2.1beta3-x-2.1.1 young40$ ./create-android-project.sh 
+use global definition of NDK_ROOT: /opt/android-ndk
+use global definition of ANDROID_SDK_ROOT: /opt/adt-bundle-mac-x86_64/sdk
+Input package path. For example: org.cocos2dx.example
+com.young40.test  //这里输入了包名
+Now cocos2d-x supports Android 2.2 or upper version
+Available Android targets:
+----------
+id: 1 or &#34;android-17&#34;
+     Name: Android 4.2
+     Type: Platform
+     API level: 17
+     Revision: 1
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in
+     ABIs : armeabi-v7a
+input target id:
+1 //选择您需要的平台id
+input your project name:
+HelloWorld  //输入项目名称
+Created project directory: /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android
+
+.....
+
+
+Updated project.properties
+Updated local.properties
+Updated file /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/proguard-project.txt
+Youngs-MacBook-Air:cocos2d-2.1beta3-x-2.1.1 young40$ 
+</pre>
+
+<p>从以上输出我们可以看到<code>create-android-project.sh</code>这个脚本帮我们在 /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld 下建立了新项目.</p>
+<p>然后我们可以先在终端中调用&quot;build_native.sh&quot;脚本编译该项目的C++部分.</p>
+<pre class="mermaid">
+  Youngs-MacBook-Air:~ young40$ cd /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/
+Youngs-MacBook-Air:proj.android young40$ ./build_native.sh 
+NDK_ROOT = /opt/android-ndk
+COCOS2DX_ROOT = /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/../..
+APP_ROOT = /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/..
+APP_ANDROID_ROOT = /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android
+Using prebuilt externals
+make: Entering directory `/opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android&#39;
+
+.....
+
+StaticLibrary  : libchipmunk.a
+StaticLibrary  : libextension.a
+SharedLibrary  : libgame.so
+Install        : libgame.so =&gt; libs/armeabi/libgame.so
+make: Leaving directory `/opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android&#39;
+Youngs-MacBook-Air:proj.android young40$ 
+</pre>
+
+<p>##导入Eclipse-ADT
+打开Eclipse-ADT, 点击快捷键<code>command+N</code>打开新建项目窗口并选择<code>Android Project from Existing Code</code>  <br>
+{% img /upload/2013-02/set-up-c-a-osx-005-helloworld-1.png %} <br>
+{% img /upload/2013-02/set-up-c-a-osx-006-helloworld-2.png %} <br>
+这时您可能会在eclipse的<code>Problems</code>窗口看到如下错误</p>
+<pre class="mermaid">
+  The import org.cocos2dx.lib cannot be resolved	HelloWorld.java	/HelloWorld/src/com/young40/test	line 26	Java Problem
+Cocos2dxActivity cannot be resolved to a type	HelloWorld.java	/HelloWorld/src/com/young40/test	line 30	Java Problem
+Cocos2dxActivity cannot be resolved to a type	HelloWorld.java	/HelloWorld/src/com/young40/test	line 33	Java Problem
+</pre>
+
+<p>您需要将<code>/opt/cocos2d-2.1beta3-x-2.1.1/cocos2dx/platform/android/java</code>如上面处理一样也作为一个项目导入eclipse中 <br>
+然后在HelloWorld项目上点击右键选择刷新, 可以看到错误就消失了.</p>
+<p>将您的手机设置成调试模式并用USB线连接到电脑, 在Eclipse中运行HelloWorld, 然后就能在手机上看到已经运行的HelloWorld了 <br>
+{% img /upload/2013-02/set-up-c-a-osx-007-screen.png %}</p>
+<p>好了, 享受您的奇妙的Cocos2d-x之旅吧!</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2013-02-23
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/2013-08-01-cocosbuilder-multi-resolution/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">CocosBuilder 多分辨率</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2013-01-08-chat-of-pomelo-for-cocos2d-x/">
+            <span class="next-text nav-default">基于Pomelo和Cocos2d-x的聊天室</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+
+  <span class="division">|</span>
+
+  <span class="theme-info">
+      Network by
+      <a class="theme-link" href="https://www.netlify.com">Netlify</a>
+  </span>
+
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+
+  
+  <script type="module">
+   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+   mermaid.initialize({ startOnLoad: true });
+  </script>
+  
+
+</body>
+</html>

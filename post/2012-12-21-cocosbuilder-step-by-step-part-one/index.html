@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=8077&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>一步一步CocosBuilder(1) - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本. CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大. 我想这个也是其不够流行的原因吧.
+如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力. 我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实. 我无论C&#43;&#43;,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.
+这次的目的是基本实现原来v2.0中的例子. 我采用的2d-x的版本是:cocos2d-2.1beta3-x-2.1.0, 以OS X版本为主, 以sample目录下的HelloCpp为基础改进. CCB的版本是v3.0alpha0.
+" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.146.7 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:8077/post/2012-12-21-cocosbuilder-step-by-step-part-one/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="http://localhost:8077/post/2012-12-21-cocosbuilder-step-by-step-part-one/">
+  <meta property="og:site_name" content="杨世玲的博客">
+  <meta property="og:title" content="一步一步CocosBuilder(1)">
+  <meta property="og:description" content="CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本. CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大. 我想这个也是其不够流行的原因吧.
+如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力. 我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实. 我无论C&#43;&#43;,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.
+这次的目的是基本实现原来v2.0中的例子. 我采用的2d-x的版本是:cocos2d-2.1beta3-x-2.1.0, 以OS X版本为主, 以sample目录下的HelloCpp为基础改进. CCB的版本是v3.0alpha0.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2012-12-21T02:46:00+08:00">
+    <meta property="article:modified_time" content="2012-12-21T02:46:00+08:00">
+
+  <meta itemprop="name" content="一步一步CocosBuilder(1)">
+  <meta itemprop="description" content="CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本. CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大. 我想这个也是其不够流行的原因吧.
+如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力. 我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实. 我无论C&#43;&#43;,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.
+这次的目的是基本实现原来v2.0中的例子. 我采用的2d-x的版本是:cocos2d-2.1beta3-x-2.1.0, 以OS X版本为主, 以sample目录下的HelloCpp为基础改进. CCB的版本是v3.0alpha0.">
+  <meta itemprop="datePublished" content="2012-12-21T02:46:00+08:00">
+  <meta itemprop="dateModified" content="2012-12-21T02:46:00+08:00">
+  <meta itemprop="wordCount" content="1969">
+  <meta itemprop="keywords" content="Cocos2d-X,CocosBuilder">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="一步一步CocosBuilder(1)">
+  <meta name="twitter:description" content="CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本. CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大. 我想这个也是其不够流行的原因吧.
+如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力. 我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实. 我无论C&#43;&#43;,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.
+这次的目的是基本实现原来v2.0中的例子. 我采用的2d-x的版本是:cocos2d-2.1beta3-x-2.1.0, 以OS X版本为主, 以sample目录下的HelloCpp为基础改进. CCB的版本是v3.0alpha0.">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+<script>
+  MathJax = {
+    tex: {
+	inlineMath: [["$", "$"]]
+    },
+    displayMath: [
+      ["$$", "$$"],
+      
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">一步一步CocosBuilder(1)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2012-12-21 </span>
+        <div class="post-category">
+            <a href="/categories/cocos2d-x/"> Cocos2d-x </a>
+            <a href="/categories/cocosbuilder/"> CocosBuilder </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>CocosBuilder是Cocos2d系列的配套开源工具,最新的版本是3.0a, 也是我们这个系列文章所采用的版本.
+CCB(CocosBuilder简称)目前只有OS X版本, 没有Windows的版本, 而且源代码也是用Objective-c, 估计移植难度会比较大.
+我想这个也是其不够流行的原因吧.</p>
+<p>如果你是CCB的熟客,那么你一定会记得CCB v2.x以前版本附带的例子. 而CCB v3.0采用了一个叫做CocosDragonJS的例子, 主要是展示CCB的Javascript的调用能力.
+我虽然很喜欢JS, 但是正在学习2d-x, 又很想学好, 所以还是打好基础, 学好原滋原味的2d-x才好, 以后换用无论是Html5, 还是JS, Lua, 心里才会觉得踏实.
+我无论C++,还是2d-x都是新手,又是第一次想正儿八经的写博客文章, 难免有很多错误, 还望各位看客踊跃拍砖.</p>
+<p>这次的目的是基本实现原来v2.0中的例子.
+我采用的2d-x的版本是:cocos2d-2.1beta3-x-2.1.0, 以OS X版本为主, 以sample目录下的HelloCpp为基础改进. CCB的版本是v3.0alpha0.</p>
+<p>本文的目标是基本实现将CCB整合进Mac OS X版本的项目中.</p>
+<p>首先将2d-x源代码中sample目录下的HelloCpp目录重命名为TestCocosBuilder.并使用CocosBuilder创建新项目文件在其Resources文件夹中.
+还需要将项目需要的图片资源放入Resources目录中. 具体可以参见我打包后的整体项目文件.还可以参见文末的目录树说明.</p>
+<p>贴下Xcode项目的目录,如果添加extensions应该逐个添加,否则可能会遇到编译错误,有可能会把其他平台文件错误添加进来.</p>
+<p>{% img /upload/2012-12/ccb-sbs-1-001.png %}</p>
+<p>做完这些准备工作后, 我们接下来按步来讲解.</p>
+<p>1.首先编辑下<code>AppMacros.h</code>, 修改以下代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">static</span> <span class="n">Resource</span> <span class="n">smallResource</span>  <span class="o">=</span>  <span class="p">{</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">CCSizeMake</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span> <span class="mi">320</span><span class="p">),</span>   <span class="s">&#34;resources-iphone&#34;</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">Resource</span> <span class="n">mediumResource</span> <span class="o">=</span>  <span class="p">{</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">CCSizeMake</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">768</span><span class="p">),</span>  <span class="s">&#34;resources-ipad&#34;</span>   <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">Resource</span> <span class="n">largeResource</span>  <span class="o">=</span>  <span class="p">{</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">CCSizeMake</span><span class="p">(</span><span class="mi">2048</span><span class="p">,</span> <span class="mi">1536</span><span class="p">),</span> <span class="s">&#34;resources-ipadhd&#34;</span> <span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这一段主要是修改<code>HelloCpp</code>默认的资源目录, 配合CCB的发布路径.同时可以将原来几个目录中文件分别移入对应目录.
+2.添加一个新类<code>MainScene</code>如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#ifndef __HelloCpp__MainScene__
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define __HelloCpp__MainScene__
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;cocos2d.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;cocos-ext.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MainScene</span>
+</span></span><span class="line"><span class="cl"><span class="o">:</span> <span class="k">public</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">CCLayer</span> <span class="c1">//从CCLayer派生
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">CCScene</span><span class="o">*</span> <span class="n">scene</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#endif </span><span class="cm">/* defined(__HelloCpp__MainScene__) */</span><span class="cp">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;MainScene.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">USING_NS_CC</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">USING_NS_CC_EXT</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CCScene</span><span class="o">*</span> <span class="n">MainScene</span><span class="o">::</span><span class="n">scene</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CCScene</span> <span class="o">*</span><span class="n">scene</span> <span class="o">=</span> <span class="n">CCScene</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">CCNodeLoaderLibrary</span> <span class="o">*</span><span class="n">lib</span> <span class="o">=</span> <span class="n">CCNodeLoaderLibrary</span><span class="o">::</span><span class="n">newDefaultCCNodeLoaderLibrary</span><span class="p">();</span> <span class="c1">//生成一个默认的Node Loader
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="n">CCBReader</span> <span class="o">*</span><span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CCBReader</span><span class="p">(</span><span class="n">lib</span><span class="p">);</span> <span class="c1">//用node load lib 初始化一个ccb reader
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="n">CCNode</span> <span class="o">*</span><span class="n">node</span> <span class="o">=</span> <span class="n">reader</span><span class="o">-&gt;</span><span class="n">readNodeGraphFromFile</span><span class="p">(</span><span class="s">&#34;MainScene.ccbi&#34;</span><span class="p">,</span> <span class="n">scene</span><span class="p">);</span> <span class="c1">//从ccbi文件中加载node
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="n">reader</span><span class="o">-&gt;</span><span class="n">release</span><span class="p">();</span> <span class="c1">//注意手动释放内存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="o">!=</span><span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scene</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">node</span><span class="p">);</span> <span class="c1">//将node 添加到scene中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">scene</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>3.修改<code>AppDelegate.cpp</code>中默认的启动scene</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">CCScene</span> <span class="o">*</span><span class="n">pScene</span> <span class="o">=</span> <span class="n">MainScene</span><span class="o">::</span><span class="n">scene</span><span class="p">();</span> <span class="c1">//HelloWorld::scene();
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>4.注意CCB中发布选项的设置, 并发布一次.
+{% img /upload/2012-12/ccb-sbs-1-002.png %}</p>
+<p>5.如果没有错误的话, 你应该可以看到运行的效果.
+{% img /upload/2012-12/ccb-sbs-1-003.png %}</p>
+<p>Update:
+@王哲Walzer 说,CCB大部分是美术在用, 在美术圈讨论, 所以程序圈较少看到人在讨论, 其实用的公司挺多的.
+<a href="http://weibo.com/1702027805/zay18wLT5">http://weibo.com/1702027805/zay18wLT5</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">├── samples <span class="c1">#目录结构和2d-x源代码保持一致,相信大家对2d-x源代码很熟悉了.</span>
+</span></span><span class="line"><span class="cl">│   └── CocosBuilderTest <span class="c1">#项目所在目录</span>
+</span></span><span class="line"><span class="cl">│       ├── Classes <span class="c1">#代码所在目录</span>
+</span></span><span class="line"><span class="cl">│       ├── Resources <span class="c1">#资源目录</span>
+</span></span><span class="line"><span class="cl">│       │   ├── ccb <span class="c1">#ccb发布后的目录</span>
+</span></span><span class="line"><span class="cl">│       │   │   ├── HelloCocosBuilder.ccbi
+</span></span><span class="line"><span class="cl">│       │   │   ├── ...
+</span></span><span class="line"><span class="cl">│       │   │   └── TestSprites.ccbi
+</span></span><span class="line"><span class="cl">│       │   ├── ccbResources <span class="c1">#发布后的默认ccb资源</span>
+</span></span><span class="line"><span class="cl">│       │   ├── fonts
+</span></span><span class="line"><span class="cl">│       │   ├── resources-ipad <span class="c1">#注意这几个目录, 稍后我们会提及</span>
+</span></span><span class="line"><span class="cl">│       │   ├── resources-ipadhd
+</span></span><span class="line"><span class="cl">│       │   ├── resources-iphone
+</span></span><span class="line"><span class="cl">│       │   ├── resources-iphonehd
+</span></span><span class="line"><span class="cl">│       ├── ccb-source <span class="c1">#ccb项目目录</span>
+</span></span><span class="line"><span class="cl">│       │   ├── ccb
+</span></span><span class="line"><span class="cl">│       │   │   ├── HelloCocosBuilder.ccb <span class="c1">#这几个是原CocosBuilder例子中的ccb, 直接复制过来了.</span>
+</span></span><span class="line"><span class="cl">│       │   │   ├── ...
+</span></span><span class="line"><span class="cl">│       │   │   └── TestSprites.ccbi
+</span></span><span class="line"><span class="cl">│       │   ├── ccbResources
+</span></span><span class="line"><span class="cl">│       │   ├── resources-auto <span class="c1">#CocosBuilderv3.0的资源目录, 似乎只能存放图片</span>
+</span></span><span class="line"><span class="cl">│       │   │   ├── btn-a-0.png <span class="c1">#否则会引起发布是造成CocosBuilder崩溃</span>
+</span></span><span class="line"><span class="cl">│       │   │   ├── ...
+</span></span><span class="line"><span class="cl">│       │   │   └── scale-9-demo.png
+</span></span><span class="line"><span class="cl">│       │   ├── MainScene.ccb <span class="c1">#默认生成的ccb, 我们这一次不对其更改</span>
+</span></span><span class="line"><span class="cl">│       │   ├── MainScene.js
+</span></span><span class="line"><span class="cl">│       │   ├── animated-grossini.plist
+</span></span><span class="line"><span class="cl">│       │   ├── animated-grossini.png
+</span></span><span class="line"><span class="cl">│       │   ├── ccb-source.ccbproj
+</span></span><span class="line"><span class="cl">│       │   ├── comic<span class="se">\ </span>andy.ttf
+</span></span><span class="line"><span class="cl">│       │   ├── grossini-generic.plist
+</span></span><span class="line"><span class="cl">│       │   ├── grossini-generic.png
+</span></span><span class="line"><span class="cl">│       │   ├── markerfelt24shadow.fnt
+</span></span><span class="line"><span class="cl">│       │   └── markerfelt24shadow.png
+</span></span><span class="line"><span class="cl">│       └── proj.mac
+</span></span><span class="line"><span class="cl">│           ├── HelloCpp.xcodeproj <span class="c1">#项目文件, 暂时只支持mac os x</span>
+</span></span><span class="line"><span class="cl">├── cocos2dx <span class="c1">#2d-x文件</span>
+</span></span><span class="line"><span class="cl">├── extensions <span class="c1">#2d-x的扩展</span>
+</span></span><span class="line"><span class="cl">│   ├── CCBReader <span class="c1">#这个是解析CocosBuilder的主要CCBReader</span>
+</span></span><span class="line"><span class="cl">│   │   ├── CCBAnimationManager.cpp
+</span></span><span class="line"><span class="cl">│   │   ├── CCBAnimationManager.h
+</span></span><span class="line"><span class="cl">│   │   ├── ...
+</span></span><span class="line"><span class="cl">│   │   └── CCSpriteLoader.h
+</span></span><span class="line"><span class="cl">│   ├── GUI
+</span></span><span class="line"><span class="cl">│   ├── network
+</span></span><span class="line"><span class="cl">│   ├── physics_nodes
+</span></span><span class="line"><span class="cl">│   ├── ExtensionMacros.h
+</span></span><span class="line"><span class="cl">│   └── cocos-ext.h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr />
+代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> 
+<ul>
+<li>本文是系列文章, 请查看其他文章:</li>
+<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/">一步一步CocosBuilder(1)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/">一步一步CocosBuilder(2)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/">一步一步CocosBuilder(3)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/">一步一步CocosBuilder(4)完结</a></li>
+</ul>
+<p>谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.</p>
+<p>新浪微博: <a href="http://weibo.com/young40">@杨世玲</a> <a href="http://weibo.com/young40">http://weibo.com/young40</a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2012-12-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/2012-12-25-cocosbuilder-step-by-step-part-two/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">一步一步CocosBuilder(2)</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/">
+            <span class="next-text nav-default">2d-x深读2:CCPlatformMacros.h</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+
+  <span class="division">|</span>
+
+  <span class="theme-info">
+      Network by
+      <a class="theme-link" href="https://www.netlify.com">Netlify</a>
+  </span>
+
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>

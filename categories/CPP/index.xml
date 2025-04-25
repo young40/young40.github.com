@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CPP on 杨世玲的博客</title>
+    <link>http://localhost:8077/categories/cpp/</link>
+    <description>Recent content in CPP on 杨世玲的博客</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>杨世玲</copyright>
+    <lastBuildDate>Mon, 10 Dec 2012 07:35:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:8077/categories/cpp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>声明和定义的研究</title>
+      <link>http://localhost:8077/post/2012-12-10-declaration-and-definition-in-cpp/</link>
+      <pubDate>Mon, 10 Dec 2012 07:35:00 +0800</pubDate>
+      <guid>http://localhost:8077/post/2012-12-10-declaration-and-definition-in-cpp/</guid>
+      <description>&lt;p&gt;最近一直在看C++, 基础的东西瞄了一遍就飘过了, 然后就记不得很清楚了.&#xA;这两天觉得看书的时候, 对声明和定义的含义很含糊, 以至于都不是很明白书上在说什么地方了.&#xA;看来有必要对声明和定义重新研究下, 既然架设了这个博客, 那么就写一篇博客吧.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

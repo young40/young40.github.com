@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emacs on 杨世玲的博客</title>
+    <link>http://localhost:8077/categories/emacs/</link>
+    <description>Recent content in Emacs on 杨世玲的博客</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>杨世玲</copyright>
+    <lastBuildDate>Sun, 11 Jan 2015 12:54:46 +0800</lastBuildDate>
+    <atom:link href="http://localhost:8077/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>初识Emacs(一)</title>
+      <link>http://localhost:8077/post/2015-01-11-meet-emacs-01/</link>
+      <pubDate>Sun, 11 Jan 2015 12:54:46 +0800</pubDate>
+      <guid>http://localhost:8077/post/2015-01-11-meet-emacs-01/</guid>
+      <description>&lt;p&gt;#版本&#xA;Mac OS X 10.10 中自带的Emacs 版本是22.+,  对于什么版本都求新的我来说, 自然需要祭出Homebrew, 安装最新的版本&#xA;&lt;code&gt;brew install emacs&lt;/code&gt;&#xA;安装后版本为24.4, ^_^&#xA;如果你不知掉Homebrew是什么, 参见这里: &lt;a href=&#34;http://brew.sh/index_zh-cn.html&#34;&gt;http://brew.sh/index_zh-cn.html&lt;/a&gt;&#xA;另外, 还有Emacs for OS X可选:http://emacsformacosx.com/&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mac OS X on 杨世玲的博客</title>
+    <link>http://localhost:8077/tags/mac-os-x/</link>
+    <description>Recent content in Mac OS X on 杨世玲的博客</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>杨世玲</copyright>
+    <lastBuildDate>Wed, 18 Jun 2014 17:53:52 +0800</lastBuildDate>
+    <atom:link href="http://localhost:8077/tags/mac-os-x/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>pkgbuild 安装提示成功但找不到App的问题</title>
+      <link>http://localhost:8077/post/2014-06-18-an-issue-about-pkgbuild-install-location-changed/</link>
+      <pubDate>Wed, 18 Jun 2014 17:53:52 +0800</pubDate>
+      <guid>http://localhost:8077/post/2014-06-18-an-issue-about-pkgbuild-install-location-changed/</guid>
+      <description>&lt;p&gt;这几天用 &lt;code&gt;pkgbuild&lt;/code&gt; 来打包 &lt;code&gt;CocoStudio for Mac&lt;/code&gt;, 遇到了一个极其诡异的问题. 安装打包好的 &lt;code&gt;CocoStudio.pkg&lt;/code&gt;, 有时在&lt;code&gt;/Applications&lt;/code&gt; 里面居然找不到 &lt;code&gt;CocoStudio&lt;/code&gt;. -_-!!!&lt;/p&gt;&#xA;&lt;p&gt;打包的参数如下:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

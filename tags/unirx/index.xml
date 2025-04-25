@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UniRx on 杨世玲的博客</title>
+    <link>http://localhost:8077/tags/unirx/</link>
+    <description>Recent content in UniRx on 杨世玲的博客</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>杨世玲</copyright>
+    <lastBuildDate>Mon, 28 Jun 2021 14:15:55 +0800</lastBuildDate>
+    <atom:link href="http://localhost:8077/tags/unirx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UniRx源码分析(四) Disposables</title>
+      <link>http://localhost:8077/post/2021-06-28-unirx-code-reading-04/</link>
+      <pubDate>Mon, 28 Jun 2021 14:15:55 +0800</pubDate>
+      <guid>http://localhost:8077/post/2021-06-28-unirx-code-reading-04/</guid>
+      <description>&lt;p&gt;&#xA;在源码的 &lt;code class=&#34;verbatim&#34;&gt;Disposables&lt;/code&gt; 目录下， &lt;code class=&#34;verbatim&#34;&gt;UniRx&lt;/code&gt; 实现了多种 &lt;code class=&#34;verbatim&#34;&gt;Disposable&lt;/code&gt; 子类, 他们实现了 &lt;code class=&#34;verbatim&#34;&gt;IDisposable&lt;/code&gt; 或 &lt;code class=&#34;verbatim&#34;&gt;ICancelable&lt;/code&gt; 接口。&lt;/p&gt;&#xA;&lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-2&#34;&gt;&#xA;&lt;h2 id=&#34;headline-1&#34;&gt;&#xA;套路&#xA;&lt;/h2&gt;&#xA;&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-2&#34;&gt;&#xA;&lt;p&gt;各子类的套路基本是：&lt;/p&gt;&#xA;&lt;div id=&#34;outline-container-headline-2&#34; class=&#34;outline-3&#34;&gt;&#xA;&lt;h3 id=&#34;headline-2&#34;&gt;&#xA;IsDisposed&#xA;&lt;/h3&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>UniRx源码分析(三) Observable</title>
+      <link>http://localhost:8077/post/2021-06-26-unirx-code-reading-03/</link>
+      <pubDate>Sat, 26 Jun 2021 22:08:46 +0800</pubDate>
+      <guid>http://localhost:8077/post/2021-06-26-unirx-code-reading-03/</guid>
+      <description>&lt;p&gt;&#xA;&lt;code class=&#34;verbatim&#34;&gt;Observable&lt;/code&gt; 类由多个文件组成, 如下:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>UniRx源码分析(二) Observer.cs</title>
+      <link>http://localhost:8077/post/2021-06-25-unirx-code-reading-02/</link>
+      <pubDate>Fri, 25 Jun 2021 15:34:16 +0800</pubDate>
+      <guid>http://localhost:8077/post/2021-06-25-unirx-code-reading-02/</guid>
+      <description>&lt;p&gt;&#xA;&lt;code class=&#34;verbatim&#34;&gt;Observer.cs&lt;/code&gt; 包含了类 &lt;code class=&#34;verbatim&#34;&gt;Observer&lt;/code&gt;, &lt;code class=&#34;verbatim&#34;&gt;ObserverExtensions&lt;/code&gt;, &lt;code class=&#34;verbatim&#34;&gt;ObservableExtensions&lt;/code&gt;, &lt;code class=&#34;verbatim&#34;&gt;Stubs&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>UniRx源码分析(一) 基础接口</title>
+      <link>http://localhost:8077/post/2021-06-24-unirx-code-reading-01/</link>
+      <pubDate>Thu, 24 Jun 2021 17:26:34 +0800</pubDate>
+      <guid>http://localhost:8077/post/2021-06-24-unirx-code-reading-01/</guid>
+      <description>&lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-2&#34;&gt;&#xA;&lt;h2 id=&#34;headline-1&#34;&gt;&#xA;源码目录&#xA;&lt;/h2&gt;&#xA;&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-2&#34;&gt;&#xA;&lt;p&gt;UniRx的源码位于 &lt;code class=&#34;verbatim&#34;&gt;UniRx/Assets/Plugins/UniRx/Scripts&lt;/code&gt; 目录, 用例位于 &lt;code class=&#34;verbatim&#34;&gt;Assets/Plugins/UniRx/Examples&lt;/code&gt; 目录.&lt;/p&gt;&#xA;&lt;p&gt;&#xA;重要的文件或目录有:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

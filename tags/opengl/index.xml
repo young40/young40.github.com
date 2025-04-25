@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenGL on 杨世玲的博客</title>
+    <link>http://localhost:8077/tags/opengl/</link>
+    <description>Recent content in OpenGL on 杨世玲的博客</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>杨世玲</copyright>
+    <lastBuildDate>Sat, 10 Mar 2018 23:25:30 +0800</lastBuildDate>
+    <atom:link href="http://localhost:8077/tags/opengl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于OpenGL渲染管线(1)</title>
+      <link>http://localhost:8077/post/2018-03-10-about-opengl-rendering-pipeline/</link>
+      <pubDate>Sat, 10 Mar 2018 23:25:30 +0800</pubDate>
+      <guid>http://localhost:8077/post/2018-03-10-about-opengl-rendering-pipeline/</guid>
+      <description>&lt;p&gt;&#xA;前几日, 和人闲聊, 谈及OpenGL, 突然被问OpenGL渲染管线, 一时语塞.&#xA;渲染管线是OpenGL的基础, 谈到基础的东西, 一般都会呈现两种状态.&#xA;一方面, 基础的东西, 不理解, 学后面的东西就是稀里糊涂; &#xA;另一方面, 天天需要接触的反而不是这些基础的东西. 正如, 1+1 是数学的&#xA;基础, 你不会就啥都不要搞了, 学点数学, 再也不会有人问你 1+1 = ?了.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

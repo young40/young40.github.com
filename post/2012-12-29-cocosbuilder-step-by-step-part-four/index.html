@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=8077&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>一步一步CocosBuilder(4)[完结] - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="这一节也是很轻松, 主要是牵涉到Timeline的切换. 其他的都是简单的界面制作.
+所以CocosBuilder的威力也体现在这里, 很少的代码就能驱动界面了.
+我们这次先做Particle System, Scroll View, 最后以Animations收官.
+#####1 制作Particle System和Scroll View的界面很简单,我们也是以程序为重点, 所以不再赘述.
+只需要一句this-&gt;openTest(&quot;ccb/Scroll.ccbi&quot;);就可以调用新的界面了.
+其他诸如绑定之类相信大家已经是轻车熟路啦.
+" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.146.7 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:8077/post/2012-12-29-cocosbuilder-step-by-step-part-four/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="http://localhost:8077/post/2012-12-29-cocosbuilder-step-by-step-part-four/">
+  <meta property="og:site_name" content="杨世玲的博客">
+  <meta property="og:title" content="一步一步CocosBuilder(4)[完结]">
+  <meta property="og:description" content="这一节也是很轻松, 主要是牵涉到Timeline的切换. 其他的都是简单的界面制作.
+所以CocosBuilder的威力也体现在这里, 很少的代码就能驱动界面了.
+我们这次先做Particle System, Scroll View, 最后以Animations收官.
+#####1 制作Particle System和Scroll View的界面很简单,我们也是以程序为重点, 所以不再赘述.
+只需要一句this-&gt;openTest(&#34;ccb/Scroll.ccbi&#34;);就可以调用新的界面了.
+其他诸如绑定之类相信大家已经是轻车熟路啦.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2012-12-29T10:54:00+08:00">
+    <meta property="article:modified_time" content="2012-12-29T10:54:00+08:00">
+
+  <meta itemprop="name" content="一步一步CocosBuilder(4)[完结]">
+  <meta itemprop="description" content="这一节也是很轻松, 主要是牵涉到Timeline的切换. 其他的都是简单的界面制作.
+所以CocosBuilder的威力也体现在这里, 很少的代码就能驱动界面了.
+我们这次先做Particle System, Scroll View, 最后以Animations收官.
+#####1 制作Particle System和Scroll View的界面很简单,我们也是以程序为重点, 所以不再赘述.
+只需要一句this-&gt;openTest(&#34;ccb/Scroll.ccbi&#34;);就可以调用新的界面了.
+其他诸如绑定之类相信大家已经是轻车熟路啦.">
+  <meta itemprop="datePublished" content="2012-12-29T10:54:00+08:00">
+  <meta itemprop="dateModified" content="2012-12-29T10:54:00+08:00">
+  <meta itemprop="wordCount" content="1246">
+  <meta itemprop="keywords" content="Cocos2d-X,CocosBuilder">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="一步一步CocosBuilder(4)[完结]">
+  <meta name="twitter:description" content="这一节也是很轻松, 主要是牵涉到Timeline的切换. 其他的都是简单的界面制作.
+所以CocosBuilder的威力也体现在这里, 很少的代码就能驱动界面了.
+我们这次先做Particle System, Scroll View, 最后以Animations收官.
+#####1 制作Particle System和Scroll View的界面很简单,我们也是以程序为重点, 所以不再赘述.
+只需要一句this-&gt;openTest(&#34;ccb/Scroll.ccbi&#34;);就可以调用新的界面了.
+其他诸如绑定之类相信大家已经是轻车熟路啦.">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+<script>
+  MathJax = {
+    tex: {
+	inlineMath: [["$", "$"]]
+    },
+    displayMath: [
+      ["$$", "$$"],
+      
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">一步一步CocosBuilder(4)[完结]</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2012-12-29 </span>
+        <div class="post-category">
+            <a href="/categories/cocos2d-x/"> Cocos2d-x </a>
+            <a href="/categories/cocosbuilder/"> CocosBuilder </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>这一节也是很轻松, 主要是牵涉到Timeline的切换. 其他的都是简单的界面制作.<br>
+所以CocosBuilder的威力也体现在这里, 很少的代码就能驱动界面了.</p>
+<p>我们这次先做<code>Particle System</code>, <code>Scroll View</code>, 最后以<code>Animations</code>收官.</p>
+<p>#####1
+制作<code>Particle System</code>和<code>Scroll View</code>的界面很简单,我们也是以程序为重点, 所以不再赘述.<br>
+只需要一句<code>this-&gt;openTest(&quot;ccb/Scroll.ccbi&quot;);</code>就可以调用新的界面了.<br>
+其他诸如绑定之类相信大家已经是轻车熟路啦.</p>
+<p>{% img /upload/2012-12/ccb-sbs-4-001.png %}
+{% img /upload/2012-12/ccb-sbs-4-002.png %}</p>
+<p>#####2
+好吧, 我承认一点, 制作<code>Animations</code>的界面的时候, 我直接复制了例子中的节点.<br>
+5个Timeline, 还是很复杂的, 应该是一个非常精细的工作. 向美术们致敬.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AnimationsLayer</span>
+</span></span><span class="line"><span class="cl"><span class="o">:</span> <span class="k">public</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">CCLayer</span>
+</span></span><span class="line"><span class="cl"><span class="p">,</span> <span class="k">public</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCBSelectorResolver</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">AnimationsLayer</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">~</span><span class="n">AnimationsLayer</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">CCB_STATIC_NEW_AUTORELEASE_OBJECT_WITH_INIT_METHOD</span><span class="p">(</span><span class="n">AnimationsLayer</span><span class="p">,</span> <span class="n">create</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">SEL_MenuHandler</span> <span class="n">onResolveCCBCCMenuItemSelector</span><span class="p">(</span><span class="n">CCObject</span> <span class="o">*</span> <span class="n">pTarget</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">pSelectorName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">SEL_CCControlHandler</span> <span class="n">onResolveCCBCCControlSelector</span><span class="p">(</span><span class="n">CCObject</span> <span class="o">*</span> <span class="n">pTarget</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">pSelectorName</span><span class="p">);</span>    
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">setAnimationManager</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCBAnimationManager</span> <span class="o">*</span><span class="n">pAnimationManager</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">onIdle</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">CCObject</span> <span class="o">*</span> <span class="n">pSender</span><span class="p">,</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCControlEvent</span> <span class="n">pCCControlEvent</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">onWave</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">CCObject</span> <span class="o">*</span> <span class="n">pSender</span><span class="p">,</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCControlEvent</span> <span class="n">pCCControlEvent</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">onJump</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">CCObject</span> <span class="o">*</span> <span class="n">pSender</span><span class="p">,</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCControlEvent</span> <span class="n">pCCControlEvent</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">onFunky</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">CCObject</span> <span class="o">*</span> <span class="n">pSender</span><span class="p">,</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCControlEvent</span> <span class="n">pCCControlEvent</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCBAnimationManager</span> <span class="o">*</span><span class="n">mAnimationManager</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AnimationsLayerLoader</span> <span class="o">:</span> <span class="k">public</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCNodeLoader</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD</span><span class="p">(</span><span class="n">AnimationsLayerLoader</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">protected</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD</span><span class="p">(</span><span class="n">AnimationsLayer</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">AnimationsLayer</span><span class="o">::</span><span class="n">AnimationsLayer</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">:</span> <span class="n">mAnimationManager</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">AnimationsLayer</span><span class="o">::~</span><span class="n">AnimationsLayer</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CC_SAFE_RELEASE_NULL</span><span class="p">(</span><span class="n">mAnimationManager</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">SEL_MenuHandler</span> <span class="n">AnimationsLayer</span><span class="o">::</span><span class="n">onResolveCCBCCMenuItemSelector</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">CCObject</span> <span class="o">*</span><span class="n">pTarget</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">pSelectorName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">SEL_CCControlHandler</span> <span class="n">AnimationsLayer</span><span class="o">::</span><span class="n">onResolveCCBCCControlSelector</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">CCObject</span> <span class="o">*</span><span class="n">pTarget</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">pSelectorName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CCB_SELECTORRESOLVER_CCCONTROL_GLUE</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s">&#34;onIdle&#34;</span><span class="p">,</span> <span class="n">AnimationsLayer</span><span class="o">::</span><span class="n">onIdle</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CCB_SELECTORRESOLVER_CCCONTROL_GLUE</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s">&#34;onJump&#34;</span><span class="p">,</span> <span class="n">AnimationsLayer</span><span class="o">::</span><span class="n">onJump</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CCB_SELECTORRESOLVER_CCCONTROL_GLUE</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s">&#34;onWave&#34;</span><span class="p">,</span> <span class="n">AnimationsLayer</span><span class="o">::</span><span class="n">onWave</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CCB_SELECTORRESOLVER_CCCONTROL_GLUE</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s">&#34;onFunky&#34;</span><span class="p">,</span> <span class="n">AnimationsLayer</span><span class="o">::</span><span class="n">onFunky</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">AnimationsLayer</span><span class="o">::</span><span class="n">setAnimationManager</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCBAnimationManager</span> <span class="o">*</span><span class="n">pAnimationManager</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CC_SAFE_RELEASE_NULL</span><span class="p">(</span><span class="n">mAnimationManager</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mAnimationManager</span> <span class="o">=</span> <span class="n">pAnimationManager</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CC_SAFE_RETAIN</span><span class="p">(</span><span class="n">mAnimationManager</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">AnimationsLayer</span><span class="o">::</span><span class="n">onIdle</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">CCObject</span> <span class="o">*</span><span class="n">pSender</span><span class="p">,</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCControlEvent</span> <span class="n">pCCControlEvent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">-&gt;</span><span class="n">mAnimationManager</span><span class="o">-&gt;</span><span class="n">runAnimationsForSequenceNamedTweenDuration</span><span class="p">(</span><span class="s">&#34;Idle&#34;</span><span class="p">,</span> <span class="mf">0.3f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">AnimationsLayer</span><span class="o">::</span><span class="n">onJump</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">CCObject</span> <span class="o">*</span><span class="n">pSender</span><span class="p">,</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCControlEvent</span> <span class="n">pCCControlEvent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">-&gt;</span><span class="n">mAnimationManager</span><span class="o">-&gt;</span><span class="n">runAnimationsForSequenceNamedTweenDuration</span><span class="p">(</span><span class="s">&#34;Jump&#34;</span><span class="p">,</span> <span class="mf">0.3f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">AnimationsLayer</span><span class="o">::</span><span class="n">onWave</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">CCObject</span> <span class="o">*</span><span class="n">pSender</span><span class="p">,</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCControlEvent</span> <span class="n">pCCControlEvent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">-&gt;</span><span class="n">mAnimationManager</span><span class="o">-&gt;</span><span class="n">runAnimationsForSequenceNamedTweenDuration</span><span class="p">(</span><span class="s">&#34;Wave&#34;</span><span class="p">,</span> <span class="mf">0.3f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">AnimationsLayer</span><span class="o">::</span><span class="n">onFunky</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">CCObject</span> <span class="o">*</span><span class="n">pSender</span><span class="p">,</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCControlEvent</span> <span class="n">pCCControlEvent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">-&gt;</span><span class="n">mAnimationManager</span><span class="o">-&gt;</span><span class="n">runAnimationsForSequenceNamedTweenDuration</span><span class="p">(</span><span class="s">&#34;Funky&#34;</span><span class="p">,</span> <span class="mf">0.3f</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>整个代码还是很简单. 和以前的几个例子稍微有点不同的是在调用的时候, 需要把<code>CCBReader</code>里面的<code>AnimationManger</code>传入.<br>
+好, 还是看下调用的代码吧.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">MainScene</span><span class="o">::</span><span class="n">onAnimations</span><span class="p">(</span><span class="n">cocos2d</span><span class="o">::</span><span class="n">CCObject</span> <span class="o">*</span><span class="n">pSender</span><span class="p">,</span> <span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCControlEvent</span> <span class="n">pCCControlEvent</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">pCCBFileName</span> <span class="o">=</span> <span class="s">&#34;ccb/Animations.ccbi&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">pCCNodeName</span> <span class="o">=</span> <span class="s">&#34;AnimationsLayer&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cocos2d</span><span class="o">::</span><span class="n">extension</span><span class="o">::</span><span class="n">CCNodeLoader</span> <span class="o">*</span> <span class="n">pCCNodeLoader</span> <span class="o">=</span> <span class="n">AnimationsLayerLoader</span><span class="o">::</span><span class="n">loader</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">CCScene</span> <span class="o">*</span><span class="n">scene</span> <span class="o">=</span> <span class="n">CCScene</span><span class="o">::</span><span class="n">create</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">CCNodeLoaderLibrary</span> <span class="o">*</span><span class="n">lib</span> <span class="o">=</span> <span class="n">CCNodeLoaderLibrary</span><span class="o">::</span><span class="n">newDefaultCCNodeLoaderLibrary</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">lib</span><span class="o">-&gt;</span><span class="n">registerCCNodeLoader</span><span class="p">(</span><span class="s">&#34;HeaderLayer&#34;</span><span class="p">,</span> <span class="n">HeaderLayerLoader</span><span class="o">::</span><span class="n">loader</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">pCCNodeName</span><span class="o">!=</span><span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">pCCNodeLoader</span><span class="o">!=</span><span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lib</span><span class="o">-&gt;</span><span class="n">registerCCNodeLoader</span><span class="p">(</span><span class="n">pCCNodeName</span><span class="p">,</span> <span class="n">pCCNodeLoader</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">CCBReader</span> <span class="o">*</span><span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CCBReader</span><span class="p">(</span><span class="n">lib</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CCNode</span> <span class="o">*</span><span class="n">node</span> <span class="o">=</span> <span class="n">reader</span><span class="o">-&gt;</span><span class="n">readNodeGraphFromFile</span><span class="p">(</span><span class="n">pCCBFileName</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reader</span><span class="o">-&gt;</span><span class="n">autorelease</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//获取AnimationManger 并传给AnimationsLayer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">((</span><span class="n">AnimationsLayer</span><span class="o">*</span><span class="p">)</span><span class="n">node</span><span class="p">)</span> <span class="o">-&gt;</span><span class="n">setAnimationManager</span><span class="p">(</span><span class="n">reader</span><span class="o">-&gt;</span><span class="n">getAnimationManager</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">scene</span><span class="o">-&gt;</span><span class="n">addChild</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">-&gt;</span><span class="n">mTitleLabelTTF</span><span class="o">-&gt;</span><span class="n">setString</span><span class="p">(</span><span class="n">pCCBFileName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">CCDirector</span><span class="o">::</span><span class="n">sharedDirector</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">pushScene</span><span class="p">(</span><span class="n">scene</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>{% img /upload/2012-12/ccb-sbs-4-003.png %}</p>
+<p>###后记
+看到微博上@做游戏的老G 吐槽说CocosBuilder如何不好用, 学习难度比较大. 我也是很认可这一点.<br>
+但是只要是坚持把TestCpp例子完全读完了, 相信掌握CocosBuilder也是很快能够做到的.<br>
+既然你看完了这个教程. 相信你也已经能够很好地驾驭CocosBuilder. 关键还在实践呦!</p>
+<p>微博上@Ghost_233 说了一个很好的思路, 直接从ccb文件中生成对应的C++类, 而且他还做了一些实践.<br>
+我暂时还没有研究他的代码, 不过肯定是可行. 这是一个很赞的思路.<br>
+希望大家能动手, 最好合作出来一个较好的工具来, 我想, 是不是集成到CocosBuilder会更好?</p>
+<p>谢谢大家耐心看完我的文章.</p>
+<hr />
+代码打包下载:<a href="http://pan.baidu.com/share/link?shareid=158075&uk=2281999082" target="_blank">下载点</a> 
+<ul>
+<li>本文是系列文章, 请查看其他文章:</li>
+<li><a href="http://young40.github.com/blog/2012/12/21/cocosbuilder-step-by-step-part-one/">一步一步CocosBuilder(1)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/25/cocosbuilder-step-by-step-part-two/">一步一步CocosBuilder(2)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/28/cocosbuilder-step-by-step-part-three/">一步一步CocosBuilder(3)</a></li>
+<li><a href="http://young40.github.com/blog/2012/12/29/cocosbuilder-step-by-step-part-four/">一步一步CocosBuilder(4)完结</a></li>
+</ul>
+<p>谢谢您耐心看完此文, 希望能对您有些帮助.如果有什么问题, 意见, 建议, 拍砖, 欢迎留言或者联系我.</p>
+<p>新浪微博: <a href="http://weibo.com/young40">@杨世玲</a> <a href="http://weibo.com/young40">http://weibo.com/young40</a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2012-12-29
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/2012-12-31-cocos2d-x-source-code-research-3-ccobject/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">2d-x深读3:CCObject</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2012-12-28-cocosbuilder-step-by-step-part-three/">
+            <span class="next-text nav-default">一步一步CocosBuilder(3)</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+
+  <span class="division">|</span>
+
+  <span class="theme-info">
+      Network by
+      <a class="theme-link" href="https://www.netlify.com">Netlify</a>
+  </span>
+
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>

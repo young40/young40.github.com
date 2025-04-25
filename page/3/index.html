@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=8077&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>杨世玲的博客</title>
@@ -16,19 +16,19 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="杨世玲" /><meta name="description" content="杨世玲的博客" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+<meta name="author" content="" /><meta name="description" content="杨世玲的博客" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.94.2 with theme even" />
+<meta name="generator" content="Hugo 0.146.7 with theme even" />
 
 
-<link rel="canonical" href="https://www.young40.com/" />
-  <link href="https://www.young40.com/index.xml" rel="alternate" type="application/rss+xml" title="杨世玲的博客" />
-  <link href="https://www.young40.com/index.xml" rel="feed" type="application/rss+xml" title="杨世玲的博客" />
+<link rel="canonical" href="http://localhost:8077/" />
+  <link href="http://localhost:8077/index.xml" rel="alternate" type="application/rss+xml" title="杨世玲的博客" />
+  <link href="http://localhost:8077/index.xml" rel="feed" type="application/rss+xml" title="杨世玲的博客" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -41,15 +41,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="杨世玲的博客" />
-<meta property="og:description" content="杨世玲的博客" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://www.young40.com/" />
+<meta property="og:url" content="http://localhost:8077/">
+  <meta property="og:site_name" content="杨世玲的博客">
+  <meta property="og:title" content="杨世玲的博客">
+  <meta property="og:description" content="杨世玲的博客">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
 
-<meta itemprop="name" content="杨世玲的博客">
-<meta itemprop="description" content="杨世玲的博客"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="杨世玲的博客"/>
-<meta name="twitter:description" content="杨世玲的博客"/>
+  <meta itemprop="name" content="杨世玲的博客">
+  <meta itemprop="description" content="杨世玲的博客">
+  <meta itemprop="datePublished" content="2022-06-08T23:52:01+08:00">
+  <meta itemprop="dateModified" content="2022-07-14T23:16:50+08:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="杨世玲的博客">
+  <meta name="twitter:description" content="杨世玲的博客">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -60,9 +65,33 @@
   <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
 <![endif]-->
 
+<script>
+  MathJax = {
+    tex: {
+	inlineMath: [["$", "$"]]
+    },
+    displayMath: [
+      ["$$", "$$"],
+      
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
 
 </head>
 <body>
@@ -124,6 +153,55 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2018-07-22-metal-shading-languae-note-03/">MTSL笔记03: 数据类型 - 向量</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-07-22 </span>
+      <div class="post-category">
+          <a href="/categories/metalshadinglanguage%E7%AC%94%E8%AE%B0/"> MetalShadingLanguage笔记 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>
+Metal支持一系列向量数据类型, 由系统的向量数学库提供.</p>
+<p>
+PS: 这里提到的系统, 我猜着可能是指iOS系统或者是SIMD数学库.</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2018-07-22-metal-shading-languae-note-03/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2018-07-21-metal-shading-language-note-02/">MTSL笔记02: 数据类型 - 标量</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2018-07-21 </span>
+      <div class="post-category">
+          <a href="/categories/metalshadinglanguage%E7%AC%94%E8%AE%B0/"> MetalShadingLanguage笔记 </a>
+          </div>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>
+第二章是关于数据类型, 向量, 矩阵, 原子数据类型, buffer, 纹理(texture), 采样器(sampler), 结构体. 
+还设计数据对齐和类型转换. </p>
+<p>
+我们先来看看标量(Scalar).</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2018-07-21-metal-shading-language-note-02/" class="read-more-link">阅读更多</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/post/2018-07-19-metal-shading-language-note-01/">MTSL笔记01: 简介</a></h1>
@@ -302,54 +380,6 @@ MetalKit提供的MTKView更为方便快捷. </p>
   </div>
 </article>
 
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/2018-06-12-google-cloud-f-gfw/">Google Cloud安装Shadowsocks</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-06-12 </span>
-      <div class="post-category">
-          <a href="/categories/shadowsocks/"> Shadowsocks </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>
-Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记录一下重点过程.</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/2018-06-12-google-cloud-f-gfw/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/2018-03-10-about-opengl-rendering-pipeline/">关于OpenGL渲染管线(1)</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-03-10 </span>
-      <div class="post-category">
-          <a href="/categories/opengl/"> OpenGL </a>
-          </div>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <p>
-前几日, 和人闲聊, 谈及OpenGL, 突然被问OpenGL渲染管线, 一时语塞.
-渲染管线是OpenGL的基础, 谈到基础的东西, 一般都会呈现两种状态.
-一方面, 基础的东西, 不理解, 学后面的东西就是稀里糊涂; 
-另一方面, 天天需要接触的反而不是这些基础的东西. 正如, 1+1 是数学的
-基础, 你不会就啥都不要搞了, 学点数学, 再也不会有人问你 1+1 = ?了.</p>
-    </div>
-    <div class="read-more">
-      <a href="/post/2018-03-10-about-opengl-rendering-pipeline/" class="read-more-link">阅读更多</a>
-    </div>
-  </div>
-</article>
-
     </section>
   
   <nav class="pagination">
@@ -373,7 +403,9 @@ Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记�
       <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
       <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
       <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
-  <a href="https://www.young40.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
+    <a href="/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -399,7 +431,7 @@ Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记�
   <span class="copyright-year">
     &copy; 
     2012 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
   </span>
 </div>
 
@@ -410,13 +442,13 @@ Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记�
     </div>
   </div>
   
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 
@@ -424,6 +456,9 @@ Google Cloud一直在搞首年送300美金的活动, 顺手薅了下羊毛, 记�
 
 
 
+
+
+  
 
 </body>
 </html>

@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=8077&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Unity, 旋转, 万向锁, 欧拉角和四元数 - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想, 这么常见的东西一定很简单吧? 其实并没有那么简单. 作为一名游戏开发工程师, 我们能在网上找到关于欧拉角, 四元数, 万向锁的资料数不胜数, 但大都不成体系. 而且研究比较深入的反而是在运动控制, 飞行控制领域. 可能飞控不好就会炸机&hellip;
+" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.146.7 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:8077/post/2022-06-08-unity-rotation-euler-quaternion/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="http://localhost:8077/post/2022-06-08-unity-rotation-euler-quaternion/">
+  <meta property="og:site_name" content="杨世玲的博客">
+  <meta property="og:title" content="Unity, 旋转, 万向锁, 欧拉角和四元数">
+  <meta property="og:description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想, 这么常见的东西一定很简单吧? 其实并没有那么简单. 作为一名游戏开发工程师, 我们能在网上找到关于欧拉角, 四元数, 万向锁的资料数不胜数, 但大都不成体系. 而且研究比较深入的反而是在运动控制, 飞行控制领域. 可能飞控不好就会炸机…">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2022-06-08T23:52:01+08:00">
+    <meta property="article:modified_time" content="2022-07-08T09:59:20+08:00">
+    <meta property="article:tag" content="Unity">
+
+  <meta itemprop="name" content="Unity, 旋转, 万向锁, 欧拉角和四元数">
+  <meta itemprop="description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想, 这么常见的东西一定很简单吧? 其实并没有那么简单. 作为一名游戏开发工程师, 我们能在网上找到关于欧拉角, 四元数, 万向锁的资料数不胜数, 但大都不成体系. 而且研究比较深入的反而是在运动控制, 飞行控制领域. 可能飞控不好就会炸机…">
+  <meta itemprop="datePublished" content="2022-06-08T23:52:01+08:00">
+  <meta itemprop="dateModified" content="2022-07-08T09:59:20+08:00">
+  <meta itemprop="wordCount" content="6556">
+  <meta itemprop="keywords" content="Unity">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Unity, 旋转, 万向锁, 欧拉角和四元数">
+  <meta name="twitter:description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想, 这么常见的东西一定很简单吧? 其实并没有那么简单. 作为一名游戏开发工程师, 我们能在网上找到关于欧拉角, 四元数, 万向锁的资料数不胜数, 但大都不成体系. 而且研究比较深入的反而是在运动控制, 飞行控制领域. 可能飞控不好就会炸机…">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+<script>
+  MathJax = {
+    tex: {
+	inlineMath: [["$", "$"]]
+    },
+    displayMath: [
+      ["$$", "$$"],
+      
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Unity, 旋转, 万向锁, 欧拉角和四元数</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-06-08 </span>
+        <div class="post-category">
+            <a href="/categories/unity/"> Unity </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#unity中的旋转">Unity中的旋转</a>
+          <ul>
+            <li><a href="#先转一下">先转一下</a></li>
+            <li><a href="#当x轴旋转-and-plusmn-90-and-deg-时">当X轴旋转±90°时</a></li>
+            <li><a href="#不可跨越的90-and-deg">不可跨越的90°</a></li>
+          </ul>
+        </li>
+        <li><a href="#旋转基础">旋转基础</a>
+          <ul>
+            <li><a href="#三角函数">三角函数</a></li>
+            <li><a href="#二维空间旋转">二维空间旋转</a></li>
+            <li><a href="#坐标系与旋转正方向">坐标系与旋转正方向</a></li>
+            <li><a href="#绕坐标轴旋转">绕坐标轴旋转</a></li>
+            <li><a href="#绕任意轴的旋转">绕任意轴的旋转</a></li>
+          </ul>
+        </li>
+        <li><a href="#旋转的几种表示方法">旋转的几种表示方法</a>
+          <ul>
+            <li><a href="#旋转矩阵">旋转矩阵</a></li>
+            <li><a href="#轴角法">轴角法</a></li>
+            <li><a href="#欧拉角">欧拉角</a></li>
+            <li><a href="#四元数">四元数</a></li>
+          </ul>
+        </li>
+        <li><a href="#旋转与群论">旋转与群论</a></li>
+        <li><a href="#有没有三元数">有没有三元数</a></li>
+        <li><a href="#参考文档">参考文档</a></li>
+        <li><a href="#文档">文档</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转.
+你可能会想, 这么常见的东西一定很简单吧? 其实并没有那么简单.
+作为一名游戏开发工程师, 我们能在网上找到关于欧拉角, 四元数, 万向锁的资料数不胜数, 但大都不成体系.
+而且研究比较深入的反而是在运动控制, 飞行控制领域. 可能飞控不好就会炸机&hellip;</p>
+<p>下面让我们来看下Unity中旋转相关的知识点.</p>
+<h2 id="unity中的旋转">Unity中的旋转</h2>
+<p>手头有一个简易的飞机模型, 放在Unity里正好合适, 你也可以选择一款自己喜欢的机型. (一方面, 旋转中的几个术语来源于飞行.
+另一方面, 飞机模型比起球体, 立方体来讲更加直观.)</p>
+<figure><img src="/ox-hugo/2022-06-Rotation-001.Plane.png">
+</figure>
+
+<h3 id="先转一下">先转一下</h3>
+<p>我们在Inspector中, 可以让飞机分别绕X, Y, Z轴旋转一下. 可以看到这三种旋转分别对应了飞机可以做的三种基本旋转:</p>
+<table>
+  <thead>
+      <tr>
+          <th>轴</th>
+          <th>英文</th>
+          <th>中文</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>X</td>
+          <td>pitch</td>
+          <td>俯仰角</td>
+      </tr>
+      <tr>
+          <td>Y</td>
+          <td>yaw</td>
+          <td>偏航角</td>
+      </tr>
+      <tr>
+          <td>Z</td>
+          <td>roll</td>
+          <td>滚转角</td>
+      </tr>
+  </tbody>
+</table>
+<figure><img src="/ox-hugo/2022-06-Rotation-002.Plane-Basic-Rotation.gif">
+</figure>
+
+<blockquote>
+<p>X,Y,Z轴的颜色正好和三原色Red,Green,Blue对应. 在游戏开发中我们还能在其他地方也看到这种对应关系.</p></blockquote>
+<h3 id="当x轴旋转-and-plusmn-90-and-deg-时">当X轴旋转±90°时</h3>
+<p>我们先在Inspector中将飞机绕X轴旋转90°, 这时再操作Y轴与Z轴, 我们可以惊奇地发现, 旋转效果 <code>似乎</code> 是完全一致的.
+我们再也不能通过旋转Y轴, 让飞机偏航(yaw)了.</p>
+<figure><img src="/ox-hugo/2022-06-Rotation-003.Plane-X-90.gif">
+</figure>
+
+<p>此时(保持绕X轴旋转90°), 我们先后操作Y轴和Z轴相同的度数(例如30°), 我们会发现两次操作抵消了, 飞机的姿态回到了原位, 即Y,Z轴都是0°的状态.</p>
+<p>我们再让飞机的X轴旋转-90°, 再操作Y轴和Z轴一定的度数(例如各30°), 可以看到其效果等同于单独操作Y轴或Z轴其度数之和(30°+30°=60°).</p>
+<h3 id="不可跨越的90-and-deg">不可跨越的90°</h3>
+<p>Unity提供了多种旋转的Api, 其中由对象的transform提供的eulerAngles可以获取或设置欧拉角.
+我们尝试用其让飞机做持续旋转的动画.</p>
+<p>我们使用如下代码:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">void</span> <span class="n">Update</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">transform</span><span class="p">.</span><span class="n">eulerAngles</span> <span class="p">+=</span> <span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="m">30</span> <span class="p">*</span> <span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>效果如下:</p>
+<figure><img src="/ox-hugo/2022-06-Rotation-004.Plane-Rotation-Cant-Beyond-90.gif">
+</figure>
+
+<p>本来期望飞机可以绕X轴持续进行360°旋转, 但可以看到从0°旋转到90°附近无法跨越过去, 在90°附近反复横跳.
+同样如果我们从0°开始, 以上述反方向旋转, 则无法跨过-90°.</p>
+<p>这些看起来还真是奇怪的问题呢!</p>
+<h2 id="旋转基础">旋转基础</h2>
+<h3 id="三角函数">三角函数</h3>
+<p>想要深入研究旋转, 基础的三角函数是必须的. 但我们在这里就不展开了, 仅给出需要了解的部分定理或公式.</p>
+<ul>
+<li>和差化积公式</li>
+<li>半角/倍角公式</li>
+</ul>
+<h3 id="二维空间旋转">二维空间旋转</h3>
+<p>二维空间中, 物体只能围绕某一个点旋转, 我们一般选择绕原点旋转.</p>
+<p><a id="figure--https:--www.geogebra.org-calculator-eebadpkb"></a></p>
+<figure><img src="/ox-hugo/2022-06-Rotation-005.2D-Rotation.png">
+</figure>
+
+<p>在上图中, 我们通过将原基向量 $p$ ,  $q$  旋转θ°得到新的基向量 $p&rsquo;$ ,  $q&rsquo;$ ,
+所以可以得到二维空间的旋转矩阵:</p>
+<p>$$
+R(\theta) = \begin{bmatrix}p&rsquo; \\ q&rsquo; \\ \end{bmatrix}
+= \begin{bmatrix}
+cos(\theta)  &amp; sin(\theta) \\
+-sin(\theta) &amp; cos(\theta) \\
+\end{bmatrix}
+\
+$$</p>
+<blockquote>
+<p>之所以选择原点是因为我们总是可以对物体做平移操作, 先平移至原点, 旋转之后再平移回去.
+从数学上讲, 平移操作是非线形操作, 我们需要将二维空间升至三维空间做平移, 即引入齐次坐标.
+平移和旋转恰好可以互不影响地存在于升维后的矩阵中, 所以我们可以简便地采用以原点为中心点做旋转.</p></blockquote>
+<h3 id="坐标系与旋转正方向">坐标系与旋转正方向</h3>
+<p>在三维空间中, 左手坐标系中采用左手法则确定旋转正方向, 右手坐标系采用右手法则确定旋转正方向. Unity中采用了左手坐标系, 因此我们下面提到的旋转都遵循左手法则.</p>
+<h3 id="绕坐标轴旋转">绕坐标轴旋转</h3>
+<p>我们先看一下三维空间中绕x轴旋转. 因为绕x轴旋转, 则其x坐标不变, 也意味着其x基向量不变, 与二维空间的旋转类似.</p>
+<p><a id="figure--https:--www.geogebra.org-calculator-xvzyhqhr"></a></p>
+<figure><img src="/ox-hugo/2022-06-Rotation-006.3D-Rotation-X-Axis.png">
+</figure>
+
+<p>由上图我们可以得到原基向量 $p$ ,  $q$ ,  $r$  旋转θ°后得到新的基向量 $p&rsquo;$ ,  $q&rsquo;$ ,  $r&rsquo;$ , 也得到三维空间中绕x轴的旋转矩阵:</p>
+<p>$$
+R_x(\theta) = \begin{bmatrix}p&rsquo; \\ q&rsquo; \\ r&rsquo; \\ \end{bmatrix}
+= \begin{bmatrix}
+1 &amp; 0       &amp; 0      \\
+0 &amp; cos(\theta)  &amp; sin(\theta) \\
+0 &amp; -sin(\theta) &amp; cos(\theta) \\
+\end{bmatrix}
+\
+$$</p>
+<p>同理, 我们可以很快得出绕y轴的旋转矩阵.</p>
+<p>$$
+R_y(\theta) = \begin{bmatrix} p&rsquo; \\ q&rsquo; \\ r&rsquo; \\ \end{bmatrix}
+= \begin{bmatrix}
+cos(\theta) &amp; 0 &amp; -sin(\theta) \\
+0      &amp; 1 &amp; 0       \\
+sin(\theta) &amp; 0 &amp; cos(\theta)  \\
+\end{bmatrix}
+\
+$$</p>
+<p>以及绕z轴的旋转矩阵.</p>
+<p>$$
+R_z(\theta) = \begin{bmatrix} p&rsquo; \\ q&rsquo; \\ r&rsquo; \\ \end{bmatrix}
+= \begin{bmatrix}
+cos(\theta)  &amp; sin(\theta) &amp; 0 \\
+-sin(0) &amp; cos(0) &amp; 0 \\
+0       &amp; 0      &amp; 1 \\
+\end{bmatrix}
+\
+$$</p>
+<h3 id="绕任意轴的旋转">绕任意轴的旋转</h3>
+<p>旋转也可以围绕任意的轴, 我们仍然不考虑平移的问题, 假设旋转轴通过原点.</p>
+<p><a id="figure--https:--www.geogebra.org-calculator-tdqqruce"></a></p>
+<figure><img src="/ox-hugo/2022-06-Rotation-007.3D-Rotation-By-Any.png">
+</figure>
+
+<p>如上图所示, 向量  $v$  (米黄色)围绕单位向量  $n$  旋转 θ°, 得到新的向量  $v&rsquo;$ (土黄色).
+$v$  可以分解为和  $n$  平行的和垂直的两个变量  $v_{\parallel}$  (红色),  $v_{\perp}$ (绿色), 既 $v=v_{\parallel}+v_{\perp}$ .
+旋转后  $v_{\parallel}$  因为和  $n$  平行不受影响,  $v_{\perp}$  变为  $v_{\perp}^{\prime}$ .
+我们可以看到  $v_{\perp}$  和  $v_{\perp}^{\prime}$  之间的夹角为 θ (注意: 不是向量  $v$  和  $v&rsquo;$  之间的夹角为 θ).
+还添加了一个与  $n$  和  $v_{\perp}$  都垂直的向量  $w$ ,  $w$  的长度和  $v_{\perp}$  及  $v_{\perp}^{\prime}$  相等.</p>
+<p>根据这些已知的关系, 我们有以下等式:</p>
+<p>$v_{\parallel}$  可以看做  $v$  在  $n$  上的投影, 我们有:</p>
+<p>$$ v_{\parallel} = (v\cdot{}n)n \tag1 \
+$$</p>
+<p>$v$  是其平行于和垂直于  $n$  的向量和:</p>
+<p>$$ v_{\perp} = v - v_{\parallel} = v - (v \cdot n)n \tag2 \
+$$</p>
+<p>$n$  和  $v_{\parallel}$  平行:</p>
+<p>$$ n \times v_{\parallel} = 0 \tag3 \
+$$</p>
+<p>$w$  由  $n$  和  $v_{\perp}$  叉乘所得:</p>
+<p>$$\begin{eqnarray}
+w &amp;=&amp; n \times v_{\perp}                   \\
+&amp;=&amp; n \times (v - v_{\parallel} )        \\
+&amp;=&amp; n \times v - n \times v_{\parallel}  \\
+&amp;=&amp; n \times v - 0                       \\
+&amp;=&amp; n \times v                           \tag4
+\end{eqnarray}\
+$$</p>
+<p>我们首先可以看到,  $v_{\perp}^{\prime}$  可以看做其在  $v_{\perp}$  和  $w$  上的投影向量之和, 所以我们有:</p>
+<p>$$\begin{eqnarray}
+v_{\perp}^{\prime} &amp;=&amp; v_{\perp}cos(\theta) + wsin(\theta) \\
+&amp;=&amp; (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag5
+\end{eqnarray}\
+$$</p>
+<p>旋转后的向量  $v&rsquo;$ :</p>
+<p>$$\begin{eqnarray}
+v&rsquo; &amp;=&amp; v_{\parallel} + v_{\perp}^{\prime} \\
+&amp;=&amp; (v \cdot n)n + (v - (v \cdot n)n)cos(\theta) + (n \times v)sin(\theta)  \tag6
+\end{eqnarray}\
+$$</p>
+<p>由此我们得出了任意向量  $v$  绕单位向量  $n$  旋转 θ 后的向量  $v&rsquo;$  公式.</p>
+<p>我们知道旋转矩阵由其旋转后的坐标系的基向量组成, 我们使用上面公式(6), 就可以求解新的基向量以及旋转矩阵.</p>
+<p>$$
+R(n, \theta) = \begin{bmatrix}
+p^{\prime} \\ q^{\prime} \\ r^{\prime}
+\end{bmatrix}
+\
+$$</p>
+<blockquote>
+<p>矩阵形式太复杂了, 暂时先不详细列出了.</p></blockquote>
+<h2 id="旋转的几种表示方法">旋转的几种表示方法</h2>
+<p>旋转有多种表示方法, 例如轴角法, 旋转矩阵, 欧拉角, 四元数, 游戏引擎中用到了多种旋转表示方法. 我们来看看这些不同表示方法之间的联系.</p>
+<h3 id="旋转矩阵">旋转矩阵</h3>
+<p>我们可以用基向量  $p, q, r$  旋转后的基向量  $p&rsquo;, q&rsquo;, r&rsquo;$  组成 3×3 旋转矩阵. 旋转矩阵为正交矩阵.</p>
+<p>正交矩阵就意味着, 其转置矩阵等于其逆矩阵, 并且转置矩阵和原矩阵乘积为单位矩阵I.</p>
+<p>$$ M^T = M^{-1} \
+$$
+$$ MM^T = MM^{-1} = I \
+$$</p>
+<ul>
+<li>
+<p>旋转矩阵的优点</p>
+<ul>
+<li>矩阵形式可以方便地在物体坐标系和惯性坐标系之间旋转向量.</li>
+<li>常见的图形学API都是使用矩阵. 无论如何存储旋转数据, 在最终渲染前都需要在某处将其转换为矩阵形式.</li>
+<li>方便坐标系嵌套类型的计算. 只需要将矩阵依次相乘即可得到最终的旋转矩阵.</li>
+<li>求逆向旋转方便. 逆向旋转需要逆矩阵, 而逆矩阵与转置矩阵相同, 通过简单的转置即可求得.</li>
+<li>矩阵不存在万向锁</li>
+<li>可以表达绕任意轴旋转, 四元数只能绕物体中心的轴</li>
+</ul>
+</li>
+<li>
+<p>旋转矩阵的缺点</p>
+<ul>
+<li>需要更多内存. 矩阵需要存储9个数字, 相比欧拉角只需要3个数字, 四元数仅需要4个数字.</li>
+<li>矩阵非常不直观, 也几乎不可能不借助计算机计算出任意方位的旋转矩阵.</li>
+<li>矩阵可能不是合法的旋转矩阵. 矩阵蠕变可能会导致旋转矩阵不合法, 需要通过矩阵正交化解决.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>矩阵有9个数字组成, 这相当于给旋转矩阵带来了9个自由度. 但显然不是随意填入9个数字都能是旋转矩阵.
+旋转矩阵要求其3个行向量是单位矩阵, 并且3个行向量需要互相垂直.我们也可以理解为, 我们把三维空间的问题转化为九维空间带有六个约束的问题.</p></blockquote>
+<h3 id="轴角法">轴角法</h3>
+<p>使用绕任意轴旋转的方法, 也可以表达旋转.</p>
+<ul>
+<li>
+<p>优点</p>
+<p>没有万向锁的问题</p>
+</li>
+<li>
+<p>缺点</p>
+<ul>
+<li>
+<p>插值不够平滑, 甚至会产生跳跃问题</p>
+</li>
+<li>
+<p>不能保证插值得到的矢量长度相等. (TODO 为什么????)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>和四元数比较
+轴角法在三维空间中, 四元数是四维空间.</p>
+</li>
+</ul>
+<h3 id="欧拉角">欧拉角</h3>
+<p>数学家欧拉证明了单个角位移可以由多个角位移组合而成.</p>
+<h4 id="旋转顺序">旋转顺序</h4>
+<p>必须明确旋转顺序, 指定其旋转轴???? Unity的旋转顺序???
+Unity使用 <code>ZXY</code> 顺序.</p>
+<h4 id="固定轴和动态轴">固定轴和动态轴</h4>
+<h4 id="角度范围">角度范围</h4>
+<h4 id="欧拉角优点">欧拉角优点:</h4>
+<ul>
+<li>直观</li>
+<li>可以表达大于180° 的旋转.</li>
+<li>存储占用数据少</li>
+</ul>
+<h4 id="欧拉角缺点">欧拉角缺点</h4>
+<ul>
+<li>万向锁问题</li>
+</ul>
+<h3 id="四元数">四元数</h3>
+<h4 id="复数和旋转">复数和旋转</h4>
+<p>可以从复数的角度理解复数  $i$ . 将数字  $1$  旋转90°, 可以得到  $1i = i$ , 继续旋转90°, 可以得到  $i*i=-1$ .</p>
+<figure><img src="/ox-hugo/2022-06-Rotation-008.i-Rotation.png">
+</figure>
+
+<ul>
+<li>复数可以看作两元数???</li>
+<li>三元数???</li>
+</ul>
+<h4 id="复数与欧拉旋转定理">复数与欧拉旋转定理???</h4>
+<h4 id="四元数的由来">四元数的由来</h4>
+<p>$$i^2 = j^2 = k^2 = ijk = -1\
+$$
+$$ij = k = -ji\
+$$
+$$jk = i = -kj \
+$$
+$$ki = j = -ik\
+$$</p>
+<h4 id="四元数的基础">四元数的基础</h4>
+<ul>
+<li>
+<p>四元数的记法</p>
+<p>四元数包含一个标量分量和一个三维向量分量. 标量分量常记作 <code>w</code>, 向量分量可以记作单一向量  $v$  或分开的 <code>x, y, z</code>.</p>
+<p>两种记法如下:
+$$[w, v]\
+$$
+$$[w, (x, y, z)]\
+$$</p>
+</li>
+<li>
+<p>四元数与轴角法</p>
+</li>
+</ul>
+<!--listend-->
+<ul>
+<li>
+<p>负四元数</p>
+<p>将四元数的各分量加上负号, 得到负四元数.
+$$-q = -[w, (x, y, z)] = [-w, (-x, -y, -z)] = -[w, v] = [-w, -v]\
+$$</p>
+<p>$q$  和  $-q$  代表的角位移是相同的. θ° 加上 360° 的奇数倍, 不会改变四元数代表的角位移, 四元数变为负四元数.
+三维旋转的角位移有两种不同的四元数表示法, 它们互为负四元数.</p>
+</li>
+<li>
+<p>单位四元数</p>
+<p>单位四元数表示没有旋转. 由负四元数可知, 几何上有两种四元数可以表示单位四元数:  $[1, \vec{0}]$  和  $[-1, \vec{0}]$ .</p>
+<p>但在数学上只认为  $[1, \vec{0}]$  为单位四元数.
+$q$  和 $-q$尽管代表了相同的角位移, 我们依然认为其不等.  $[-1, \vec{0}]$  也不是单位四元数.</p>
+<p>任意四元数  $q$  乘以单位四元数, 依然得到其自身.</p>
+<p>单位四元数的模为1.</p>
+<p>要区分单位旋转和单位四元数.</p>
+<p>???
+单位四元数可能定义为  $\widehat{q} = [0, \widehat{v}]$ , 其中  $\widehat{v}$  为单位向量.
+$$\widehat{q}^2 = [0, \widehat{v}][0, \widehat{v}] = [-\widehat{v} \cdot \widehat{v}, \widehat{v} \times \widehat{v}]
+= [-1, \vec{0}]
+\
+$$</p>
+<p>只看实数部分, 单位四元数的平方为 -1.</p>
+<p>所有的旋转都是单位四元数.</p>
+</li>
+<li>
+<p>纯四元数</p>
+<p>标量分量为0的四元数称为纯四元数.</p>
+</li>
+</ul>
+<h4 id="四元数的运算">四元数的运算</h4>
+<ul>
+<li>
+<p>加减法</p>
+</li>
+<li>
+<p>模</p>
+<p>模也被称作范数.</p>
+<p>$$\begin{eqnarray} \lVert q \rVert
+&amp;=&amp; \lVert [w, (x, y, z)] \rVert \\
+&amp;=&amp; \sqrt{w^2 + x^2 + y^2 + z^2} \\
+&amp;=&amp; \lVert [w, v] \rVert \\
+&amp;=&amp; \sqrt{w^2 + \lVert v \rVert^2} \end{eqnarray}\
+$$</p>
+</li>
+<li>
+<p>共轭和逆
+四元数的共轭记作  $q^*$ , 将四元数的向量分量变负得到其共轭.
+$$\begin{eqnarray} q^*
+&amp;=&amp; [w, v]^* \\
+&amp;=&amp; [w, -v]  \\
+&amp;=&amp; [w, (x, y, z)]^* \\
+&amp;=&amp; [w, (-x, -y, -z)] \end{eqnarray}\
+$$</p>
+<p>四元数的逆记作  $q^{-1}$ , 四元数的共轭除以其模得到其逆.
+$$q^{-1} = \frac{q^*}{\lVert q \rVert} \
+$$</p>
+<p>四元数乘以其逆得到单位四元数.
+$$qq^{-1} = [1, \vec{0}]\
+$$</p>
+<p>单位四元数的共轭和逆相等.</p>
+<p>四元数  $q$  和其共轭  $q*$  代表了相反的角位移. 因为是将其向量分量变负, 相当于颠倒了旋转方向.</p>
+</li>
+</ul>
+<!--listend-->
+<ul>
+<li>
+<p>乘法-叉乘</p>
+<p>四元数有点乘和叉乘, 如果不特别指出, 乘法指叉乘.</p>
+<ul>
+<li>定义</li>
+</ul>
+<p>四元数的叉乘算法如下:
+$$\begin{eqnarray}&amp;&amp; (w_1 + x_1i + y_1j + z_1k)(w_2 + x_2i + y_2j + z_2k) \\
+&amp;=&amp; w_1 w_2  + w_1 x_2i   + w_1 y_2j   + w_1 z_2k  + \\
+&amp;&amp;  x_1 w_2i + x_1 x_2i^2 + x_1 y_2ij  + x_1 z_2ik + \\
+&amp;&amp;  y_1 w_2j + y_1 x_2ji  + y_1 y_2j^2 + y_1 z_2jk + \\
+&amp;&amp;  z_1 w_2k + z_1 x_2ki  + z_1 y_2kj  + z_1 z_2k^2  \\
+&amp;=&amp; w_1 w_2                     + \textcolor{red}{w_1 x_2i}     + \textcolor{green}{w_1 y_2j}  + \textcolor{blue}{w_1 z_2k}     + \\
+&amp;&amp;  \textcolor{red}{x_1 w_2i}   + x_1 x_2(-1)                   + \textcolor{blue}{x_1 y_2(k)} + \textcolor{green}{x_1 z_2(-j)} + \\
+&amp;&amp;  \textcolor{green}{y_1 w_2j} + \textcolor{blue}{y_1 x_2(-k)} + y_1 y_2(-1)                  + \textcolor{red}{y_1 z_2(i)}    + \\
+&amp;&amp;  \textcolor{blue}{z_1 w_2k}  + \textcolor{green}{z_1 x_2(j)} + \textcolor{red}{z_1 y_2(-i)} + z_1 z_2(-1)                      \\
+&amp;=&amp; w_1 w_2 - x_1 x_2 - y_1 y_2 - z_1 z_2 +    \\
+&amp;&amp;  (w_1 x_2 + x_1 w_2 + y_1 z_2 - z_1 y_2)i + \\
+&amp;&amp;  (w_1 y_2 + y_1 w_2 + z_1 x_2 - x_1 z_2)j + \\
+&amp;&amp;  (w_1 z_2 + z_1 w_2 + x_1 y_2 - y_1 x_2)k
+\end{eqnarray}\
+$$</p>
+<p>所以四元数乘法可以定义如下:
+$$ [w_1, (x_1, y_1, z_1)][w_2, (x_2, y_2, z_2)] = \\
+\begin{bmatrix}
+w_1 w_2 - x_1 x_2 - y_1 y_2 - z_1 z_2     \\
+w_1 x_2 + x_1 w_2 + y_1 z_2 - z_1 y_2      \\
+w_1 y_2 + y_1 w_2 + z_1 x_2 - x_1 z_2      \\
+w_1 z_2 + z_1 w_2 + x_1 y_2 - y_1 x_2
+\end{bmatrix}\
+$$</p>
+<p>$$[w_1, v_1][w_2, v_2] =
+\begin{bmatrix} w_1 w_2-v_1\cdot{}v_2,&amp; w_1 v_2 + w_2 v_1 + v_2 \times v_1
+\end{bmatrix}\
+$$</p>
+<ul>
+<li>
+<p>叉乘的符号</p>
+<p>不需要为四元数叉乘使用符号</p>
+</li>
+<li>
+<p>叉乘的结合律和 <del>交换律</del></p>
+<p>四元数满足结合律, 但不满足交换律.
+$$(ab)c = a(bc)\
+$$
+$$ab \ne ba\
+$$</p>
+</li>
+<li>
+<p>叉乘的模</p>
+<p>四元数叉乘的模等于模的乘积.
+$$\lVert q_1q_2\rVert = \lVert q_1 \rVert \lVert q_2 \rVert\
+$$</p>
+</li>
+<li>
+<p>叉乘的逆</p>
+<p>四元数叉乘的逆等于各个四元数的逆以相反的顺序相乘.
+$$(ab)^{-1} = b^{-1}a^{-1}\
+$$</p>
+</li>
+<li>
+<p>叉乘和旋转</p>
+<p>假设有三维点  $(x, y, z)$ , 可以扩展为四元数  $p = [0, (x, y, z)]$ .
+设  $q=[\cos{\frac{\theta}{2}}, n\sin{\frac{\theta}{2}}]$ , 其中  $n$  是单位向量作为旋转轴,  $\theta$  为旋转角.
+下面公式可以表示  $p$  绕  $n$  旋转  $\theta$ :
+$$ p\prime = qpq^{-1}\
+$$</p>
+<blockquote>
+<p>上面公式的本质是, 将在四维空间上的旋转限制在一个三维空间中.</p></blockquote>
+<p>四元数叉乘在处理多次旋转上很有优势, 我们看下将点  $p$  先旋转  $a$ , 再旋转  $b$ :
+$$\begin{eqnarray}
+p\prime &amp;=&amp; b(apa^{-1})b^{-1} \\
+&amp;=&amp; (ba)p(a^{-1}b^{-1}) \\
+&amp;=&amp; (ba)p(ba)^{-1}
+\end{eqnarray}\
+$$
+我们可以看到先执行  $a$  旋转, 再执行  $b$  旋转, 等价于执行乘积  $ba$  的单次旋转.</p>
+<p>可以通过改变四元数叉乘的定义, 来反转乘法顺序. 此时并没有改变四元数的基本性质和几何解释.
+$$[w_1, v_1][w_2, v_2] = [w_1w_2 - v_1\cdot{}v_2, w_1v_2 +w_2v_1+v_1\cdot{}v_2]\
+$$</p>
+<p>调整叉乘定义后, 旋转定义如下:
+$$p\prime = q^{-1}pq\
+$$</p>
+<p>连续旋转乘法和旋转发生顺序一致:
+$$\begin{eqnarray}
+p\prime &amp;=&amp; b^{-1}(a^{-1}pa)b \\
+&amp;=&amp; (b^{-1}a^{-1})p(ab) \\
+&amp;=&amp; (ab)^{-1}p(ab)
+\end{eqnarray}\
+$$</p>
+</li>
+<li>
+<p>四元数的差</p>
+<p>利用给定方位  $a$  和  $b$ , 求出  $a$  到  $b$  的旋转角位移  $d$ .  $d$  被定义为  $a$  到  $b$  的差.
+$$\begin{eqnarray}ad &amp;=&amp; b \\
+a^{-1}(ad) &amp;=&amp; a^{-1}b \\
+(a^{-1}a)d &amp;=&amp; a^{-1}b \\
+[1, \vec{0}]d &amp;=&amp; a^{-1}b \\
+d &amp;=&amp; a^{-1}b
+\end{eqnarray}\
+$$</p>
+<p>在数学上, 两个四元数之间的差更类似于除法, 而不是普通代数意义上的减法.</p>
+</li>
+<li>
+<p>四元数的点乘
+$$\begin{eqnarray} q_1 q_2 &amp;=&amp; [w_1, v_1][w_2, v_2] = w_1 w_2 + v_1 \cdot v_2 \\
+&amp;=&amp; [w_1, (x_1, y_1, z_1)][w_2, (x_2, y_2, z_2)] = w_1 w_2 + x_1 x_2 + y_1 y_2 + z_1 z_2
+\end{eqnarray}\
+$$</p>
+<p>点乘的结果为标量.
+对于单位四元数  $q_1$   $q_2$ , $ -1 ≤ q_1 ⋅ q_2 ≤ 1$.</p>
+<p>通常只关心点乘的绝对值, 因为  $q_1 \cdot q_2 = -(q_1 \cdot -q_2)$ .  $q_1 \cdot q_2$  的绝对值越大说明其代表的角位移越相似.</p>
+</li>
+<li>
+<p>四元数的对数, 指数</p>
+<p>四元数的对数和指数都是定义如此, 不需要证明.</p>
+<p>设有  $\alpha = \frac{\theta}{2}$ , 单位向量  $n$ . 有四元数:
+$$q =\begin{bmatrix} \cos\alpha &amp; n\sin\alpha \end{bmatrix}\
+$$
+$q$  的对数定义为:
+$$\log{q} = \log(\begin{bmatrix}\cos{\alpha} &amp; n\sin(\alpha)\end{bmatrix}) = \begin{bmatrix}0 &amp; \alpha{}n\end{bmatrix}\
+$$</p>
+<p>四元数的指数以相反方式定义. 有四元数  $q = [0, \alpha{}n]$ . 则有:
+$$exp(p) = exp([0, \alpha{}n]) = [\cos\alpha, n\sin\alpha]\
+$$</p>
+<p>我们可以看到对于四元数而言, 对数和指数依然是互为逆运算.
+$$exp(log(q)) = q\
+$$</p>
+</li>
+<li>
+<p>标量乘运算</p>
+<p>标量乘运算定义为每个分量乘以标量.
+$$\begin{eqnarray} kq &amp;=&amp; k[w, v] = [kw, kv] \\
+&amp;=&amp; k[w, (x, y, z)] = [kw, (kx, ky, kz)]
+\end{eqnarray}\
+$$</p>
+</li>
+<li>
+<p>四元数的幂</p>
+<p>四元数作为底数, 记作  $q^t$ . 当  $t$  从0到1变化时,  $q^t$  从  $[1, \vec{0}]$  到  $q$ .
+此时得到  $q^t$  相当于  $q$  的一部分.</p>
+<p>因为四元数总是使用最短圆弧, 当  $t$  的范围超出 [0, 1] 时, 代表的可能是短圆弧.
+例如,  $q$  代表绕坐标轴顺时针旋转30°. 那么  $q^2$  代表顺时针旋转60°,  $q^{-\frac{1}{3}}$  代表逆时针旋转10°.
+$q^8$  则不是代表顺时针旋转240°, 而是逆时针旋转80°, 走了短圆弧.</p>
+<p>代数中的  $(a^s)^t = a^{st}$  对四元数不适用.</p>
+<p>$$q^t = exp(t\log(q))\
+$$</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="四元数插值--slerp">四元数插值(slerp)</h4>
+<p>球面线性插值(Spherical Linear Interpolation)缩写为 slerp, 可以在两个四元数之间做平滑插值. 公式为:
+$$q = slerp(q_0, q_1, t)\
+$$
+t在0到1之间变换.</p>
+<p>计算插值一般需要先计算出两个值的差, 并乘以系数t, 加上初始值就是我们需要的插值. 四元数也是如此.</p>
+<p>四元数插值步骤如下:</p>
+<ul>
+<li>
+<p>计算  $q_0$  和  $q_1$  的插值.
+$$\Delta{} q = q^{-1}_0 q_1\
+$$</p>
+</li>
+<li>
+<p>计算  $\Delta{}q$  和  $t$  相关的部分.</p>
+<p>$t$  在 [0, 1]之间变换, 获取  $\Delta{}q$  的一部分, 恰好是计算四元数幂的操作.</p>
+<p>$$(\Delta{}q)^t\
+$$</p>
+</li>
+<li>
+<p>计算初始值加上差的一部分.</p>
+<p>对旋转四元数来说, 需要用乘法把两次旋转组合成新的旋转四元数.
+$$q_0(\Delta{}q)^t\
+$$</p>
+</li>
+</ul>
+<p>最终得到的slerp插值公式如下:
+$$slerp(q_0, q_1, t) = q_0(\Delta{}q)^t = q_0(q^{-1}_0 q_1)^t\
+$$</p>
+<p>上面的推导过程是按照代数的方法推导的.</p>
+<p>我们可以在四维空间中解释四元数. 旋转四元数都是单位四元数, 它们都在四维的一个超球面上.</p>
+<p>slerp的基本思想就是在四维超球面上沿连接两个四元数的四维超弧上做插值, 这也是球面线性插值这个名称的来历.</p>
+<p>可以从二维关系类比四维的情形.
+<img src="/ox-hugo/2022-06-Rotation-009.2D-Slerp.png" alt=""></p>
+<p>图中  $v_0, v_1, v_t$  都是单位向量, 其模都为1:
+$$\lVert v_0 \rVert = \lVert v_1 \rVert = \lVert v_t \rVert = 1\
+$$</p>
+<p>图中  $k_1v_1$  和  $v_1$  平行, 所以有:
+$$k_0v_0 + k_1v_1 = v_t\
+$$</p>
+<p>在三角形  $AOB$  中有:
+$$\sin(t\theta) = \frac{AB}{\lVert v_t \rVert} = AB\
+$$</p>
+<p>在三角形  $ACB$  中有:
+$$\sin(\theta) = \frac{AB}{\lVert k_1v_1 \rVert} = \frac{AB}{k_1}\
+$$</p>
+<p>由上面两个式子可以得出:
+$$k_1 = \frac{\sin(t\theta)}{\sin(\theta)}\
+$$</p>
+<p>继续求解  $k_0$ :
+$$\lVert k_0v_0 \rVert = k_0 = OC = OB - BC = \lVert v_t \rVert \cos(t\theta) - k_1cos(\theta) = cos(t\theta) - k_1cos(\theta)\
+$$</p>
+<p>代入  $k_1$  并化简, 这里会使用一次三角函数和公式  $\sin(\alpha - \beta) = \sin(\alpha)\cos(\beta) - cos(\alpha)sin(\beta)$ :
+$$\begin{eqnarray}
+k_0 &amp;=&amp; cos(t\theta) - k_1cos(\theta) \\
+&amp;=&amp; cos(t\theta) - \frac{\cos(\theta)\sin(t\theta)}{sin(\theta)} \\
+&amp;=&amp; \frac{\sin(\theta)\cos(t\theta) - cos(\theta)\sin(t\theta)}{\sin(\theta)}  \\
+&amp;=&amp; \frac{\sin(\theta - t\theta)}{\sin(\theta)} \\
+&amp;=&amp; \frac{\sin((1-t)\theta)}{\sin(\theta)}
+\end{eqnarray}\
+$$</p>
+<p>最终我们得到:
+$$v_t = k_0v_0 + k_1v_1 = \frac{\sin((1-t)\theta)}{\sin(\theta)}v_0 + \frac{\sin(t\theta)}{\sin(\theta)}v_1\
+$$</p>
+<p>推广到四元数有:
+$$slerp(q_0, q_1, t) = \frac{\sin((1-t)\theta)}{\sin(\theta)}q_0 + \frac{\sin(t\theta)}{\sin(\theta)}q_1\
+$$</p>
+<ul>
+<li>
+<p>小角度插值
+如果只对四元数做简单线性插值(Lerp), 得到的可能就不是一个单位四元数.
+$$lerp(q_0, q_1, t) = (1-t)q_0 + tq_1\
+$$</p>
+<p>线性插值后除以其模, 得到单位四元数, 这种方法称为正规化线性插值(NLerp).</p>
+<p>Lerp的问题是结果可能不是一个单位四元数, 无法用于旋转.
+NLerp的问题是当有较大角度插值时, 其角速度变换过大.</p>
+<p>在小角度插值时, Slerp可能会因sin带来除0的问题, 所以可以在小角度时替换为NLerp插值.
+NLerp计算更为简单, 在小角度插值时, 相较Slerp误差也并不大, 可以作为一种Slerp的优化手段.</p>
+</li>
+</ul>
+<h4 id="四元数样条-squad">四元数样条-squad</h4>
+<p>slerp可以提供两个方位之间的插值, 并且可以保持插值的角速度固定. 当我们使用slerp给多个方位之间插值时, 插值的角速度会在中间方位处发生突变.</p>
+<p>squad在slerp基础上, 实现了多点一阶连续可导</p>
+<h4 id="四元数映射-实数">四元数映射-实数??</h4>
+<h4 id="四元数映射-矢量映射">四元数映射-矢量映射???</h4>
+<h4 id="四元数与点">四元数与点</h4>
+<h4 id="四元数的优点">四元数的优点</h4>
+<ul>
+<li>四元数仅需要4个数字就可以表达旋转. 存储空间占用较少, 计算效率高.</li>
+<li>四元数不受万向锁的困扰.</li>
+<li>四元数容易插值.</li>
+<li>相比矩阵可以更容易给出旋转轴与旋转角.</li>
+</ul>
+<h4 id="四元数的缺点">四元数的缺点</h4>
+<ul>
+<li>四元数由复数(???四维复数)的概念构造, 不易理解, 不符合人的直觉.</li>
+<li>单个四元数不能表达任意方向超过180° 的旋转.</li>
+</ul>
+<h4 id="四元数和轴角">四元数和轴角</h4>
+<p>四元数和轴角法有一定关系, 绕  $n$  轴旋转  $\theta$  对应的四元数为:
+$$q = \begin{bmatrix} cos(\frac{\theta}{2}) &amp; sin(\frac{\theta}{2})n
+\end{bmatrix} = \begin{bmatrix} cos(\frac{\theta}{2}) &amp; sin(\frac{\theta}{2})n_x &amp; sin(\frac{\theta}{2})n_y &amp; sin(\frac{\theta}{2})n_z
+\end{bmatrix}\
+$$</p>
+<h4 id="unity与四元数">Unity与四元数</h4>
+<p>Unity在引擎内部使用四元数存储旋转和方位, 在其文档中<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>有明确指出.</p>
+<p>Unity提供了 <code>Quaternion</code> 类, 用于相关操作. 下面是其常用的几个方法/属性:</p>
+<ul>
+<li>
+<p>Quaternion.identity</p>
+<p>值为[1, \vec{0}]
+单位旋转(只读). 表示不旋转, 物体与其父对象或世界轴完全对齐.</p>
+<p>单位旋转和单位四元数不同.</p>
+</li>
+<li>
+<p>Quaternion.LookRotation
+根据旋转后物体的 <code>forward</code> (和物体Z轴对齐), <code>upwards</code> (X轴与 <code>forward</code> 和 <code>upwards</code> 的叉积对齐, <code>upwards</code> 不一定与Y轴对齐) 创建Quaternion.</p>
+</li>
+<li>
+<p>Quaternion.FromToRotation
+从 <code>fromDirection</code> 到 <code>toDirection</code> 的旋转.</p>
+</li>
+<li>
+<p>Quaternion.Slerp
+插值</p>
+</li>
+<li>
+<p>Quaternion.Euler
+返回欧拉角表示的四元数旋转.</p>
+</li>
+<li>
+<p>Quaternion.Angle
+返回两个四元数之间的夹角(应该绕同一点旋转, 否则无意义)</p>
+</li>
+</ul>
+<h2 id="旋转与群论">旋转与群论</h2>
+<h2 id="有没有三元数">有没有三元数</h2>
+<ul>
+<li>复数相当于二元数  $a+bi$</li>
+<li>三元数如果定义为  $a+bi+cj$ , 会遇到  $ij$  的乘积无定义的情况</li>
+</ul>
+<h2 id="参考文档">参考文档</h2>
+<h2 id="文档">文档</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/110997893">为什么你天天只看见四元数和八元数？ - 知乎</a>
+<a href="https://www.qiujiawei.com/understanding-quaternions/">Understanding Quaternions 中文翻译《理解四元数》</a>
+<a href="https://www.3dgep.com/understanding-quaternions/">Understanding Quaternions | 3D Game Engine Programming</a>
+<a href="https://zhuanlan.zhihu.com/p/385337220">对游戏开发中的四元数的一些理解 - 知乎</a></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://docs.unity3d.com/Manual/QuaternionAndEulerRotationsInUnity.html">Rotation and orientation in Unity(Unity官方文档)</a>
+<a href="https://docs.unity3d.com/ScriptReference/Quaternion.html">Unity - Scripting API: Quaternion</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2022-07-08
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/unity/">Unity</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/2022-01-13-the-calculus-lifesaver-02/">
+            <span class="next-text nav-default">普林斯顿微积分读本笔记02 三角函数</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+
+  <span class="division">|</span>
+
+  <span class="theme-info">
+      Network by
+      <a class="theme-link" href="https://www.netlify.com">Netlify</a>
+  </span>
+
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>

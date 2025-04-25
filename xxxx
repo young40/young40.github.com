@@ -1,0 +1,116 @@
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   categories/CPP/index.html
+	modified:   categories/Cocos2d-x/index.html
+	modified:   categories/Emacs/index.html
+	modified:   categories/index.html
+	modified:   categories/index.xml
+	modified:   categories/ugui源码分析/index.html
+	modified:   categories/ugui源码分析/index.xml
+	modified:   categories/unity/index.html
+	modified:   categories/unity/index.xml
+	modified:   categories/unityshader入门精要/index.html
+	modified:   categories/unityshader入门精要/index.xml
+	modified:   categories/杂谈/index.html
+	modified:   index.html
+	modified:   index.xml
+	modified:   page/2/index.html
+	modified:   page/3/index.html
+	modified:   post/2018-02-09-move-to-hugo/index.html
+	modified:   post/2018-06-12-google-cloud-f-gfw/index.html
+	modified:   post/2018-07-22-metal-shading-languae-note-03/index.html
+	modified:   post/2020-11-25-unity-shader-rumen-jingyao-00/index.html
+	modified:   post/2021-11-22-ugui-source-reading-00/index.html
+	modified:   post/2021-12-26-ugui-source-reading-01/index.html
+	modified:   post/index.html
+	modified:   post/index.xml
+	modified:   sitemap.xml
+	modified:   tags/index.html
+	modified:   tags/index.xml
+	modified:   tags/shader/index.html
+	modified:   tags/shader/index.xml
+	modified:   tags/ugui/index.html
+	modified:   tags/ugui/index.xml
+	modified:   tags/unity/index.html
+	modified:   tags/unity/index.xml
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	categories/3d数学基础笔记/
+	categories/CPP/index.xml
+	categories/CPP/page/
+	categories/Cocos2d-x/index.xml
+	categories/Cocos2d-x/page/
+	categories/Emacs/index.xml
+	categories/Emacs/page/
+	categories/architecture/
+	categories/cocos2d-x-源代码研究/
+	categories/cocosbuilder/
+	categories/opengl/
+	categories/unirx源码分析/
+	categories/普林斯顿微积分读本笔记/
+	categories/杂谈/index.xml
+	categories/杂谈/page/
+	categories/游戏/
+	page/4/
+	page/5/
+	page/6/
+	post/2012-12-09-setup-octopress-on-os-x-10-dot-8/
+	post/2012-12-10-declaration-and-definition-in-cpp/
+	post/2012-12-12-random-number-in-cpp/
+	post/2012-12-14-cocos2d-x-is-awesome/
+	post/2012-12-17-cocos2d-x-source-code-research-1-ccplatformconfig-dot-h/
+	post/2012-12-17-cocos2d-x-source-code-research-2-ccplatformmacros-dot-h/
+	post/2012-12-21-cocosbuilder-step-by-step-part-one/
+	post/2012-12-25-cocosbuilder-step-by-step-part-two/
+	post/2012-12-28-cocosbuilder-step-by-step-part-three/
+	post/2012-12-29-cocosbuilder-step-by-step-part-four/
+	post/2012-12-31-cocos2d-x-source-code-research-3-ccobject/
+	post/2013-01-03-cocos2d-x-source-code-research-4-ccautoreleasepool/
+	post/2013-01-08-chat-of-pomelo-for-cocos2d-x/
+	post/2013-02-23-setting-up-android-development-envirment-on-mac-os-x/
+	post/2013-08-01-cocosbuilder-multi-resolution/
+	post/2014-06-18-an-issue-about-pkgbuild-install-location-changed/
+	post/2015-01-11-from-octopress-to-hexo/
+	post/2015-01-11-meet-emacs-01/
+	post/2015-07-25-blogging-updated/
+	post/2015-07-26-master-spacemacs-answer-by-answer-1/
+	post/2015-12-22-using-git-as-magics/
+	post/2017-03-19-cocostudio-auto-binding/
+	post/2017-07-01-profile-your-work/
+	post/2018-03-10-about-opengl-rendering-pipeline/
+	post/2019-11-20-ace-attorney/
+	post/2019-11-21-terminal-survive-01/
+	post/2020-11-17-unity-shader-semantic-binding/
+	post/2020-11-25-unity-shader-rumen-jingyao-01/
+	post/2020-11-25-unity-shader-rumen-jingyao-02/
+	post/2021-06-24-unirx-code-reading-01/
+	post/2021-06-25-unirx-code-reading-02/
+	post/2021-06-26-unirx-code-reading-03/
+	post/2021-06-28-unirx-code-reading-04/
+	post/2021-07-01-software-architecture-principle/
+	post/2021-12-18-the-calculus-lifesaver-03/
+	post/2022-01-05-ugui-source-reading-02/
+	post/2022-01-12-3d-math-01/
+	post/2022-01-13-the-calculus-lifesaver-02/
+	post/2022-06-08-unity-rotation-euler-quaternion/
+	post/math/
+	post/page/2/
+	post/test/
+	tags/3d/
+	tags/architecture/
+	tags/mac-os-x/
+	tags/math/
+	tags/opengl/
+	tags/pkgbuild/
+	tags/unirx/
+	tags/微积分/
+	tags/普林斯顿/
+	tags/游戏/
+	xxxx
+
+no changes added to commit (use "git add" and/or "git commit -a")

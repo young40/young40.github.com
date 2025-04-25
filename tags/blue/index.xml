@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blue on 杨世玲的博客</title>
+    <link>http://localhost:8077/tags/blue/</link>
+    <description>Recent content in Blue on 杨世玲的博客</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>杨世玲</copyright>
+    <lastBuildDate>Sun, 02 Feb 2025 04:14:54 -0800</lastBuildDate>
+    <atom:link href="http://localhost:8077/tags/blue/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Example</title>
+      <link>http://localhost:8077/post/xxxx/</link>
+      <pubDate>Sun, 02 Feb 2025 04:14:54 -0800</pubDate>
+      <guid>http://localhost:8077/post/xxxx/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

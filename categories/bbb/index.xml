@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BBB on 杨世玲的博客</title>
+    <link>http://localhost:8077/categories/bbb/</link>
+    <description>Recent content in BBB on 杨世玲的博客</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>杨世玲</copyright>
+    <lastBuildDate>Fri, 25 Apr 2025 14:08:14 +0800</lastBuildDate>
+    <atom:link href="http://localhost:8077/categories/bbb/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从ox-hugo到知乎</title>
+      <link>http://localhost:8077/post/ooooo/</link>
+      <pubDate>Tue, 15 Apr 2025 18:10:43 +0800</pubDate>
+      <guid>http://localhost:8077/post/ooooo/</guid>
+      <description>&lt;p&gt;ssssssss&lt;/p&gt;&#xA;&lt;p&gt;很羡慕别人的文章中错落有致的数学公式,&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

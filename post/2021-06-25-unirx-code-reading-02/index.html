@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=8077&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>UniRx源码分析(二) Observer.cs - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" Observer.cs 包含了类 Observer, ObserverExtensions, ObservableExtensions, Stubs.
+" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.146.7 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:8077/post/2021-06-25-unirx-code-reading-02/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="http://localhost:8077/post/2021-06-25-unirx-code-reading-02/">
+  <meta property="og:site_name" content="杨世玲的博客">
+  <meta property="og:title" content="UniRx源码分析(二) Observer.cs">
+  <meta property="og:description" content="Observer.cs 包含了类 Observer, ObserverExtensions, ObservableExtensions, Stubs.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2021-06-25T15:34:16+08:00">
+    <meta property="article:modified_time" content="2021-06-25T15:34:16+08:00">
+    <meta property="article:tag" content="Unity">
+    <meta property="article:tag" content="UniRx">
+
+  <meta itemprop="name" content="UniRx源码分析(二) Observer.cs">
+  <meta itemprop="description" content="Observer.cs 包含了类 Observer, ObserverExtensions, ObservableExtensions, Stubs.">
+  <meta itemprop="datePublished" content="2021-06-25T15:34:16+08:00">
+  <meta itemprop="dateModified" content="2021-06-25T15:34:16+08:00">
+  <meta itemprop="wordCount" content="912">
+  <meta itemprop="keywords" content="Unity,UniRx">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="UniRx源码分析(二) Observer.cs">
+  <meta name="twitter:description" content="Observer.cs 包含了类 Observer, ObserverExtensions, ObservableExtensions, Stubs.">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+<script>
+  MathJax = {
+    tex: {
+	inlineMath: [["$", "$"]]
+    },
+    displayMath: [
+      ["$$", "$$"],
+      
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">UniRx源码分析(二) Observer.cs</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-06-25 </span>
+        <div class="post-category">
+            <a href="/categories/unirx%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"> UniRx源码分析 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1"><code class="verbatim">Observer</code> 类</a>
+<ul>
+<li><a href="#headline-2"><code class="verbatim">Create</code> 函数</a>
+</li>
+<li><a href="#headline-3"><code class="verbatim">CreateSubscibeObserver</code> 函数</a>
+</li>
+<li><a href="#headline-4"><code class="verbatim">Subscribe</code> 类</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-5"><code class="verbatim">ObserverExtensions</code> 扩展</a>
+</li>
+<li><a href="#headline-6"><code class="verbatim">ObservableExtensions</code> 扩展</a>
+</li>
+<li><a href="#headline-7"><code class="verbatim">Stubs</code> 桩类</a>
+</li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>
+<code class="verbatim">Observer.cs</code> 包含了类 <code class="verbatim">Observer</code>, <code class="verbatim">ObserverExtensions</code>, <code class="verbatim">ObservableExtensions</code>, <code class="verbatim">Stubs</code>.</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+<code class="verbatim">Observer</code> 类
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p><code class="verbatim">Observer</code> 为静态( <code class="verbatim">static</code> )类.  </p>
+<div id="outline-container-headline-2" class="outline-4">
+<h4 id="headline-2">
+<code class="verbatim">Create</code> 函数
+</h4>
+<div id="outline-text-headline-2" class="outline-text-4">
+<p><code class="verbatim">Observer</code> 定义4了 <code class="verbatim">Create</code> 函数, 返回一个 <code class="verbatim">IObserver&lt;T&gt;</code> 对象，其参数为 <code class="verbatim">Action&lt;T&gt; onNext</code>, <code class="verbatim">Action&lt;Exception&gt; onError</code>, <code class="verbatim">Action onCompleted</code>.
+包含参数最多的函数如下:</p>
+<div class="src src-csharp">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="n">IObserver</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">Create</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">Action</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>         <span class="n">onNext</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                       <span class="n">Action</span><span class="p">&lt;</span><span class="n">Exception</span><span class="p">&gt;</span> <span class="n">onError</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                       <span class="n">Action</span>            <span class="n">onCompleted</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// need compare for avoid iOS AOT</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="n">onNext</span> <span class="p">==</span> <span class="n">Stubs</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;.</span><span class="n">Ignore</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="k">new</span> <span class="n">EmptyOnNextAnonymousObserver</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">onError</span><span class="p">,</span> <span class="n">onCompleted</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">else</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="k">new</span> <span class="n">AnonymousObserver</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">onNext</span><span class="p">,</span> <span class="n">onError</span><span class="p">,</span> <span class="n">onCompleted</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+<p>
+目前， 我还不确定为何会因 iOS AOT 产生流程分支.  </p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-4">
+<h4 id="headline-3">
+<code class="verbatim">CreateSubscibeObserver</code> 函数
+</h4>
+<div id="outline-text-headline-3" class="outline-text-4">
+<p>同时也定义了具有带有不同数量(0-3) <code class="verbatim">State</code> 4个 <code class="verbatim">CreateSubscribeObserver</code> (<code class="verbatim">CreateSubscribeWithState(N)Observer</code>) 函数, 该函数为 <code class="verbatim">internal</code>, 仅在 <code class="verbatim">UniRx</code> 库内部使用。</p>
+<div class="src src-csharp">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">  <span class="kd">internal</span> <span class="kd">static</span> <span class="n">IObserver</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">CreateSubscribeWithStateObserver</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">TState</span><span class="p">&gt;(</span>
+</span></span><span class="line"><span class="cl">      <span class="n">TState</span>                    <span class="n">state</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Action</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">TState</span><span class="p">&gt;</span>         <span class="n">onNext</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Action</span><span class="p">&lt;</span><span class="n">Exception</span><span class="p">,</span> <span class="n">TState</span><span class="p">&gt;</span> <span class="n">onError</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Action</span><span class="p">&lt;</span><span class="n">TState</span><span class="p">&gt;</span>            <span class="n">onCompleted</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="k">new</span> <span class="n">Subscribe</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">TState</span><span class="p">&gt;(</span><span class="n">state</span><span class="p">,</span> <span class="n">onNext</span><span class="p">,</span> <span class="n">onError</span><span class="p">,</span> <span class="n">onCompleted</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-4">
+<h4 id="headline-4">
+<code class="verbatim">Subscribe</code> 类
+</h4>
+<div id="outline-text-headline-4" class="outline-text-4">
+<p><code class="verbatim">Create</code> 和 <code class="verbatim">CreateSubscribeObserver</code> 等函数，会返回 <code class="verbatim">Subscribe</code> 类的实例， 同样因为包含的 <code class="verbatim">State</code> 数量不同，有不同的 <code class="verbatim">Subscribe</code> 定义。
+<code class="verbatim">Subscribe</code> 类都派生至 IObserver&lt;T&gt;, 为私有类， 不能在外部调用。</p>
+<p>
+上述两种类型的 <code class="verbatim">Create</code> 函数, 都是返回了一个 <code class="verbatim">Subscribe</code> 对象实例, <code class="verbatim">Subscribe</code> 都实现了 <code class="verbatim">IObserver</code> 接口.
+我们在上面也能看到第一种 <code class="verbatim">Create</code> 函数, 实际返回的是 <code class="verbatim">EmptyOnNextAnonymousObserver</code> 或 <code class="verbatim">AnonymousObserver</code> 对象实例. 尽管拥有不同的名称, 但他们有对应的 <code class="verbatim">Subscribe</code> 实现, 有着相同的逻辑. (我暂时没有想明白, 为何保留了不同名字的相同逻辑的代码)</p>
+<p>
+根据是否含有 <code class="verbatim">State</code>, <code class="verbatim">Subscribe</code> 有几种不同的变种. 典型的实现如下:</p>
+<div class="src src-csharp">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">  <span class="c1">// TState数量不同</span>
+</span></span><span class="line"><span class="cl">  <span class="k">class</span> <span class="nc">Subscribe</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">TState</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">IObserver</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">readonly</span> <span class="n">TState</span> <span class="n">state</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">readonly</span> <span class="n">Action</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">TState</span><span class="p">&gt;</span> <span class="n">onNext</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">readonly</span> <span class="n">Action</span><span class="p">&lt;</span><span class="n">Exception</span><span class="p">,</span> <span class="n">TState</span><span class="p">&gt;</span> <span class="n">onError</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">readonly</span> <span class="n">Action</span><span class="p">&lt;</span><span class="n">TState</span><span class="p">&gt;</span> <span class="n">onCompleted</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">isStopped</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="n">Subscribe</span><span class="p">(</span><span class="n">TState</span>       <span class="n">state</span><span class="p">,</span>   
+</span></span><span class="line"><span class="cl">          <span class="n">Action</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">TState</span><span class="p">&gt;</span>         <span class="n">onNext</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">Action</span><span class="p">&lt;</span><span class="n">Exception</span><span class="p">,</span> <span class="n">TState</span><span class="p">&gt;</span> <span class="n">onError</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">Action</span><span class="p">&lt;</span><span class="n">TState</span><span class="p">&gt;</span>            <span class="n">onCompleted</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">this</span><span class="p">.</span><span class="n">state</span> <span class="p">=</span> <span class="n">state</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">          <span class="k">this</span><span class="p">.</span><span class="n">onNext</span> <span class="p">=</span> <span class="n">onNext</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">          <span class="k">this</span><span class="p">.</span><span class="n">onError</span> <span class="p">=</span> <span class="n">onError</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">          <span class="k">this</span><span class="p">.</span><span class="n">onCompleted</span> <span class="p">=</span> <span class="n">onCompleted</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="k">void</span> <span class="n">OnNext</span><span class="p">(</span><span class="n">T</span> <span class="k">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">if</span> <span class="p">(</span><span class="n">isStopped</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="n">onNext</span><span class="p">(</span><span class="k">value</span><span class="p">,</span> <span class="n">state</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="k">void</span> <span class="n">OnError</span><span class="p">(</span><span class="n">Exception</span> <span class="n">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">if</span> <span class="p">(</span><span class="n">Interlocked</span><span class="p">.</span><span class="n">Increment</span><span class="p">(</span><span class="k">ref</span> <span class="n">isStopped</span><span class="p">)</span> <span class="p">==</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="c1">// 带state版本会把state传回回调函数</span>
+</span></span><span class="line"><span class="cl">              <span class="n">onError</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">state</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">      <span class="kd">public</span> <span class="k">void</span> <span class="n">OnCompleted</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">if</span> <span class="p">(</span><span class="n">Interlocked</span><span class="p">.</span><span class="n">Increment</span><span class="p">(</span><span class="k">ref</span> <span class="n">isStopped</span><span class="p">)</span> <span class="p">==</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="c1">// 带state版本会把state传回回调函数</span>
+</span></span><span class="line"><span class="cl">              <span class="n">onCompleted</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+<code class="verbatim">ObserverExtensions</code> 扩展
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
+<p>给 <code class="verbatim">IObserver</code> 扩展出两个 <code class="verbatim">Synchronize</code> 方法. 实际返回的是 <code class="verbatim">UniRx.Operators.SynchronizedObserver</code> 的实例, 我们等到看 <code class="verbatim">Operator</code> 时再讨论.</p>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-2">
+<h2 id="headline-6">
+<code class="verbatim">ObservableExtensions</code> 扩展
+</h2>
+<div id="outline-text-headline-6" class="outline-text-2">
+<p>给 <code class="verbatim">IObservable</code> 扩展出各种 <code class="verbatim">Subscribe</code> 函数变种. 这些变种间的差异, 依然是是否有 <code class="verbatim">onNext</code>, <code class="verbatim">onError</code>, <code class="verbatim">onCompleted</code>, 以及 <code class="verbatim">State</code> 数量的不同.</p>
+<p>
+典型的实现如下:</p>
+<div class="src src-csharp">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="n">IDisposable</span> <span class="n">SubscribeWithState</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">TState</span><span class="p">&gt;(</span><span class="k">this</span> <span class="n">IObservable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">source</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                                          <span class="n">TState</span> <span class="n">state</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                                          <span class="n">Action</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">TState</span><span class="p">&gt;</span> <span class="n">onNext</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">source</span><span class="p">.</span><span class="n">Subscribe</span><span class="p">(</span><span class="n">Observer</span><span class="p">.</span><span class="n">CreateSubscribeWithStateObserver</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">onNext</span><span class="p">,</span> <span class="n">Stubs</span><span class="p">&lt;</span><span class="n">TState</span><span class="p">&gt;.</span><span class="n">Throw</span><span class="p">,</span> <span class="n">Stubs</span><span class="p">&lt;</span><span class="n">TState</span><span class="p">&gt;.</span><span class="n">Ignore</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+<p>
+我们可以看到这些扩展出的 <code class="verbatim">Subscribe</code> 函数会直接返回原对象的 <code class="verbatim">Subscribe</code> 函数调用返回值. 该返回值是 <code class="verbatim">IDisposable</code>, 可以在销毁时释放资源.</p>
+<p>
+传给原对象 <code class="verbatim">Subscribe</code> 函数的参数为 <code class="verbatim">Observer.CreateSubscribeWithStateObserver</code>, 根据上面的分析, 我们知道实际上就是 <code class="verbatim">Observer.Subscribe</code> 的实例.</p>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-2">
+<h2 id="headline-7">
+<code class="verbatim">Stubs</code> 桩类
+</h2>
+<div id="outline-text-headline-7" class="outline-text-2">
+<p>桩类里实现了空的 <code class="verbatim">Action</code>, <code class="verbatim">Action&lt;Exception&gt;</code> 等. 如果调用函数时, 我们不关系某一参数的值, 可以给其传入对应的桩类里的空的实现.</p>
+<p>
+典型实现如下:</p>
+<div class="src src-csharp">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kd">internal</span> <span class="kd">static</span> <span class="k">class</span> <span class="nc">Stubs</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="k">readonly</span> <span class="n">Action</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">Ignore</span> <span class="p">=</span> <span class="p">(</span><span class="n">T</span> <span class="n">t</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="k">readonly</span> <span class="n">Func</span><span class="p">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">&gt;</span> <span class="n">Identity</span> <span class="p">=</span> <span class="p">(</span><span class="n">T</span> <span class="n">t</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="k">readonly</span> <span class="n">Action</span><span class="p">&lt;</span><span class="n">Exception</span><span class="p">,</span> <span class="n">T</span><span class="p">&gt;</span> <span class="n">Throw</span> <span class="p">=</span> <span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="n">ex</span><span class="p">.</span><span class="n">Throw</span><span class="p">();</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-06-25
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/unity/">Unity</a>
+          <a href="/tags/unirx/">UniRx</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2021-06-26-unirx-code-reading-03/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">UniRx源码分析(三) Observable</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2021-06-24-unirx-code-reading-01/">
+            <span class="next-text nav-default">UniRx源码分析(一) 基础接口</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+
+  <span class="division">|</span>
+
+  <span class="theme-info">
+      Network by
+      <a class="theme-link" href="https://www.netlify.com">Netlify</a>
+  </span>
+
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>

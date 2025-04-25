@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=8077&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>软件架构原则 - 杨世玲的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" 什么是软件架构? 软件架构的定义，众说纷纭，不一而足。这里参考《架构整洁之道》的定义：
+软件架构是指设计软件的人为软件赋予的形状，这个形状是指系统如何被划分为组件（Components），各个组件如何排列（Arrangment）， 组件之间如何沟通（Communication）。
+" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.146.7 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:8077/post/2021-07-01-software-architecture-principle/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="http://localhost:8077/post/2021-07-01-software-architecture-principle/">
+  <meta property="og:site_name" content="杨世玲的博客">
+  <meta property="og:title" content="软件架构原则">
+  <meta property="og:description" content="什么是软件架构? 软件架构的定义，众说纷纭，不一而足。这里参考《架构整洁之道》的定义：
+软件架构是指设计软件的人为软件赋予的形状，这个形状是指系统如何被划分为组件（Components），各个组件如何排列（Arrangment）， 组件之间如何沟通（Communication）。">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2021-07-01T16:06:00+08:00">
+    <meta property="article:modified_time" content="2021-07-01T16:06:00+08:00">
+    <meta property="article:tag" content="Architecture">
+
+  <meta itemprop="name" content="软件架构原则">
+  <meta itemprop="description" content="什么是软件架构? 软件架构的定义，众说纷纭，不一而足。这里参考《架构整洁之道》的定义：
+软件架构是指设计软件的人为软件赋予的形状，这个形状是指系统如何被划分为组件（Components），各个组件如何排列（Arrangment）， 组件之间如何沟通（Communication）。">
+  <meta itemprop="datePublished" content="2021-07-01T16:06:00+08:00">
+  <meta itemprop="dateModified" content="2021-07-01T16:06:00+08:00">
+  <meta itemprop="wordCount" content="619">
+  <meta itemprop="keywords" content="Architecture">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="软件架构原则">
+  <meta name="twitter:description" content="什么是软件架构? 软件架构的定义，众说纷纭，不一而足。这里参考《架构整洁之道》的定义：
+软件架构是指设计软件的人为软件赋予的形状，这个形状是指系统如何被划分为组件（Components），各个组件如何排列（Arrangment）， 组件之间如何沟通（Communication）。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+<script>
+  MathJax = {
+    tex: {
+	inlineMath: [["$", "$"]]
+    },
+    displayMath: [
+      ["$$", "$$"],
+      
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<script>
+ var _hmt = _hmt || [];
+ (function() {
+     var hm = document.createElement("script");
+     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
+     var s = document.getElementsByTagName("script")[0]; 
+     s.parentNode.insertBefore(hm, s);
+ })();
+</script>
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">杨世玲的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">杨世玲的博客</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">软件架构原则</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-07-01 </span>
+        <div class="post-category">
+            <a href="/categories/architecture/"> Architecture </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">什么是软件架构?</a>
+</li>
+<li><a href="#headline-2">S.O.L.I.D  </a>
+</li>
+<li><a href="#headline-3">单一职责原则  </a>
+</li>
+<li><a href="#headline-4">开放封闭原则  </a>
+</li>
+<li><a href="#headline-5">里氏替换原则  </a>
+</li>
+<li><a href="#headline-6">接口隔离原则  </a>
+</li>
+<li><a href="#headline-7">依赖反转原则  </a>
+</li>
+<li><a href="#headline-8">参考</a>
+</li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+什么是软件架构?
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>软件架构的定义，众说纷纭，不一而足。这里参考《架构整洁之道》的定义：</p>
+<blockquote>
+<p>软件架构是指设计软件的人为软件赋予的形状，这个形状是指系统如何被划分为组件（Components），各个组件如何排列（Arrangment）， 组件之间如何沟通（Communication）。</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+S.O.L.I.D  
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<p>常见的说法是 <code class="verbatim">S.O.L.I.D</code> 五个原则， 是各种原则的首字母。</p>
+<ul>
+<li>[SRP] Single-responsibility principle 单一职责原则</li>
+<li>[OCP] Open-closed principle 开放封闭原则</li>
+<li>[LSP] Liskov subsitution principle 里氏替换原则</li>
+<li>[ISP] Interface segregation principle 接口隔离原则</li>
+<li>[DIP] Dependency inversion principle 依赖反转原则
+
+英文中 <code class="verbatim">solid</code> 意为 <code class="verbatim">坚硬的</code> 。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
+单一职责原则  
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
+<blockquote>
+<p>任何一个软件模块都应该只对某一类行为者负责。</p>
+</blockquote>
+<p>
+尽管我们都在用面向对象，但组织类的时候， 应该以行为（可以做的事）为标准。对象可以很复杂， 行为是单一的。</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
+<h2 id="headline-4">
+开放封闭原则  
+</h2>
+<div id="outline-text-headline-4" class="outline-text-2">
+<blockquote>
+<p>设计良好的计算机软件应该易于扩展，同时抗拒修改。</p>
+</blockquote>
+<p>
+  对扩展开放， 对修改封闭。</p>
+<p>
+  封闭，当需求变化时，尽可能不修改源码。</p>
+<p>
+  或许只有积木式的代码， 才能做到在需求有变时，或新增积木（扩张），或改变积木配置顺序（配置文件或胶水代码），来响应改变。</p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+里氏替换原则  
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
+<p>理解里氏替换原则， 需要理解著名（臭名昭著）的正方形长方形问题。</p>
+<p>
+  如果正方形是长方形的子类，那么同时给正方形对象设置不等的长和宽，会导致正方形的面积和设置的长宽乘积不等。</p>
+<p>
+  里氏替换的关键点在于， 如果一处是调用了父类，那么应该可以安全地被替换为其所有子类，否则要考虑他们之间是否应该存在父子继承关系。</p>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-2">
+<h2 id="headline-6">
+接口隔离原则  
+</h2>
+</div>
+<div id="outline-container-headline-7" class="outline-2">
+<h2 id="headline-7">
+依赖反转原则  
+</h2>
+</div>
+<div id="outline-container-headline-8" class="outline-2">
+<h2 id="headline-8">
+参考
+</h2>
+<div id="outline-text-headline-8" class="outline-text-2">
+<ul>
+<li><a href="https://zh.wikipedia.org/zh-cn/软件架构">维基百科: 软件架构</a></li>
+<li><a href="https://weread.qq.com/web/reader/480322f072021a3248038c8kc81322c012c81e728d9d180">微信读书：架构整洁之道</a></li>
+<li><a href="https://blog.csdn.net/zhengzhb/article/details/7296944">设计模式六大原则（6）：开闭原则</a></li>
+</ul>
+</div>
+</div>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2021-07-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/architecture/">Architecture</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2021-11-22-ugui-source-reading-00/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">UGUI源码分析(零): 环境搭建</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2021-06-28-unirx-code-reading-04/">
+            <span class="next-text nav-default">UniRx源码分析(四) Disposables</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+
+  <span class="division">|</span>
+
+  <span class="theme-info">
+      Network by
+      <a class="theme-link" href="https://www.netlify.com">Netlify</a>
+  </span>
+
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2012 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>
