@@ -16,14 +16,15 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="杨世玲" /><meta name="description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想," /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
+<meta name="author" content="" /><meta name="description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想, 这么常见的东西一定很简单吧? 其实并没有那么简单. 作为一名游戏开发工程师, 我们能在网上找到关于欧拉角, 四元数, 万向锁的资料数不胜数, 但大都不成体系. 而且研究比较深入的反而是在运动控制, 飞行控制领域. 可能飞控不好就会炸机&hellip;
+" /><meta name="keywords" content="gamedev, cocos, unity, game, unreal" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.94.2 with theme even" />
+<meta name="generator" content="Hugo 0.146.7 with theme even" />
 
 
 <link rel="canonical" href="https://www.young40.com/zhihu/2022-06-08-unity-rotation-euler-quaternion/" />
@@ -39,20 +40,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想," />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.young40.com/zhihu/2022-06-08-unity-rotation-euler-quaternion/" /><meta property="article:section" content="zhihu" />
+<meta property="og:url" content="https://www.young40.com/zhihu/2022-06-08-unity-rotation-euler-quaternion/">
+  <meta property="og:site_name" content="杨世玲的博客">
+  <meta property="og:title" content="杨世玲的博客">
+  <meta property="og:description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想, 这么常见的东西一定很简单吧? 其实并没有那么简单. 作为一名游戏开发工程师, 我们能在网上找到关于欧拉角, 四元数, 万向锁的资料数不胜数, 但大都不成体系. 而且研究比较深入的反而是在运动控制, 飞行控制领域. 可能飞控不好就会炸机…">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="zhihu">
 
-
-
-<meta itemprop="name" content="">
-<meta itemprop="description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想,">
-
-<meta itemprop="wordCount" content="6558">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想,"/>
+  <meta itemprop="name" content="杨世玲的博客">
+  <meta itemprop="description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想, 这么常见的东西一定很简单吧? 其实并没有那么简单. 作为一名游戏开发工程师, 我们能在网上找到关于欧拉角, 四元数, 万向锁的资料数不胜数, 但大都不成体系. 而且研究比较深入的反而是在运动控制, 飞行控制领域. 可能飞控不好就会炸机…">
+  <meta itemprop="wordCount" content="6558">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="杨世玲的博客">
+  <meta name="twitter:description" content="旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想, 这么常见的东西一定很简单吧? 其实并没有那么简单. 作为一名游戏开发工程师, 我们能在网上找到关于欧拉角, 四元数, 万向锁的资料数不胜数, 但大都不成体系. 而且研究比较深入的反而是在运动控制, 飞行控制领域. 可能飞控不好就会炸机…">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -164,42 +165,41 @@
 <h3 id="先转一下">先转一下</h3>
 <p>我们在Inspector中, 可以让飞机分别绕X, Y, Z轴旋转一下. 可以看到这三种旋转分别对应了飞机可以做的三种基本旋转:</p>
 <table>
-<thead>
-<tr>
-<th>轴</th>
-<th>英文</th>
-<th>中文</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>X</td>
-<td>pitch</td>
-<td>俯仰角</td>
-</tr>
-<tr>
-<td>Y</td>
-<td>yaw</td>
-<td>偏航角</td>
-</tr>
-<tr>
-<td>Z</td>
-<td>roll</td>
-<td>滚转角</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>轴</th>
+          <th>英文</th>
+          <th>中文</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>X</td>
+          <td>pitch</td>
+          <td>俯仰角</td>
+      </tr>
+      <tr>
+          <td>Y</td>
+          <td>yaw</td>
+          <td>偏航角</td>
+      </tr>
+      <tr>
+          <td>Z</td>
+          <td>roll</td>
+          <td>滚转角</td>
+      </tr>
+  </tbody>
 </table>
 <img src="http://121.196.158.145/ox-hugo/2022-06-Rotation-002.Plane-Basic-Rotation.gif" />
 <blockquote>
-<p>X,Y,Z轴的颜色正好和三原色Red,Green,Blue对应. 在游戏开发中我们还能在其他地方也看到这种对应关系.</p>
-</blockquote>
-<h3 id="当x轴旋转plusmn90deg时">当X轴旋转±90°时</h3>
+<p>X,Y,Z轴的颜色正好和三原色Red,Green,Blue对应. 在游戏开发中我们还能在其他地方也看到这种对应关系.</p></blockquote>
+<h3 id="当x轴旋转90时">当X轴旋转±90°时</h3>
 <p>我们先在Inspector中将飞机绕X轴旋转90°, 这时再操作Y轴与Z轴, 我们可以惊奇地发现, 旋转效果 <code>似乎</code> 是完全一致的.
 我们再也不能通过旋转Y轴, 让飞机偏航(yaw)了.</p>
 <img src="http://121.196.158.145/ox-hugo/2022-06-Rotation-003.Plane-X-90.gif" />
 <p>此时(保持绕X轴旋转90°), 我们先后操作Y轴和Z轴相同的度数(例如30°), 我们会发现两次操作抵消了, 飞机的姿态回到了原位, 即Y,Z轴都是0°的状态.</p>
 <p>我们再让飞机的X轴旋转-90°, 再操作Y轴和Z轴一定的度数(例如各30°), 可以看到其效果等同于单独操作Y轴或Z轴其度数之和(30°+30°=60°).</p>
-<h3 id="不可跨越的90deg">不可跨越的90°</h3>
+<h3 id="不可跨越的90">不可跨越的90°</h3>
 <p>Unity提供了多种旋转的Api, 其中由对象的transform提供的eulerAngles可以获取或设置欧拉角.
 我们尝试用其让飞机做持续旋转的动画.</p>
 <p>我们使用如下代码:</p>
@@ -246,8 +246,7 @@ $$</p>
 <blockquote>
 <p>之所以选择原点是因为我们总是可以对物体做平移操作, 先平移至原点, 旋转之后再平移回去.
 从数学上讲, 平移操作是非线形操作, 我们需要将二维空间升至三维空间做平移, 即引入齐次坐标.
-平移和旋转恰好可以互不影响地存在于升维后的矩阵中, 所以我们可以简便地采用以原点为中心点做旋转.</p>
-</blockquote>
+平移和旋转恰好可以互不影响地存在于升维后的矩阵中, 所以我们可以简便地采用以原点为中心点做旋转.</p></blockquote>
 <h3 id="坐标系与旋转正方向">坐标系与旋转正方向</h3>
 <p>在三维空间中, 左手坐标系中采用左手法则确定旋转正方向, 右手坐标系采用右手法则确定旋转正方向. Unity中采用了左手坐标系, 因此我们下面提到的旋转都遵循左手法则.</p>
 <h3 id="绕坐标轴旋转">绕坐标轴旋转</h3>
@@ -333,8 +332,7 @@ p^{\prime} \ q^{\prime} \ r^{\prime}
 \
 $$</p>
 <blockquote>
-<p>矩阵形式太复杂了, 暂时先不详细列出了.</p>
-</blockquote>
+<p>矩阵形式太复杂了, 暂时先不详细列出了.</p></blockquote>
 <h2 id="旋转的几种表示方法">旋转的几种表示方法</h2>
 <p>旋转有多种表示方法, 例如轴角法, 旋转矩阵, 欧拉角, 四元数, 游戏引擎中用到了多种旋转表示方法. 我们来看看这些不同表示方法之间的联系.</p>
 <h3 id="旋转矩阵">旋转矩阵</h3>
@@ -367,8 +365,7 @@ $$</p>
 </ul>
 <blockquote>
 <p>矩阵有9个数字组成, 这相当于给旋转矩阵带来了9个自由度. 但显然不是随意填入9个数字都能是旋转矩阵.
-旋转矩阵要求其3个行向量是单位矩阵, 并且3个行向量需要互相垂直.我们也可以理解为, 我们把三维空间的问题转化为九维空间带有六个约束的问题.</p>
-</blockquote>
+旋转矩阵要求其3个行向量是单位矩阵, 并且3个行向量需要互相垂直.我们也可以理解为, 我们把三维空间的问题转化为九维空间带有六个约束的问题.</p></blockquote>
 <h3 id="轴角法">轴角法</h3>
 <p>使用绕任意轴旋转的方法, 也可以表达旋转.</p>
 <ul>
@@ -578,8 +575,7 @@ $$</p>
 $$ p\prime = qpq^{-1}\
 $$</p>
 <blockquote>
-<p>上面公式的本质是, 将在四维空间上的旋转限制在一个三维空间中.</p>
-</blockquote>
+<p>上面公式的本质是, 将在四维空间上的旋转限制在一个三维空间中.</p></blockquote>
 <p>四元数叉乘在处理多次旋转上很有优势, 我们看下将点  $$p$$  先旋转  $$a$$ , 再旋转  $$b$$ :
 $$\begin{eqnarray}
 p\prime &amp;=&amp; b(apa^{-1})b^{-1} \
@@ -809,15 +805,15 @@ $$</p>
 <a href="https://www.qiujiawei.com/understanding-quaternions/">Understanding Quaternions 中文翻译《理解四元数》</a>
 <a href="https://www.3dgep.com/understanding-quaternions/">Understanding Quaternions | 3D Game Engine Programming</a>
 <a href="https://zhuanlan.zhihu.com/p/385337220">对游戏开发中的四元数的一些理解 - 知乎</a></p>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
+<li id="fn:1">
 <p><a href="https://docs.unity3d.com/Manual/QuaternionAndEulerRotationsInUnity.html">Rotation and orientation in Unity(Unity官方文档)</a>
 <a href="https://docs.unity3d.com/ScriptReference/Quaternion.html">Unity - Scripting API: Quaternion</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
   </div>
 </article>
@@ -836,7 +832,7 @@ $$</p>
       <a href="https://github.com/young40" class="iconfont icon-github" title="github"></a>
       <a href="https://weibo.com/n/%e6%9d%a8%e4%b8%96%e7%8e%b2" class="iconfont icon-weibo" title="weibo"></a>
       <a href="https://www.zhihu.com/people/young40" class="iconfont icon-zhihu" title="zhihu"></a>
-  <a href="https://www.young40.com/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
 </div>
 
 <div class="copyright">
@@ -862,7 +858,7 @@ $$</p>
   <span class="copyright-year">
     &copy; 
     2012 - 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>杨世玲</span>
   </span>
 </div>
 
@@ -879,7 +875,7 @@ $$</p>
 
 
 
-<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

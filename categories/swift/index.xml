@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>swift on 杨世玲的博客</title>
+    <title>Swift on 杨世玲的博客</title>
     <link>https://www.young40.com/categories/swift/</link>
-    <description>Recent content in swift on 杨世玲的博客</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Swift on 杨世玲的博客</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>杨世玲</copyright>
-    <lastBuildDate>Sat, 30 Jun 2018 11:25:49 +0800</lastBuildDate><atom:link href="https://www.young40.com/categories/swift/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Jun 2018 11:25:49 +0800</lastBuildDate>
+    <atom:link href="https://www.young40.com/categories/swift/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>学习Swift: guard</title>
       <link>https://www.young40.com/post/2018-06-30-learn-swift-01-guard/</link>
       <pubDate>Sat, 30 Jun 2018 11:25:49 +0800</pubDate>
-      
       <guid>https://www.young40.com/post/2018-06-30-learn-swift-01-guard/</guid>
-      <description>&lt;p&gt;
-&lt;code class=&#34;verbatim&#34;&gt;guard&lt;/code&gt; 是Swift 2.0引入的新关键字, 用于当条件不满足时, 不再执行后续的代码. 当然, 官方文档上说是交出当前作用域的程序控制权.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&#xA;&lt;code class=&#34;verbatim&#34;&gt;guard&lt;/code&gt; 是Swift 2.0引入的新关键字, 用于当条件不满足时, 不再执行后续的代码. 当然, 官方文档上说是交出当前作用域的程序控制权.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -4,46 +4,16 @@
     <title>Zhihus on 杨世玲的博客</title>
     <link>https://www.young40.com/zhihu/</link>
     <description>Recent content in Zhihus on 杨世玲的博客</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <copyright>杨世玲</copyright><atom:link href="https://www.young40.com/zhihu/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title></title>
-      <link>https://www.young40.com/zhihu/2021-11-22-ugui-source-reading-00/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.young40.com/zhihu/2021-11-22-ugui-source-reading-00/</guid>
-      <description>&lt;p&gt;有道是, 工欲善其事, 必先利其器. 想研究代码, 最好的方式就是边修改边运行看看效果, 研究UGUI自然也不例外.
-我们先看下如何搭建一个可以修改调试UGUI环境.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://www.young40.com/zhihu/2021-12-26-ugui-source-reading-01/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.young40.com/zhihu/2021-12-26-ugui-source-reading-01/</guid>
-      <description>&lt;p&gt;我们都知道在Unity中渲染一个3D的物体, 需要提供3D物体的模型, 纹理, 材质甚至Shader. 但我们在制作UI时, 并不是必须提供这些.
-那UI是另起炉灶, 有一套新机制吗? 答案是否定的. 下面我们就从UGUI源码层面来看看Image的渲染.&lt;/p&gt;</description>
-    </item>
-    
+    <copyright>杨世玲</copyright>
+    <atom:link href="https://www.young40.com/zhihu/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>https://www.young40.com/zhihu/2022-06-08-unity-rotation-euler-quaternion/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://www.young40.com/zhihu/2022-06-08-unity-rotation-euler-quaternion/</guid>
-      <description>旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转. 你可能会想,</description>
+      <description>&lt;p&gt;旋转, 处处都能看到的一种现象. 大到宇宙中星体的自转、公转, 小到车辆轮子的运动, 甚至我们的手一伸一握, 都包含着指节围绕关节的旋转.&#xA;你可能会想, 这么常见的东西一定很简单吧? 其实并没有那么简单.&#xA;作为一名游戏开发工程师, 我们能在网上找到关于欧拉角, 四元数, 万向锁的资料数不胜数, 但大都不成体系.&#xA;而且研究比较深入的反而是在运动控制, 飞行控制领域. 可能飞控不好就会炸机&amp;hellip;&lt;/p&gt;</description>
     </item>
-    
-    <item>
-      <title></title>
-      <link>https://www.young40.com/zhihu/2022-06-15-ox-hugo-to-zhihu/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.young40.com/zhihu/2022-06-15-ox-hugo-to-zhihu/</guid>
-      <description>很羡慕别人的文章中错落有致的数学公式,</description>
-    </item>
-    
   </channel>
 </rss>

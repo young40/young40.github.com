@@ -4,90 +4,73 @@
     <title>Tags on 杨世玲的博客</title>
     <link>https://www.young40.com/tags/</link>
     <description>Recent content in Tags on 杨世玲的博客</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>杨世玲</copyright>
-    <lastBuildDate>Mon, 03 Jan 2022 00:13:53 +0800</lastBuildDate><atom:link href="https://www.young40.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Jul 2022 23:16:50 +0800</lastBuildDate>
+    <atom:link href="https://www.young40.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>UGUI</title>
       <link>https://www.young40.com/tags/ugui/</link>
       <pubDate>Mon, 03 Jan 2022 00:13:53 +0800</pubDate>
-      
       <guid>https://www.young40.com/tags/ugui/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Unity</title>
       <link>https://www.young40.com/tags/unity/</link>
       <pubDate>Mon, 03 Jan 2022 00:13:53 +0800</pubDate>
-      
       <guid>https://www.young40.com/tags/unity/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>shader</title>
+      <title>Shader</title>
       <link>https://www.young40.com/tags/shader/</link>
       <pubDate>Wed, 25 Nov 2020 10:33:19 +0800</pubDate>
-      
       <guid>https://www.young40.com/tags/shader/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>metal</title>
+      <title>Metal</title>
       <link>https://www.young40.com/tags/metal/</link>
       <pubDate>Sun, 22 Jul 2018 00:00:06 +0800</pubDate>
-      
       <guid>https://www.young40.com/tags/metal/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>playground</title>
+      <title>Playground</title>
       <link>https://www.young40.com/tags/playground/</link>
       <pubDate>Tue, 17 Jul 2018 23:15:13 +0800</pubDate>
-      
       <guid>https://www.young40.com/tags/playground/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>swift</title>
+      <title>Swift</title>
       <link>https://www.young40.com/tags/swift/</link>
       <pubDate>Tue, 17 Jul 2018 23:15:13 +0800</pubDate>
-      
       <guid>https://www.young40.com/tags/swift/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>git</title>
+      <title>Git</title>
       <link>https://www.young40.com/tags/git/</link>
       <pubDate>Sun, 01 Jul 2018 00:44:44 +0800</pubDate>
-      
       <guid>https://www.young40.com/tags/git/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>博客</title>
       <link>https://www.young40.com/tags/%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Sun, 01 Jul 2018 00:44:44 +0800</pubDate>
-      
       <guid>https://www.young40.com/tags/%E5%8D%9A%E5%AE%A2/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Shadowsocks</title>
       <link>https://www.young40.com/tags/shadowsocks/</link>
       <pubDate>Tue, 12 Jun 2018 23:25:30 +0800</pubDate>
-      
       <guid>https://www.young40.com/tags/shadowsocks/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

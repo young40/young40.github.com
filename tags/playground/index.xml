@@ -1,54 +1,41 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>playground on 杨世玲的博客</title>
+    <title>Playground on 杨世玲的博客</title>
     <link>https://www.young40.com/tags/playground/</link>
-    <description>Recent content in playground on 杨世玲的博客</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Playground on 杨世玲的博客</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>杨世玲</copyright>
-    <lastBuildDate>Tue, 17 Jul 2018 23:15:13 +0800</lastBuildDate><atom:link href="https://www.young40.com/tags/playground/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Jul 2018 23:15:13 +0800</lastBuildDate>
+    <atom:link href="https://www.young40.com/tags/playground/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>学习Metal: 带色的三角形</title>
       <link>https://www.young40.com/post/2018-07-17-learnmetal-a-colored-triangle/</link>
       <pubDate>Tue, 17 Jul 2018 23:15:13 +0800</pubDate>
-      
       <guid>https://www.young40.com/post/2018-07-17-learnmetal-a-colored-triangle/</guid>
-      <description>&lt;p&gt;
-上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&#xA;上篇博客, 渲染了一个三角形. 但只有一个颜色太单调了. 我们来给他上点更丰富的颜色.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>学习Metal: Hello, Triangle</title>
       <link>https://www.young40.com/post/2018-07-14-learnmetal-a-triangle/</link>
       <pubDate>Sat, 14 Jul 2018 00:21:53 +0800</pubDate>
-      
       <guid>https://www.young40.com/post/2018-07-14-learnmetal-a-triangle/</guid>
-      <description>&lt;p&gt;
-学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&#xA;学习3D的API, 比如OpenGL, DirectX, 做的第一个渲染总会是三角形. 所以, 我们也来看下如何用Metal来渲染一个三角形.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>学习Metal: MetalKit</title>
       <link>https://www.young40.com/post/2018-07-06-learnmetal-metalkit/</link>
       <pubDate>Fri, 06 Jul 2018 23:30:16 +0800</pubDate>
-      
       <guid>https://www.young40.com/post/2018-07-06-learnmetal-metalkit/</guid>
-      <description>&lt;p&gt;
-当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. &lt;/p&gt;
-&lt;p&gt;
-MetalKit提供的MTKView更为方便快捷. &lt;/p&gt;</description>
+      <description>&lt;p&gt;&#xA;当我们获取了Metal的设备之后, 就可以开始做Metal的渲染了. 我们可以使用Core Animation提供的CAMetalLayer, 或者MetalKit提供的MTKView来显示渲染的结果. &lt;/p&gt;&#xA;&lt;p&gt;&#xA;MetalKit提供的MTKView更为方便快捷. &lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>学习Metal: 获取设备</title>
       <link>https://www.young40.com/post/2018-07-04-learnmetal-get-device/</link>
       <pubDate>Wed, 04 Jul 2018 00:00:49 +0800</pubDate>
-      
       <guid>https://www.young40.com/post/2018-07-04-learnmetal-get-device/</guid>
-      <description>&lt;p&gt;
-使用Metal的第一件事, 就是要获取Metal的设备. 正如在OpenGL中, 需要首先获取到OpenGL的context.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&#xA;使用Metal的第一件事, 就是要获取Metal的设备. 正如在OpenGL中, 需要首先获取到OpenGL的context.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
