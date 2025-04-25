@@ -6,4 +6,4 @@
 	url = git@github.com:young40/solar-theme-hugo.git
 [submodule "themes/even"]
 	path = themes/even
-	url = git@github.com:olOwOlo/hugo-theme-even.git
+	url = git@github.com:young40/hugo-theme-even.git
