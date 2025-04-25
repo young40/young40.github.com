@@ -1,11 +1,28 @@
-#+TITLE: 从ox-hugo到知乎
-#+HUGO_TAGS:
-#+HUGO_CATEGORIES:
-#+DATE: 2022-06-15T18:10:43+08:00
+#+TITLE: sssssssssssssssssssoxxxxx
+#+HUGO_TAGS: oooxx
+#+HUGO_CATEGORIES: bbbboo
+#+DATE: 2025-04-25T19:29:05+08:00
 #+HUGO_AUTO_SET_LASTMOD: t
 #+HUGO_DRAFT: true
 #+HUGO_BASE_DIR: ../
 #+HUGO_SECTION: post
 #+OPTIONS: author:nil
 
-很羡慕别人的文章中错落有致的数学公式, 
+asdfasdfasdxxxxx 
+
+sssssdfadjljljjj
+ssss
+ooasdasdfasd
+
+asdfasdfasdfasdfasdfsad
+
+
+11111111111111111
+
+
+阿阿 哦哦哦
+
+#+begin_src mermaid :file test.png
+sequenceDiagram
+ A-->B: Works!
+#+end_src
