@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>URP领读 on 杨世玲的博客</title>
+    <link>http://localhost:8077/categories/urp%E9%A2%86%E8%AF%BB/</link>
+    <description>Recent content in URP领读 on 杨世玲的博客</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>杨世玲</copyright>
+    <lastBuildDate>Fri, 25 Apr 2025 21:05:13 +0800</lastBuildDate>
+    <atom:link href="http://localhost:8077/categories/urp%E9%A2%86%E8%AF%BB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>URP领读(001): 遇见URP(???)</title>
+      <link>http://localhost:8077/post/001-urp-%E4%BB%8B%E7%BB%8D-introduce/</link>
+      <pubDate>Fri, 25 Apr 2025 21:00:31 +0800</pubDate>
+      <guid>http://localhost:8077/post/001-urp-%E4%BB%8B%E7%BB%8D-introduce/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

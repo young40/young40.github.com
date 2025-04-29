@@ -25,7 +25,7 @@ Cocos2d-x: cocos2d-2.1beta3-x-2.1.1 OS X: 10.8 Android ADT Bundle: v21.1.0 Andro
 
 
 
-<meta name="generator" content="Hugo 0.146.7 with theme even" />
+<meta name="generator" content="Hugo 0.147.0 with theme even" />
 
 
 <link rel="canonical" href="http://localhost:8077/post/2013-02-23-setting-up-android-development-envirment-on-mac-os-x/" />
@@ -37,7 +37,7 @@ Cocos2d-x: cocos2d-2.1beta3-x-2.1.1 OS X: 10.8 Android ADT Bundle: v21.1.0 Andro
 
 
 
-<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link href="/sass/main.min.b5a9718e8170016534a4180452cd879c9065c63f83e57651b33c18c694035b48.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -57,7 +57,7 @@ Cocos2d-x: cocos2d-2.1beta3-x-2.1.1 OS X: 10.8 Android ADT Bundle: v21.1.0 Andro
 Cocos2d-x: cocos2d-2.1beta3-x-2.1.1 OS X: 10.8 Android ADT Bundle: v21.1.0 Android NDK: android-ndk-r8d Device: Android 4.2.1 这次我们测试的设备安装的是Android4.2.1, Cocos2d-x能支持Android2.2以上版本. ####文件路径:">
   <meta itemprop="datePublished" content="2013-02-23T21:14:00+08:00">
   <meta itemprop="dateModified" content="2013-02-23T21:14:00+08:00">
-  <meta itemprop="wordCount" content="1597">
+  <meta itemprop="wordCount" content="1662">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="搭建Mac OS X下cocos2d-x的Android开发环境">
   <meta name="twitter:description" content="##版本
@@ -87,18 +87,7 @@ Cocos2d-x: cocos2d-2.1beta3-x-2.1.1 OS X: 10.8 Android ADT Bundle: v21.1.0 Andro
   };
 </script>
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-<script>
- var _hmt = _hmt || [];
- (function() {
-     var hm = document.createElement("script");
-     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
-     var s = document.getElementsByTagName("script")[0]; 
-     s.parentNode.insertBefore(hm, s);
- })();
-</script>
 
 </head>
 <body>
@@ -197,11 +186,15 @@ Cocos2d-x: cocos2d-2.1beta3-x-2.1.1 OS X: 10.8 Android ADT Bundle: v21.1.0 Andro
 <p>##下载最新版本Cocos2d-x
 您可以在Cocos2d-x官网找到<a href="http://www.cocos2d-x.org/projects/cocos2d-x/wiki/Download">下载页面</a> <br>
 解压后到您需要的位置, 本文假设解压到以下位置</p>
-<pre class="mermaid">
-  /opt/cocos2d-2.1beta3-x-2.1.1
-</pre>
-
-<p>##检查JDK
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/opt/cocos2d-2.1beta3-x-2.1.1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>##检查JDK
 在终端中输入</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -214,21 +207,31 @@ Cocos2d-x: cocos2d-2.1beta3-x-2.1.1 OS X: 10.8 Android ADT Bundle: v21.1.0 Andro
 </div><p>如果您没有安装JDK, 系统会帮您自动安装JDK.<br>
 {% img /upload/2013-02/set-up-c-a-osx-001-jdk.png %}<br>
 安装过后您会看到如下输出</p>
-<pre class="mermaid">
-  java version &#34;1.6.0_37&#34;
-Java(TM) SE Runtime Environment (build 1.6.0_37-b06-434-11M3909)
-Java HotSpot(TM) 64-Bit Server VM (build 20.12-b01-434, mixed mode)
-</pre>
-
-<p>##下载最新版本Android ADT Bundle
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">java version &#34;1.6.0_37&#34;
+</span></span><span class="line"><span class="cl">Java(TM) SE Runtime Environment (build 1.6.0_37-b06-434-11M3909)
+</span></span><span class="line"><span class="cl">Java HotSpot(TM) 64-Bit Server VM (build 20.12-b01-434, mixed mode)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>##下载最新版本Android ADT Bundle
 Google将Android SDK, Eclipse, ADT(Android Developer Tools)打包在一起,称作Android ADT Bundle, 简化了Android开发环境的搭建.<br>
 您可以在Android官网找到<a href="http://developer.android.com/sdk/index.html">下载页面</a> <br>
 解压到您需要的位置, 本文假设解压到以下位置</p>
-<pre class="mermaid">
-  /opt/adt-bundle-mac-x86_64
-</pre>
-
-<p>在终端中运行下面命令, 将ADT中的Eclipse放入您的程序文件夹, 方便启动</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/opt/adt-bundle-mac-x86_64
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在终端中运行下面命令, 将ADT中的Eclipse放入您的程序文件夹, 方便启动</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -246,18 +249,28 @@ Google将Android SDK, Eclipse, ADT(Android Developer Tools)打包在一起,称�
 <li>编辑<code>Contents/Info.plist</code></li>
 <li>找到</li>
 </ol>
-<pre class="mermaid">
-  &lt;/dict&gt;
-&lt;/plist&gt;
-</pre>
-
-<p>在其上面添加</p>
-<pre class="mermaid">
-  &lt;key&gt;NSHighResolutionCapable&lt;/key&gt;
-&lt;true/&gt;
-</pre>
-
-<ol start="4">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;/dict&gt;
+</span></span><span class="line"><span class="cl">&lt;/plist&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在其上面添加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;key&gt;NSHighResolutionCapable&lt;/key&gt;
+</span></span><span class="line"><span class="cl">&lt;true/&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
 <li>将Eclipse.app移动到新的文件夹, 然后再移动回来. (防止系统缓存了上面提及的Info.plist)</li>
 <li>OK啦.</li>
 </ol>
@@ -268,91 +281,162 @@ Android ADT Bundle中是包含了Android SDK Manager的. 启动您的Eclipse-ADT
 <p>##Android NDK
 您可以在Android官网找到Android的<a href="http://developer.android.com/tools/sdk/ndk/index.html">下载页面</a> <br>
 下载后解压到您需要的位置, 本文假设解压到以下位置</p>
-<pre class="mermaid">
-  /opt/android-ndk
-</pre>
-
-<p>##设置环境变量
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/opt/android-ndk
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>##设置环境变量
 我们需要将SDK, NDK以及Cocos2d-x的路径中添加到环境变量中. 将以下内容添加到~/.bash_profile文件</p>
-<pre class="mermaid">
-  export COCOS2DX_ROOT=/opt/cocos2d-2.1beta3-x-2.1.1
-export ANDROID_SDK_ROOT=/opt/adt-bundle-mac-x86_64/sdk
-export ANDROID_NDK_ROOT=/opt/android-ndk
-export NDK_ROOT=/opt/android-ndk
-export PATH=$PATH:$ANDROID_NDK_ROOT
-export PATH=$PATH:$ANDROID_SDK_ROOT
-</pre>
-
-<p>##HelloWorld
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">export</span> <span class="n">COCOS2DX_ROOT</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">cocos2d</span><span class="o">-</span><span class="mf">2.1</span><span class="n">beta3</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">ANDROID_SDK_ROOT</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">adt</span><span class="o">-</span><span class="n">bundle</span><span class="o">-</span><span class="n">mac</span><span class="o">-</span><span class="n">x86_64</span><span class="o">/</span><span class="n">sdk</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">ANDROID_NDK_ROOT</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">android</span><span class="o">-</span><span class="n">ndk</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">NDK_ROOT</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">android</span><span class="o">-</span><span class="n">ndk</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">PATH</span><span class="o">=$</span><span class="n">PATH</span><span class="p">:</span><span class="o">$</span><span class="n">ANDROID_NDK_ROOT</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="n">PATH</span><span class="o">=$</span><span class="n">PATH</span><span class="p">:</span><span class="o">$</span><span class="n">ANDROID_SDK_ROOT</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>##HelloWorld
 万事俱备, 我们现在就可以开始激动人心的Cocos2d-x之旅了.  <br>
 打开终端, 进入cocos2d-x所在目录并执行 <code>/opt/cocos2d-2.1beta3-x-2.1.1/create-android-project.sh</code>文件 <br>
 根据提示输入对应信息.</p>
-<pre class="mermaid">
-  Youngs-MacBook-Air:~ young40$ cd /opt/cocos2d-2.1beta3-x-2.1.1/
-Youngs-MacBook-Air:cocos2d-2.1beta3-x-2.1.1 young40$ ./create-android-project.sh 
-use global definition of NDK_ROOT: /opt/android-ndk
-use global definition of ANDROID_SDK_ROOT: /opt/adt-bundle-mac-x86_64/sdk
-Input package path. For example: org.cocos2dx.example
-com.young40.test  //这里输入了包名
-Now cocos2d-x supports Android 2.2 or upper version
-Available Android targets:
-----------
-id: 1 or &#34;android-17&#34;
-     Name: Android 4.2
-     Type: Platform
-     API level: 17
-     Revision: 1
-     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in
-     ABIs : armeabi-v7a
-input target id:
-1 //选择您需要的平台id
-input your project name:
-HelloWorld  //输入项目名称
-Created project directory: /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android
-
-.....
-
-
-Updated project.properties
-Updated local.properties
-Updated file /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/proguard-project.txt
-Youngs-MacBook-Air:cocos2d-2.1beta3-x-2.1.1 young40$ 
-</pre>
-
-<p>从以上输出我们可以看到<code>create-android-project.sh</code>这个脚本帮我们在 /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld 下建立了新项目.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-zed" data-lang="zed"><span class="line"><span class="cl"><span class="n">Youngs</span><span class="o">-</span><span class="n">MacBook</span><span class="o">-</span><span class="n">Air</span><span class="o">:~</span><span class="w"> </span><span class="n">young40</span><span class="err">$</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="nn">opt/</span><span class="n">cocos2d</span><span class="o">-</span><span class="err">2</span><span class="p">.</span><span class="err">1</span><span class="n">beta3</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="err">2</span><span class="p">.</span><span class="err">1</span><span class="p">.</span><span class="err">1</span><span class="o">/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Youngs</span><span class="o">-</span><span class="n">MacBook</span><span class="o">-</span><span class="n">Air</span><span class="o">:</span><span class="n">cocos2d</span><span class="o">-</span><span class="err">2</span><span class="p">.</span><span class="err">1</span><span class="n">beta3</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="err">2</span><span class="p">.</span><span class="err">1</span><span class="p">.</span><span class="err">1</span><span class="w"> </span><span class="n">young40</span><span class="err">$</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="n">create</span><span class="o">-</span><span class="n">android</span><span class="o">-</span><span class="n">project</span><span class="p">.</span><span class="n">sh</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">use</span><span class="w"> </span><span class="n">global</span><span class="w"> </span><span class="kt">definition</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">NDK_ROOT</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nn">opt/</span><span class="n">android</span><span class="o">-</span><span class="n">ndk</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">use</span><span class="w"> </span><span class="n">global</span><span class="w"> </span><span class="kt">definition</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">ANDROID_SDK_ROOT</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nn">opt/</span><span class="n">adt</span><span class="o">-</span><span class="n">bundle</span><span class="o">-</span><span class="n">mac</span><span class="o">-</span><span class="nn">x86_64/</span><span class="n">sdk</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Input</span><span class="w"> </span><span class="n">package</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="w"> </span><span class="n">For</span><span class="w"> </span><span class="n">example</span><span class="o">:</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="n">cocos2dx</span><span class="p">.</span><span class="n">example</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">com</span><span class="p">.</span><span class="n">young40</span><span class="p">.</span><span class="n">test</span><span class="w">  </span><span class="c1">//这里输入了包名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Now</span><span class="w"> </span><span class="n">cocos2d</span><span class="o">-</span><span class="n">x</span><span class="w"> </span><span class="n">supports</span><span class="w"> </span><span class="n">Android</span><span class="w"> </span><span class="err">2</span><span class="p">.</span><span class="err">2</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">upper</span><span class="w"> </span><span class="n">version</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Available</span><span class="w"> </span><span class="n">Android</span><span class="w"> </span><span class="n">targets</span><span class="o">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">----------</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">id</span><span class="o">:</span><span class="w"> </span><span class="err">1</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="err">&#34;</span><span class="n">android</span><span class="o">-</span><span class="err">17&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">Name</span><span class="o">:</span><span class="w"> </span><span class="n">Android</span><span class="w"> </span><span class="err">4</span><span class="p">.</span><span class="err">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">Type</span><span class="o">:</span><span class="w"> </span><span class="n">Platform</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">API</span><span class="w"> </span><span class="n">level</span><span class="o">:</span><span class="w"> </span><span class="err">17</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">Revision</span><span class="o">:</span><span class="w"> </span><span class="err">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">Skins</span><span class="o">:</span><span class="w"> </span><span class="n">HVGA</span><span class="p">,</span><span class="w"> </span><span class="n">QVGA</span><span class="p">,</span><span class="w"> </span><span class="n">WQVGA400</span><span class="p">,</span><span class="w"> </span><span class="n">WQVGA432</span><span class="p">,</span><span class="w"> </span><span class="n">WSVGA</span><span class="p">,</span><span class="w"> </span><span class="n">WVGA800</span><span class="w"> </span><span class="p">(</span><span class="n">default</span><span class="p">),</span><span class="w"> </span><span class="n">WVGA854</span><span class="p">,</span><span class="w"> </span><span class="n">WXGA720</span><span class="p">,</span><span class="w"> </span><span class="n">WXGA800</span><span class="p">,</span><span class="w"> </span><span class="n">WXGA800</span><span class="o">-</span><span class="err">7</span><span class="n">in</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="n">ABIs</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">armeabi</span><span class="o">-</span><span class="n">v7a</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">input</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="n">id</span><span class="o">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="err">1</span><span class="w"> </span><span class="c1">//选择您需要的平台id
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">input</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">project</span><span class="w"> </span><span class="n">name</span><span class="o">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">HelloWorld</span><span class="w">  </span><span class="c1">//输入项目名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Created</span><span class="w"> </span><span class="n">project</span><span class="w"> </span><span class="n">directory</span><span class="o">:</span><span class="w"> </span><span class="o">/</span><span class="nn">opt/</span><span class="n">cocos2d</span><span class="o">-</span><span class="err">2</span><span class="p">.</span><span class="err">1</span><span class="n">beta3</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="err">2</span><span class="p">.</span><span class="err">1</span><span class="p">.</span><span class="err">1</span><span class="o">/</span><span class="nn">HelloWorld/</span><span class="n">proj</span><span class="p">.</span><span class="n">android</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">.....</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Updated</span><span class="w"> </span><span class="n">project</span><span class="p">.</span><span class="n">properties</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Updated</span><span class="w"> </span><span class="n">local</span><span class="p">.</span><span class="n">properties</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Updated</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">/</span><span class="nn">opt/</span><span class="n">cocos2d</span><span class="o">-</span><span class="err">2</span><span class="p">.</span><span class="err">1</span><span class="n">beta3</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="err">2</span><span class="p">.</span><span class="err">1</span><span class="p">.</span><span class="err">1</span><span class="o">/</span><span class="nn">HelloWorld/</span><span class="n">proj</span><span class="p">.</span><span class="nn">android/</span><span class="n">proguard</span><span class="o">-</span><span class="n">project</span><span class="p">.</span><span class="n">txt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Youngs</span><span class="o">-</span><span class="n">MacBook</span><span class="o">-</span><span class="n">Air</span><span class="o">:</span><span class="n">cocos2d</span><span class="o">-</span><span class="err">2</span><span class="p">.</span><span class="err">1</span><span class="n">beta3</span><span class="o">-</span><span class="n">x</span><span class="o">-</span><span class="err">2</span><span class="p">.</span><span class="err">1</span><span class="p">.</span><span class="err">1</span><span class="w"> </span><span class="n">young40</span><span class="err">$</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>从以上输出我们可以看到<code>create-android-project.sh</code>这个脚本帮我们在 /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld 下建立了新项目.</p>
 <p>然后我们可以先在终端中调用&quot;build_native.sh&quot;脚本编译该项目的C++部分.</p>
-<pre class="mermaid">
-  Youngs-MacBook-Air:~ young40$ cd /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/
-Youngs-MacBook-Air:proj.android young40$ ./build_native.sh 
-NDK_ROOT = /opt/android-ndk
-COCOS2DX_ROOT = /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/../..
-APP_ROOT = /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/..
-APP_ANDROID_ROOT = /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android
-Using prebuilt externals
-make: Entering directory `/opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android&#39;
-
-.....
-
-StaticLibrary  : libchipmunk.a
-StaticLibrary  : libextension.a
-SharedLibrary  : libgame.so
-Install        : libgame.so =&gt; libs/armeabi/libgame.so
-make: Leaving directory `/opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android&#39;
-Youngs-MacBook-Air:proj.android young40$ 
-</pre>
-
-<p>##导入Eclipse-ADT
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Youngs-MacBook-Air:~ young40$ cd /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/
+</span></span><span class="line"><span class="cl">Youngs-MacBook-Air:proj.android young40$ ./build_native.sh 
+</span></span><span class="line"><span class="cl">NDK_ROOT = /opt/android-ndk
+</span></span><span class="line"><span class="cl">COCOS2DX_ROOT = /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/../..
+</span></span><span class="line"><span class="cl">APP_ROOT = /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android/..
+</span></span><span class="line"><span class="cl">APP_ANDROID_ROOT = /opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android
+</span></span><span class="line"><span class="cl">Using prebuilt externals
+</span></span><span class="line"><span class="cl">make: Entering directory `/opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">.....
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">StaticLibrary  : libchipmunk.a
+</span></span><span class="line"><span class="cl">StaticLibrary  : libextension.a
+</span></span><span class="line"><span class="cl">SharedLibrary  : libgame.so
+</span></span><span class="line"><span class="cl">Install        : libgame.so =&gt; libs/armeabi/libgame.so
+</span></span><span class="line"><span class="cl">make: Leaving directory `/opt/cocos2d-2.1beta3-x-2.1.1/HelloWorld/proj.android&#39;
+</span></span><span class="line"><span class="cl">Youngs-MacBook-Air:proj.android young40$ 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>##导入Eclipse-ADT
 打开Eclipse-ADT, 点击快捷键<code>command+N</code>打开新建项目窗口并选择<code>Android Project from Existing Code</code>  <br>
 {% img /upload/2013-02/set-up-c-a-osx-005-helloworld-1.png %} <br>
 {% img /upload/2013-02/set-up-c-a-osx-006-helloworld-2.png %} <br>
 这时您可能会在eclipse的<code>Problems</code>窗口看到如下错误</p>
-<pre class="mermaid">
-  The import org.cocos2dx.lib cannot be resolved	HelloWorld.java	/HelloWorld/src/com/young40/test	line 26	Java Problem
-Cocos2dxActivity cannot be resolved to a type	HelloWorld.java	/HelloWorld/src/com/young40/test	line 30	Java Problem
-Cocos2dxActivity cannot be resolved to a type	HelloWorld.java	/HelloWorld/src/com/young40/test	line 33	Java Problem
-</pre>
-
-<p>您需要将<code>/opt/cocos2d-2.1beta3-x-2.1.1/cocos2dx/platform/android/java</code>如上面处理一样也作为一个项目导入eclipse中 <br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">The import org.cocos2dx.lib cannot be resolved	HelloWorld.java	/HelloWorld/src/com/young40/test	line 26	Java Problem
+</span></span><span class="line"><span class="cl">Cocos2dxActivity cannot be resolved to a type	HelloWorld.java	/HelloWorld/src/com/young40/test	line 30	Java Problem
+</span></span><span class="line"><span class="cl">Cocos2dxActivity cannot be resolved to a type	HelloWorld.java	/HelloWorld/src/com/young40/test	line 33	Java Problem
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>您需要将<code>/opt/cocos2d-2.1beta3-x-2.1.1/cocos2dx/platform/android/java</code>如上面处理一样也作为一个项目导入eclipse中 <br>
 然后在HelloWorld项目上点击右键选择刷新, 可以看到错误就消失了.</p>
 <p>将您的手机设置成调试模式并用USB线连接到电脑, 在Eclipse中运行HelloWorld, 然后就能在手机上看到已经运行的HelloWorld了 <br>
 {% img /upload/2013-02/set-up-c-a-osx-007-screen.png %}</p>
@@ -442,7 +526,7 @@ Cocos2dxActivity cannot be resolved to a type	HelloWorld.java	/HelloWorld/src/co
     </div>
   </div>
   
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
 
@@ -454,15 +538,6 @@ Cocos2dxActivity cannot be resolved to a type	HelloWorld.java	/HelloWorld/src/co
 
 
 
-
-
-
-
-  
-  <script type="module">
-   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
-   mermaid.initialize({ startOnLoad: true });
-  </script>
   
 
 </body>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ooo on 杨世玲的博客</title>
+    <link>http://localhost:8077/categories/ooo/</link>
+    <description>Recent content in Ooo on 杨世玲的博客</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>杨世玲</copyright>
+    <lastBuildDate>Sat, 26 Apr 2025 13:58:58 +0800</lastBuildDate>
+    <atom:link href="http://localhost:8077/categories/ooo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>sssss</title>
+      <link>http://localhost:8077/post/001-urp-%E4%BB%8B%E7%BB%8D-introduce/</link>
+      <pubDate>Fri, 25 Apr 2025 21:53:11 +0800</pubDate>
+      <guid>http://localhost:8077/post/001-urp-%E4%BB%8B%E7%BB%8D-introduce/</guid>
+      <description>&lt;h2 id=&#34;birp&#34;&gt;BIRP&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Unity6后已经不是默认创建项目使用的管线&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;优点&#34;&gt;优点&lt;/h3&gt;&#xA;&lt;h3 id=&#34;缺点&#34;&gt;缺点&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;性能不佳, 一种渲染管线照顾所有机型(性能有高有低, 高端Destop 5090, 低端千元手机)&lt;/li&gt;&#xA;&lt;li&gt;仅能通过自定义shader控制渲染管线???(Shader+CommandBuferf???)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;srp&#34;&gt;SRP&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;LWRP&lt;/li&gt;&#xA;&lt;li&gt;URP&lt;/li&gt;&#xA;&lt;li&gt;HDRP&lt;/li&gt;&#xA;&lt;li&gt;未来URP和HDRP融合&lt;/li&gt;&#xA;&lt;li&gt;自定义SRP或者修改URP/HDRP源码, 深度定制&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;urp&#34;&gt;URP&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;URP如何照顾所有机型?&lt;/li&gt;&#xA;&lt;li&gt;URP拥有源码, 可以方便修改定制, BIRP不方便定制(怎么定制BIRP??)&lt;/li&gt;&#xA;&lt;li&gt;相比BIRP如何实现高性能?&#xA;&lt;ul&gt;&#xA;&lt;li&gt;架构方面&#xA;&lt;ol&gt;&#xA;&lt;li&gt;模块化可编程架构&lt;/li&gt;&#xA;&lt;li&gt;显式的渲染循环控制&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;渲染技术&#xA;&lt;ol&gt;&#xA;&lt;li&gt;单Pass前向渲染&#xA;URP前向渲染管线, 在单Pass中, 处理最多8个逐像素光源(这是什么?), 所有光源在一个Pass内整合处理,&#xA;减少了因光源数量增加而导致的Draw Call的增长, (内置管线如何做一个demo对比??)&lt;/li&gt;&#xA;&lt;li&gt;Tile-Based阴影剔除&lt;/li&gt;&#xA;&lt;li&gt;级联阴影和屏幕空间阴影混合(??缩写是什么?)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;资源管理&#xA;&lt;ol&gt;&#xA;&lt;li&gt;SRP Batch&lt;/li&gt;&#xA;&lt;li&gt;Render Graph&lt;/li&gt;&#xA;&lt;li&gt;减少Shader变体数量(如何减少??&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;多相机处理&#xA;相机堆栈概念, 减少冗余计算. (重复阴影计算等)&lt;/li&gt;&#xA;&lt;li&gt;其他&#xA;&lt;ol&gt;&#xA;&lt;li&gt;后处理按需处理&#xA;Volume框架,&lt;/li&gt;&#xA;&lt;li&gt;跨平台兼容性优化&#xA;URP跨平台抽象层(???源码如何体现), 自动处理不同API的纹理格式, Uniform绑定差异,&#xA;UniversalTarget编译宏简化多平台Shader开发(有没有Demo???)&lt;/li&gt;&#xA;&lt;li&gt;Depth Prepass&#xA;URP中将所有物体深度渲染到一张RT, 供后续使用.&#xA;内置管线渲染到屏幕空间并在屏幕空间计算(怎么理解???)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;参考&#34;&gt;参考&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/oWanMeiShiKong/article/details/146176078&#34;&gt;https://blog.csdn.net/oWanMeiShiKong/article/details/146176078&lt;/a&gt; Unity Built-in与URP渲染管线的本质原理对比与分析&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://blog.51cto.com/u_16213678/13333614&#34;&gt;https://blog.51cto.com/u_16213678/13333614&lt;/a&gt; Unity URP 项目的优缺点 转载&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

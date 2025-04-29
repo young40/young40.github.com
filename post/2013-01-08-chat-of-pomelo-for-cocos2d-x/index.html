@@ -27,7 +27,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.146.7 with theme even" />
+<meta name="generator" content="Hugo 0.147.0 with theme even" />
 
 
 <link rel="canonical" href="http://localhost:8077/post/2013-01-08-chat-of-pomelo-for-cocos2d-x/" />
@@ -39,7 +39,7 @@
 
 
 
-<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link href="/sass/main.min.b5a9718e8170016534a4180452cd879c9065c63f83e57651b33c18c694035b48.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -63,7 +63,7 @@
 这并不是一篇Pomelo,或者Cocos2d-x的入门说明, 需要你对这两者都有一定的了解. 同时, 无论是Pomelo还是Cocos2d-x, 我都是新手, 如果文章中有错误的地方, 希望您能不吝指出. 您可以在文章下面留言, 或者在新浪微博上发微薄 @杨世玲 (需要说明的一点是, 请勿私信提问非隐私性技术问题, 我是希望您的问题, 我的或者其他朋友的回复,能被更多朋友搜索到, 我希望我们的交流, 能让更多朋友受到启发, 受益. 这也是对社区和世界和平的一点贡献吧.)">
   <meta itemprop="datePublished" content="2013-01-08T00:39:00+08:00">
   <meta itemprop="dateModified" content="2013-01-08T00:39:00+08:00">
-  <meta itemprop="wordCount" content="2385">
+  <meta itemprop="wordCount" content="2389">
   <meta itemprop="keywords" content="Cocos2d-X">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="基于Pomelo和Cocos2d-x的聊天室">
@@ -96,18 +96,7 @@
   };
 </script>
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-<script>
- var _hmt = _hmt || [];
- (function() {
-     var hm = document.createElement("script");
-     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
-     var s = document.getElementsByTagName("script")[0]; 
-     s.parentNode.insertBefore(hm, s);
- })();
-</script>
 
 </head>
 <body>
@@ -285,14 +274,21 @@ websocketpp需要著名的C++库, boost. 我是使用了HomeBrew来安装.
 </div><p>我们打开proj.mac下的项目文件, 在Xcode中打开项目设置页, 点开Targets的设置.
 在Build Settings下面找到<code>Search Paths</code>, 将<code>Always Search User Paths</code>设置为<code>Yes</code>.<br>
 给<code>Header Search Paths</code> 依次添加下面路径:</p>
-<pre class="mermaid">
-  /usr/local/include_code
-&#34;$(SRCROOT)/../lib/socket.io-clientpp/src&#34;
-&#34;$(SRCROOT)/../lib/websocketpp/src&#34;
-&#34;$(SRCROOT)/../lib/rapidjson/include&#34;
-</pre>
-
-<p>如下图所示:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/usr/local/include_code
+</span></span><span class="line"><span class="cl">&#34;$(SRCROOT)/../lib/socket.io-clientpp/src&#34;
+</span></span><span class="line"><span class="cl">&#34;$(SRCROOT)/../lib/websocketpp/src&#34;
+</span></span><span class="line"><span class="cl">&#34;$(SRCROOT)/../lib/rapidjson/include&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如下图所示:
 {%img /upload/2013-01/chat-of-pomelo-cocos2d-x-001.png %}</p>
 <p>给<code>Library Search Paths</code>添加路径<code>/usr/local/lib</code>. 如下图:
 {%img /upload/2013-01/chat-of-pomelo-cocos2d-x-002.png %}</p>
@@ -470,7 +466,7 @@ websocketpp需要著名的C++库, boost. 我是使用了HomeBrew来安装.
     </div>
   </div>
   
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
 
@@ -482,15 +478,6 @@ websocketpp需要著名的C++库, boost. 我是使用了HomeBrew来安装.
 
 
 
-
-
-
-
-  
-  <script type="module">
-   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
-   mermaid.initialize({ startOnLoad: true });
-  </script>
   
 
 </body>

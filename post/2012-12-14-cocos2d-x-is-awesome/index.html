@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.146.7 with theme even" />
+<meta name="generator" content="Hugo 0.147.0 with theme even" />
 
 
 <link rel="canonical" href="http://localhost:8077/post/2012-12-14-cocos2d-x-is-awesome/" />
@@ -37,7 +37,7 @@
 
 
 
-<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link href="/sass/main.min.b5a9718e8170016534a4180452cd879c9065c63f83e57651b33c18c694035b48.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -57,7 +57,7 @@
 2d-x最令人开心的就是跨平台特性, 经过这段时间的尝试, 感觉跨平台特性确实很强大. 我一般都是在Xcode写代码, 以os x平台做调试, 然后ios平台就不用提了, 直接编译即可. Win和Android下面一般都是直接编译即可. 当然, 因为我对C&#43;&#43;也是刚刚开始学习, 所以代码写的不标准, 那么在VS下面会无法通过编译. 主要是体现在一些需要将函数作为参数传入的地方, 比较会不容易弄清楚回调函数的参数. Xcode我通通将CCObject *sender作为参数, 而VS要求就非常严格了.">
   <meta itemprop="datePublished" content="2012-12-14T03:07:00+08:00">
   <meta itemprop="dateModified" content="2012-12-14T03:07:00+08:00">
-  <meta itemprop="wordCount" content="645">
+  <meta itemprop="wordCount" content="649">
   <meta itemprop="keywords" content="杂谈">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Cocos2d-x 真是太棒了">
@@ -88,18 +88,7 @@
   };
 </script>
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-<script>
- var _hmt = _hmt || [];
- (function() {
-     var hm = document.createElement("script");
-     hm.src = "https://hm.baidu.com/hm.js?b714b0be9c4512793abdf94a64e66cfa";
-     var s = document.getElementsByTagName("script")[0]; 
-     s.parentNode.insertBefore(hm, s);
- })();
-</script>
 
 </head>
 <body>
@@ -186,14 +175,21 @@
 Win和Android下面一般都是直接编译即可. 当然, 因为我对C++也是刚刚开始学习, 所以代码写的不标准, 那么在VS下面会无法通过编译. 主要是体现在一些需要将函数作为参数传入的地方,
 比较会不容易弄清楚回调函数的参数. Xcode我通通将<code>CCObject *sender</code>作为参数, 而VS要求就非常严格了.</p>
 <p>在Win上, 我使用VS2012编译, 能很好地支持我现在使用的C++11的一些特性, 比如类似于:</p>
-<pre class="mermaid">
-  vector&lt;int&gt; v(1);
-for (auto i : v)
-{
-}
-</pre>
-
-<p>而在Android上, 因为一直没有更新NDK, 版本是r8b, 一直没有办法很好地编译这段代码. 更新为r8c之后,可以编译了.太好了, 我还是很喜欢C++11的这些新的语法糖.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">vector&lt;int&gt; v(1);
+</span></span><span class="line"><span class="cl">for (auto i : v)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而在Android上, 因为一直没有更新NDK, 版本是r8b, 一直没有办法很好地编译这段代码. 更新为r8c之后,可以编译了.太好了, 我还是很喜欢C++11的这些新的语法糖.</p>
 <p>默认是没有启用C++11特性的, 可以在<code>Android.mk</code>中, 添加<code>LOCAL_CPPFLAGS += -std=c++0x</code>来启用这个特性.</p>
 <p>作为练习, 我将潘潘的j2me的坦克游戏简单移植到ios上, 简单实现以后, 我转向山寨@胡铠鸥 的PopCube(<a target="_blank" href="https://itunes.apple.com/cn/app/popcube!/id562905043?l=en&mt=8">原版下载</a>)了. 山寨的很彻底, 直接将图片,声音等资源从原版的ipa里面提取出来, 或许游戏资源的保护也应该做的更好一点.</p>
 <p>接下来要转向继续开发坦克了, 希望一切顺利.</p>
@@ -282,7 +278,7 @@ for (auto i : v)
     </div>
   </div>
   
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
 
@@ -294,15 +290,6 @@ for (auto i : v)
 
 
 
-
-
-
-
-  
-  <script type="module">
-   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
-   mermaid.initialize({ startOnLoad: true });
-  </script>
   
 
 </body>
