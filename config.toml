@@ -1,5 +1,5 @@
 baseURL = "https://www.young40.com/"
-languageCode = "en-us"
+locale = "en-us"
 defaultContentLanguage = "zh-cn"                             # en / zh-cn / ... (This field determines which i18n file to use)
 title = "杨世玲的博客"
 preserveTaxonomyNames = true
@@ -197,6 +197,9 @@ copyright = "杨世玲"            # default: author.name ↓        # 默认为
     # m-instagram = "http://localhost:1313"
     # n-gitlab = "http://localhost:1313"
     # o-bilibili = "http://localhost:1313"
+
+[security]
+  allowContent = ['! ^text/html$']
 
 # See https://gohugo.io/about/hugo-and-gdpr/
 [privacy]

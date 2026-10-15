@@ -5,7 +5,6 @@ date: 2012-12-09T10:19:00+08:00
 comments: true
 categories: [杂谈]
 draft: true
-draft: true
 ---
 
 这两天心血来潮, 突然想在github上架设个博客玩玩了, 比较好的两个选择就是OctoPress和Jekyll-Bootstrap.
